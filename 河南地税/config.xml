@@ -4,7 +4,7 @@
   <name>河南地税</name>  
   <description>Example For APICloud.</description>  
   <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>  
-  <content src="./html/main.html"/>  
+  <content src="index.html"/>  
   <preference name="pageBounce" value="false"/>  
   <preference name="appBackground" value="rgba(0,0,0,0.0)"/>  
   <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>  
