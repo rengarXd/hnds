@@ -47,7 +47,9 @@
 			});
 			function openMain() {
 				H.openWin('main', '../main.html');
-				H.closeWin();
+				setTimeout(function() {
+					H.closeWin();
+				},1200);
 			}
 		</script>
 	</body>
