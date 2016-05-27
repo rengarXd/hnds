@@ -714,7 +714,7 @@ textarea { overflow: auto; }
 
 /*点击高亮*/
 .H-touch-active { }
-.H-touch-active:active { background: #f4f4f4; }
+.H-touch-active:active { background: #f4f4f4 !important}
 
 /*常用边线*/
 .H-outline-none { outline-width: 0; }
