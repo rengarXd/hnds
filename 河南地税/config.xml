@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<widget id="A6919788272158" version="0.0.1"> 
+<widget id="A6919788272158" version="0.0.5"> 
   <name>河南地税</name>  
   <description>Example For APICloud.</description>  
   <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>  
@@ -14,7 +14,7 @@
   <preference name="autoLaunch" value="true"/>  
   <preference name="fullScreen" value="false"/>  
   <preference name="autoUpdate" value="false"/>  
-  <preference name="smartUpdate" value="false"/>  
+  <preference name="smartUpdate" value="true"/>  
   <preference name="debug" value="true"/>  
   <preference name="statusBarAppearance" value="true"/>  
   <permission name="readPhoneState"/>  
