@@ -50,16 +50,11 @@
 		<script type="text/javascript">
 			var mam = null,sysVer = null;
 			H.ready(function() {
-				mam = api.require('mam');
-				mam.checkUpdate(function(ret, err) {
-					if (ret) {
-						sysVer = ret;
-						$("#sysVer").text(sysVer.result.version);
-					} else {
-						H.closeToast();
-						alert(JSON.stringify(err));
-					}
-				});
+				H.getPrefs(function(ret,err) {
+					sysVer = eval('(' + ret.value + ')');
+					alert(JSON.stringify(sysVer));
+					$("#sysVer").html(sysVer.result.version);
+				},'systemVer');
 			});
 			function checkVersion() {
 			H.toastLoading();
