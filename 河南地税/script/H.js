@@ -3616,7 +3616,7 @@
                 } else {
                     var toastDiv = document.createElement("div");
                     toastDiv.id = "H-toast-tip";
-                    that.addClass(toastDiv, "H-position-absolute H-z-index-1000000 H-height-100 H-width-100 H-border-radius-5 H-theme-background-color-black H-theme-font-color-white H-center-all H-text-align-center H-background-color-transparent-5 animated " + animateName);
+                    that.addClass(toastDiv, "H-position-absolute H-z-index-1000000 H-height-100 H-width-100 H-border-radius-5 H-theme-background-color-black H-theme-font-color-white H-center-all H-text-align-center H-background-color-transparent-5");
                     that.cssText(toastDiv, "left:50%;top:50%;margin-left:-50px;")
                     var html = "";
                     html += '<div>';
