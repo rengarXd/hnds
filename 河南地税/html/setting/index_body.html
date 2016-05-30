@@ -53,11 +53,11 @@
         });
         H.ready(function() {
             H.getPrefs(function(ret, err) {
+             $("#sysVer").html(api.appVersion);
                 if (ret.update) {
                     sysVer = eval('(' + ret.value + ')');
-                    $("#newVer").show();
+                    $("#newVer").show();        
                 } else {
-                    $("#sysVer").html(api.appVersion);
                 }
                 console.log(JSON.stringify(ret));
             }, 'systemVer');
