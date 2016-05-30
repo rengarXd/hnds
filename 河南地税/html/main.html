@@ -23,7 +23,7 @@
     <body class="H-flexbox-vertical">
         <header class="H-header H_header_bg" id="index_header">
             <div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
-                首页
+                首页&nbsp;&nbsp;<span id="update"></span>
             </div>
         </header>
         <header class="H-header H-header-title H_header_bg H-display-none" id="massages_header">
@@ -59,6 +59,7 @@
         </footer>
     </body>
     <script type="text/javascript" src="../script/H.js"></script>
+    <script src="../script/zepto.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         //1.1设备准备完毕
         H.ready(function() {
@@ -112,10 +113,11 @@
                                         report : true
                                     }, function(ret, err) {
                                         if (ret && 0 == ret.state) {/* 下载进度 */
-                                            api.toast({
-                                                msg : "正在下载应用" + ret.percent + "%",
-                                                duration : 2000
-                                            });
+                                            $("#update").html(ret.percent+"%");
+//                                          api.toast({
+//                                              msg : "正在下载应用" + ret.percent + "%",
+//                                              duration : 2000
+//                                          });
                                         }
                                         if (ret && 1 == ret.state) {/* 下载完成 */
                                             var savePath = ret.savePath;

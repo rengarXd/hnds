@@ -53,26 +53,26 @@
         });
         H.ready(function() {
             H.getPrefs(function(ret, err) {
-             $("#sysVer").html(api.appVersion);
+                $("#sysVer").html(api.appVersion);
                 if (ret.update) {
                     sysVer = eval('(' + ret.value + ')');
-                    $("#newVer").show();        
+                    $("#newVer").show();
                 } else {
                 }
                 console.log(JSON.stringify(ret));
             }, 'systemVer');
         });
         function checkVersion() {
-                var mam = api.require('mam');
+            var mam = api.require('mam');
             mam.checkUpdate(function(ret, err) {
                 if (ret) {
                     var result = ret.result;
                     H.setPrefs(function() {
                     }, 'systemVer', JSON.stringify(result));
                     if (result.update == true & result.closed == false) {
-                        var str = '新版本型号:' + result.version + ';更新提示语:' + result.updateTip + ';下载地址:' + result.source + ';发布时间:' + result.time;
+                        var str = '最新版本号:' + result.version + '\n' + result.updateTip + '\n发布时间:' + result.time;
                         api.confirm({
-                            title : '有新的版本,是否下载并安装 ',
+                            title : '有新版本更新 ',
                             msg : str,
                             buttons : ['确定', '取消']
                         }, function(ret, err) {
@@ -104,13 +104,13 @@
                             }
                         });
                     } else {
-                        api.toast({
-                            msg : "暂无更新"
-                        });
+                        //                      api.toast({
+                        //                          msg : "暂无更新"
+                        //                      });
                     }
                 } else {
                     api.toast({
-                        msg: err.msg
+                        msg : err.msg
                     });
                 }
             });
