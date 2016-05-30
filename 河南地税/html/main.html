@@ -133,14 +133,14 @@
 							}
 						});
 					} else {
-						api.alert({
+						api.toast({
 							msg : "暂无更新"
 						});
 					}
 				} else {
-					api.alert({
-						msg : err.msg
-					});
+					api.toast({
+	                    msg: err.msg
+                    });
 				}
 			});
 		}

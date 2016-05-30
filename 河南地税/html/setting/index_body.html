@@ -54,7 +54,7 @@
 			H.ready(function() {
 				H.getPrefs(function(ret,err) {
 					sysVer = eval('(' + ret.value + ')');
-					$("#sysVer").html(sysVer.result.version);
+					$("#sysVer").html(sysVer.version);
 				},'systemVer');
 			});
 			
