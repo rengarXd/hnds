@@ -53,8 +53,12 @@
 			});
 			H.ready(function() {
 				H.getPrefs(function(ret,err) {
-					sysVer = eval('(' + ret.value + ')');
-					$("#sysVer").html(sysVer.version);
+				if(ret){
+				    sysVer = eval('(' + ret.value + ')');
+				    $("#sysVer").html("有新版本");
+				}else{
+				    $("#sysVer").html(api.version);
+				}
 				},'systemVer');
 			});
 			
