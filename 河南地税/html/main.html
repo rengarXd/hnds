@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
@@ -13,17 +12,14 @@
 			.H_footer_bg {
 				background: #e5e5e5;
 			}
-			
 			.H_footer_active {
 				background: #ffffff
 			}
-			
 			.H_header_bg {
 				background: #09a4de
 			}
 		</style>
 	</head>
-
 	<body class="H-flexbox-vertical">
 		<header class="H-header H_header_bg" id="index_header">
 			<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
@@ -77,75 +73,76 @@
 		function pageInit() {
 			//1.2打开沉浸式页面
 			H.openFrameIndexByClick([{
-				name: 'index_header',
-				url: './main/index_body.html',
-				header: '#index_header',
-				bounces: false
+				name : 'index_header',
+				url : './main/index_body.html',
+				header : '#index_header',
+				bounces : false
 			}, {
-				name: 'massages_body',
-				url: './massages/index_body.html',
-				header: '#massages_header',
-				bounces: false
+				name : 'massages_body',
+				url : './massages/index_body.html',
+				header : '#massages_header',
+				bounces : false
 			}, {
-				name: 'setting_body',
-				url: './setting/index_body.html',
-				header: '#setting_header',
-				bounces: false
+				name : 'setting_body',
+				url : './setting/index_body.html',
+				header : '#setting_header',
+				bounces : false
 			}], 'H-display-none', '#footer', '.swipe-item', 'H_footer_active', 0);
 		}
+
 		//检查版本更新
 		function checkUpdate() {
 			var mam = api.require('mam');
 			mam.checkUpdate(function(ret, err) {
 				if (ret) {
 					var result = ret.result;
+					H.setPrefs(function() {
+					}, 'systemVer', JSON.stringify(result));
 					if (result.update == true & result.closed == false) {
 						var str = '新版本型号:' + result.version + ';更新提示语:' + result.updateTip + ';下载地址:' + result.source + ';发布时间:' + result.time;
-						H.setPrefs(function() {}, 'systemVer', JSON.stringify(ret));
 						api.confirm({
-							title: '有新的版本,是否下载并安装 ',
-							msg: str,
-							buttons: ['确定', '取消']
+							title : '有新的版本,是否下载并安装 ',
+							msg : str,
+							buttons : ['确定', '取消']
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
 								if (api.systemType == "android") {
 									api.download({
-										url: result.source,
-										report: true
+										url : result.source,
+										report : true
 									}, function(ret, err) {
-										if (ret && 0 == ret.state) { /* 下载进度 */
+										if (ret && 0 == ret.state) {/* 下载进度 */
 											api.toast({
-												msg: "正在下载应用" + ret.percent + "%",
-												duration: 2000
+												msg : "正在下载应用" + ret.percent + "%",
+												duration : 2000
 											});
 										}
-										if (ret && 1 == ret.state) { /* 下载完成 */
+										if (ret && 1 == ret.state) {/* 下载完成 */
 											var savePath = ret.savePath;
 											api.installApp({
-												appUri: savePath
+												appUri : savePath
 											});
 										}
 									});
 								}
 								if (api.systemType == "ios") {
 									api.installApp({
-										appUri: result.source
+										appUri : result.source
 									});
 								}
 							}
 						});
 					} else {
 						api.alert({
-							msg: "暂无更新"
+							msg : "暂无更新"
 						});
 					}
 				} else {
 					api.alert({
-						msg: err.msg
+						msg : err.msg
 					});
 				}
 			});
 		}
 	</script>
-
 </html>
