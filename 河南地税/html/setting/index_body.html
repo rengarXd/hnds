@@ -49,13 +49,15 @@
     </body>
 		<script type="text/javascript">
 			var sysVer = null;
+			Zepto(function($) {
+			});
 			H.ready(function() {
 				H.getPrefs(function(ret,err) {
 					sysVer = eval('(' + ret.value + ')');
-					alert(JSON.stringify(sysVer));
 					$("#sysVer").html(sysVer.result.version);
 				},'systemVer');
 			});
+			
 			function checkVersion() {
 			H.toastLoading();
 				alert(JSON.stringify(sysVer));
