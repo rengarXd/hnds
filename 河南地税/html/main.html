@@ -1,148 +1,148 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>应用首页</title>
-		<!--基类公共样式-->
-		<link rel="stylesheet" type="text/css" href="../css/Hui.css" />
-		<link rel="stylesheet" href="../css/fonts/iconfont.css" />
-		<style>
-			.H_footer_bg {
-				background: #e5e5e5;
-			}
-			.H_footer_active {
-				background: #ffffff
-			}
-			.H_header_bg {
-				background: #09a4de
-			}
-		</style>
-	</head>
-	<body class="H-flexbox-vertical">
-		<header class="H-header H_header_bg" id="index_header">
-			<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
-				首页
-			</div>
-		</header>
-		<header class="H-header H-header-title H_header_bg H-display-none" id="massages_header">
-			<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
-				消息
-			</div>
-		</header>
-		<header class="H-header H-header-title H_header_bg H-display-none" id="setting_header">
-			<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
-				设置
-			</div>
-		</header>
-		<div class="main H-flex-item"></div>
-		<footer class="H-footer H_footer_bg H-flexbox-horizontal H-theme-background-color-white" id="footer">
-			<div class="H-flex-item H-text-align-center H-center-all H-theme-font-color-999 H-touch-active swipe-item">
-				<div>
-					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shouye H-font-size-26"></i></span>
-					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">首页</strong>
-				</div>
-			</div>
-			<div class="H-flex-item H-text-align-center H-center-all H-theme-font-color-999 H-touch-active swipe-item">
-				<div>
-					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-xiaoxi H-font-size-26"></i></span>
-					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">消息</strong>
-				</div>
-			</div>
-			<div class="H-flex-item H-text-align-center H-center-all H-theme-font-color-999 H-touch-active swipe-item">
-				<div>
-					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shezhi H-font-size-26"></i></span>
-					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">设置</strong>
-				</div>
-			</div>
-		</footer>
-	</body>
-	<script type="text/javascript" src="../script/H.js"></script>
-	<script type="text/javascript">
-		//1.1设备准备完毕
-		H.ready(function() {
-			checkUpdate();
-			pageInit();
-			//01、连按两次退出APP
-			H.dblclickToCloseApp();
-		});
-		/**
-		 *1.0页面初始化函数
-		 */
-		function pageInit() {
-			//1.2打开沉浸式页面
-			H.openFrameIndexByClick([{
-				name : 'index_header',
-				url : './main/index_body.html',
-				header : '#index_header',
-				bounces : false
-			}, {
-				name : 'massages_body',
-				url : './massages/index_body.html',
-				header : '#massages_header',
-				bounces : false
-			}, {
-				name : 'setting_body',
-				url : './setting/index_body.html',
-				header : '#setting_header',
-				bounces : false
-			}], 'H-display-none', '#footer', '.swipe-item', 'H_footer_active', 0);
-		}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>应用首页</title>
+        <!--基类公共样式-->
+        <link rel="stylesheet" type="text/css" href="../css/Hui.css" />
+        <link rel="stylesheet" href="../css/fonts/iconfont.css" />
+        <style>
+            .H_footer_bg {
+                background: #e5e5e5;
+            }
+            .H_footer_active {
+                background: #ffffff
+            }
+            .H_header_bg {
+                background: #09a4de
+            }
+        </style>
+    </head>
+    <body class="H-flexbox-vertical">
+        <header class="H-header H_header_bg" id="index_header">
+            <div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
+                首页
+            </div>
+        </header>
+        <header class="H-header H-header-title H_header_bg H-display-none" id="massages_header">
+            <div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
+                消息
+            </div>
+        </header>
+        <header class="H-header H-header-title H_header_bg H-display-none" id="setting_header">
+            <div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
+                设置
+            </div>
+        </header>
+        <div class="main H-flex-item"></div>
+        <footer class="H-footer H_footer_bg H-flexbox-horizontal H-theme-background-color-white" id="footer">
+            <div class="H-flex-item H-text-align-center H-center-all H-theme-font-color-999 H-touch-active swipe-item">
+                <div>
+                    <span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shouye H-font-size-26"></i></span>
+                    <strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">首页</strong>
+                </div>
+            </div>
+            <div class="H-flex-item H-text-align-center H-center-all H-theme-font-color-999 H-touch-active swipe-item">
+                <div>
+                    <span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-xiaoxi H-font-size-26"></i></span>
+                    <strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">消息</strong>
+                </div>
+            </div>
+            <div class="H-flex-item H-text-align-center H-center-all H-theme-font-color-999 H-touch-active swipe-item">
+                <div>
+                    <span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shezhi H-font-size-26"></i></span>
+                    <strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">设置</strong>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script type="text/javascript" src="../script/H.js"></script>
+    <script type="text/javascript">
+        //1.1设备准备完毕
+        H.ready(function() {
+            checkUpdate();
+            pageInit();
+            //01、连按两次退出APP
+            H.dblclickToCloseApp();
+        });
+        /**
+         *1.0页面初始化函数
+         */
+        function pageInit() {
+            //1.2打开沉浸式页面
+            H.openFrameIndexByClick([{
+                name : 'index_header',
+                url : './main/index_body.html',
+                header : '#index_header',
+                bounces : false
+            }, {
+                name : 'massages_body',
+                url : './massages/index_body.html',
+                header : '#massages_header',
+                bounces : false
+            }, {
+                name : 'setting_body',
+                url : './setting/index_body.html',
+                header : '#setting_header',
+                bounces : false
+            }], 'H-display-none', '#footer', '.swipe-item', 'H_footer_active', 0);
+        }
 
-		//检查版本更新
-		function checkUpdate() {
-			var mam = api.require('mam');
-			mam.checkUpdate(function(ret, err) {
-				if (ret) {
-					var result = ret.result;
-					H.setPrefs(function() {
-					}, 'systemVer', JSON.stringify(result));
-					if (result.update == true & result.closed == false) {
-						var str = '新版本型号:' + result.version + ';更新提示语:' + result.updateTip + ';下载地址:' + result.source + ';发布时间:' + result.time;
-						api.confirm({
-							title : '有新的版本,是否下载并安装 ',
-							msg : str,
-							buttons : ['确定', '取消']
-						}, function(ret, err) {
-							if (ret.buttonIndex == 1) {
-								if (api.systemType == "android") {
-									api.download({
-										url : result.source,
-										report : true
-									}, function(ret, err) {
-										if (ret && 0 == ret.state) {/* 下载进度 */
-											api.toast({
-												msg : "正在下载应用" + ret.percent + "%",
-												duration : 2000
-											});
-										}
-										if (ret && 1 == ret.state) {/* 下载完成 */
-											var savePath = ret.savePath;
-											api.installApp({
-												appUri : savePath
-											});
-										}
-									});
-								}
-								if (api.systemType == "ios") {
-									api.installApp({
-										appUri : result.source
-									});
-								}
-							}
-						});
-					} else {
-						api.toast({
-							msg : "暂无更新"
-						});
-					}
-				} else {
-					api.toast({
-	                    msg: err.msg
+        //检查版本更新
+        function checkUpdate() {
+            var mam = api.require('mam');
+            mam.checkUpdate(function(ret, err) {
+                if (ret) {
+                    var result = ret.result;
+                    H.setPrefs(function() {
+                    }, 'systemVer', JSON.stringify(result));
+                    if (result.update == true & result.closed == false) {
+                        var str = '最新版本号:' + result.version + '\n' + result.updateTip + '\n发布时间:' + result.time;
+                        api.confirm({
+                            title : '有新版本更新 ',
+                            msg : str,
+                            buttons : ['确定', '取消']
+                        }, function(ret, err) {
+                            if (ret.buttonIndex == 1) {
+                                if (api.systemType == "android") {
+                                    api.download({
+                                        url : result.source,
+                                        report : true
+                                    }, function(ret, err) {
+                                        if (ret && 0 == ret.state) {/* 下载进度 */
+                                            api.toast({
+                                                msg : "正在下载应用" + ret.percent + "%",
+                                                duration : 2000
+                                            });
+                                        }
+                                        if (ret && 1 == ret.state) {/* 下载完成 */
+                                            var savePath = ret.savePath;
+                                            api.installApp({
+                                                appUri : savePath
+                                            });
+                                        }
+                                    });
+                                }
+                                if (api.systemType == "ios") {
+                                    api.installApp({
+                                        appUri : result.source
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        //						api.toast({
+                        //							msg : "暂无更新"
+                        //						});
+                    }
+                } else {
+                    api.toast({
+                        msg : err.msg
                     });
-				}
-			});
-		}
-	</script>
+                }
+            });
+        }
+    </script>
 </html>
