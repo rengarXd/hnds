@@ -34,7 +34,7 @@
                     <span class="H-float-right H-font-size-14 H-theme-font-color-white" onclick="H.openWin('register','register.html');">注册</span>
                 </div>
                 <div class="H-padding-horizontal-both-5 H-margin-vertical-both-15 H-text-align-center">
-                    <div onclick="openMain();" class="H-button  H-padding-vertical-both-15 H-border-none H-width-100-percent H-border-radius-5 H-theme-border-color9-click H-theme-font-color-white" style="background-color: #ffb400;">
+                    <div onclick="login();" class="H-button  H-padding-vertical-both-15 H-border-none H-width-100-percent H-border-radius-5 H-theme-border-color9-click H-theme-font-color-white" style="background-color: #ffb400;">
                         登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录
                     </div>
                 </div>
@@ -45,13 +45,15 @@
         <script src="../../script/zepto.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             H.ready(function() {
+                
+                //双击返回退出
                 H.dblclickToCloseApp();
             });
-            function openMain() {
-                //H.openWin('main', '../main.html');
-                //setTimeout(function() {
-                //	H.closeWin();
-                //}, 1200);
+            /**
+             * 登录操作
+             */
+            function login() {
+               
                 var pid = $("#pid").val();
                 var pwd = $("#pwd").val();
                 if (!pid || !pwd) {
@@ -70,47 +72,29 @@
                 }, function(ret, err) {
                     api.hideProgress();
                     var retd = JSON.stringify(ret);
-                    var rets = eval('('+retd+')');
-                    if(rets && rets.success){
+                    var rets = eval('(' + retd + ')');
+                    if (rets && rets.success) {
+                        //1.登录成功之后延时关闭自已
+                        setTimeout(function() {
+                            H.closeWin();
+                        }, 1200);
+                        //2.标识已经登录成功
                         api.setPrefs({
-                            key:'islogin',
-                            value:'true'
+                            key : 'islogin',
+                            value : 'true'
                         });
-                        H.setPrefs(function(){
-                           api.openWin({
-	                           name: 'main',
-	                           url: '../main.html'
-                           });
-                        },'userinfo',JSON.stringify(rets));
-                    }else{
+                        //3.存储用户信息
+                        H.setPrefs(function() {
+                            api.openWin({
+                                name : 'main',
+                                url : '../main.html'
+                            });
+                        }, 'userinfo', JSON.stringify(rets.data));
+                    } else {
                         api.toast({
-	                        msg:'登录失败！'
+                            msg : '登录失败！'
                         });
                     }
-                   // var errs = eval("("+err+")");
-                   var errs = JSON.stringify(err);
-                   var errss = eval('('+errs+')');
-                    console.log(JSON.stringify(errss));
-                    
-                    
-//                  if (ret && ret.success) {
-//                      //登陆成功
-//                      alert(JSON.stringify(ret.data));
-//                  } else {
-//                      //
-//                      alert(JSON.stringify(err));
-//                  }
-                    //alert(err);
-                    //					alert(JSON.stringify(ret));
-                    //					alert(JSON.stringify(err));
-                    //					if (ret) {
-                    //						//alert(JSON.stringify(ret));
-                    //						if(ret.success == true){
-                    //							alert(9);
-                    //						}
-                    //					}else{
-                    //						alert(ret.success);
-                    //					}
                 });
             }
         </script>
