@@ -72,14 +72,25 @@
                     var retd = JSON.stringify(ret);
                     var rets = eval('('+retd+')');
                     if(rets && rets.success){
-                        
+                        api.setPrefs({
+                            key:'islogin',
+                            value:'true'
+                        });
+                        H.setPrefs(function(){
+                           api.openWin({
+	                           name: 'main',
+	                           url: '../main.html'
+                           });
+                        },'userinfo',JSON.stringify(rets));
                     }else{
                         api.toast({
 	                        msg:'登录失败！'
                         });
                     }
                    // var errs = eval("("+err+")");
-                    console.log(JSON.stringify(rets));
+                   var errs = JSON.stringify(err);
+                   var errss = eval('('+errs+')');
+                    console.log(JSON.stringify(errss));
                     
                     
 //                  if (ret && ret.success) {
