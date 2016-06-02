@@ -113,11 +113,11 @@
                                         report : true
                                     }, function(ret, err) {
                                         if (ret && 0 == ret.state) {/* 下载进度 */
-                                            $("#update").html(ret.percent+"%");
-//                                          api.toast({
-//                                              msg : "正在下载应用" + ret.percent + "%",
-//                                              duration : 2000
-//                                          });
+                                            $("#update").html(ret.percent + "%");
+                                            //                                          api.toast({
+                                            //                                              msg : "正在下载应用" + ret.percent + "%",
+                                            //                                              duration : 2000
+                                            //                                          });
                                         }
                                         if (ret && 1 == ret.state) {/* 下载完成 */
                                             var savePath = ret.savePath;
