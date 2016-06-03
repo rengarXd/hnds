@@ -23,11 +23,11 @@
             <div class="H-margin-vertical-top-10 H-padding-horizontal-both-25">
                 <div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
                     <span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-shenfenzheng H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
-                    <input id="pid" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="acbdef" placeholder="身份证/纳税人证件编号" />
+                    <input id="pid" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="" placeholder="身份证/纳税人证件编号" />
                 </div>
                 <div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
                     <span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-mima H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
-                    <input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="888888" placeholder="密码" />
+                    <input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="" placeholder="密码" />
                 </div>
                 <div class="H-margin-horizontal-both-15">
                     <span class="H-font-size-14 H-theme-font-color-white">忘记密码？</span>
@@ -44,25 +44,18 @@
         <script src="../../script/H.js" type="text/javascript"></script>
         <script src="../../script/zepto.min.js" type="text/javascript"></script>
         <script type="text/javascript">
+            var systemType = null;
             H.ready(function() {
                 //双击返回退出
                 H.dblclickToCloseApp();
-                //监听广播，接收信息
-                api.addEventListener({
-                    name : 'myUser'
-                }, function(ret, err) {
-                    console.log(JSON.stringify(ret));
-                    //coding...ss
-                    //alert((ret.value).key1,(ret.value).key2);
-                    $("#pid").val(ret.value.user_name);
-                    $("#pwd").val(ret.value.user_password);
-                });
+                //初始化监听
+                initEventLinstener();
             });
-            /**
-             * 登录操作
-             */
+            // 登录操作
             function login() {
+                //获取输入的账号
                 var pid = $("#pid").val();
+                //获取输入的密码
                 var pwd = $("#pwd").val();
                 if (!pid || !pwd) {
                     api.toast({
@@ -75,62 +68,85 @@
                 api.showProgress({
                     title : '登录中'
                 });
+                //获取手机的平台
+                var systemType = api.systemType;
+                console.log('systemType=='+systemType);
+                //判断手机的平台
+                if (systemType == "ios") {
+                    isIosLogin(pid, pwd);
+                } else {
+                    isAndroidLogin(pid, pwd);
+                }
+            }
+
+            //登录成功处理
+            function isSuccess(rets) {
+                //1.登录成功之后延时关闭自已
+                setTimeout(function() {
+                    H.closeWin();
+                }, 1200);
+                //2.标识已经登录成功
+                api.setPrefs({
+                    key : 'islogin',
+                    value : 'true'
+                });
+                //3.存储用户信息
+                H.setPrefs(function() {
+                    api.openWin({
+                        name : 'main',
+                        url : '../main.html'
+                    });
+                }, 'userinfo', JSON.stringify(rets.data));
+            }
+
+            //初始化监听
+            function initEventLinstener() {
+                //监听广播，接收信息更改注册的账号和密码
+                api.addEventListener({
+                    name : 'myUser'
+                }, function(ret, err) {
+                    $("#pid").val(ret.value.user_name);
+                    $("#pwd").val(ret.value.user_password);
+                });
+            }
+
+            //IOS平台的处理
+            function isIosLogin(username,password) {
+                console.log("进入ios登录");
+                ajax(username,password,function(ret, err) {
+                    var rets = eval('(' + err.body + ')');
+                    console.log("进入ios登录rets=="+JSON.stringify(rets));
+                    rets.success ? isSuccess(rets) : api.toast({
+                        msg : '登录失败！'
+                    });
+                });
+            }
+
+            //android平台的处理
+            function isAndroidLogin(username,password) {
+                ajax(username,password,function(ret, err) {
+                console.log("进入android登录ret=="+JSON.stringify(ret));
+                    ret && ret.success ? isSuccess(ret) : api.toast({
+                        msg : '登录失败！'
+                    });
+                });
+            }
+
+            //AJAX的封装 'userlogin&user_name=' + pid + '&user_password=' + pwd,
+            function ajax(username,password,callback) {
                 api.ajax({
-                    url : window.serverUrl + 'userlogin&user_name=' + pid + '&user_password=' + pwd,
+                    url : window.serverUrl + 'userlogin&funid=app_userinfo',
+                    data:{
+                        values:{
+                            user_name:username,
+                            user_password:password
+                        }
+                    }
                 }, function(ret, err) {
                     api.hideProgress();
-//                  var rets = eval('(' + retd + ')');
-//                  var errs = eval('(' + err + ')');
-                    console.log(api.systemType);
-                    //系统类型判断
-                    var systemType = api.systemType;
-                    switch(systemType) {
-                    	case 'iso':
-                    	if(ret){
-                    		alert(JSON.stringify(ret));
-                    	}else{
-//                  		var errs = eval('(' + err.data + ')');
-                    		alert("ios返回值："+JSON.stringify(err));
-                    		for(var x in err.body){
-                    			if(err.body[x] == 3) {
-                    				return err.body[x];
-                    			}
-                    			alert("ios数据："+JSON.stringify(err.body[x]));
-                    		}
-                    	}
-                    	break;
-                    	case 'android':
-                    	if(ret){
-                    		alert(JSON.stringify(ret));
-                    	}else{
-                    		alert(JSON.stringify(err));
-                    	}
-                    	break;
+                    if ( typeof callback == "function") {
+                        callback(ret, err);
                     }
-//                  var retd = JSON.stringify(ret);
-//                  var rets = eval('(' + retd + ')');
-//                  if (rets && rets.success) {
-//                      //1.登录成功之后延时关闭自已
-//                      setTimeout(function() {
-//                          H.closeWin();
-//                      }, 1200);
-//                      //2.标识已经登录成功
-//                      api.setPrefs({
-//                          key : 'islogin',
-//                          value : 'true'
-//                      });
-//                      //3.存储用户信息
-//                      H.setPrefs(function() {
-//                          api.openWin({
-//                              name : 'main',
-//                              url : '../main.html'
-//                          });
-//                      }, 'userinfo', JSON.stringify(rets.data));
-//                  } else {
-//                      api.toast({
-//                          msg : '登录失败！'
-//                      });
-//                  }
                 });
             }
         </script>
