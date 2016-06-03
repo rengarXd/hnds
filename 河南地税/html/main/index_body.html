@@ -1,69 +1,102 @@
 <!doctype html>
 <html>
-
-	<head>
-		<meta charset="utf-8">
-		<!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
-		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>首页</title>
-		<!--引入aui框架win-->
-		<link rel="stylesheet" href="../../css/Hui.css" />
-		<link rel="stylesheet" href="../../css/fonts/iconfont.css" />
-		<style>
+    <head>
+        <meta charset="utf-8">
+        <!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>首页</title>
+        <!--引入aui框架win-->
+        <link rel="stylesheet" href="../../css/Hui.css" />
+        <link rel="stylesheet" href="../../css/fonts/iconfont.css" />
+        <style>
             html {
                 background: #ffffff;
             }
             .w100 {
                 width: 74%
             }
-		</style>
-		<!--引入AHelper.js框架-->
-	</head>
+        </style>
+        <!--引入AHelper.js框架-->
+    </head>
+    <body>
+        <div class="H-flexbox-horizontal H-theme-background-color-white">
+            <div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
+                <div class="">
+                    <img src="../../image/icon1.png" class="w100" />
+                </div>
+                <div class="H-font-size-12">
+                    办税指南
+                </div>
+            </div>
+            <div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
+                <div class="">
+                    <img src="../../image/icon2.png" class="w100" />
+                </div>
+                <div class="H-font-size-12">
+                    存量房价格评估申请
+                </div>
+            </div>
+            <div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-touch-active">
+                <div class="">
+                    <img src="../../image/icon3.png" class="w100" />
+                </div>
+                <div class="H-font-size-12">
+                    房屋销售代开发票申请
+                </div>
+            </div>
+        </div>
+        <div class="H-flexbox-horizontal H-theme-background-color-white">
+            <div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
+                <div class="">
+                    <img src="../../image/icon4.png" class="w100" />
+                </div>
+                <div class="H-font-size-12">
+                    房屋租赁代开发票申请
+                </div>
+            </div>
+            <div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
+                <div class="">
+                    <img src="../../image/icon5.png" class="w100" />
+                </div>
+                <div class="H-font-size-12">
+                    受理进度查询
+                </div>
+            </div>
+            <div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-touch-active">
+                <div class="">
+                    <img src="../../image/icon6.png" class="w100" />
+                </div>
+                <div class="H-font-size-12">
+                    通知公告
+                </div>
+            </div>
+        </div>
+        <script src="../../script/H.js" type="text/javascript"></script>
+        <script>
+            var obj = null;
+            H.ready(function() {
+                init();
+            });
+            
+            function init() {
+                
+                api.getPrefs({
+                    key : 'userinfo'
+                }, function(ret, err) {
+                    obj = eval('(' + ret.value + ')');
+                });
+                console.log(obj);
+            }
 
-	<body>
-		<div class="H-flexbox-horizontal H-theme-background-color-white">
-			<div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
-				<div class="">
-					<img src="../../image/icon1.png" class="w100" />
-				</div>
-				<div class="H-font-size-12">办税指南</div>
-				
-			</div>
-			<div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
-				<div class="">
-					<img src="../../image/icon2.png" class="w100" />
-				</div>
-				<div class="H-font-size-12">存量房价格评估申请</div>
-			</div>
-			<div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-touch-active">
-				<div class="">
-					<img src="../../image/icon3.png" class="w100" />
-				</div>
-				<div class="H-font-size-12">房屋销售代开发票申请</div>
-			</div>
-		</div>
-		<div class="H-flexbox-horizontal H-theme-background-color-white">
-			<div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
-				<div class="">
-					<img src="../../image/icon4.png" class="w100" />
-				</div>
-				<div class="H-font-size-12">房屋租赁代开发票申请</div>
-			</div>
-			<div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-border-horizontal-right-after H-touch-active">
-				<div class="">
-					<img src="../../image/icon5.png" class="w100" />
-				</div>
-				<div class="H-font-size-12">受理进度查询</div>
-			</div>
-			<div class="H-flex-item H-text-align-center H-padding-10 H-border-vertical-bottom-after H-touch-active">
-				<div class="">
-					<img src="../../image/icon6.png" class="w100" />
-				</div>
-				<div class="H-font-size-12">通知公告</div>
-			</div>
-		</div>
-		<script src="../../script/H.js" type="text/javascript"></script>
-	</body>
-
+            function changeUserPassWord() {
+                //获取输入框的数据
+                //
+                api.ajax({
+                    url : 'url' + obj.uuid
+                }, function(ret, err) {
+                });
+            }
+        </script>
+    </body>
 </html>

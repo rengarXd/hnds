@@ -13,7 +13,7 @@
  */
 
 ;! function(factory) {
-    window.serverUrl = "http://218.29.85.98/etax/fileAction.do?funid=app_userinfo&pagetype=grid&nousercheck=1&eventcode=";
+    window.serverUrl = "http://218.29.85.98/etax/fileAction.do?pagetype=grid&nousercheck=1&eventcode=";
     if ( typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         var target = module['exports'] || exports;
         factory(target);
