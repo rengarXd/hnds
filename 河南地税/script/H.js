@@ -1281,20 +1281,17 @@
 			ajax : function(callback, url, method, data, dataType, options) {
 				var that = this;
 				var o = {};
-				o.url = url;
+				o.url = window.serverUrl + url;
 				o.method = method ? method : "get";
 				o.dataType = dataType ? dataType : "json";
 				if (that.isObject(data) && o.method == "post") {
 					o.data = data;
 				}
-
 				options = options || {};
 				var opt = that.extendObj(that.DEFAULT_CONFIG.ajax_CONFIG, o, options);
 				if (that.isAPICloud()) {
 					api.ajax(opt, function(ret, err) {
-						//获取手机的平台
 						var systemType = api.systemType;
-						//判断手机的平台
 						if (systemType == "ios") {
 							var rets = eval('(' + err.body + ')');
 							if (that.isFunction(callback)) {
