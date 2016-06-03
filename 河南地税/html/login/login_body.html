@@ -79,30 +79,51 @@
                     url : window.serverUrl + 'userlogin&user_name=' + pid + '&user_password=' + pwd,
                 }, function(ret, err) {
                     api.hideProgress();
-                    var retd = JSON.stringify(ret);
-                    var rets = eval('(' + retd + ')');
-                    if (rets && rets.success) {
-                        //1.登录成功之后延时关闭自已
-                        setTimeout(function() {
-                            H.closeWin();
-                        }, 1200);
-                        //2.标识已经登录成功
-                        api.setPrefs({
-                            key : 'islogin',
-                            value : 'true'
-                        });
-                        //3.存储用户信息
-                        H.setPrefs(function() {
-                            api.openWin({
-                                name : 'main',
-                                url : '../main.html'
-                            });
-                        }, 'userinfo', JSON.stringify(rets.data));
-                    } else {
-                        api.toast({
-                            msg : '登录失败！'
-                        });
+//                  var rets = eval('(' + retd + ')');
+//                  var errs = eval('(' + err + ')');
+                    console.log(api.systemType);
+                    //系统类型判断
+                    var systemType = api.systemType;
+                    switch(systemType) {
+                    	case 'iso':
+                    	if(ret){
+                    		alert(JSON.stringify(ret));
+                    	}else{
+                    		alert(JSON.stringify(err));
+                    	}
+                    	break;
+                    	case 'android':
+                    	if(ret){
+                    		alert(JSON.stringify(ret));
+                    	}else{
+                    		alert(JSON.stringify(err));
+                    	}
+                    	break;
                     }
+//                  var retd = JSON.stringify(ret);
+//                  var rets = eval('(' + retd + ')');
+//                  if (rets && rets.success) {
+//                      //1.登录成功之后延时关闭自已
+//                      setTimeout(function() {
+//                          H.closeWin();
+//                      }, 1200);
+//                      //2.标识已经登录成功
+//                      api.setPrefs({
+//                          key : 'islogin',
+//                          value : 'true'
+//                      });
+//                      //3.存储用户信息
+//                      H.setPrefs(function() {
+//                          api.openWin({
+//                              name : 'main',
+//                              url : '../main.html'
+//                          });
+//                      }, 'userinfo', JSON.stringify(rets.data));
+//                  } else {
+//                      api.toast({
+//                          msg : '登录失败！'
+//                      });
+//                  }
                 });
             }
         </script>
