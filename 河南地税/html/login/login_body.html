@@ -89,7 +89,14 @@
                     	if(ret){
                     		alert(JSON.stringify(ret));
                     	}else{
-                    		alert(JSON.stringify(err));
+//                  		var errs = eval('(' + err.data + ')');
+                    		alert("ios返回值："+JSON.stringify(err));
+                    		for(var x in err.body){
+                    			if(err.body[x] == 3) {
+                    				return err.body[x];
+                    			}
+                    			alert("ios数据："+JSON.stringify(err.body[x]));
+                    		}
                     	}
                     	break;
                     	case 'android':
