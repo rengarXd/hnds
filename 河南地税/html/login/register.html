@@ -42,7 +42,7 @@
             </div>
             <div class="H-flexbox-horizontal H-border-vertical-bottom-after">
                 <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">密码：</span>
-                <input id="user_password" type="password" data-rule="*6-16" data-nullmsg="密码不能为空" data-errmsg="请填写6-16位任意字符" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入密码">
+                <input id="user_password" type="password" data-rule="*6-16" data-nullmsg="密码不能为空" data-errmsg="请填写6-16位字符串" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入密码">
             </div>
             <div class="H-flexbox-horizontal H-border-vertical-bottom-after">
                 <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">手机号码：</span>
@@ -92,13 +92,6 @@
             });
             //当输入密码框获取焦点时
             $("#user_password").focus(function() {
-                /*用户名，密码判空*/
-                //				var user_name = $("#user_name").val();
-                //				if (user_name.length == 0) {
-                //					api.toast({
-                //						msg : '用户名不能为空'
-                //					});
-                //				} else {
                 var u_name = $("#user_name").val();
                 //获取用户信息
                 api.ajax({
@@ -141,7 +134,7 @@
                 });
                 //post请求
                 api.ajax({
-                    url : window.serverUrl + 'register',
+                    url : window.serverUrl + 'register&funid=app_userinfo',
                     data : {
                         values : {
                             user_name : user_name,
@@ -154,8 +147,9 @@
                 }, function(ret, err) {
                     api.hideProgress();
                     var systemType = api.systemType;
-                    if (systemType == "IOS") {
+                    if (systemType == "ios") {
                         var rets = eval('(' + err.body + ')');
+                        console.log("ios的err==="+JSON.stringify(err));
                         if (rets && rets.success == true) {
                             api.toast({
                                 msg : '注册成功，即将跳转登录页面'
