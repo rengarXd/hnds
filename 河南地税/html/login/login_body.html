@@ -1,115 +1,115 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>登陆页面</title>
-		<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="../../css/fonts/iconfont.css" />
-		<style type="text/css">
-			html, body {
-				background: #0193e8;
-			}
-		</style>
-	</head>
-	<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
-		<div class="fix">
-			<div class="H-horizontal-center H-padding-vertical-both-25" style="padding-top: 100px">
-				<div class="H-text-align-center">
-					<img src="../../image/icon.png" class="H-border-radius-12 H-margin-vertical-top-10" style="width:60%;height:60%;"/ >
-				</div>
-			</div>
-			<div class="H-margin-vertical-top-10 H-padding-horizontal-both-25">
-				<div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
-					<span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-shenfenzheng H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
-					<input id="pid" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="acbdef" placeholder="身份证/纳税人证件编号" />
-				</div>
-				<div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
-					<span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-mima H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
-					<input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="888888" placeholder="密码" />
-				</div>
-				<div class="H-margin-horizontal-both-15">
-					<span class="H-font-size-14 H-theme-font-color-white">忘记密码？</span>
-					<span class="H-float-right H-font-size-14 H-theme-font-color-white" onclick="H.openWin('register','register.html');">注册</span>
-				</div>
-				<div class="H-padding-horizontal-both-5 H-margin-vertical-both-15 H-text-align-center">
-					<div onclick="login();" class="H-button  H-padding-vertical-both-15 H-border-none H-width-100-percent H-border-radius-5 H-theme-border-color9-click H-theme-font-color-white" style="background-color: #ffb400;">
-						登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录
-					</div>
-				</div>
-			</div>
-			<!--<div class="H-padding-vertical-bottom-5"></div>-->
-		</div>
-		<script src="../../script/H.js" type="text/javascript"></script>
-		<script src="../../script/zepto.min.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			var systemType = null;
-			H.ready(function() {
-				//双击返回退出
-				H.dblclickToCloseApp();
-				//初始化监听
-				initEventLinstener();
-			});
-			// 登录操作
-			function login() {
-				//获取输入的账号
-				var pid = $("#pid").val();
-				//获取输入的密码
-				var pwd = $("#pwd").val();
-				if (!pid || !pwd) {
-					api.toast({
-						msg : '请输入完整信息',
-						duration : 2000,
-						location : 'top'
-					});
-					return;
-				}
-				api.showProgress({
-					title : '登录中'
-				});
-				H.ajax(function(ret, err) {
-					console.log("信息" + JSON.stringify(ret));
-					api.hideProgress();
-					ret && ret.success ? isSuccess(ret) : api.toast({
-						msg : '登录失败！'
-					});
-				}, 'userlogin&funid=app_userinfo', 'post', {
-					values : {
-						user_name : pid,
-						user_password : pwd
-					}
-				});
-			}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>登陆页面</title>
+        <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../../css/fonts/iconfont.css" />
+        <style type="text/css">
+            html, body {
+                background: #0193e8;
+            }
+        </style>
+    </head>
+    <body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+        <div class="fix">
+            <div class="H-horizontal-center H-padding-vertical-both-25" style="padding-top: 100px">
+                <div class="H-text-align-center">
+                    <img src="../../image/icon.png" class="H-border-radius-12 H-margin-vertical-top-10" style="width:60%;height:60%;"/ >
+                </div>
+            </div>
+            <div class="H-margin-vertical-top-10 H-padding-horizontal-both-25">
+                <div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
+                    <span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-shenfenzheng H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
+                    <input id="pid" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="acbdef" placeholder="身份证/纳税人证件编号" />
+                </div>
+                <div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
+                    <span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-mima H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
+                    <input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" value="888888" placeholder="密码" />
+                </div>
+                <div class="H-margin-horizontal-both-15">
+                    <span class="H-font-size-14 H-theme-font-color-white">忘记密码？</span>
+                    <span class="H-float-right H-font-size-14 H-theme-font-color-white" onclick="H.openWin('register','register.html');">注册</span>
+                </div>
+                <div class="H-padding-horizontal-both-5 H-margin-vertical-both-15 H-text-align-center">
+                    <div onclick="login();" class="H-button  H-padding-vertical-both-15 H-border-none H-width-100-percent H-border-radius-5 H-theme-border-color9-click H-theme-font-color-white" style="background-color: #ffb400;">
+                        登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录
+                    </div>
+                </div>
+            </div>
+            <!--<div class="H-padding-vertical-bottom-5"></div>-->
+        </div>
+        <script src="../../script/H.js" type="text/javascript"></script>
+        <script src="../../script/zepto.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var systemType = null;
+            H.ready(function() {
+                //双击返回退出
+                H.dblclickToCloseApp();
+                //初始化监听
+                initEventLinstener();
+            });
+            // 登录操作
+            function login() {
+                //获取输入的账号
+                var pid = $("#pid").val();
+                //获取输入的密码
+                var pwd = $("#pwd").val();
+                if (!pid || !pwd) {
+                    api.toast({
+                        msg : '请输入完整信息',
+                        duration : 2000,
+                        location : 'top'
+                    });
+                    return;
+                }
+                api.showProgress({
+                    title : '登录中'
+                });
+                H.ajax(function(ret, err) {
+                    console.log("信息" + JSON.stringify(ret));
+                    api.hideProgress();
+                    ret && ret.success ? isSuccess(ret) : api.toast({
+                        msg : '登录失败！'
+                    });
+                }, 'userlogin&funid=app_userinfo', 'post', {
+                    values : {
+                        user_name : pid,
+                        user_password : pwd
+                    }
+                });
+            }
 
-			//登录成功处理
-			function isSuccess(rets) {
-				//1.登录成功之后延时关闭自已
-				setTimeout(function() {
-					H.closeWin();
-				}, 1200);
-				//2.标识已经登录成功
-				api.setPrefs({
-					key : 'islogin',
-					value : 'true'
-				});
-				//3.存储用户信息
-				H.setPrefs(function() {
-					api.openWin({
-						name : 'main',
-						url : '../main.html'
-					});
-				}, 'userinfo', JSON.stringify(rets.data));
-			}
+            //登录成功处理
+            function isSuccess(rets) {
+                //1.登录成功之后延时关闭自已
+                setTimeout(function() {
+                    H.closeWin();
+                }, 1200);
+                //2.标识已经登录成功
+                api.setPrefs({
+                    key : 'islogin',
+                    value : 'true'
+                });
+                //3.存储用户信息
+                H.setPrefs(function() {
+                    api.openWin({
+                        name : 'main',
+                        url : '../main.html'
+                    });
+                }, 'userinfo', JSON.stringify(rets.data));
+            }
 
-			//初始化监听
-			function initEventLinstener() {
-				//监听广播，接收信息更改注册的账号和密码
-				H.addEventListener(function(ret, err) {
-					$("#pid").val(ret.value.user_name);
-					$("#pwd").val(ret.value.user_password);
-				}, 'myUser');
-			}
-		</script>
-	</body>
+            //初始化监听
+            function initEventLinstener() {
+                //监听广播，接收信息更改注册的账号和密码
+                H.addEventListener(function(ret, err) {
+                    $("#pid").val(ret.value.user_name);
+                    $("#pwd").val(ret.value.user_password);
+                }, 'myUser');
+            }
+        </script>
+    </body>
 </html>
