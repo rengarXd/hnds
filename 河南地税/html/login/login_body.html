@@ -47,19 +47,17 @@
             H.ready(function() {
                 //双击返回退出
                 H.dblclickToCloseApp();
-                                    //监听广播，接收信息
-            api.addEventListener({
-	            name:'myUser'
-            },function(ret,err){
-            	console.log(JSON.stringify(ret));
-            	//coding...ss
-            	//alert((ret.value).key1,(ret.value).key2);
-				$("#pid").val(ret.value.user_name);
-				$("#pwd").val(ret.value.user_password);
+                //监听广播，接收信息
+                api.addEventListener({
+                    name : 'myUser'
+                }, function(ret, err) {
+                    console.log(JSON.stringify(ret));
+                    //coding...ss
+                    //alert((ret.value).key1,(ret.value).key2);
+                    $("#pid").val(ret.value.user_name);
+                    $("#pwd").val(ret.value.user_password);
+                });
             });
-      
-            });
-            
             /**
              * 登录操作
              */
