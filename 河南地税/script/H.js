@@ -1414,6 +1414,19 @@
                     });
                 }
             },
+            getUserPref : function(callback) {
+                var that = this;
+                if (that.isAPICloud()) {
+                    api.getPrefs({
+                        key : 'userinfo'
+                    }, function(ret, err) {
+                    	userinfo = eval("(" + ret.value + ")");
+                        if (that.isFunction(callback)) {
+                            callback();
+                        }
+                    });
+                }
+            },
             removePrefs : function(callback, key) {
                 var that = this;
                 if (that.isAPICloud()) {
