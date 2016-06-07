@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hui</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+			
+			.addh_active:active {
+				background: #f5f5f5;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-flexbox-vertical" id="stap1">
+			<div class="H-flex-item H-theme-background-color-white H-padding-10">
+				<div class="H-padding-10">
+					身份证示例
+				</div>
+				<div><img src="../../../image/sfz.jpg" style="width: 100%;" />
+				</div>
+				<div>
+					<div class="H-padding-10">
+						拍摄效果
+					</div>
+					<div>
+						<img src="" id="ps" style="width: 100%"/>
+					</div>
+				</div>
+				<div class="H-padding-10">
+					点击加号拍照
+				</div>
+				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="openCamera();">
+					<span class="iconfont icon-tianjia H-font-size-36 H-theme-font-color1"></span>
+				</div>
+			</div>
+			<div class="H-flex-item">
+				<button class="H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-border-color1-click H-theme-background-color1-click H-theme-font-color1-click">
+                    下一步(1/21)
+                </button>
+			</div>
+		</div>
+		<script src="../../../script/H.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
+		<script type="text/javascript">
+			Zepto(function($) {});
+			H.ready(function() {});
+
+			function openCamera() {
+				api.getPicture({
+					sourceType: 'camera',
+					encodingType: 'jpg',
+					mediaValue: 'pic',
+					destinationType: 'url',
+					allowEdit: false,
+					quality: 50,
+					targetWidth: 700,
+					targetHeight: 400,
+					saveToPhotoAlbum: false
+				}, function(ret, err) {
+					if (ret) {
+						alert(JSON.stringify(ret));
+						$("#ps").attr("src",ret.data)
+					} else {
+						api.toast({
+	                        msg:"用户取消"
+                        });
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>
