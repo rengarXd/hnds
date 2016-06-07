@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../../../css/Hui.css"/>
+    <style>
+    	
+    </style>
+</head>
+<body>
+	<div class="H-padding-vertical-bottom-10 "></div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">身份证号:</span>
+			<input id="changed_personNum" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入身份证号" >
+		</div>
+		<div class="H-padding-10">
+			<button onclick="save_pn()" class="H-button H-width-100-percent H-font-size-15 H-outline-none H-border-radius-12 H-padding-vertical-both-12 H-theme-background-color7 H-theme-font-color-white H-theme-border-color7 H-theme-border-color7-click H-theme-background-color7-click H-theme-font-color7-click">
+				保存
+			</button>
+		</div>
+</body>
+<script type="text/javascript" src="../../../../script/H.js"></script>
+<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
+<script type="text/javascript">
+	var temp = null;
+	var userinfo_id = null;
+	var uuid = null; 
+	H.ready(function() {
+    	api.getPrefs({
+            key:'userinfo'
+        },function(ret,err){
+        	retobj = eval('(' + ret.value + ')');
+        	//console.log("ret=="+JSON.stringify(ret));
+        	userinfo_id = retobj[0].userinfo_id;
+        	uuid = retobj[0].uuid;
+        	console.log(JSON.stringify(retobj));
+        	//console.log(userinfo_id);
+        	//console.log(uuid);
+        });
+    });
+	function save_pn(){
+		var changed_personNum = $("#changed_personNum").val();
+		//console.log(changed_personNum);
+		//身份证号正则
+		var a = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;
+		if(temp == changed_personNum){
+			return api.toast({
+	            msg:'未做修改...'
+            });
+		}else if(changed_personNum == ""){
+			api.toast({
+	            msg:'不能为空...'
+            });
+            return;
+		}else if(!changed_personNum.match(a)){
+			api.toast({
+	            msg:'这并不是一个身份证号..'
+            });
+            return;
+		}else{
+			api.showProgress({
+				title: '正在修改...'
+            });
+            //console.log(window.serverUrl+'edituserinfo&userinfo_id='+userinfo_id+'&uuid='+uuid+'&phone_number='+changed_phoneNum);
+            api.ajax({
+	            url:window.serverUrl+'edituserinfo&funid=app_userinfo&userinfo_id='+userinfo_id+'&uuid='+uuid+'&certificate_number='+changed_personNum,
+            },function(ret,err){
+            	console.log(JSON.stringify(ret));
+            	//console.log(JSON.stringify(err));
+            	//console.log(JSON.stringify(ret.data));
+            	if(ret && ret.success==true){
+					api.setPrefs({
+	                    key:'userinfo',
+	                    value:JSON.stringify(ret.data)
+                    },function(ret,err){
+                    	api.hideProgress();
+                    	api.sendEvent({
+							name : 'personNum_hasChanged',
+							
+						});
+						api.closeWin({
+						});
+                    });
+            	}
+            });
+		}
+	}
+	
+</script>
+</html>
