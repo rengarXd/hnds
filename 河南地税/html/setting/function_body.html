@@ -15,7 +15,11 @@
 	</head>
 	<body>
 		<div class="H-margin-horizontal-both-10 H-theme-border-color-eee H-border-radius-5 H-overflow-hidden H-margin-vertical-top-10">
-			<div id="function_data_body" ></div>
+			<div id="function_data_body" >
+				<div id="loading" class="H-center-all H-padding-20">
+					<img src="../../image/loading_more.gif" width="30" />
+				</div>
+			</div>
 			<script id="function_data" type="text/html">
 				{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
 				<div class="H-accordion-area" onclick="showFunction('{{ d.data[i].function_id }}')">
@@ -33,27 +37,40 @@
 		<script src="../../script/zepto.min.js" type="text/javascript"></script>
 		<script src="../../script/tools/laytpl.js" type="text/javascript"></script>
 		<script type="text/javascript">
+			retobj = null;
 			H.ready(function() {
 				api.getPrefs({
 					key : 'userinfo'
 				}, function(ret, err) {
 					console.log(JSON.stringify(ret));
 					retobj = eval('(' + ret.value + ')');
-					var userinfo_id = retobj[0].userinfo_id;
-					console.log(userinfo_id);
-					uuid = retobj[0].uuid;
-					api.ajax({
-						url : window.serverUrl + 'getfunctioninfo&funid=function_introduction&userinfo_id=' + userinfo_id + '&uuid=' + uuid
-					}, function(ret, err) {
-						console.log(JSON.stringify(ret));
-						//渲染模板
-						var tpl = document.getElementById("function_data").innerHTML;
-						laytpl(tpl).render(ret, function(render) {
-							document.getElementById("function_data_body").innerHTML = render;
-						});
-					});
+					get_data();
+				});
+				//下拉刷新
+				api.setRefreshHeaderInfo({
+					bgColor: '#fff'
+				}, function(ret, err) {
+					//conlose.log(JSON.stringify(ret));
+					get_data();
 				});
 			});
+			//渲染数据
+			function get_data() {
+				H.ajax(function(ret, err) {
+					H.refreshHeaderLoadDone();
+					console.log(JSON.stringify(ret));
+					var tpl = document.getElementById("function_data").innerHTML;
+					laytpl(tpl).render(ret, function(render) {
+						document.getElementById("function_data_body").innerHTML = render;
+					});
+				}, 'getfunctioninfo&funid=function_introduction', 'post', {
+					values : {
+						userinfo_id : retobj[0].userinfo_id,
+						uuid : retobj[0].uuid
+					}
+				});
+			}
+
 			H.on(H.Ds(".H-accordion-title"), "touchend", function(event) {
 				var area = H.getParents(event.target, "H-accordion-area");
 				var title = H.D(".H-accordion-title", area);
@@ -75,9 +92,10 @@
 					}
 				}
 			});
-		
-			function showFunction(id){
-				H.openWin('function_show_head','./functions/function_show_head.html',{id:id});
+			function showFunction(id) {
+				H.openWin('function_show_head', './functions/function_show_head.html', {
+					id : id
+				});
 			}
 		</script>
 	</body>
