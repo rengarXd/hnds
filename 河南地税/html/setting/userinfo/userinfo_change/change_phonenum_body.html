@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <title>title</title>
+    <title>修改手机号body</title>
     <link rel="stylesheet" type="text/css" href="../../../../css/Hui.css"/>
     <style>
     	
@@ -34,8 +34,8 @@
         },function(ret,err){
         	retobj = eval('(' + ret.value + ')');
         	//console.log("ret=="+JSON.stringify(ret));
-        	userinfo_id = retobj[0].userinfo_id;
-        	uuid = retobj[0].uuid;
+        	userinfo_id1 = retobj[0].userinfo_id;
+        	uuid1 = retobj[0].uuid;
         });
     });
 	function save_pn(){
@@ -60,26 +60,28 @@
 				title: '正在修改...'
             });
             //console.log(window.serverUrl+'edituserinfo&userinfo_id='+userinfo_id+'&uuid='+uuid+'&phone_number='+changed_phoneNum);
-            api.ajax({
-	            url:window.serverUrl+'edituserinfo&funid=app_userinfo&userinfo_id='+userinfo_id+'&uuid='+uuid+'&phone_number='+changed_phoneNum,
-            },function(ret,err){
-            	//console.log(JSON.stringify(ret));
-            	//console.log(JSON.stringify(err));
-            	//console.log(JSON.stringify(ret.data));
-            	if(ret && ret.success==true){
-					api.setPrefs({
+            H.ajax(function(ret,err){
+            	
+            	if(ret && ret.success == true){
+            		api.setPrefs({
 	                    key:'userinfo',
 	                    value:JSON.stringify(ret.data)
                     },function(ret,err){
                     	api.hideProgress();
                     	api.sendEvent({
-							name : 'phoneNum_hasChanged',
-							
-						});
-						api.closeWin({
-						});
-                    	
+                    		name : 'phoneNum_hasChanged',
+                    	});
+                    	api.closeWin({
+                        });
                     });
+            	}else{
+            		H.toast(ret.message);
+            	}
+            },'edituserinfo&funid=app_userinfo','post',{
+            	values:{
+            		userinfo_id:userinfo_id1,
+            		uuid:uuid1,
+            		phone_number:changed_phoneNum
             	}
             });
 		}

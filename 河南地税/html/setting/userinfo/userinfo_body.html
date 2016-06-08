@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
@@ -62,6 +61,13 @@
 		<script type="text/javascript">
 			var retobj = null;
 			H.ready(function() {
+				//下拉刷新
+				H.setRefreshHeaderInfo(function(ret, err) {
+					setTimeout(function() {
+						location.reload();
+						H.refreshHeaderLoadDone();
+					}, 1000);
+				});
 				api.getPrefs({
 					key : 'userinfo'
 				}, function(ret, err) {
@@ -76,21 +82,22 @@
 				api.addEventListener({
 					name : 'phoneNum_hasChanged'
 				}, function(ret, err) {
-					if(ret){
-					reload();
+					if (ret) {
+						reload();
 					}
 				});
 				api.addEventListener({
 					name : 'personNum_hasChanged'
 				}, function(ret, err) {
-					if(ret){
-					reload();
+					if (ret) {
+						reload();
 					}
 				});
 			});
-			function reload(){
+			function reload() {
 				location.reload();
 			}
+
 			function logout() {
 				api.setPrefs({
 					key : 'userinfo',
@@ -101,9 +108,9 @@
 					value : ''
 				});
 				api.setPrefs({
-                    key : 'ischoicetype',
-                    value : ''
-                });
+					key : 'ischoicetype',
+					value : ''
+				});
 				api.openWin({
 					name : 'login_body',
 					url : '../../login/login_body.html'
@@ -119,20 +126,20 @@
 					url : './userinfo_change/change_phonenum_head.html'
 				});
 			}
+
 			function changePersonNum() {
 				api.openWin({
 					name : 'changePersonNum',
 					url : './userinfo_change/change_personnum_head.html'
 				});
 			}
-			function change_pwd(){
+
+			function change_pwd() {
 				api.openWin({
-	                name: 'changePwd',
-	                url: './userinfo_change/change_password_head.html'
-                });
+					name : 'changePwd',
+					url : './userinfo_change/change_password_head.html'
+				});
 			}
 		</script>
 	</body>
-
-
 </html>
