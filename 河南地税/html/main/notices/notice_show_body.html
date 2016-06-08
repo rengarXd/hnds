@@ -50,7 +50,7 @@
                         $("#news_title").html(retobj[0].news_title);
                         $("#edit_date").html(retobj[0].edit_date);
                         $("#news_cont").html(retobj[0].news_cont);
-                    }, "getNoticeSingleinfo&funid=taxpayer_notice", "post", {
+                    }, 'getNoticeSingleinfo&funid=taxpayer_notice', 'post', {
                         values : {
                             userinfo_id : userinfo_id,
                             uuid : uuid,
