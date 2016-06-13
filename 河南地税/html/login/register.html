@@ -103,14 +103,16 @@
 			$("#user_password").focus(function() {
 				var u_name = $("#user_name").val();
 				//获取用户信息
-				api.ajax({
-					url : window.serverUrl + 'valusername&funid=app_userinfo&user_name=' + u_name,
-				}, function(ret, err) {
+				H.ajax(function(ret,err){
 					if (ret && ret.success == false) {//请求返回success值为false时
 						api.toast({
 							msg : '抱歉用户名已被占用'
 						});
 						$("#user_name").focus();
+					}
+				},'valusername&funid=sys_user','post',{
+					values:{
+						user_code:u_name
 					}
 				});
 			});
