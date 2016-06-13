@@ -33,7 +33,7 @@
         },function(ret,err){
         	retobj = eval('(' + ret.value + ')');
         	//console.log("ret=="+JSON.stringify(ret));
-        	userinfo_id1 = retobj[0].userinfo_id;
+        	userinfo_id1 = retobj[0].user_id;
         	uuid1 = retobj[0].uuid;
         	console.log(JSON.stringify(retobj));
         	//console.log(userinfo_id);
@@ -81,9 +81,9 @@
             	}else{
             		H.toast(ret.message);
             	}
-            },'edituserinfo&funid=app_userinfo','post',{
+            },'edituserinfo&funid=sys_user','post',{
             	values:{
-            		userinfo_id:userinfo_id1,
+            		user_id:userinfo_id1,
             		uuid:uuid1,
             		certificate_number:changed_personNum
             	}

@@ -63,21 +63,24 @@
 			H.ready(function() {
 				//下拉刷新
 				H.setRefreshHeaderInfo(function(ret, err) {
-					setTimeout(function() {
+					if (ret) {
 						location.reload();
 						H.refreshHeaderLoadDone();
-					}, 1000);
+						api.toast({
+							msg : 'success'
+						});
+					}
 				});
 				api.getPrefs({
 					key : 'userinfo'
 				}, function(ret, err) {
 					retobj = eval('(' + ret.value + ')');
 					//console.log("ret==");
-					$("#username").text(retobj[0].user_name);
-					$("#phone_number").text(retobj[0].phone_number);
+					$("#username").text(retobj[0].user_code);
+					$("#phone_number").text(retobj[0].mob_code);
 					$("#certificate_number").text(retobj[0].certificate_number);
-					$("#user_realname").text(retobj[0].user_realname);
-					$("#email_address").text(retobj[0].email_address);
+					$("#user_realname").text(retobj[0].user_name);
+					$("#email_address").text(retobj[0].email);
 				});
 				api.addEventListener({
 					name : 'phoneNum_hasChanged'
