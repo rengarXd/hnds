@@ -63,13 +63,9 @@
 			H.ready(function() {
 				//下拉刷新
 				H.setRefreshHeaderInfo(function(ret, err) {
-					if (ret) {
-						location.reload();
-						H.refreshHeaderLoadDone();
-						api.toast({
-							msg : 'success'
-						});
-					}
+					//console.log("下拉刷新ret="+JSON.stringify(ret));
+					location.reload();
+					H.refreshHeaderLoadDone();
 				});
 				api.getPrefs({
 					key : 'userinfo'
