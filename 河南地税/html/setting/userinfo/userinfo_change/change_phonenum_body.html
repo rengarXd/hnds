@@ -26,7 +26,7 @@
 <script type="text/javascript" src="../../../../script/zepto.min.js"></script>
 <script type="text/javascript">
 	var temp = null;
-	var userinfo_id = null;
+	var user_id = null;
 	var uuid = null; 
 	H.ready(function() {
     	api.getPrefs({
@@ -34,7 +34,7 @@
         },function(ret,err){
         	retobj = eval('(' + ret.value + ')');
         	//console.log("ret=="+JSON.stringify(ret));
-        	userinfo_id1 = retobj[0].userinfo_id;
+        	user_id1 = retobj[0].user_id;
         	uuid1 = retobj[0].uuid;
         });
     });
@@ -77,11 +77,11 @@
             	}else{
             		H.toast(ret.message);
             	}
-            },'edituserinfo&funid=app_userinfo','post',{
+            },'edituserinfo&funid=sys_user','post',{
             	values:{
-            		userinfo_id:userinfo_id1,
+            		user_id:user_id1,
             		uuid:uuid1,
-            		phone_number:changed_phoneNum
+            		mob_code:changed_phoneNum
             	}
             });
 		}

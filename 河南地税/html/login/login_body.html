@@ -74,10 +74,10 @@
                     ret && ret.success ? isSuccess(ret) : api.toast({
                         msg : '登录失败！'
                     });
-                }, 'userlogin&funid=app_userinfo', 'post', {
+                }, 'userlogin&funid=sys_user', 'post', {
                     values : {
-                        user_name : pid,
-                        user_password : pwd
+                        user_code : pid,
+                        user_pwd : pwd
                     }
                 });
             }
