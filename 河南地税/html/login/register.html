@@ -47,23 +47,30 @@
 			</p>
 			<div class="H-flexbox-horizontal H-border-vertical-both-after">
 				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">用户名：</span>
-				<input id="user_name" type="text" data-rule="*6-16" data-nullmsg="用户名不能为空" data-errmsg="请填写6-16位任意字符" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="输入你用于登陆的账号名">
+				<input id="user_code" type="text" data-rule="*6-16" data-nullmsg="用户名不能为空" data-errmsg="请填写6-16位任意字符" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="输入你用于登陆的账号名">
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
 				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">密码：</span>
-				<input id="user_password" type="password" data-rule="*6-16" data-nullmsg="密码不能为空" data-errmsg="请填写6-16位字符串" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入密码">
+				<input id="user_pwd" type="password" data-rule="*6-16" data-nullmsg="密码不能为空" data-errmsg="请填写6-16位字符串" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入密码">
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="select();">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						纳税身份: <span class="H-padding-horizontal-both-12" id="cole_no">一般纳税人</span>
+					</div >
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
+				</div>
+
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">姓名：</span>
+				<input id="user_name" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入真实姓名" >
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
 				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">手机号码：</span>
-				<input id="phone_number" type="tel" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入手机号码" >
-			</div>
-			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
-				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">姓名：</span>
-				<input id="user_realname" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入真实姓名" >
+				<input id="mob_code" type="tel" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入手机号码" >
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
 				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">邮箱：</span>
-				<input id="email_address" type="email" data-rule="e" data-nullmsg="" data-errmsg="邮箱地址格式不对" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入邮箱" >
+				<input id="email" type="email" data-rule="e" data-nullmsg="" data-errmsg="邮箱地址格式不对" data-sucmsg="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入邮箱" >
 			</div>
 			<button id="register" onclick="register();" class="H-margin-vertical-top-10 H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click H-border-radius-3" style="border-color: #1ECFF5">
 				注&nbsp;&nbsp;&nbsp;册
@@ -101,30 +108,45 @@
 			});
 			//当输入密码框获取焦点时
 			$("#user_password").focus(function() {
-				var u_name = $("#user_name").val();
+				var user_name = $("#user_code").val();
 				//获取用户信息
-				H.ajax(function(ret,err){
+				api.ajax({
+					url : window.serverUrl + 'valusername&funid=sys_user&user_code=' + u_name,
+				}, function(ret, err) {
 					if (ret && ret.success == false) {//请求返回success值为false时
 						api.toast({
 							msg : '抱歉用户名已被占用'
 						});
-						$("#user_name").focus();
-					}
-				},'valusername&funid=sys_user','post',{
-					values:{
-						user_code:u_name
+						$("#user_code").focus();
 					}
 				});
 			});
+			
+			/*纳税身份选择*/
+			function select(){
+				api.actionSheet({
+				title:'请选择纳税身份',
+				buttons:['一般纳税人','房产经纪人']
+                },function(ret,err){
+                	if(ret && ret.buttonIndex==1){
+                		$("#cole_no").attr("types","04");
+                		$("#cole_no").text("一般纳税人"); 
+                	} else {
+                		$("#cole_no").attr("types","05");
+                		$("#cole_no").text("房产经纪人")
+                	}
+                });
+			}
+			
 			/*关闭本页*/
 			function gb(){
 				api.closeWin({
                 });
 			}
+			
 			/*注册*/
 			function register() {
-				var user_name = $("#user_name").val();
-				var tel = $("#phone_number").val();
+				var tel = $("#mob_code").val();
 				/*手机号正则*/
 				var a = /^((\(\d{3}\))|(\d{3}\-))?13\d{9}|14[57]\d{8}|15\d{9}|18\d{9}$/;
 				if (tel.length != 11 || !tel.match(a)) {
@@ -133,8 +155,8 @@
 					});
 					return;
 				}
-				var user_realname = $("#user_realname").val();
-				var email = $("#email_address").val();
+				var user_realname = $("#user_name").val();
+				var email = $("#email").val();
 				/*邮箱正则*/
 				var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 				if (!email.match(filter)) {
@@ -143,29 +165,19 @@
 					});
 					return;
 				}
-				var user_password = $("#user_password").val();
+				var user_password = $("#user_pwd").val();
 				api.showProgress({
 					title : '注册中',
 					text : '请稍等....',
 				});
 				//post请求
 				api.ajax({
-					url : window.serverUrl + 'register&funid=app_userinfo',
-					data : {
-						values : {
-							user_name : user_name,
-							phone_number : tel,
-							user_realname : user_realname,
-							email_address : email,
-							user_password : user_password
-						}
-					}
+					url : window.serverUrl + 'register&funid=sys_user',
 				}, function(ret, err) {
 					api.hideProgress();
 					var systemType = api.systemType;
 					if (systemType == "ios") {
 						var rets = eval('(' + err.body + ')');
-						console.log("ios的err===" + JSON.stringify(err));
 						if (rets && rets.success == true) {
 							api.toast({
 								msg : '注册成功，即将跳转登录页面'
@@ -205,8 +217,8 @@
 				api.sendEvent({
 					name : 'myUser',
 					extra : {
-						user_name : user_name,
-						user_password : user_password
+						user_code : user_name,
+						user_pwd : user_password
 					}
 				});
 			}
