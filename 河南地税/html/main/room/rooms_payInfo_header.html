@@ -23,26 +23,22 @@
 		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			H.ready(function() {
-				H.fixStatusBar(function(offset) {
-					var _options = {
-						rect : {
-							x : 0,
-							y : offset.h,
-							h : api.winHeight - offset.h,
-							w : api.winWidth
-						},
-						bounces : false
-					};
-					H.openFrame('rooms_payInfo_body', 'rooms_payInfo_body.html', api.pageParam, _options);
-				}, "#header");
-				//				H.openFrameNavOrFoot("rooms_payInfo_body", "rooms_payInfo_body.html", "#header", api.pageParam);
+				//				H.fixStatusBar(function(offset) {
+				//					var _options = {
+				//						rect : {
+				//							x : 0,
+				//							y : offset.h,
+				//							h : api.winHeight - offset.h,
+				//							w : api.winWidth
+				//						},
+				//						bounces : false
+				//					};
+				//					H.openFrame('rooms_payInfo_body', 'rooms_payInfo_body.html', api.pageParam, _options);
+				//				}, "#header");
+				openNewframe('', 'rooms_payInfo_body', 'rooms_payInfo_body.html', api.pageParam);
 			});
-			function openNewframe(oldframeName,frameName, frameUrl) {
-				setTimeout(function() {
-					api.closeFrame({
-	                    name: oldframeName
-                    });
-				}, 1000);
+			function openNewframe(oldframeName, frameName, frameUrl, pageParam) {
+				var framepageParam = H.isObject(pageParam) ? pageParam : {};
 				H.fixStatusBar(function(offset) {
 					var _options = {
 						rect : {
@@ -53,15 +49,27 @@
 						},
 						bounces : false
 					};
-					H.openFrame(frameName, frameUrl, api.pageParam, _options);
+					H.openFrame(frameName, frameUrl, framepageParam, _options);
 				}, "#header");
+				if (oldframeName != '') {
+					setTimeout(function() {
+						api.closeFrame({
+							name : oldframeName
+						});
+					}, 1000);
+				}
 			}
 
 			function openHouseInfo() {
-				openNewframe('rooms_payInfo_body','rooms_houseInfo_body', 'rooms_houseInfo_body.html');
+				openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
 			}
+
 			function Transferee() {
-				openNewframe('rooms_houseInfo_body','rooms_building_body', 'rooms_building_body.html');
+				openNewframe('rooms_houseInfo_body', 'rooms_building_body', 'rooms_building_body.html');
+			}
+
+			function buildInfo() {
+				openNewframe('rooms_building_body', 'rooms_buildInfo_body', 'rooms_buildInfo_body.html');
 			}
 		</script>
 	</body>
