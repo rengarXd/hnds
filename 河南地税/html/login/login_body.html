@@ -72,7 +72,7 @@
                     console.log("信息" + JSON.stringify(ret));
                     api.hideProgress();
                     ret && ret.success ? isSuccess(ret) : api.toast({
-                        msg : '登录失败！'
+                        msg : ret.message
                     });
                 }, 'userlogin&funid=sys_user', 'post', {
                     values : {
