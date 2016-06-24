@@ -71,7 +71,7 @@
 			});
 			H.ready(function() {
 				H.getPrefs(function(ret, err) {
-					if (ret && ret.value) {
+					if (ret && ret.value.success) {
 						assessinfo = eval('(' + ret.value + ')');
 						console.log(JSON.stringify(assessinfo));
 						$("input[name='purchaser_name']").val(assessinfo.data.purchaser_name);
@@ -118,16 +118,16 @@
 					//						alert(JSON.stringify(msg));
 					//					},
 					endSuccess : function(data) {
-						//						var value = {
-						//							"purchaser_certype" : type_option,
-						//							"transaction_type" : paytype,
-						//							"transaction_date" : dates
-						//						};
 						datas = data;
-						datas.purchaser_certype = type_option;
-						datas.transaction_type = paytype;
-						datas.transaction_date = dates;
-						//						$.extend(datas, value);
+						var value = {
+							"purchaser_certype" : type_option,
+							"transaction_type" : paytype,
+							"transaction_date" : dates
+						};
+						//						datas.purchaser_certype = type_option;
+						//						datas.transaction_type = paytype;
+						//						datas.transaction_date = dates;
+						$.extend(datas, value);
 						post_data();
 						//						alert(JSON.stringify(datas));
 					}
