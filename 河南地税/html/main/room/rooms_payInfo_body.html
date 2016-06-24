@@ -75,7 +75,7 @@
 			});
 			H.ready(function() {
 				H.getPrefs(function(ret, err) {
-					if (ret && ret.value) {
+					if (ret && ret.value.success) {
 						assessinfo = eval('(' + ret.value + ')');
 						console.log(JSON.stringify(assessinfo));
 						$("input[name='transferor_name']").val(assessinfo.data.transferor_name);
@@ -171,9 +171,11 @@
 						H.ajax(function(ret, err) {
 							results(ret, function() {
 								//							H.toast(result.message);
-								H.setPrefs(function(ret, err) {
-									console.log('setPref:rooms======' + ret);
-								}, 'rooms', JSON.stringify(result));
+								H.removePrefs(function(ret, err) {
+									H.setPrefs(function(ret, err) {
+										console.log('setPref:rooms======' + ret);
+									}, 'rooms', JSON.stringify(result));
+								}, 'rooms');
 							});
 						}, 'appHouseAssessAdd&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid, 'post', {
 							values : {
