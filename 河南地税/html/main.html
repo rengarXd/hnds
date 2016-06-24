@@ -61,7 +61,7 @@
     <script type="text/javascript" src="../script/H.js"></script>
     <script src="../script/zepto.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var test =null;
+        var test = null;
         //1.1设备准备完毕
         H.ready(function() {
             checkUpdate();
@@ -95,7 +95,6 @@
 
         //检查版本更新
         function checkUpdate() {
-           
             var systemType = api.systemType;
             if (systemType == "android") {
                 var mam = api.require('mam');
