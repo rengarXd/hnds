@@ -40,7 +40,7 @@
                     key : 'userinfo'
                 }, function(ret, err) {
                     retobj = eval('(' + ret.value + ')');
-                    var userinfo_id = retobj[0].userinfo_id;
+                    var user_id = retobj[0].user_id;
                     var uuid = retobj[0].uuid;
                     var notice_id = eval(api.pageParam).id;
                     console.log(notice_id);
@@ -52,9 +52,9 @@
                         $("#news_cont").html(retobj[0].news_cont);
                     }, 'getNoticeSingleinfo&funid=taxpayer_notice', 'post', {
                         values : {
-                            userinfo_id : userinfo_id,
+                            notice_id :notice_id,
+                            user_id : user_id,
                             uuid : uuid,
-                            notice_id : notice_id
                         }
                     });
                 });
