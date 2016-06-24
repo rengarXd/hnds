@@ -25,5 +25,9 @@
   <permission name="internet"/>  
   <permission name="bootCompleted"/>  
   <permission name="hardware"/>  
-  <access origin="*"/> 
+  <access origin="*"/>  
+  <feature name="ajpush"> 
+    <param name="app_key" value="6e4d9e72d916ae768c0490de"/>  
+    <param name="channel" value="7b15b8ce457dee002f3dc705"/> 
+  </feature> 
 </widget>
