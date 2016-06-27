@@ -715,7 +715,6 @@
                         window.location = winUrl;
                     }
                 }
-
             },
             closeWin : function(winName, options) {
                 var that = this;
@@ -1278,10 +1277,38 @@
                     api.closeWidget(opt);
                 }
             },
-            ajax : function(callback, url, method, data, dataType, options) {
+            ajax : function(callback, url, method, data, dataType,options) {
                 var that = this;
                 var o = {};
                 o.url = window.serverUrl + url;
+                o.method = method ? method : "get";
+                o.dataType = dataType ? dataType : "json";
+                if (that.isObject(data) && o.method == "post") {
+                    o.data = data;
+                }
+                options = options || {};
+                var opt = that.extendObj(that.DEFAULT_CONFIG.ajax_CONFIG, o, options);
+                if (that.isAPICloud()) {
+                    api.ajax(opt, function(ret, err) {
+                        var systemType = api.systemType;
+                        if (systemType == "ios") {
+                            var rets = eval('(' + err.body + ')');
+                            if (that.isFunction(callback)) {
+                                callback(rets, err);
+                            }
+                        } else {
+                            if (that.isFunction(callback)) {
+                                callback(ret.body, err);
+                            }
+                        }
+
+                    });
+                }
+            },
+            imgAjax : function(callback, url, method, data, dataType,options) {
+                var that = this;
+                var o = {};
+                o.url = url;
                 o.method = method ? method : "get";
                 o.dataType = dataType ? dataType : "json";
                 if (that.isObject(data) && o.method == "post") {
