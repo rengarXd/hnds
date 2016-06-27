@@ -70,7 +70,7 @@
 			var house_type = null;
 			H.ready(function() {
 				H.getPrefs(function(ret, err) {
-					if (ret && ret.value.data.datafunid) {
+					if (ret && ret.value) {
 						assessinfo = eval('(' + ret.value + ')');
 						console.log(JSON.stringify(assessinfo));
 						//						$("input[name='property_number']").val(assessinfo.data.property_number);
@@ -118,7 +118,7 @@
 							break;
 					}
 					console.log(JSON.stringify(ret));
-				}, '请选择房屋类别', msgAry);
+				}, '请选择房屋类别', ['身份证', '纳税人识别号', '组织机构代码']);
 			}
 
 			//返回结果处理
@@ -131,7 +131,7 @@
 					}
 					api.execScript({
 						name : 'rooms_payInfo_header',
-						script : 'buildInfo();'
+						script : 'fileInfo();'
 					});
 				} else {
 					H.toast(ret.message);
@@ -142,9 +142,7 @@
 				//1.4、已经登录
 				//更新存量房信息
 				house_type ? H.ajax(function(ret, err) {
-					results(ret,function(){
-						H.openWin('rooms_apply_header','rooms_apply_header.html');
-					});
+					results(ret);
 				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
 					values : datas
 				}) : H.toast('您还有未选择的选项');
