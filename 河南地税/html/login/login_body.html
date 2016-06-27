@@ -95,19 +95,23 @@
                 });
                 //3.存储用户信息
                 H.setPrefs(function() {
-                    H.getPrefs(function(ret, err) {
-                        if (ret.value) {
-                            api.openWin({
-                                name : 'main',
-                                url : '../main.html'
-                            });
-                        } else {
-                            api.openWin({
-                                name : 'choicetype_head',
-                                url : '../main/choicetype/choicetype_head.html'
-                            });
-                        }
-                    }, 'ischoicetype');
+                    api.openWin({
+                        name : 'main',
+                        url : '../main.html'
+                    });
+                    //                  H.getPrefs(function(ret, err) {
+                    //                      if (ret.value) {
+                    //                          api.openWin({
+                    //                              name : 'main',
+                    //                              url : '../main.html'
+                    //                          });
+                    //                      } else {
+                    //                          api.openWin({
+                    //                              name : 'choicetype_head',
+                    //                              url : '../main/choicetype/choicetype_head.html'
+                    //                          });
+                    //                      }
+                    //                  }, 'ischoicetype');
                 }, 'userinfo', JSON.stringify(rets.data));
             }
 
