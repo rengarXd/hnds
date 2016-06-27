@@ -23,21 +23,26 @@
 				<div class="H-padding-10">
 					身份证示例
 				</div>
-				<div><img src="../../../image/sfz.jpg" style="width: 100%;" />
+				<div id="yulan">
+					<img src="../../../image/sfz.jpg" style="width: 100%;" />
+					<!--<img src="" id="yulan" style="width: 100%;"/>-->
+				</div>
+				<!--<div>
+				<div class="H-padding-10">
+				拍摄效果
 				</div>
 				<div>
-					<div class="H-padding-10">
-						拍摄效果
-					</div>
-					<div>
-						<img src="" id="ps" style="width: 100%"/>
-					</div>
+				<img src="" id="ps" style="width: 100%"/>
 				</div>
+				</div>-->
 				<div class="H-padding-10">
 					点击加号拍照
 				</div>
-				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="total()();">
+				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="openCamera();">
 					<span class="iconfont icon-tianjia H-font-size-36 H-theme-font-color1"></span>
+					<div style="display: none;">
+						<!--<img src="" id="ps" style="width: 100%"/>-->
+					</div>
 				</div>
 			</div>
 			<div class="H-flex-item">
@@ -50,9 +55,19 @@
 		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
 		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
 		<script type="text/javascript">
+			var imageFilter = null, imageBrowser = null, assessinfo = null;
+			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do?pagetype=editgrid&funid=sys_attach&nousercheck=1&eventcode=create&dataType=byte'
 			Zepto(function($) {
 			});
 			H.ready(function() {
+				// 引入过滤压缩模块
+				imageFilter = api.require("imageFilter");
+				//引入图片预览模块
+				imageBrowser = api.require('imageBrowser');
+				H.getPrefs(function(ret, err) {
+					assessinfo = eval('(' + ret.value + ')');
+					console.log(JSON.stringify(ret));
+				}, 'rooms');
 			});
 			function openWin() {
 				H.openWin('rooms_payInfo_header', 'rooms_payInfo_header.html');
@@ -61,30 +76,174 @@
 				}, 1000);
 			}
 
-			function total() {
-				var openCamera = function() {
-					api.getPicture({
-						sourceType : 'camera',
-						encodingType : 'jpg',
-						mediaValue : 'pic',
-						destinationType : 'url',
-						allowEdit : false,
-						quality : 50,
-						targetWidth : 700,
-						targetHeight : 400,
-						saveToPhotoAlbum : false
+			//生成随机文件名
+			function NewGuid() {
+				function S4() {
+					return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+				}
+
+				return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+			}
+
+			// 获取文件拓展名
+			function getExt(fileName) {
+				return fileName.substring(fileName.lastIndexOf('.') + 1);
+			}
+
+			// 图片压缩
+			// imgsrc：源图片的路径
+			// quality：图片压缩质量，一般建议0.5
+			// scale：图片压缩比例，也是建议0.5
+			// ext：源图片拓展名
+			// callback：转换成功之后回调函数
+			function imgCompress(imgsrc, quality, scale, ext, callback) {
+				// 压缩文件的保存目录
+				var savePath = api.cacheDir + '/';
+				// 压缩文件生成的随机文件名称
+				var savename = NewGuid() + "." + ext;
+				imageFilter.compress({
+					img : imgsrc,
+					quality : quality,
+					scale : quality,
+					save : {
+						album : false,
+						imgPath : savePath,
+						imgName : savename
+					}
+				}, function(ret, err) {
+					if (ret) {
+						callback(savePath + savename);
+					} else {
+						api.toast({
+							msg : err.msg
+						});
+					}
+				});
+			}
+
+			// 打开图片预览
+			function openImageBrowser(imgs) {
+				imageBrowser.openImages({
+					imageUrls : imgs,
+					showList : false,
+					activeIndex : 0
+				});
+			}
+
+			// 上传图片
+			// url：上传的url地址
+			// data：上传的文件
+			// callback：上传成功返回地址
+			function uploadFile(url, data, callback) {
+				H.imgAjax(function(ret, err) {
+					if (ret) {
+						if (ret.retCode == 1) {
+							callback(ret.retValue);
+						} else if (ret.retCode == 0) {
+							alert("上传失败");
+						}
+					} else {
+						api.alert({
+							msg : ('错误码：' + err.code + '；错误信息：' + err.msg + '；网络状态码：' + err.statusCode)
+						});
+					}
+				}, url, 'post', {
+					files : {
+						"attach_name" : data
+					}
+				}, 'json', true);
+				//				api.ajax({
+				//					url : url,
+				//					method : 'post',
+				//					timeout : 30,
+				//					dataType : 'json',
+				//					returnAll : false,
+				//					data : {
+				//						files : {
+				//							"attach_name" : data
+				//						}
+				//					}
+				//				}, function(ret, err) {
+				//					if (ret) {
+				//						if (ret.retCode == 1) {
+				//							picnumber = picnumber + 1;
+				//							upimgpath += ret.retValue.img + ',';
+				//							callback(ret.retValue);
+				//						} else if (ret.retCode == 0) {
+				//							alert("上传失败");
+				//						}
+				//					} else {
+				//						api.alert({
+				//							msg : ('错误码：' + err.code + '；错误信息：' + err.msg + '；网络状态码：' + err.statusCode)
+				//						});
+				//					}
+				//				});
+			}
+
+			// 添加长按方法
+			function addPress(obj, index) {
+				// 获取目前长按的对象
+				var hammertime = new Hammer(obj[0]);
+				// 绑定长按对象
+				hammertime.on("press", function(e) {
+					api.confirm({
+						title : '温馨提示',
+						msg : '您确定要删除该图片吗？',
+						buttons : ['确定', '取消']
 					}, function(ret, err) {
-						if (ret) {
-							alert(JSON.stringify(ret));
-							$("#ps").attr("src", ret.data)
-						} else {
+						if (ret.buttonIndex == 1) {
+							// 移除自己
+							$(obj).remove();
 							api.toast({
-								msg : "用户取消"
+								msg : '删除成功！'
 							});
 						}
 					});
-				};
-				return openCamera;
+				});
+			}
+
+			//打开照相机获取
+			function openCamera() {
+				api.getPicture({
+					sourceType : 'camera',
+					encodingType : 'jpg',
+					mediaValue : 'pic',
+					destinationType : 'url',
+					allowEdit : false,
+					quality : 50,
+					targetWidth : 700,
+					targetHeight : 400,
+					saveToPhotoAlbum : false
+				}, function(ret, err) {
+					if (ret) {
+						//												alert(JSON.stringify(ret));
+						$(".addh_active span").hide();
+						$(".addh_active div").show();
+						// 拍照返回的本地路径
+						var returnUrl = ret.data;
+						// 图片压缩
+						imgCompress(returnUrl, 0.5, 0.5, getExt(returnUrl), function(compressImg) {
+							//							var showImgHtml = '<img src="' + compressImg + '" style="width:100%;"/>';
+							// 追加图片
+							//							$("#yulan").html(showImgHtml);
+							// 为图片添加点击预览功能
+							$("#yulan img").attr("src", compressImg).on("tap", function() {
+								// 调用图片预览函数
+								openImageBrowser(compressImg);
+							});
+							//							// ########################################
+							//							// ################### 上传图片 #########################
+							uploadFile(ImgWebUrl + '&datafunid=' + assessinfo.data.assessinfo_id + '&dataid=' + assessinfo.data.datafunid, compressImg, function(serverImg) {
+								// ########################################  绑定长按事件 ########################
+								//								addPress($("#imgslist img[src='" + compressImg + "']").parent("li"));
+							});
+						});
+					} else {
+						api.toast({
+							msg : "用户取消"
+						});
+					}
+				});
 			}
 		</script>
 	</body>

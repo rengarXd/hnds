@@ -53,19 +53,6 @@
 			新&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;增(2/21)
 		</button>
 		</footer>
-		
-		
-		
-
-
-		
-		
-		
-		
-		
-		
-		
-		
 		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script src="../../../script/zepto.min.js" type="text/javascript"></script>
 		<script src="../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
@@ -173,7 +160,7 @@
 								//							H.toast(result.message);
 								H.removePrefs(function(ret, err) {
 									H.setPrefs(function(ret, err) {
-										console.log('setPref:rooms======' + ret);
+										console.log('setPref:rooms======' + JSON.stringify(ret));
 									}, 'rooms', JSON.stringify(result));
 								}, 'rooms');
 							});
