@@ -15,6 +15,8 @@
         <script>
             //1、设备准备完毕后
             H.ready(function() {
+                //初始化极光推送
+                initPush();
                 //判断是否已经登录
                 H.getPrefs(function(ret, err) {
                     //1.4、已经登录
@@ -31,6 +33,18 @@
                     color : '#000000'
                 });
             });
+            //初始化极光推送
+            function initPush() {
+                var ajpush = api.require('ajpush');
+                ajpush.init(function(ret) {
+                    if (ret && ret.status) {
+                        ajpush.getRegistrationId(function(ret) {
+                            var registrationId = ret.id;
+                            console.log(registrationId);
+                        });
+                    }
+                });
+            }
         </script>
     </body>
 </html>
