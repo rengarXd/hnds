@@ -48,16 +48,24 @@
                 }
             }
 
-            function openHouseInfo() {
-                openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
-            }
-
+//          function openHouseInfo() {
+//              openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
+//          }
+			//楼栋信息
             function Transferee() {
-                openNewframe('rooms_houseInfo_body', 'rooms_building_body', 'rooms_building_body.html');
+                openNewframe('rooms_payInfo_body', 'rooms_building_body', 'rooms_building_body.html');
             }
-
+			//打开房产信息
             function buildInfo() {
                 openNewframe('rooms_building_body', 'rooms_buildInfo_body', 'rooms_buildInfo_body.html');
+            }
+            //打开上传图片附件
+            function fileInfo() {
+            	openNewframe('rooms_buildInfo_body', 'rooms_apply_body', 'rooms_apply_body.html');
+            }
+            //提交成功
+            function success() {
+            	openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html');
             }
         </script>
     </body>
