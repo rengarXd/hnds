@@ -69,3 +69,8 @@
 /A6919788272158/script/zepto.min.js
 /A6919788272158/tpl/body.html
 /A6919788272158/tpl/header.html
+/A6919788272158/html/main/room/region/rooms_region_body.html
+/A6919788272158/html/main/room/region/rooms_region_header.html
+/A6919788272158/html/main/room/rooms_payInfo_body.html.mine
+/A6919788272158/html/main/room/rooms_payInfo_body.html.r124
+/A6919788272158/html/main/room/rooms_payInfo_body.html.r131
