@@ -2181,7 +2181,6 @@
             // ######################### 常用APICloud语法糖
             openFrameNavOrFoot : function(frameName, frameUrl, headerSelector, framePageParam, footerSelector, options) {
                 var that = this;
-
                 var footerOffset = that.offset(footerSelector);
                 that.fixStatusBar(function(offset) {
                     var _options = {
