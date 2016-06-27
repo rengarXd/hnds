@@ -142,7 +142,9 @@
 				//1.4、已经登录
 				//更新存量房信息
 				house_type ? H.ajax(function(ret, err) {
-					results(ret);
+					results(ret,function(){
+						H.openWin('rooms_apply_header','rooms_apply_header.html');
+					});
 				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
 					values : datas
 				}) : H.toast('您还有未选择的选项');
