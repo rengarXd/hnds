@@ -46,12 +46,13 @@
 				}
 			});
 		},
-		// 打开图片预览
+		// 打开图片预览(imgs必须是数组)
 		openImageBrowser : function(imgs) {
 			imageBrowser.openImages({
 				imageUrls : imgs,
 				showList : false,
-				activeIndex : 0
+				activeIndex : 0,
+				tapClose : true
 			});
 		},
 		//打开照相机获取
@@ -66,8 +67,21 @@
 					});
 				}
 			});
+		},
+		//获取图片的宽高
+		getAttr : function(path, callback) {
+			imageFilter.getAttr({
+				path : path
+			}, function(ret, err) {
+				if (ret.status) {
+					callback(ret);
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
 		}
 	});
 }(function(HExports) {
 	var i = typeof HExports !== 'undefined' ? HExports : {};
+
 });
