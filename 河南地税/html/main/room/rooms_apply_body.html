@@ -55,17 +55,79 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../../../script/H.js"></script>
+		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
 		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
-		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
-			var assessinfo = null, imageFilter = null, imageBrowser = null;
+			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, i = 0;
 			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
+			//JSON拼接
+			var jsonstr = [{
+				'ID' : "0101",
+				'name' : "《房产交易产权登记申请受理单》复印件;"
+			}, {
+				"ID" : "0102",
+				"name" : "《房屋转让合同》原件;"
+			}, {
+				"ID" : "0103",
+				"name" : "原房屋所有权证、土地使用证复印件（有地名变更的提供门牌证复印件）;"
+			}, {
+				"ID" : "0104",
+				"name" : "出让方身份证明复印件;"
+			}, {
+				"ID" : "0105",
+				"name" : "受让方个人身份证明复印件和其他证明材料;"
+			}, {
+				"ID" : "010501",
+				"name" : "个人提供身份证复印件，港澳台人士提供通行证或回乡证复印件，外籍人士提供护照和大使馆证明复印件;"
+			}, {
+				"ID" : "010502",
+				"name" : "系夫妻共有产的提供夫妻双方身份证复印件、结婚证明复印件;"
+			}, {
+				"ID" : "010503",
+				"name" : "如夫妻双方约定房屋所有权归其中一方所有的，还须提供财产约定书原件;"
+			}, {
+				"ID" : "010504",
+				"name" : "如为单身的，须提出离婚证（复印件）或未婚证明（原件）。并须声明本人婚姻状况，并自负法律责任;"
+			}, {
+				"ID" : "010505",
+				"name" : "单位购房提供营业执照、税务登记证（或法人资格证书）和组织机构代码证、法定代表人身份证件复印件;"
+			}, {
+				"ID" : "0106",
+				"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
+			}, {
+				"ID" : "0107",
+				"name" : "委托他人代办的须提供委托书原件及代办人身份证复印件;"
+			}, {
+				"ID" : "0108",
+				"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
+			}, {
+				"ID" : "0109",
+				"name" : "是否家庭唯一住房证明（转让方）;"
+			}, {
+				"ID" : "0110",
+				"name" : "是否家庭唯一住房证明或首次购房证明（受让方）;"
+			}];
 			Zepto(function($) {
+				$("#Leixing").on('tap', function() {
+					if (zhonglei != null) {
+						var len = zhonglei.length;
+						if (i < len) {
+							var result = $("#Leixing").html(zhonglei[i].name);
+							i++;
+							return result;
+						} else {
+							i = 0;
+							var result = $("#Leixing").html(zhonglei[i].name);
+							i++;
+							return result;
+						}
+					}
+				});
 			});
 			H.ready(function() {
 				// 引入过滤压缩模块
-				imageFilter = api.require("imageFilter");
+				imageFilter = api.require('imageFilter');
 				//引入图片预览模块
 				imageBrowser = api.require('imageBrowser');
 				H.getPrefs(function(ret, err) {
@@ -84,8 +146,7 @@
 				}, function(ret, err) {
 					if (ret) {
 						zhonglei = eval('(' + ret.value + ')');
-						alert(JSON.stringify(ret[0].name));
-						//$("#Leixing").html(ret[0].name);
+						$("#Leixing").html(zhonglei[0].name);
 					} else {
 						alert(JSON.stringify(err));
 					}
@@ -151,7 +212,7 @@
 					// 图片压缩
 					i.imgCompress(returnUrl, 0.8, 0.8, i.getExt(returnUrl), function(compressImg) {
 						i.getAttr(compressImg, function(ret) {
-//							alert(ret.width+'======'+ret.height);
+							//							alert(ret.width+'======'+ret.height);
 							if (ret.width > ret.height) {
 								$("#yulan img").attr("src", compressImg);
 								$("#yulan img").on("click", function() {
@@ -170,54 +231,6 @@
 					});
 				}, '用户取消');
 			}
-
-			//JSON拼接
-			var jsonstr = [{
-				ID : "0101",
-				name : "《房产交易产权登记申请受理单》复印件;"
-			}, {
-				"ID" : "0102",
-				"name" : "《房屋转让合同》原件;"
-			}, {
-				"ID" : "0103",
-				"name" : "原房屋所有权证、土地使用证复印件（有地名变更的提供门牌证复印件）;"
-			}, {
-				"ID" : "0104",
-				"name" : "出让方身份证明复印件;"
-			}, {
-				"ID" : "0105",
-				"name" : "受让方个人身份证明复印件和其他证明材料;"
-			}, {
-				"ID" : "010501",
-				"name" : "个人提供身份证复印件，港澳台人士提供通行证或回乡证复印件，外籍人士提供护照和大使馆证明复印件;"
-			}, {
-				"ID" : "010502",
-				"name" : "系夫妻共有产的提供夫妻双方身份证复印件、结婚证明复印件;"
-			}, {
-				"ID" : "010503",
-				"name" : "如夫妻双方约定房屋所有权归其中一方所有的，还须提供财产约定书原件;"
-			}, {
-				"ID" : "010504",
-				"name" : "如为单身的，须提出离婚证（复印件）或未婚证明（原件）。并须声明本人婚姻状况，并自负法律责任;"
-			}, {
-				"ID" : "010505",
-				"name" : "单位购房提供营业执照、税务登记证（或法人资格证书）和组织机构代码证、法定代表人身份证件复印件;"
-			}, {
-				"ID" : "0106",
-				"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
-			}, {
-				"ID" : "0107",
-				"name" : "委托他人代办的须提供委托书原件及代办人身份证复印件;"
-			}, {
-				"ID" : "0108",
-				"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
-			}, {
-				"ID" : "0109",
-				"name" : "是否家庭唯一住房证明（转让方）;"
-			}, {
-				"ID" : "0110",
-				"name" : "是否家庭唯一住房证明或首次购房证明（受让方）;"
-			}];
 		</script>
 	</body>
 </html>
