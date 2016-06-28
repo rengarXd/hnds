@@ -1,8 +1,8 @@
 //上传图片JS库
 //使用前必须在ready中引入相应的模块
 
-;! function(factory) {
-	factory(window['i'] = {
+; !function(factory) {
+	factory(window['img'] = {
 		//生成随机文件名
 		NewGuid : function() {
 			function S4() {
@@ -81,6 +81,6 @@
 			});
 		}
 	});
-}(function(HExports) {
-	var i = typeof HExports !== 'undefined' ? HExports : {};
+}(function(imgExports) {
+	var img = typeof imgExports !== 'undefined' ? imgExports : {};
 });
