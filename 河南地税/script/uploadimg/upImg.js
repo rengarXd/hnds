@@ -1,8 +1,8 @@
 //上传图片JS库
 //使用前必须在ready中引入相应的模块
 
-; !function(factory) {
-	factory(window['img'] = {
+;! function() {
+	window['img'] = {
 		//生成随机文件名
 		NewGuid : function() {
 			function S4() {
@@ -15,6 +15,22 @@
 		getExt : function(fileName) {
 			return fileName.substring(fileName.lastIndexOf('.') + 1);
 		},
+		// 获取当前时间
+		getNowFormatDate : function() {
+			var date = new Date();
+			var seperator1 = "-";
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
+			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = year + seperator1 + month + seperator1 + strDate
+			return currentdate;
+		},
 		// 图片压缩
 		// imgsrc：源图片的路径
 		// quality：图片压缩质量，一般建议0.5
@@ -24,7 +40,7 @@
 		imgCompress : function(imgsrc, quality, scale, ext, callback) {
 			var that = this;
 			// 压缩文件的保存目录
-			var savePath = api.cacheDir + '/';
+			var savePath = api.cacheDir + '/' + that.getNowFormatDate() + '/';
 			// 压缩文件生成的随机文件名称
 			var savename = that.NewGuid() + "." + ext;
 			imageFilter.compress({
@@ -80,7 +96,5 @@
 				}
 			});
 		}
-	});
-}(function(imgExports) {
-	var img = typeof imgExports !== 'undefined' ? imgExports : {};
-});
+	};
+}();
