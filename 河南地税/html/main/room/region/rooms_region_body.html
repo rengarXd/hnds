@@ -57,11 +57,6 @@
 				var typeid = $(obj).prev(".H-flex-item").attr("dept_id");
 				H.setPrefs(function(ret, err) {
 					//					alert("typeval:" + typevalue + ",typeid:" + typeid);
-					//					api.execScript({
-					//						name : 'rooms_payInfo_header',
-					//						frameName : 'rooms_building_body',
-					//						script : 'exec();'
-					//					});
 					api.sendEvent({
 						name : 'region',
 						extra : {
@@ -75,13 +70,6 @@
 
 			var retobj = null;
 			H.ready(function() {
-				//			api.getPrefs({
-				//				Key : 'userinfo'
-				//			}, function(ret, err) {
-				//				retobj = eval('(' + ret.value + ')');
-				//				//console.log(JSON.stringify(retobj));
-				//				get_data();
-				//			});
 				get_data();
 			});
 			//ajax请求数据模板渲染
@@ -96,9 +84,6 @@
 						laytpl(tpl).render(ret.data, function(render) {
 							document.getElementById('diqu').innerHTML = render;
 						});
-						//					api.alert({
-						//						msg : JSON.stringify(ret)
-						//					});
 					} else {
 						api.alert({
 							msg : JSON.stringify(err)

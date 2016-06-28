@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
@@ -13,7 +12,6 @@
 			}
 		</style>
 	</head>
-
 	<body>
 		<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
@@ -26,7 +24,7 @@
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房产证号：</span>
 					<input type="text" name="property_number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写信息不能为空"
-						placeholder="填写信息不能为空" />
+					placeholder="填写信息不能为空" />
 				</div>
 				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="timePicker();">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
@@ -37,7 +35,7 @@
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">丘（地）号：</span>
 					<input type="text" name="place_number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写信息不能为空"
-						placeholder="填写信息不能为空" />
+					placeholder="填写信息不能为空" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">所在区域：</span>
@@ -47,7 +45,7 @@
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房屋坐落：</span>
 					<input type="text" name="house_location" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写信息不能为空"
-						placeholder="填写信息不能为空" />
+					placeholder="填写信息不能为空" />
 				</div>
 				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu()">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
@@ -67,18 +65,20 @@
 		<script type="text/javascript">
 			function PingShuiFenQu() {
 				api.openWin({
-					name: 'rooms_region_header',
-					url: 'region/rooms_region_header.html'
+					name : 'rooms_region_header',
+					url : 'region/rooms_region_header.html'
 				})
 			}
 
 			//获取评税分区
 			function part() {
 				H.addEventListener(function(ret, err) {
-//					alert('name===='+ret.value.typeval+'id===='+ret.value.typeid);
+					//					alert('name===='+ret.value.typeval+'id===='+ret.value.typeid);
 					$("#pingshui_type").html(ret.value.typeval);
+					$("#pingshui_type").attr("dept_id", ret.value.typeid);
 				}, 'region');
 			}
+
 			//			function exec() {
 			//				api.getPrefs({
 			//					key : 'type_name'
@@ -89,7 +89,6 @@
 			//					$("#pet_type").attr("dept_id", dd.typeid);
 			//				});
 			//			}
-
 			var datas = null;
 			H.ready(function() {
 				H.getPrefs(function(ret, err) {
@@ -102,19 +101,21 @@
 						//										$("input[name='house_location']").val(assessinfo.data.house_location);
 						//										$("#times").text(assessinfo.data.issue_date);
 						$("button").text('下一步(4/21)');
-					} else {}
+					} else {
+					}
 				}, 'rooms');
 				part();
 				ac.form({
-					area: "#forms",
-					btn: "#btn", // 触发验证的按钮或者元素，支持标签，id，class，推荐使用id或者class
-					singleError: function(e, msg) {
+					area : "#forms",
+					btn : "#btn", // 触发验证的按钮或者元素，支持标签，id，class，推荐使用id或者class
+					singleError : function(e, msg) {
 						// 自定义弹窗格式###############
 						alert(msg);
 					},
-					endSuccess: function(data) {
+					endSuccess : function(data) {
 						var value = {
-							"issue_date": dates
+							"issue_date" : dates,
+							"assess_partition" : $("#pingshui_type").attr("dept_id")
 						};
 						datas = data;
 						console.log(JSON.stringify(datas));
@@ -130,12 +131,12 @@
 				api.hideProgress();
 				if (ret.success) {
 					result = ret;
-					if (typeof callback == "function") {
+					if ( typeof callback == "function") {
 						callback();
 					}
 					api.execScript({
-						name: 'rooms_payInfo_header',
-						script: 'buildInfo();'
+						name : 'rooms_payInfo_header',
+						script : 'buildInfo();'
 					});
 				} else {
 					H.toast(ret.message);
@@ -145,8 +146,8 @@
 			//交易时间选择器
 			function timePicker() {
 				api.openPicker({
-					type: 'date',
-					date: '2016-06-13'
+					type : 'date',
+					date : '2016-06-13'
 				}, function(ret, err) {
 					if (ret) {
 						$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
@@ -164,7 +165,7 @@
 				dates ? H.ajax(function(ret, err) {
 					results(ret);
 				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
-					values: datas
+					values : datas
 				}) : H.toast('您还有未选择的选项');
 				//				if (type_option && paytype && dates) {
 				////					console.log(JSON.stringify(datas));
@@ -186,5 +187,4 @@
 			}
 		</script>
 	</body>
-
 </html>

@@ -55,75 +55,13 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../../../script/H.js"></script>
-		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
 		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
+		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
-			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, i = 0;
+			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, userinfoobj = null;
 			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
-			//JSON拼接
-			var jsonstr = [{
-				'ID' : "0101",
-				'name' : "《房产交易产权登记申请受理单》复印件;"
-			}, {
-				"ID" : "0102",
-				"name" : "《房屋转让合同》原件;"
-			}, {
-				"ID" : "0103",
-				"name" : "原房屋所有权证、土地使用证复印件（有地名变更的提供门牌证复印件）;"
-			}, {
-				"ID" : "0104",
-				"name" : "出让方身份证明复印件;"
-			}, {
-				"ID" : "0105",
-				"name" : "受让方个人身份证明复印件和其他证明材料;"
-			}, {
-				"ID" : "010501",
-				"name" : "个人提供身份证复印件，港澳台人士提供通行证或回乡证复印件，外籍人士提供护照和大使馆证明复印件;"
-			}, {
-				"ID" : "010502",
-				"name" : "系夫妻共有产的提供夫妻双方身份证复印件、结婚证明复印件;"
-			}, {
-				"ID" : "010503",
-				"name" : "如夫妻双方约定房屋所有权归其中一方所有的，还须提供财产约定书原件;"
-			}, {
-				"ID" : "010504",
-				"name" : "如为单身的，须提出离婚证（复印件）或未婚证明（原件）。并须声明本人婚姻状况，并自负法律责任;"
-			}, {
-				"ID" : "010505",
-				"name" : "单位购房提供营业执照、税务登记证（或法人资格证书）和组织机构代码证、法定代表人身份证件复印件;"
-			}, {
-				"ID" : "0106",
-				"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
-			}, {
-				"ID" : "0107",
-				"name" : "委托他人代办的须提供委托书原件及代办人身份证复印件;"
-			}, {
-				"ID" : "0108",
-				"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
-			}, {
-				"ID" : "0109",
-				"name" : "是否家庭唯一住房证明（转让方）;"
-			}, {
-				"ID" : "0110",
-				"name" : "是否家庭唯一住房证明或首次购房证明（受让方）;"
-			}];
 			Zepto(function($) {
-				$("#Leixing").on('tap', function() {
-					if (zhonglei != null) {
-						var len = zhonglei.length;
-						if (i < len) {
-							var result = $("#Leixing").html(zhonglei[i].name);
-							i++;
-							return result;
-						} else {
-							i = 0;
-							var result = $("#Leixing").html(zhonglei[i].name);
-							i++;
-							return result;
-						}
-					}
-				});
 			});
 			H.ready(function() {
 				// 引入过滤压缩模块
@@ -134,7 +72,61 @@
 					assessinfo = eval('(' + ret.value + ')');
 					console.log(JSON.stringify(ret));
 				}, 'rooms');
-				//模拟数据传输
+				H.getPrefs(function(ret, err) {
+					userinfoobj = eval('(' + ret.value + ')');
+					console.log(JSON.stringify(ret));
+				}, 'userinfo');
+				initData();
+			});
+			//模拟数据传输
+			function initData() {
+				//JSON拼接
+				var jsonstr = [{
+					'ID' : "0101",
+					'name' : "《房产交易产权登记申请受理单》复印件;"
+				}, {
+					"ID" : "0102",
+					"name" : "《房屋转让合同》原件;"
+				}, {
+					"ID" : "0103",
+					"name" : "原房屋所有权证、土地使用证复印件（有地名变更的提供门牌证复印件）;"
+				}, {
+					"ID" : "0104",
+					"name" : "出让方身份证明复印件;"
+				}, {
+					"ID" : "0105",
+					"name" : "受让方个人身份证明复印件和其他证明材料;"
+				}, {
+					"ID" : "010501",
+					"name" : "个人提供身份证复印件，港澳台人士提供通行证或回乡证复印件，外籍人士提供护照和大使馆证明复印件;"
+				}, {
+					"ID" : "010502",
+					"name" : "系夫妻共有产的提供夫妻双方身份证复印件、结婚证明复印件;"
+				}, {
+					"ID" : "010503",
+					"name" : "如夫妻双方约定房屋所有权归其中一方所有的，还须提供财产约定书原件;"
+				}, {
+					"ID" : "010504",
+					"name" : "如为单身的，须提出离婚证（复印件）或未婚证明（原件）。并须声明本人婚姻状况，并自负法律责任;"
+				}, {
+					"ID" : "010505",
+					"name" : "单位购房提供营业执照、税务登记证（或法人资格证书）和组织机构代码证、法定代表人身份证件复印件;"
+				}, {
+					"ID" : "0106",
+					"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
+				}, {
+					"ID" : "0107",
+					"name" : "委托他人代办的须提供委托书原件及代办人身份证复印件;"
+				}, {
+					"ID" : "0108",
+					"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）;"
+				}, {
+					"ID" : "0109",
+					"name" : "是否家庭唯一住房证明（转让方）;"
+				}, {
+					"ID" : "0110",
+					"name" : "是否家庭唯一住房证明或首次购房证明（受让方）;"
+				}];
 				//设置偏好值
 				api.setPrefs({
 					key : 'k',
@@ -151,7 +143,8 @@
 						alert(JSON.stringify(err));
 					}
 				});
-			});
+			}
+
 			function openWin() {
 				api.execScript({
 					name : 'rooms_payInfo_header',
@@ -163,41 +156,59 @@
 			function nextPart() {
 				var imgurl = $("#yulan img").attr("src");
 				// ################### 上传图片 #########################
-				uploadFile(ImgWebUrl, imgurl, function(serverImg) {
-					alert('ret====' + JSON.stringify(serverImg));
-				});
+				var oldurl = "../../../image/sfz.jpg";
+				if (zhonglei !== null && imgurl != oldurl) {
+					uploadFile(ImgWebUrl, imgurl, function(serverImg) {
+						//					alert('ret====' + JSON.stringify(serverImg));
+						var len = zhonglei.length;
+						if (ii < len) {
+							$("#Leixing").html(zhonglei[ii].name);
+							$("#yulan img").attr("src", "../../../image/sfz.jpg");
+							ii++;
+						} else {
+							openWin();
+							//							ii = 0;
+							//							var result = $("#Leixing").html(zhonglei[ii].name);
+							//							ii++;
+							//							return result;
+						}
+					});
+				} else {
+					api.toast({
+						msg : '上传失败,请拍照后再上传'
+					});
+				}
 			}
 
 			// 上传图片
 			// url：上传的url地址
 			// data：上传的文件
 			// callback：上传成功返回地址
-			function uploadFile(url, data, callback) {
+			function uploadFile(url, dataSrc, callback) {
 				H.imgAjax(function(ret, err) {
 					if (ret) {
 						callback(ret);
 					}
-				}, url, 'post', {
+				}, url, "post", {
 					values : {
 						pagetype : "editgrid",
 						funid : "sys_attach",
 						nousercheck : "1",
 						eventcode : "create",
 						dataType : "byte",
-						datafunid : assessinfo.data.assessinfo_id,
-						dataid : assessinfo.data.datafunid,
-						attach_name : "jxstar523602"
+						datafunid : assessinfo.data.datafunid,
+						dataid : assessinfo.data.assessinfo_id,
+						attach_name : dataSrc
 					},
 					files : {
-						attach_path : data,
+						attach_path : dataSrc,
 					}
 				});
 			}
 
 			//打开照相机获取
 			function openCamera() {
-				//api.getPicture
-				i.openCamera({
+				img.openCamera({
 					sourceType : 'camera',
 					encodingType : 'jpg',
 					mediaValue : 'pic',
@@ -210,8 +221,8 @@
 				}, function(ret) {
 					var returnUrl = ret.data;
 					// 图片压缩
-					i.imgCompress(returnUrl, 0.8, 0.8, i.getExt(returnUrl), function(compressImg) {
-						i.getAttr(compressImg, function(ret) {
+					img.imgCompress(returnUrl, 0.8, 0.8, img.getExt(returnUrl), function(compressImg) {
+						img.getAttr(compressImg, function(ret) {
 							//							alert(ret.width+'======'+ret.height);
 							if (ret.width > ret.height) {
 								$("#yulan img").attr("src", compressImg);
@@ -220,7 +231,7 @@
 									// 将图片追加到数组中
 									browerImgs.push($("#yulan img").attr("src"));
 									// 调用图片预览函数
-									i.openImageBrowser(browerImgs);
+									img.openImageBrowser(browerImgs);
 								});
 							} else {
 								api.toast({
