@@ -74,17 +74,23 @@
 			});
 			//ajax请求数据模板渲染
 			function get_data() {
+				api.showProgress();
 				api.ajax({
 					url : 'http://218.29.85.98:8080/etax/fileAction.do?&eventcode=seldept&funid=sys_dept&pagetype=grid&nousercheck=1'
 				}, function(ret, err) {
 					if (ret) {
+						//						var tpl = $("#fenqu_data")[0].innerHTML;
 						var tpl = document.getElementById('fenqu_data').innerHTML;
+						//						alert(tpl);
 						//读取模版
 						//方式一：异步渲染（推荐）
 						laytpl(tpl).render(ret.data, function(render) {
+							//							$("#diqu").html(render);
+							api.hideProgress();
 							document.getElementById('diqu').innerHTML = render;
 						});
 					} else {
+						api.hideProgress();
 						api.alert({
 							msg : JSON.stringify(err)
 						});

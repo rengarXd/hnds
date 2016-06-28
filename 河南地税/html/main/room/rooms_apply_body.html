@@ -59,7 +59,7 @@
 		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
 		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
-			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, userinfoobj = null;
+			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1;
 			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
 			Zepto(function($) {
 			});
@@ -72,10 +72,6 @@
 					assessinfo = eval('(' + ret.value + ')');
 					console.log(JSON.stringify(ret));
 				}, 'rooms');
-				H.getPrefs(function(ret, err) {
-					userinfoobj = eval('(' + ret.value + ')');
-					console.log(JSON.stringify(ret));
-				}, 'userinfo');
 				initData();
 			});
 			//模拟数据传输
@@ -167,10 +163,6 @@
 							ii++;
 						} else {
 							openWin();
-							//							ii = 0;
-							//							var result = $("#Leixing").html(zhonglei[ii].name);
-							//							ii++;
-							//							return result;
 						}
 					});
 				} else {
@@ -225,8 +217,7 @@
 						img.getAttr(compressImg, function(ret) {
 							//							alert(ret.width+'======'+ret.height);
 							if (ret.width > ret.height) {
-								$("#yulan img").attr("src", compressImg);
-								$("#yulan img").on("click", function() {
+								$("#yulan img").attr("src", compressImg).on("click", function() {
 									var browerImgs = [];
 									// 将图片追加到数组中
 									browerImgs.push($("#yulan img").attr("src"));
