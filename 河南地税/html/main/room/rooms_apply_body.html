@@ -54,19 +54,14 @@
 				</footer>
 			</div>
 		</div>
-		<script src="../../../script/H.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../../script/H.js"></script>
 		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
 		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
-		<script src="../../../script/uploadimg/upImg.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
-			var imageFilter = null, imageBrowser = null, assessinfo = null, userinfo = null;
-			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do'
+			var assessinfo = null, imageFilter = null, imageBrowser = null;
+			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
 			Zepto(function($) {
-				$("#yulan img").on("click", function() {
-					// 调用图片预览函数
-					var browser = $("#yulan img").attr("src");
-					i.openImageBrowser(browser);
-				});
 			});
 			H.ready(function() {
 				// 引入过滤压缩模块
@@ -85,8 +80,10 @@
 				});
 			}
 
+			//下一步
 			function nextPart() {
 				var imgurl = $("#yulan img").attr("src");
+				// ################### 上传图片 #########################
 				uploadFile(ImgWebUrl, imgurl, function(serverImg) {
 					alert('ret====' + JSON.stringify(serverImg));
 				});
@@ -134,17 +131,24 @@
 				}, function(ret) {
 					var returnUrl = ret.data;
 					// 图片压缩
-					//						imgCompress(returnUrl, 0.8, 0.8, getExt(returnUrl), function(compressImg) {
-					//							compressImg = compressImg;
-					//							$("#yulan img").attr("src", compressImg);
-					//						});
-					// 图片压缩
 					i.imgCompress(returnUrl, 0.8, 0.8, i.getExt(returnUrl), function(compressImg) {
-						$("#yulan img").attr("src", compressImg);
-						//							// ################### 上传图片 #########################
-//						uploadFile(ImgWebUrl, compressImg, function(serverImg) {
-//							alert('ret====' + JSON.stringify(ret));
-//						});
+						i.getAttr(compressImg, function(ret) {
+//							alert(ret.width+'======'+ret.height);
+							if (ret.width > ret.height) {
+								$("#yulan img").attr("src", compressImg);
+								$("#yulan img").on("click", function() {
+									var browerImgs = [];
+									// 将图片追加到数组中
+									browerImgs.push($("#yulan img").attr("src"));
+									// 调用图片预览函数
+									i.openImageBrowser(browerImgs);
+								});
+							} else {
+								api.toast({
+									msg : '照片必须是横向的,请重新拍照'
+								});
+							}
+						});
 					});
 				}, '用户取消');
 			}
