@@ -29,6 +29,21 @@
                     <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
                 </div>
                 <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">幢（楼）号：</span>
+                    <input type="text" name="fwzh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
+                    placeholder="填写幢（楼）号" />
+                </div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">单元号：</span>
+                    <input type="text" name="dy" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元号不能为空" data-errmsg="单元号不能为空"
+                    placeholder="填写单元号" />
+                </div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房号：</span>
+                    <input type="text" name="fh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号不能为空"
+                    placeholder="填写户号" />
+                </div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
                     <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">建筑朝向：</span>
                     <input type="text" name="building_toward" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="建筑朝向不能为空" data-errmsg="建筑朝向不能为空"
                     placeholder="填写建筑朝向" />
@@ -75,11 +90,6 @@
                     if (ret && ret.value) {
                         assessinfo = eval('(' + ret.value + ')');
                         console.log(JSON.stringify(assessinfo));
-                        //						$("input[name='property_number']").val(assessinfo.data.property_number);
-                        //						$("input[name='place_number']").val(assessinfo.data.place_number);
-                        //						$("input[name='local_area']").val(assessinfo.data.local_area);
-                        //						$("input[name='house_location']").val(assessinfo.data.house_location);
-                        //						$("#times").text(assessinfo.data.issue_date);
                         $("button").text('下一步(3/4)');
                     } else {
                     }
@@ -147,18 +157,19 @@
                     results(ret);
                 }, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
                     values : datas
-                }) : H.toast('您还有未选择的选项');
-                //				if (type_option && paytype && dates) {
-                ////					console.log(JSON.stringify(datas));
-                //					H.ajax(function(ret, err) {
-                //						H.toast(ret.message);
-                //						results(ret);
-                //					}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
-                //						values : datas
-                //					});
-                //				} else {
-                //					H.toast('您还有未选择的选项');
-                //				}
+                }) : H.toast('您还有未选择的选项'
+                        );
+                        //				if (type_option && paytype && dates) {
+                        ////					console.log(JSON.stringify(datas));
+                        //					H.ajax(function(ret, err) {
+                        //						H.toast(ret.message);
+                        //						results(ret);
+                        //					}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
+                        //						values : datas
+                        //					});
+                        //				} else {
+                        //					H.toast('您还有未选择的选项');
+                        //				}
             }
 
             function post_data() {
