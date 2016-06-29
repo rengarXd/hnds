@@ -160,7 +160,7 @@
 				var currentdate = year + seperator1 + month + seperator1 + strDate;
 				api.openPicker({
 					type : 'date',
-					date : '2016-06-13'
+					date : "'" + currentdate + "'"
 				}, function(ret, err) {
 					if (ret) {
 						$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
