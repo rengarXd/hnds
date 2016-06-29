@@ -1305,7 +1305,7 @@
                     });
                 }
             },
-            imgAjax : function(callback, url, method, data, dataType,options) {
+            oldAjax : function(callback, url, method, data, dataType,options) {
                 var that = this;
                 var o = {};
                 o.url = url;

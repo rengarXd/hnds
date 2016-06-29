@@ -46,7 +46,7 @@
 			imageFilter.compress({
 				img : imgsrc,
 				quality : quality,
-				scale : quality,
+				scale : scale,
 				save : {
 					album : false,
 					imgPath : savePath,
@@ -79,7 +79,7 @@
 					callback(ret);
 				} else {
 					api.toast({
-						msg : errmsg
+						msg : err.msg
 					});
 				}
 			});
@@ -92,7 +92,7 @@
 				if (ret.status) {
 					callback(ret);
 				} else {
-					alert(JSON.stringify(err));
+					H.toast('拍照取消');
 				}
 			});
 		}
