@@ -95,9 +95,27 @@
                 });
                 //3.存储用户信息
                 H.setPrefs(function() {
-                    api.openWin({
-                        name : 'main',
-                        url : '../main.html'
+                    //初始化极光推送
+                    var ajpush = api.require('ajpush');
+                    ajpush.init(function(ret) {
+                        if (ret && ret.status) {
+                            ajpush.getRegistrationId(function(ret) {
+                                var registrationId = ret.id;
+                                H.ajax(function(ret, err) {
+                                    console.log(JSON.stringify(ret));
+                                    api.openWin({
+                                        name : 'main',
+                                        url : '../main.html'
+                                    });
+                                }, 'updateRegistration&funid=sys_user', 'post', {
+                                    values : {
+                                        user_id : rets.data[0].user_id,
+                                        uuid : rets.data[0].uuid,
+                                        registrationId : registrationId
+                                    }
+                                });
+                            });
+                        }
                     });
                 }, 'userinfo', JSON.stringify(rets.data));
             }
