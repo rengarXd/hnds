@@ -78,3 +78,5 @@
 /A6919788272158/script/uploadimg/upImg.js
 /A6919788272158/html/main/room/rooms_header.html
 /A6919788272158/image/yz.png
+/A6919788272158/html/progress/progress_body.html
+/A6919788272158/html/progress/progress_header.html
