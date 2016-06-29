@@ -74,3 +74,6 @@
 /A6919788272158/html/main/room/rooms_payInfo_body.html.mine
 /A6919788272158/html/main/room/rooms_payInfo_body.html.r124
 /A6919788272158/html/main/room/rooms_payInfo_body.html.r131
+/A6919788272158/html/main/room/rooms_success_body.html
+/A6919788272158/script/uploadimg/upImg.js
+/A6919788272158/html/main/room/rooms_header.html
