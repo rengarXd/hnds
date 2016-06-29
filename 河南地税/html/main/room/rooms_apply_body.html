@@ -48,8 +48,9 @@
         <script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
         <script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
         <script type="text/javascript">
-            var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null;
+            var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null,userinfo = null;
             var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
+            var postUrl = 'http://218.29.85.98:8080/etax/fileAction.do?eventcode=appHouseAssessSubmit&funid=houses_assessinfo&pagetype=grid&nousercheck=1';
             Zepto(function($) {
             });
             H.ready(function() {
@@ -57,12 +58,16 @@
                 imageFilter = api.require('imageFilter');
                 //引入图片预览模块
                 imageBrowser = api.require('imageBrowser');
-                H.getPrefs(function(ret, err) {
-                    assessinfo = eval('(' + ret.value + ')');
-                    console.log(JSON.stringify(ret));
-                }, 'rooms');
+               
                 initData();
             });
+            function initUser() {
+            	 H.getPrefs(function(ret, err) {
+                    assessinfo = eval('(' + ret.value + ')');
+                    console.log(JSON.stringify(ret));
+                    H.getUserPref(function(){});
+                }, 'rooms');
+            }
             //模拟数据传输
             function initData() {
                 //JSON拼接
