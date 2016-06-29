@@ -209,11 +209,11 @@
                 }, function(ret) {
                     var returnUrl = ret.data;
                     // 图片压缩
-                    img.imgCompress(returnUrl, 0.8, 0.8, img.getExt(returnUrl), function(compressImg) {
-                        img.getAttr(compressImg, function(ret) {
+//                  img.imgCompress(returnUrl, 1, 1, img.getExt(returnUrl), function(compressImg) {
+                        img.getAttr(returnUrl, function(ret) {
                             //							alert(ret.width+'======'+ret.height);
                             if (ret.width > ret.height) {
-                                $("#yulan img").attr("src", compressImg).on("click", function() {
+                                $("#yulan img").attr("src", returnUrl).on("click", function() {
                                     var browerImgs = [];
                                     // 将图片追加到数组中
                                     browerImgs.push($("#yulan img").attr("src"));
@@ -226,7 +226,7 @@
                                 });
                             }
                         });
-                    });
+//                  });
                 }, '用户取消');
             }
         </script>
