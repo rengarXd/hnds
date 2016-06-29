@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1465282965'); /* IE9*/
-  src: url('iconfont.eot?t=1465282965#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1465282965') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1465282965') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1465282965#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1467169959'); /* IE9*/
+  src: url('iconfont.eot?t=1467169959#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1467169959') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1467169959') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1467169959#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -35,4 +35,5 @@
 .icon-gerenxinxi:before { content: "\e60e"; }
 .icon-guanyuwomen:before { content: "\e60f"; }
 .icon-zulin:before { content: "\e607"; }
+.icon-chenggong:before { content: "\e616"; }
 .icon-shouye:before { content: "\e608"; }
