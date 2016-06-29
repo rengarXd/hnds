@@ -115,7 +115,7 @@
 					if (ret && ret.value.success) {
 						assessinfo = eval('(' + ret.value + ')');
 						console.log(JSON.stringify(assessinfo));
-						$('input').attr('value','');
+						$('input').attr('value', '');
 						//						$("input[name='transferor_name']").val(assessinfo.data.transferor_name);
 						//						$("input[name='transferor_phone']").val(assessinfo.data.transferor_phone);
 						//						$("input[name='transferor_certnumber']").val(assessinfo.data.transferor_certnumber);
@@ -231,9 +231,21 @@
 
 			//交易时间选择器
 			function timePicker() {
+				var date = new Date();
+				var seperator1 = "-";
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if (month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				var currentdate = year + seperator1 + month + seperator1 + strDate;
 				api.openPicker({
 					type : 'date',
-					date : '2016-06-13'
+					date : "'" + currentdate + "'"
 				}, function(ret, err) {
 					if (ret) {
 						$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
@@ -303,7 +315,7 @@
 
 			function post_data() {
 				H.getUserPref(function() {
-					get_PREFS();
+					type_option != null && purchaser_certype != null && paytype != null && dates != null ? get_PREFS() : H.toast('您还有未选择的选项');
 				});
 			}
 		</script>
