@@ -114,10 +114,11 @@
 				H.getPrefs(function(ret, err) {
 					if (ret && ret.value) {
 						assessinfo = eval('(' + ret.value + ')');
-//						console.log(JSON.stringify(assessinfo));
-						$('input').attr('value', '');
+						//						console.log(JSON.stringify(assessinfo));
+//						$('input').attr('value', '');
 						$("button").text('下一步(1/4)');
 					} else {
+						$("button").text('新增申请');
 					}
 				}, 'rooms');
 				ac.form({
@@ -158,9 +159,19 @@
 							break;
 						case 2:
 							$("#type_option").html("纳税人识别号");
+							$("input[name=transferor_certnumber]").attr({
+								'data-rule' : 'n',
+								'data-nullmsg' : '纳税人识别号不能为空',
+								'data-errmsg' : '纳税人识别号填写错误'
+							});
 							break;
 						case 3:
 							$("#type_option").html("组织机构代码");
+							$("input[name=transferor_certnumber]").attr({
+								'data-rule' : 'n',
+								'data-nullmsg' : '组织机构代码不能为空',
+								'data-errmsg' : '组织机构代码填写错误'
+							});
 							break;
 					}
 					console.log(JSON.stringify(ret));
@@ -182,9 +193,19 @@
 							break;
 						case 2:
 							$("#purchaser_certype").html("纳税人识别号");
+							$("input[name=purchaser_certnumber]").attr({
+								'data-rule' : 'n',
+								'data-nullmsg' : '纳税人识别号不能为空',
+								'data-errmsg' : '纳税人识别号填写错误'
+							});
 							break;
 						case 3:
 							$("#purchaser_certype").html("组织机构代码");
+							$("input[name=purchaser_certnumber]").attr({
+								'data-rule' : 'n',
+								'data-nullmsg' : '组织机构代码不能为空',
+								'data-errmsg' : '组织机构代码填写错误'
+							});
 							break;
 					};
 				}, '请选择证件类型', ['身份证', '纳税人识别号', '组织机构代码']);
@@ -259,7 +280,7 @@
 			}
 
 			function get_PREFS() {
-				//				alert(JSON.stringify(assessinfo));
+				console.log('assessinfo=====' + JSON.stringify(assessinfo));
 				//1.4、已经新增
 				if (assessinfo) {
 					//更新存量房信息
