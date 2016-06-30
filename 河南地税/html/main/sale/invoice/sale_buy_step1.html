@@ -174,7 +174,7 @@
 						api.showProgress();
 						H.ajax(function(ret, err) {
 							results(ret, 'Transferee();');
-						}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&clfxsxxb_id=' + clfxsxxb_id.data[4].fwuuid, 'post', {
+						}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data[3].fwuuid, 'post', {
 							values : datas
 						});
 					} else {
@@ -190,7 +190,7 @@
 									api.showProgress();
 									H.ajax(function(ret, err) {
 										results(ret, 'Transferee();');
-									}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&clfxsxxb_id=' + result.data[4].fwuuid, 'post', {
+									}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + result.data[3].fwuuid, 'post', {
 										values : datas
 									});
 									//									console.log('setPref:rooms======' + JSON.stringify(ret));
