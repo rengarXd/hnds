@@ -1,288 +1,299 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-        <title>Hui</title>
-        <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
-        <style type="text/css">
-            .H_header_bg {
-                background: #09a4de
-            }
-            .addh_active:active {
-                background: #f5f5f5;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="H-padding-vertical-bottom-10"></div>
-        <div class="H-flexbox-vertical" id="stap1">
-            <div class="H-flex-item H-theme-background-color-white H-padding-10">
-                <div class="H-padding-10" id="Leixing">
-                    身份证示例
-                </div>
-                <div id="yulan" class="H-text-align-center">
-                    <img src="../../../image/yz.png" style="width: 100%;" id="target"/>
-                    <img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
-                </div>
-                <div class="H-padding-10">
-                    点击加号拍照(横屏拍摄)
-                </div>
-                <div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="openCamera();">
-                    <span class="iconfont icon-tianjia H-font-size-36 H-theme-font-color1"></span>
-                    <div style="display: none;"></div>
-                </div>
-            </div>
-            <div class="H-flex-item">
-                <div class="footer"></div>
-                <footer class="H-footer H-padding-10">
-                    <button onclick="nextPart();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-                        下一步(6/6)
-                    </button>
-                </footer>
-            </div>
-        </div>
-        <script type="text/javascript" src="../../../script/H.js"></script>
-        <script type="text/javascript" src="../../../script/zepto.min.js"></script>
-        <script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
-        <script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
-        <script type="text/javascript">
-            var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null;
-            var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
-            //			var postUrl = 'http://218.29.85.98:8080/etax/fileAction.do?eventcode=appHouseAssessSubmit&funid=houses_assessinfo&pagetype=grid&nousercheck=1';
-            Zepto(function($) {
-            });
-            H.ready(function() {
-                // 引入过滤压缩模块
-                imageFilter = api.require('imageFilter');
-                //引入图片预览模块
-                imageBrowser = api.require('imageBrowser');
-                initUser();
-                initData();
-            });
-            //获取用户及申请信息偏好值
-            function initUser() {
-                H.getPrefs(function(ret, err) {
-                    assessinfo = eval('(' + ret.value + ')');
-                    console.log(JSON.stringify(ret));
-                    H.getUserPref(function() {
-                    });
-                }, 'rooms');
-            }
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hui</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+			.addh_active:active {
+				background: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-flexbox-vertical" id="stap1">
+			<div class="H-flex-item H-theme-background-color-white H-padding-10">
+				<div class="H-padding-10" id="Leixing">
+					身份证示例
+				</div>
+				<div id="yulan" class="H-text-align-center">
+					<img src="../../../image/yz.png" style="width: 100%;" id="target"/>
+					<img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
+				</div>
+				<div class="H-padding-10">
+					点击加号拍照(横屏拍摄)
+				</div>
+				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="openCamera();">
+					<span class="iconfont icon-tianjia H-font-size-36 H-theme-font-color1"></span>
+					<div style="display: none;"></div>
+				</div>
+			</div>
+			<div class="H-flex-item">
+				<div class="footer"></div>
+				<footer class="H-footer H-padding-10">
+					<button onclick="nextPart();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+						下一步(6/6)
+					</button>
+				</footer>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../script/H.js"></script>
+		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../../../script/tools/availdate-v1.0.2.js"></script>
+		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
+		<script type="text/javascript">
+			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null;
+			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
+			//			var postUrl = 'http://218.29.85.98:8080/etax/fileAction.do?eventcode=appHouseAssessSubmit&funid=houses_assessinfo&pagetype=grid&nousercheck=1';
+			Zepto(function($) {
+			});
+			H.ready(function() {
+				// 引入过滤压缩模块
+				imageFilter = api.require('imageFilter');
+				//引入图片预览模块
+				imageBrowser = api.require('imageBrowser');
+				initUser();
+				initData();
+			});
+			//获取用户及申请信息偏好值
+			function initUser() {
+				H.getPrefs(function(ret, err) {
+					assessinfo = eval('(' + ret.value + ')');
+					console.log(JSON.stringify(ret));
+					H.getUserPref(function() {
+					});
+				}, 'rooms');
+			}
 
-            //模拟数据传输
-            function initData() {
-                //JSON拼接
-                jsonstr = [{
-                    'ID' : "0101",
-                    'name' : "《房产交易产权登记申请受理单》复印件"
-                }, {
-                    "ID" : "0102",
-                    "name" : "《房屋转让合同》原件"
-                }
-                //				, {
-                //					"ID" : "0103",
-                //					"name" : "原房屋所有权证、土地使用证复印件（有地名变更的提供门牌证复印件）"
-                //				}, {
-                //					"ID" : "0104",
-                //					"name" : "出让方身份证明复印件"
-                //				}, {
-                //					"ID" : "0105",
-                //					"name" : "受让方个人身份证明复印件和其他证明材料"
-                //				}, {
-                //					"ID" : "010501",
-                //					"name" : "个人提供身份证复印件，港澳台人士提供通行证或回乡证复印件，外籍人士提供护照和大使馆证明复印件"
-                //				}, {
-                //					"ID" : "010502",
-                //					"name" : "系夫妻共有产的提供夫妻双方身份证复印件、结婚证明复印件"
-                //				}, {
-                //					"ID" : "010503",
-                //					"name" : "如夫妻双方约定房屋所有权归其中一方所有的，还须提供财产约定书原件"
-                //				}, {
-                //					"ID" : "010504",
-                //					"name" : "如为单身的，须提出离婚证（复印件）或未婚证明（原件）。并须声明本人婚姻状况，并自负法律责任"
-                //				}, {
-                //					"ID" : "010505",
-                //					"name" : "单位购房提供营业执照、税务登记证（或法人资格证书）和组织机构代码证、法定代表人身份证件复印件"
-                //				}, {
-                //					"ID" : "0106",
-                //					"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）"
-                //				}, {
-                //					"ID" : "0107",
-                //					"name" : "委托他人代办的须提供委托书原件及代办人身份证复印件"
-                //				}, {
-                //					"ID" : "0108",
-                //					"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）"
-                //				}, {
-                //					"ID" : "0109",
-                //					"name" : "是否家庭唯一住房证明（转让方）"
-                //				}, {
-                //					"ID" : "0110",
-                //					"name" : "是否家庭唯一住房证明或首次购房证明（受让方）"
-                //				}
-                ];
-                //设置偏好值
-                api.setPrefs({
-                    key : 'k',
-                    value : jsonstr
-                });
-                //获取偏好值
-                api.getPrefs({
-                    key : 'k'
-                }, function(ret, err) {
-                    if (ret) {
-                        zhonglei = eval('(' + ret.value + ')');
-                        $("#Leixing").html(zhonglei[0].name);
-                        $("button").html('下一步(4/' + parseInt(4 + jsonstr.length - 1) + ')');
-                    } else {
-                        alert(JSON.stringify(err));
-                    }
-                });
-            }
+			//模拟数据传输
+			function initData() {
+				//JSON拼接
+				jsonstr = [{
+					'ID' : "0101",
+					'name' : "《房产交易产权登记申请受理单》复印件"
+				}, {
+					"ID" : "0102",
+					"name" : "《房屋转让合同》原件"
+				}
+				//				, {
+				//					"ID" : "0103",
+				//					"name" : "原房屋所有权证、土地使用证复印件（有地名变更的提供门牌证复印件）"
+				//				}, {
+				//					"ID" : "0104",
+				//					"name" : "出让方身份证明复印件"
+				//				}, {
+				//					"ID" : "0105",
+				//					"name" : "受让方个人身份证明复印件和其他证明材料"
+				//				}, {
+				//					"ID" : "010501",
+				//					"name" : "个人提供身份证复印件，港澳台人士提供通行证或回乡证复印件，外籍人士提供护照和大使馆证明复印件"
+				//				}, {
+				//					"ID" : "010502",
+				//					"name" : "系夫妻共有产的提供夫妻双方身份证复印件、结婚证明复印件"
+				//				}, {
+				//					"ID" : "010503",
+				//					"name" : "如夫妻双方约定房屋所有权归其中一方所有的，还须提供财产约定书原件"
+				//				}, {
+				//					"ID" : "010504",
+				//					"name" : "如为单身的，须提出离婚证（复印件）或未婚证明（原件）。并须声明本人婚姻状况，并自负法律责任"
+				//				}, {
+				//					"ID" : "010505",
+				//					"name" : "单位购房提供营业执照、税务登记证（或法人资格证书）和组织机构代码证、法定代表人身份证件复印件"
+				//				}, {
+				//					"ID" : "0106",
+				//					"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）"
+				//				}, {
+				//					"ID" : "0107",
+				//					"name" : "委托他人代办的须提供委托书原件及代办人身份证复印件"
+				//				}, {
+				//					"ID" : "0108",
+				//					"name" : "房屋评估报告单（申报价格低于存量房评估系统核定的最低计税价格，经约谈不同意按最低计税价格征税的需提供房屋评估报告单）"
+				//				}, {
+				//					"ID" : "0109",
+				//					"name" : "是否家庭唯一住房证明（转让方）"
+				//				}, {
+				//					"ID" : "0110",
+				//					"name" : "是否家庭唯一住房证明或首次购房证明（受让方）"
+				//				}
+				];
+				//设置偏好值
+				api.setPrefs({
+					key : 'k',
+					value : jsonstr
+				});
+				//获取偏好值
+				api.getPrefs({
+					key : 'k'
+				}, function(ret, err) {
+					if (ret) {
+						zhonglei = eval('(' + ret.value + ')');
+						$("#Leixing").html(zhonglei[0].name);
+						$("button").html('上传附件(4/' + parseInt(4 + jsonstr.length - 1) + ')');
+					} else {
+						alert(JSON.stringify(err));
+					}
+				});
+			}
 
-            //打开成功页
-            function openWin() {
-                api.execScript({
-                    name : 'rooms_header',
-                    script : 'success();'
-                });
-            }
+			//打开成功页
+			function openWin() {
+				api.execScript({
+					name : 'rooms_header',
+					script : 'success();'
+				});
+			}
 
-            //提交 申请
-            function house_submit() {
-                //				api.ajax({
-                //					url : window.serverUrl + 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&keyid=' + assessinfo.data.assessinfo_id
-                //				}, function(ret, err) {
-                //					ret.success ? openWin() : H.toast(ret.message);
-                //				});
-                H.oldAjax(function(ret, err) {
-                    api.hideProgress();
-                    console.log(JSON.stringify(ret));
-                    ret.success ? openWin() : H.toast(ret.message);
-                    //								openWin();
-                }, window.serverUrl + 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
-                    values : {
-                        user_id : userinfo[0].user_id,
-                        uuid : userinfo[0].uuid,
-                        keyid : assessinfo.data.assessinfo_id
-                    }
-                });
-            }
+			//提交 申请
+			function house_submit() {
+				//				api.ajax({
+				//					url : window.serverUrl + 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&keyid=' + assessinfo.data.assessinfo_id
+				//				}, function(ret, err) {
+				//					ret.success ? openWin() : H.toast(ret.message);
+				//				});
+				H.ajax(function(ret, err) {
+					api.hideProgress();
+					console.log(JSON.stringify(ret));
+					ret.success ? openWin() : api.confirm({
+						title : '存量房申请提交',
+						msg : ret.message + ", 是否清空填写申请并退出？",
+						buttons : ['确定', '取消']
+					}, function(ret, err) {
+						api.hideProgress();
+						if (ret.buttonIndex == 1) {
+							H.removePrefs(function(ret, err) {
+								H.closeWin();
+							}, 'rooms');
+						}
+					});
+					//								openWin();
+				}, 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
+					values : {
+						user_id : userinfo[0].user_id,
+						uuid : userinfo[0].uuid,
+						keyid : assessinfo.data.assessinfo_id
+					}
+				});
+			}
 
-            //下一步
-            function nextPart() {
-                var imgurl = $("#yulan img").attr("src");
-                // ################### 上传图片 #########################
-                var oldurl = "../../../image/yz.png";
-                if (zhonglei !== null && imgurl != oldurl) {
-                    uploadFile(ImgWebUrl, imgurl, function(serverImg) {
-                        //					alert('ret====' + JSON.stringify(serverImg));
-                        var len = zhonglei.length;
-                        if (ii < len) {
-                            $("#Leixing").html(zhonglei[ii].name);
-                            $("#target").attr("src", "../../../image/yz.png");
-                            var nums = '下一步(' + parseInt(4 + ii) + '/' + parseInt(4 + len - 1) + ')';
-                            $("button").html(nums);
-                            ii++;
-                            api.hideProgress();
-                        } else {
-                            api.confirm({
-                                title : '存量房申请提交',
-                                msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
-                                buttons : ['确定', '取消']
-                            }, function(ret, err) {
-                                if (ret) {
-                                    api.hideProgress();
-                                    if (ret.buttonIndex == 1) {
-                                        house_submit();
-                                    }
-                                    //									console.log('ret===' + JSON.stringify(ret));
-                                } else {
-                                    api.hideProgress();
-                                    alert(JSON.stringify(err));
-                                }
-                            });
-                        }
-                    });
-                } else {
-                    api.toast({
-                        msg : '上传失败,请拍照后再上传'
-                    });
-                }
-            }
+			//下一步
+			function nextPart() {
+				var imgurl = $("#yulan img").attr("src");
+				// ################### 上传图片 #########################
+				var oldurl = "../../../image/yz.png";
+				if (zhonglei !== null && imgurl != oldurl) {
+					uploadFile(ImgWebUrl, imgurl, function(serverImg) {
+						//					alert('ret====' + JSON.stringify(serverImg));
+						var len = zhonglei.length;
+						if (ii < len) {
+							$("#Leixing").html(zhonglei[ii].name);
+							$("#target").attr("src", "../../../image/yz.png");
+							var nums = '上传附件(' + parseInt(4 + ii) + '/' + parseInt(4 + len - 1) + ')';
+							$("button").html(nums);
+							ii++;
+							api.hideProgress();
+						} else {
+							api.confirm({
+								title : '存量房申请提交',
+								msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
+								buttons : ['确定', '取消']
+							}, function(ret, err) {
+								if (ret) {
+									api.hideProgress();
+									if (ret.buttonIndex == 1) {
+										house_submit();
+									}
+									//									console.log('ret===' + JSON.stringify(ret));
+								} else {
+									api.hideProgress();
+									alert(JSON.stringify(err));
+								}
+							});
+						}
+					});
+				} else {
+					api.toast({
+						msg : '上传失败,请拍照后再上传'
+					});
+				}
+			}
 
-            // 上传图片
-            // url：上传的url地址
-            // data：上传的文件
-            // callback：上传成功返回地址
-            function uploadFile(url, dataSrc, callback) {
-                api.showProgress({
-                    title : '上传中..'
-                });
-                H.oldAjax(function(ret, err) {
-                    if (ret) {
-                        callback(ret);
-                    }
-                }, url, "post", {
-                    values : {
-                        pagetype : "editgrid",
-                        funid : "sys_attach",
-                        nousercheck : "1",
-                        eventcode : "create",
-                        dataType : "byte",
-                        datafunid : assessinfo.data.datafunid,
-                        dataid : assessinfo.data.assessinfo_id,
-                        attach_name : dataSrc
-                    },
-                    files : {
-                        attach_path : dataSrc,
-                    }
-                });
-            }
+			// 上传图片
+			// url：上传的url地址
+			// data：上传的文件
+			// callback：上传成功返回地址
+			function uploadFile(url, dataSrc, callback) {
+				api.showProgress({
+					title : '上传中..'
+				});
+				H.oldAjax(function(ret, err) {
+					if (ret) {
+						callback(ret);
+					}
+				}, url, "post", {
+					values : {
+						pagetype : "editgrid",
+						funid : "sys_attach",
+						nousercheck : "1",
+						eventcode : "create",
+						dataType : "byte",
+						datafunid : assessinfo.data.datafunid,
+						dataid : assessinfo.data.assessinfo_id,
+						attach_name : dataSrc
+					},
+					files : {
+						attach_path : dataSrc,
+					}
+				});
+			}
 
-            //打开照相机获取
-            function openCamera() {
-                img.openCamera({
-                    sourceType : 'camera',
-                    encodingType : 'jpg',
-                    mediaValue : 'pic',
-                    destinationType : 'url',
-                    allowEdit : false,
-                    quality : 100,
-                    //					targetWidth : 700,
-                    //					targetHeight : 400,
-                    saveToPhotoAlbum : false
-                }, function(ret) {
-                    var returnUrl = ret.data;
-                    // 图片压缩
-                    $("#target").hide();
-                    $("#loading").show();
-                    img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
-                        $("#loading").hide();
-                        //						img.getAttr(compressImg, function(ret) {
-                        //							if (ret.width > ret.height) {
-                        //
-                        //							} else {
-                        //								api.toast({
-                        //									msg : '照片必须是横向的,请重新拍照'
-                        //								});
-                        //							}
-                        //						});
-                        $("#target").attr({
-                            "src" : compressImg,
-                            "style" : "width:100%;"
-                        }).on("click", function() {
-                            var browerImgs = [];
-                            // 将图片追加到数组中
-                            browerImgs.push($("#target").attr("src"));
-                            // 调用图片预览函数
-                            img.openImageBrowser(browerImgs);
-                        });
-                    });
-                }, '用户取消');
-            }
-        </script>
-    </body>
+			//打开照相机获取
+			function openCamera() {
+				img.openCamera({
+					sourceType : 'camera',
+					encodingType : 'jpg',
+					mediaValue : 'pic',
+					destinationType : 'url',
+					allowEdit : false,
+					quality : 100,
+					//					targetWidth : 700,
+					//					targetHeight : 400,
+					saveToPhotoAlbum : false
+				}, function(ret) {
+					var returnUrl = ret.data;
+					// 图片压缩
+					$("#target").hide();
+					$("#loading").show();
+					img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
+						$("#loading").hide();
+						//						img.getAttr(compressImg, function(ret) {
+						//							if (ret.width > ret.height) {
+						//
+						//							} else {
+						//								api.toast({
+						//									msg : '照片必须是横向的,请重新拍照'
+						//								});
+						//							}
+						//						});
+						$("#target").attr({
+							"src" : compressImg,
+							"style" : "width:100%;"
+						}).on("click", function() {
+							var browerImgs = [];
+							// 将图片追加到数组中
+							browerImgs.push($("#target").attr("src"));
+							// 调用图片预览函数
+							img.openImageBrowser(browerImgs);
+						});
+					});
+				}, '用户取消');
+			}
+		</script>
+	</body>
 </html>
