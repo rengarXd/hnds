@@ -68,14 +68,14 @@
                     });
                 }, 'getNoticeinfo&funid=taxpayer_notice', 'post', {
                     values : {
-                         user_id : retobj[0].user_id, 
+                        user_id : retobj[0].user_id,
                         uuid : retobj[0].uuid
                     }
                 });
             }
 
             function showFunction(id) {
-                H.openWin('notice_show_head', './notices/notice_show_head.html', {
+                H.openWin('notice_show_head', './notice_show_head.html', {
                     id : id
                 });
             }
