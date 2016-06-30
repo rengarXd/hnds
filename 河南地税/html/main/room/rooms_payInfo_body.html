@@ -113,8 +113,8 @@
 			H.ready(function() {
 				H.getPrefs(function(ret, err) {
 					if (ret && ret.value) {
-//						assessinfo = eval('(' + ret.value + ')');
-						console.log(JSON.stringify(assessinfo));
+						assessinfo = eval('(' + ret.value + ')');
+//						console.log(JSON.stringify(assessinfo));
 						$('input').attr('value', '');
 						$("button").text('下一步(1/4)');
 					} else {
