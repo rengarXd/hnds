@@ -1299,7 +1299,7 @@
                             }
                         } else {
                             if (that.isFunction(callback)) {
-                                callback(ret.body, err);
+                                callback(ret, err);
                             }
                         }
 
