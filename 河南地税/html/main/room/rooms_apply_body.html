@@ -160,9 +160,11 @@
 				H.ajax(function(ret, err) {
 					api.hideProgress();
 					console.log(JSON.stringify(ret));
-					ret.success ? openWin() : api.confirm({
+					ret.success ? H.removePrefs(function(ret, err) {
+						openWin();
+					}, 'rooms') : api.confirm({
 						title : '存量房申请提交',
-						msg : ret.message + ", 是否清空填写申请并退出？",
+						msg : "提交失败,是否清空填写申请并退出？",
 						buttons : ['确定', '取消']
 					}, function(ret, err) {
 						api.hideProgress();
@@ -170,6 +172,8 @@
 							H.removePrefs(function(ret, err) {
 								H.closeWin();
 							}, 'rooms');
+						} else {
+							H.closeWin();
 						}
 					});
 					//								openWin();
@@ -205,7 +209,6 @@
 								buttons : ['确定', '取消']
 							}, function(ret, err) {
 								if (ret) {
-									api.hideProgress();
 									if (ret.buttonIndex == 1) {
 										house_submit();
 									}
@@ -233,8 +236,11 @@
 					title : '上传中..'
 				});
 				H.oldAjax(function(ret, err) {
-					if (ret) {
+					if (ret.success) {
 						callback(ret);
+					}else{
+						api.hideProgress();
+						H.toast('连接错误，请检查网络配置等问题');
 					}
 				}, url, "post", {
 					values : {
@@ -266,32 +272,35 @@
 					//					targetHeight : 400,
 					saveToPhotoAlbum : false
 				}, function(ret) {
+//					alert(JSON.stringify(ret));
 					var returnUrl = ret.data;
-					// 图片压缩
-					$("#target").hide();
-					$("#loading").show();
-					img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
-						$("#loading").hide();
-						//						img.getAttr(compressImg, function(ret) {
-						//							if (ret.width > ret.height) {
-						//
-						//							} else {
-						//								api.toast({
-						//									msg : '照片必须是横向的,请重新拍照'
-						//								});
-						//							}
-						//						});
-						$("#target").attr({
-							"src" : compressImg,
-							"style" : "width:100%;"
-						}).on("click", function() {
-							var browerImgs = [];
-							// 将图片追加到数组中
-							browerImgs.push($("#target").attr("src"));
-							// 调用图片预览函数
-							img.openImageBrowser(browerImgs);
+					if (returnUrl !== "") {
+						// 图片压缩
+						$("#target").hide();
+						$("#loading").show();
+						img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
+							$("#loading").hide();
+							//						img.getAttr(compressImg, function(ret) {
+							//							if (ret.width > ret.height) {
+							//
+							//							} else {
+							//								api.toast({
+							//									msg : '照片必须是横向的,请重新拍照'
+							//								});
+							//							}
+							//						});
+							$("#target").attr({
+								"src" : compressImg,
+								"style" : "width:100%;"
+							}).on("click", function() {
+								var browerImgs = [];
+								// 将图片追加到数组中
+								browerImgs.push($("#target").attr("src"));
+								// 调用图片预览函数
+								img.openImageBrowser(browerImgs);
+							});
 						});
-					});
+					}
 				}, '用户取消');
 			}
 		</script>
