@@ -14,6 +14,7 @@
 
 ;! function(factory) {
     window.serverUrl = "http://218.29.85.98:8080/etax/fileAction.do?pagetype=grid&nousercheck=1&eventcode=";
+    window.ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
     if ( typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         var target = module['exports'] || exports;
         factory(target);
@@ -642,7 +643,7 @@
                     timeout : 30,
                     dataType : "json",
                     charset : "utf-8",
-                    report : true,
+                    report : false,
                     returnAll : false
                 },
                 download_CONFIG : {
@@ -1277,7 +1278,7 @@
                     api.closeWidget(opt);
                 }
             },
-            ajax : function(callback, url, method, data, dataType,options) {
+            ajax : function(callback, url, method, data, dataType, options) {
                 var that = this;
                 var o = {};
                 o.url = window.serverUrl + url;
@@ -1305,7 +1306,7 @@
                     });
                 }
             },
-            oldAjax : function(callback, url, method, data, dataType,options) {
+            oldAjax : function(callback, url, method, data, dataType, options) {
                 var that = this;
                 var o = {};
                 o.url = url;
@@ -1326,7 +1327,7 @@
                             }
                         } else {
                             if (that.isFunction(callback)) {
-                                callback(ret.body, err);
+                                callback(ret, err);
                             }
                         }
 
