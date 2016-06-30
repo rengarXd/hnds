@@ -141,6 +141,7 @@
 				});
 			}
 
+			//打开成功页
 			function openWin() {
 				api.execScript({
 					name : 'rooms_header',
@@ -185,7 +186,7 @@
 									if (ret.buttonIndex == 1) {
 										house_submit();
 									}
-//									console.log('ret===' + JSON.stringify(ret));
+									//									console.log('ret===' + JSON.stringify(ret));
 								} else {
 									api.hideProgress();
 									alert(JSON.stringify(err));
@@ -237,31 +238,31 @@
 					mediaValue : 'pic',
 					destinationType : 'url',
 					allowEdit : false,
-					quality : 50,
+					quality : 100,
 					targetWidth : 700,
 					targetHeight : 400,
 					saveToPhotoAlbum : false
 				}, function(ret) {
 					var returnUrl = ret.data;
 					// 图片压缩
-					//                  img.imgCompress(returnUrl, 1, 1, img.getExt(returnUrl), function(compressImg) {
-					img.getAttr(returnUrl, function(ret) {
-						//							alert(ret.width+'======'+ret.height);
-						if (ret.width > ret.height) {
-							$("#yulan img").attr("src", returnUrl).on("click", function() {
-								var browerImgs = [];
-								// 将图片追加到数组中
-								browerImgs.push($("#yulan img").attr("src"));
-								// 调用图片预览函数
-								img.openImageBrowser(browerImgs);
-							});
-						} else {
-							api.toast({
-								msg : '照片必须是横向的,请重新拍照'
-							});
-						}
-					});
-					//                  });
+//					img.imgCompress(returnUrl, 0.9, 0.9, img.getExt(returnUrl), function(compressImg) {
+						img.getAttr(returnUrl, function(ret) {
+							//							alert(ret.width+'======'+ret.height);
+							if (ret.width > ret.height) {
+								$("#yulan img").attr("src", returnUrl).on("click", function() {
+									var browerImgs = [];
+									// 将图片追加到数组中
+									browerImgs.push($("#yulan img").attr("src"));
+									// 调用图片预览函数
+									img.openImageBrowser(browerImgs);
+								});
+							} else {
+								api.toast({
+									msg : '照片必须是横向的,请重新拍照'
+								});
+							}
+						});
+//					});
 				}, '用户取消');
 			}
 		</script>
