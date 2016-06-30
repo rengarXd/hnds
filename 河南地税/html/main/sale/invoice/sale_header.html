@@ -5,8 +5,8 @@
         <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
         <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
         <title>房屋销售代开发票申请</title>
-        <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
-        <link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+        <link href="../../../../css/Hui.css" rel="stylesheet" type="text/css" />
+        <link href="../../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
         <style type="text/css">
             .H_header_bg {
                 background: #09a4de
@@ -20,7 +20,7 @@
                 房屋销售代开发票申请
             </div>
         </header>
-        <script src="../../../script/H.js" type="text/javascript"></script>
+        <script src="../../../../script/H.js" type="text/javascript"></script>
         <script type="text/javascript">
             H.ready(function() {
                 openNewframe('', 'sale_buy_step1', 'sale_buy_step1.html', api.pageParam);
@@ -47,28 +47,24 @@
                 //                  }, 1000);
                 //              }
             }
-
-            //          function openHouseInfo() {
-            //              openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
-            //          }
             //楼栋信息
             function Transferee() {
-                openNewframe('sale_buy_step1', 'sale_buy_step2', 'sale_buy_step2.html');
+                openNewframe('sale_buy_step1', 'sale_buy_step2', 'sale_buy_step2.html',api.pageParam);
             }
 
             //打开房产信息
             function buildInfo() {
-                openNewframe('sale_buy_step2', 'sale_buy_step3', 'sale_buy_step3.html');
+                openNewframe('sale_buy_step2', 'sale_buy_step3', 'sale_buy_step3.html',api.pageParam);
             }
 
             //打开上传图片附件
             function fileInfo() {
-                openNewframe('sale_buy_step3', 'sale_buy_step4', 'sale_buy_step4.html');
+                openNewframe('sale_buy_step3', 'sale_buy_step4', 'sale_buy_step4.html',api.pageParam);
             }
 
             //提交成功
             function success() {
-                openNewframe('sale_buy_step4', 'sale_buy_success', 'sale_buy_success.html');
+                openNewframe('sale_buy_step4', 'sale_buy_success', 'sale_buy_success.html',api.pageParam);
             }
         </script>
     </body>
