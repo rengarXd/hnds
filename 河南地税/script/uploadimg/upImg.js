@@ -79,7 +79,7 @@
 					callback(ret);
 				} else {
 					api.toast({
-						msg : err.msg
+						msg : errmsg
 					});
 				}
 			});
