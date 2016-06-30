@@ -152,11 +152,6 @@
 
 			//提交 申请
 			function house_submit() {
-				//				api.ajax({
-				//					url : window.serverUrl + 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&keyid=' + assessinfo.data.assessinfo_id
-				//				}, function(ret, err) {
-				//					ret.success ? openWin() : H.toast(ret.message);
-				//				});
 				H.ajax(function(ret, err) {
 					api.hideProgress();
 					console.log(JSON.stringify(ret));
@@ -176,7 +171,6 @@
 							H.closeWin();
 						}
 					});
-					//								openWin();
 				}, 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
 					values : {
 						user_id : userinfo[0].user_id,
