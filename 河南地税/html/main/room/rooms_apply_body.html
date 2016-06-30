@@ -151,12 +151,12 @@
 
 			//提交 申请
 			function house_submit() {
-				H.oldAjax(function(ret, err) {
+				H.ajax(function(ret, err) {
 					api.hideProgress();
 					console.log(ret);
 					openWin();
 					//								openWin();
-				}, postUrl + '&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id);
+				}, 'appHouseAssessSubmit&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id);
 			}
 
 			//下一步
