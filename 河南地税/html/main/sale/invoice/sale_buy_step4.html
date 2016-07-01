@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <title>影像资料</title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>影像资料</title>
 		<link href="../../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="../../../../css/fonts/iconfont.css" />
 		<style type="text/css">
@@ -26,7 +26,7 @@
 					<img src="../../../image/yz.png" style="width: 100%;" id="target"/>
 					<img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
 				</div>
-				<div class="H-padding-10">
+				<div class="H-padding-10" id="addpic">
 					点击加号拍照(横屏拍摄)
 				</div>
 				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="openCamera();">
@@ -184,7 +184,8 @@
 				var imgurl = $("#yulan img").attr("src");
 				// ################### 上传图片 #########################
 				var oldurl = "../../../image/yz.png";
-				if (zhonglei !== null && imgurl != oldurl) {
+				var loadurl = "../../../image/loading_more.gif";
+				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
 					uploadFile(ImgWebUrl, imgurl, function(serverImg) {
 						//					alert('ret====' + JSON.stringify(serverImg));
 						var len = zhonglei.length;
@@ -197,7 +198,7 @@
 							api.hideProgress();
 						} else {
 							api.confirm({
-								title : '存量房申请提交',
+								title : '代开发票申请提交',
 								msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
 								buttons : ['确定', '取消']
 							}, function(ret, err) {
@@ -215,7 +216,7 @@
 					});
 				} else {
 					api.toast({
-						msg : '上传失败,请拍照后再上传'
+						msg : '上传失败,请确认拍照图片是否正确'
 					});
 				}
 			}
@@ -231,7 +232,7 @@
 				H.oldAjax(function(ret, err) {
 					if (ret.success) {
 						callback(ret);
-					}else{
+					} else {
 						api.hideProgress();
 						H.toast('连接错误，请检查网络配置等问题');
 					}
@@ -261,11 +262,9 @@
 					destinationType : 'url',
 					allowEdit : false,
 					quality : 100,
-					//					targetWidth : 700,
-					//					targetHeight : 400,
 					saveToPhotoAlbum : false
 				}, function(ret) {
-//					alert(JSON.stringify(ret));
+					//					alert(JSON.stringify(ret));
 					var returnUrl = ret.data;
 					if (returnUrl !== "") {
 						// 图片压缩
@@ -273,6 +272,7 @@
 						$("#loading").show();
 						img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
 							$("#loading").hide();
+							imgBoolean = false;
 							//						img.getAttr(compressImg, function(ret) {
 							//							if (ret.width > ret.height) {
 							//
