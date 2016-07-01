@@ -303,10 +303,10 @@
 						} else {
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
 								imgBoolean = false;
-								var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' style="width: 100%;"/></div>';
+								var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' style="width: 100%;"/><img src="../../../../image/del.jpg"/></div>';
 								// 追加图片
 								$("#addpic").before(showImgHtml);
-								$('img').find($(this).index()).on("click", function() {
+								$('img').find(this).on("click", function() {
 									// 将图片追加到数组中
 									browerImgs.push(compressAddImg);
 									// 调用图片预览函数
