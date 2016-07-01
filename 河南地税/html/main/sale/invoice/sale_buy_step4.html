@@ -23,8 +23,8 @@
 					身份证示例
 				</div>
 				<div id="yulan" class="H-text-align-center">
-					<img src="../../../image/yz.png" style="width: 100%;" id="target"/>
-					<img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
+					<img src="../../../../image/yz.png" style="width: 100%;" id="target"/>
+					<img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
 				</div>
 				<div class="H-padding-10" id="addpic">
 					点击加号拍照(横屏拍摄)
@@ -37,7 +37,7 @@
 			<div class="H-flex-item">
 				<div class="footer"></div>
 				<footer class="H-footer H-padding-10">
-					<button onclick="nextPart();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+					<button class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 						下一步(6/6)
 					</button>
 				</footer>
@@ -48,9 +48,10 @@
 		<script type="text/javascript" src="../../../../script/tools/availdate-v1.0.2.js"></script>
 		<script type="text/javascript" src="../../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
-			var assessinfo = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null;
+			var assessinfo = null, clfxsxxb_id = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null, imgBoolean = true;
 			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
 			//			var postUrl = 'http://218.29.85.98:8080/etax/fileAction.do?eventcode=appHouseAssessSubmit&funid=houses_assessinfo&pagetype=grid&nousercheck=1';
+			var browerImgs = [];
 			Zepto(function($) {
 			});
 			H.ready(function() {
@@ -58,17 +59,23 @@
 				imageFilter = api.require('imageFilter');
 				//引入图片预览模块
 				imageBrowser = api.require('imageBrowser');
-				initUser();
+				assessinfo_id = api.pageParam.assessinfo_id;
+				initPrefs();
 				initData();
 			});
-			//获取用户及申请信息偏好值
-			function initUser() {
+			//获取room偏好值
+			function initPrefs() {
+				H.getUserPref(function() {
+				});
 				H.getPrefs(function(ret, err) {
-					assessinfo = eval('(' + ret.value + ')');
-					console.log(JSON.stringify(ret));
-					H.getUserPref(function() {
-					});
-				}, 'rooms');
+					if (ret && ret.value) {
+						clfxsxxb_id = eval('(' + ret.value + ')');
+						//						console.log(JSON.stringify(assessinfo));
+						$("button").text('下一步(1/4)');
+					} else {
+						$('input').attr('value', '');
+					}
+				}, 'sale' + assessinfo_id);
 			}
 
 			//模拟数据传输
@@ -183,15 +190,15 @@
 			function nextPart() {
 				var imgurl = $("#yulan img").attr("src");
 				// ################### 上传图片 #########################
-				var oldurl = "../../../image/yz.png";
-				var loadurl = "../../../image/loading_more.gif";
+				var oldurl = "../../../../image/yz.png";
+				var loadurl = "../../../../image/loading_more.gif";
 				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
 					uploadFile(ImgWebUrl, imgurl, function(serverImg) {
 						//					alert('ret====' + JSON.stringify(serverImg));
 						var len = zhonglei.length;
 						if (ii < len) {
 							$("#Leixing").html(zhonglei[ii].name);
-							$("#target").attr("src", "../../../image/yz.png");
+							$("#target").attr("src", "../../../../image/yz.png");
 							var nums = '上传附件(' + parseInt(4 + ii) + '/' + parseInt(4 + len - 1) + ')';
 							$("button").html(nums);
 							ii++;
@@ -267,32 +274,46 @@
 					//					alert(JSON.stringify(ret));
 					var returnUrl = ret.data;
 					if (returnUrl !== "") {
-						// 图片压缩
-						$("#target").hide();
-						$("#loading").show();
-						img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
-							$("#loading").hide();
-							imgBoolean = false;
-							//						img.getAttr(compressImg, function(ret) {
-							//							if (ret.width > ret.height) {
-							//
-							//							} else {
-							//								api.toast({
-							//									msg : '照片必须是横向的,请重新拍照'
-							//								});
-							//							}
-							//						});
-							$("#target").attr({
-								"src" : compressImg,
-								"style" : "width:100%;"
-							}).on("click", function() {
-								var browerImgs = [];
-								// 将图片追加到数组中
-								browerImgs.push($("#target").attr("src"));
-								// 调用图片预览函数
-								img.openImageBrowser(browerImgs);
+						if (imgBoolean) {
+							// 图片压缩
+							$("#target").hide();
+							$("#loading").show();
+							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
+								$("#loading").hide();
+								imgBoolean = false;
+								//						img.getAttr(compressImg, function(ret) {
+								//							if (ret.width > ret.height) {
+								//
+								//							} else {
+								//								api.toast({
+								//									msg : '照片必须是横向的,请重新拍照'
+								//								});
+								//							}
+								//						});
+								$("#target").attr({
+									"src" : compressImg,
+									"style" : "width:100%;"
+								}).on("click", function() {
+									// 将图片追加到数组中
+									browerImgs.push($("#target").attr("src"));
+									// 调用图片预览函数
+									img.openImageBrowser(browerImgs);
+								});
 							});
-						});
+						} else {
+							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
+								imgBoolean = false;
+								var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' style="width: 100%;"/></div>';
+								// 追加图片
+								$("#addpic").before(showImgHtml);
+								$('img').find($(this).index()).on("click", function() {
+									// 将图片追加到数组中
+									browerImgs.push(compressAddImg);
+									// 调用图片预览函数
+									img.openImageBrowser(browerImgs);
+								});
+							});
+						}
 					}
 				}, '用户取消');
 			}

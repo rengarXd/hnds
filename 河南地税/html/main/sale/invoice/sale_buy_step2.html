@@ -23,17 +23,17 @@
 			<div class="H-border-vertical-both-after">
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">纳税人识别号：</span>
-					<input type="text" name="gmfnsrsbh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="纳税人识别号不能为空" data-errmsg="纳税人识别号格式错误"
+					<input type="text" name="gmfnsrsbh" value="1212002" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="纳税人识别号不能为空" data-errmsg="纳税人识别号格式错误"
 					placeholder="填写纳税人识别号" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">纳税人名称：</span>
-					<input type="text" name="gmfmc" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="s" data-nullmsg="纳税人名称不能为空" data-errmsg="纳税人名称填写错误"
+					<input type="text" name="gmfmc" value="陈陈" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="s" data-nullmsg="纳税人名称不能为空" data-errmsg="纳税人名称填写错误"
 					placeholder="填写纳税人名称" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">国籍代码：</span>
-					<input type="text" name="gmfgj_dm" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="国籍代码不能为空" data-errmsg="国籍代码填写错误"
+					<input type="text" name="gmfgj_dm" value="1" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="国籍代码不能为空" data-errmsg="国籍代码填写错误"
 					placeholder="填写国籍代码" />
 				</div>
 				<!--证件类型 start-->
@@ -46,17 +46,17 @@
 				<!--证件类型 end-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">证件号码：</span>
-					<input type="text" name="gmfzjhm" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
+					<input type="text" name="gmfzjhm" value="410103196405045555" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
 					placeholder="填写证件号码" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">联系电话：</span>
-					<input type="text" name="gmflxdh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写错误"
+					<input type="text" name="gmflxdh" value="13101458888" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写错误"
 					placeholder="填写联系电话" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">地址：</span>
-					<input type="text" name="gmfdz" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
+					<input type="text" name="gmfdz" value="河南省地税局" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
 					placeholder="填写地址" />
 				</div>
 			</div>
@@ -160,7 +160,7 @@
 				//更新存量房信息
 				api.showProgress();
 				gmfsfzjlx_dm ? H.ajax(function(ret, err) {
-					results(ret, 'buildInfo();');
+					results(ret);
 				}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data[3].fwuuid, 'post', {
 					values : datas
 				}) : H.toast('您还有未选择的选项');
