@@ -144,9 +144,9 @@
 				</div>
 				<!--时间类型 end-->
 				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">上次取得房屋时间：</span>
-					<input type="text" name="scqd_fwsj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="上次取得房屋时间不能为空" data-errmsg="上次取得房屋时间填写错误"
-					placeholder="填写上次取得房屋时间" />
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">上次取得房屋时间：</span>
+				<input type="text" name="scqd_fwsj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="上次取得房屋时间不能为空" data-errmsg="上次取得房屋时间填写错误"
+				placeholder="填写上次取得房屋时间" />
 				</div>-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">上次取得房屋成本：</span>
@@ -186,8 +186,8 @@
 						datas = data;
 						//						datas.house_type = house_type;
 						$.extend(datas, value);
-												_ajax();
-//						alert(JSON.stringify(datas));
+						_ajax();
+						//						alert(JSON.stringify(datas));
 					}
 				});
 				part();
@@ -267,13 +267,17 @@
 			function _ajax() {
 				//1.4、已经登录
 				//更新存量房信息
-				api.showProgress();
-				htqdrq && scqd_fwsj ? H.ajax(function(ret, err) {
-//					alert(JSON.stringify(ret));
-					results(ret);
-				}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data[3].fwuuid, 'post', {
-					values : datas
-				}) : H.toast('您还有未选择的选项');
+				if (htqdrq && scqd_fwsj) {
+					api.showProgress();
+					H.ajax(function(ret, err) {
+						//					alert(JSON.stringify(ret));
+						results(ret);
+					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data[3].fwuuid, 'post', {
+						values : datas
+					})
+				} else {
+					H.toast('您还有未选择的选项');
+				}
 			}
 
 			//上次取得房屋时间
