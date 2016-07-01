@@ -158,12 +158,16 @@
 			function _ajax() {
 				//1.4、已经登录
 				//更新存量房信息
-				api.showProgress();
-				gmfsfzjlx_dm ? H.ajax(function(ret, err) {
-					results(ret);
-				}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data[3].fwuuid, 'post', {
-					values : datas
-				}) : H.toast('您还有未选择的选项');
+				if (gmfsfzjlx_dm) {
+					api.showProgress();
+					H.ajax(function(ret, err) {
+						results(ret);
+					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data[3].fwuuid, 'post', {
+						values : datas
+					});
+				} else {
+					H.toast('您还有未选择的选项');
+				}
 			}
 
 			//受让方证件类型选择器
