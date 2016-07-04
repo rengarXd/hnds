@@ -80,7 +80,7 @@
 				</div>
 				<!--联系电话 end-->
 				<!--交易类型 start-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="payType('paytype');">
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="payType('paytype');">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
 						交易类型： <span class="H-padding-horizontal-both-12" id="paytype">点击选择交易类型</span>
 					</div>
@@ -111,6 +111,7 @@
 			Zepto(function($) {
 			});
 			H.ready(function() {
+			api.parseTapmode();
 				H.getPrefs(function(ret, err) {
 					if (ret && ret.value) {
 						assessinfo = eval('(' + ret.value + ')');
@@ -148,34 +149,34 @@
 				});
 			});
 			//受让方证件类型选择器
-			function IDtype(IDname, certnumber) {
+			function IDtype(IdName, CertNumber) {
 				H.selAjax(function(ret, selet_option,infonm001) {
-					$('#' + IDname).attr("infoid001", "");
-					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					$('#' + IdName).attr("infoid001", "");
+					//alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
-						$('#' + IDname).attr("infoid001", selet_option[ret.buttonIndex - 1].infoid001).html(selet_option[ret.buttonIndex - 1].infonm001);
+						$('#' + IdName).attr("infoid001", selet_option[ret.buttonIndex - 1].infoid001).html(selet_option[ret.buttonIndex - 1].infonm001);
 						if (selet_option[ret.buttonIndex - 1].infonm001 == "身份证") {
-							$("input[name=" + certnumber + "]").attr({
+							$("input[name=" + CertNumber + "]").attr({
 								'data-rule' : 'idcard',
 								'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
 								'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
 							});
 						}
 					}
-				}, 'getView001');
+				}, '001');
 			}
 
 			//交易类型选择器
-			function payType(IDname) {
-				H.mulAjax(function(ret, selet_option) {
-					$('#' + IDname).attr("infoid002", "");
+			function payType(IdName) {
+				H.selAjax(function(ret, selet_option) {
+					$('#' + IdName).attr("infoid002", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
-						$('#' + IDname).attr("infoid002", selet_option[ret.buttonIndex - 1].infoid002).html(selet_option[ret.buttonIndex - 1].infonm001);
+						$('#' + IdName).attr("infoid002", selet_option[ret.buttonIndex - 1].infoid002).html(selet_option[ret.buttonIndex - 1].infonm002);
 					}
-				}, 'getView002');
+				}, '002');
 			}
 
 			//交易时间选择器
