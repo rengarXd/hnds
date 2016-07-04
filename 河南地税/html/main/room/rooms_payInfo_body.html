@@ -26,7 +26,7 @@
 				<!--转让方 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">转让方：</span>
-					<input type="text" name="transferor_name" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让方信息不能为空" data-errmsg="转让方信息填写有误"
+					<input type="text" value="陈艳蕾" name="transferor_name" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让方信息不能为空" data-errmsg="转让方信息填写有误"
 					placeholder="转让方姓名" />
 				</div>
 				<!--转让方 end-->
@@ -41,20 +41,20 @@
 				<!--证件号码 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">证件号码：</span>
-					<input type="text" name="transferor_certnumber" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="证件号码" />
+					<input type="text" value="410103196402015555" name="transferor_certnumber" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="证件号码" />
 				</div>
 				<!--证件号码 end-->
 				<!--联系电话 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-13">联系电话：</span>
-					<input type="text" name="transferor_phone" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-13 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写错误"
+					<input type="text" value="13101783961" name="transferor_phone" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-13 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写错误"
 					placeholder="转让方联系电话" />
 				</div>
 				<!--联系电话 end-->
 				<!--受让方 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">受让方：</span>
-					<input type="text" name="purchaser_name" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="受让方信息不能为空" data-errmsg="受让方信息填写错误"
+					<input type="text" value="徐达" name="purchaser_name" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="受让方信息不能为空" data-errmsg="受让方信息填写错误"
 					placeholder="受让方姓名" />
 				</div>
 				<!--受让方 end-->
@@ -69,13 +69,13 @@
 				<!--证件号码 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">证件号码：</span>
-					<input type="text" name="purchaser_certnumber" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写证件号码" />
+					<input type="text" value="410103196502010201" name="purchaser_certnumber" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写证件号码" />
 				</div>
 				<!--证件号码 end-->
 				<!--联系电话 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">联系电话：</span>
-					<input type="text" name="purchaser_phone" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写有误"
+					<input type="text" value="13101789656" name="purchaser_phone" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写有误"
 					placeholder="填写信息不能为空" />
 				</div>
 				<!--联系电话 end-->
@@ -136,10 +136,10 @@
 							"srf_zjlxnm":$("#purchaser_certype").html(),
 							"transferor_name" : $("form input:first-child").val(),
 							"transferor_phone" : $("input[name='transferor_phone']").val(),
-							"transferor_certype" : $("#type_option").attr('infoid'),
+							"transferor_certype" : $("#type_option").attr('infoid001'),
 							"transferor_certnumber" : $("input[name='transferor_certnumber']").val(),
-							"purchaser_certype" : $("#purchaser_certype").attr('infoid'),
-							"transaction_type" : $("#paytype").attr('infoid'),
+							"purchaser_certype" : $("#purchaser_certype").attr('infoid001'),
+							"transaction_type" : $("#paytype").attr('infoid002'),
 							"transaction_date" : dates
 						};
 						$.extend(datas, value);
