@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-	<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-padding-vertical-bottom-10"></div>
 		<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
@@ -38,21 +38,44 @@
 					<input type="text" name="place_number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="丘（地）号不能为空" data-errmsg="丘（地）号必须是数字"
 					placeholder="请填写丘（地）号" />
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">所在区域：</span>
-					<input type="text" name="local_area" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写信息不能为空" placeholder="填写所在区域"
-					/>
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">所在区域：</span>
+				<input type="text" name="local_area" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写信息不能为空" placeholder="填写所在区域"
+				/>
+				</div>-->
+				<!--所在区域 start-->
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active"  onclick="PingShuiFenQu({'getView':'getView010'})">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
+						所在区域: <span class="H-padding-horizontal-both-12" id="local_area" >请选择所在区域</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
 				</div>
+				<!--所在区域 end-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房屋坐落：</span>
 					<input type="text" name="house_location" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写房屋坐落"
 					placeholder="填写房屋坐落" />
 				</div>
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu()">
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu({'getView':'getView011'})">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
 						评税分区： <span class="H-padding-horizontal-both-12" id="pingshui_type">点击选择评税分区</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
+				</div>
+				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">幢（楼）号：</span>
+					<input type="text" name="fwzh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
+					placeholder="填写幢（楼）号" />
+				</div>
+				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">单元号：</span>
+					<input type="text" name="dy" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元号不能为空" data-errmsg="单元号不能为空"
+					placeholder="填写单元号" />
+				</div>
+				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房号：</span>
+					<input type="text" name="fh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号不能为空"
+					placeholder="填写户号" />
 				</div>
 			</div>
 		</form>
@@ -79,7 +102,8 @@
 					endSuccess : function(data) {
 						var value = {
 							"issue_date" : dates,
-							"assess_partition" : $("#pingshui_type").attr("dept_id")
+							"assess_partition" : $("#pingshui_type").attr("dept_id"),
+							"local_area" : $("#local_area").attr("dept_id")
 						};
 						datas = data;
 						console.log(JSON.stringify(datas));
@@ -108,10 +132,11 @@
 			}
 
 			//打开评税分区
-			function PingShuiFenQu() {
+			function PingShuiFenQu(pageParam) {
 				api.openWin({
 					name : 'rooms_region_header',
 					url : 'region/rooms_region_header.html',
+					pageParam : pageParam,
 					animation : {
 						type : "none",
 						duration : 0
