@@ -1358,7 +1358,7 @@
 					}, url + window.selectUrl, 'post', data);
 				});
 			},
-			selAjax : function(callback, url,infonm) {
+			selAjax : function(callback, url) {
 				var that = this;
 				that.getUserPref(function() {
 				that.showProgress();
@@ -1369,8 +1369,10 @@
 								that.hideProgress();
 								var selet_option = ret.data;
 								var typeArray = new Array();
+								var infoname = 'infonm'+url;
 								for (var i = 0, len = selet_option.length; i < len; i++) {
-									typeArray.push(selet_option[i].infonm001);
+									typeArray.push(selet_option[i][infoname]);
+									console.log('infonm======'+infoname);;
 								}
 								that.actionSheet(function(ret, err) {
 									callback(ret, selet_option);
@@ -1384,7 +1386,7 @@
 							that.hideProgress();
 							that.toast('连接失败，请检查网络配置');
 						}
-					}, url + window.selectUrl, 'post', {
+					}, 'getView'+ url + window.selectUrl, 'post', {
 						values : {
 							"user_id" : userinfo[0].user_id,
 							"uuid" : userinfo[0].uuid
