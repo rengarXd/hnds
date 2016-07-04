@@ -21,7 +21,7 @@
 /A6919788272158/html/main/room/rooms_building_body.html
 /A6919788272158/html/main/room/rooms_houseInfo_body.html
 /A6919788272158/html/main/room/rooms_payInfo_body.html
-/A6919788272158/html/main/room/rooms_payInfo_header.html
+/A6919788272158/html/main/room/rooms_header.html
 /A6919788272158/html/main/rooms_body.html
 /A6919788272158/html/main/rooms_header.html
 /A6919788272158/html/main.html

@@ -31,7 +31,7 @@
 				</div>
 				<!--转让方 end-->
 				<!--证件类型 start-->
-				<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="select();">
+				<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="IDtype('type_option','transferor_certnumber');">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
 						证件类型: <span class="H-padding-horizontal-both-12" id="type_option">点击选择证件类型</span>
 					</div>
@@ -59,7 +59,7 @@
 				</div>
 				<!--受让方 end-->
 				<!--证件类型 start-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active"  onclick="IDtype();">
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active"  onclick="IDtype('purchaser_certype', 'purchaser_certnumber');">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
 						证件类型: <span class="H-padding-horizontal-both-12" id="purchaser_certype" >请选择证件类型</span>
 					</div>
@@ -80,7 +80,7 @@
 				</div>
 				<!--联系电话 end-->
 				<!--交易类型 start-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="payType();">
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="payType('paytype');">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
 						交易类型： <span class="H-padding-horizontal-both-12" id="paytype">点击选择交易类型</span>
 					</div>
@@ -131,12 +131,14 @@
 					endSuccess : function(data) {
 						datas = data;
 						var value = {
+							"zrf_zjlxnm":$("#type_option").html(),
+							"srf_zjlxnm":$("#purchaser_certype").html(),
 							"transferor_name" : $("form input:first-child").val(),
 							"transferor_phone" : $("input[name='transferor_phone']").val(),
-							"transferor_certype" : type_option,
+							"transferor_certype" : $("#type_option").attr('infoid'),
 							"transferor_certnumber" : $("input[name='transferor_certnumber']").val(),
-							"purchaser_certype" : purchaser_certype,
-							"transaction_type" : paytype,
+							"purchaser_certype" : $("#purchaser_certype").attr('infoid'),
+							"transaction_type" : $("#paytype").attr('infoid'),
 							"transaction_date" : dates
 						};
 						$.extend(datas, value);
@@ -145,89 +147,35 @@
 					}
 				});
 			});
-			function select() {
-				H.actionSheet(function(ret, err) {
-					type_option = ret.buttonIndex;
-					switch (type_option) {
-						case 1:
-							$("#type_option").html("身份证");
-							$("input[name=transferor_certnumber]").attr({
-								'data-rule' : 'idcard',
-								'data-nullmsg' : '身份证号不能为空',
-								'data-errmsg' : '身份证号填写错误'
-							});
-							break;
-						case 2:
-							$("#type_option").html("纳税人识别号");
-							$("input[name=transferor_certnumber]").attr({
-								'data-rule' : 'n',
-								'data-nullmsg' : '纳税人识别号不能为空',
-								'data-errmsg' : '纳税人识别号填写错误'
-							});
-							break;
-						case 3:
-							$("#type_option").html("组织机构代码");
-							$("input[name=transferor_certnumber]").attr({
-								'data-rule' : 'n',
-								'data-nullmsg' : '组织机构代码不能为空',
-								'data-errmsg' : '组织机构代码填写错误'
-							});
-							break;
-					}
-					console.log(JSON.stringify(ret));
-				}, '请选择证件类型', ['身份证', '纳税人识别号', '组织机构代码']);
-			}
-
 			//受让方证件类型选择器
-			function IDtype() {
-				H.actionSheet(function(ret, err) {
-					purchaser_certype = ret.buttonIndex;
-					switch (purchaser_certype) {
-						case 1:
-							$("#purchaser_certype").html("身份证");
-							$("input[name=purchaser_certnumber]").attr({
+			function IDtype(IDname, certnumber) {
+				H.selAjax(function(ret, selet_option,infonm001) {
+					$('#' + IDname).attr("infoid001", "");
+					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					if (ret.buttonIndex <= selet_option.length) {
+						//							alert(ret.buttonIndex);
+						$('#' + IDname).attr("infoid001", selet_option[ret.buttonIndex - 1].infoid001).html(selet_option[ret.buttonIndex - 1].infonm001);
+						if (selet_option[ret.buttonIndex - 1].infonm001 == "身份证") {
+							$("input[name=" + certnumber + "]").attr({
 								'data-rule' : 'idcard',
-								'data-nullmsg' : '身份证号不能为空',
-								'data-errmsg' : '身份证号填写错误'
+								'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
+								'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
 							});
-							break;
-						case 2:
-							$("#purchaser_certype").html("纳税人识别号");
-							$("input[name=purchaser_certnumber]").attr({
-								'data-rule' : 'n',
-								'data-nullmsg' : '纳税人识别号不能为空',
-								'data-errmsg' : '纳税人识别号填写错误'
-							});
-							break;
-						case 3:
-							$("#purchaser_certype").html("组织机构代码");
-							$("input[name=purchaser_certnumber]").attr({
-								'data-rule' : 'n',
-								'data-nullmsg' : '组织机构代码不能为空',
-								'data-errmsg' : '组织机构代码填写错误'
-							});
-							break;
-					};
-				}, '请选择证件类型', ['身份证', '纳税人识别号', '组织机构代码']);
+						}
+					}
+				}, 'getView001');
 			}
 
 			//交易类型选择器
-			function payType() {
-				H.actionSheet(function(ret, err) {
-					paytype = ret.buttonIndex;
-					switch (paytype) {
-						case 1:
-							$("#paytype").html("交易类型1");
-							break;
-						case 2:
-							$("#paytype").html("交易类型2");
-							break;
-						case 3:
-							$("#paytype").html("交易类型3");
-							break;
+			function payType(IDname) {
+				H.mulAjax(function(ret, selet_option) {
+					$('#' + IDname).attr("infoid002", "");
+					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					if (ret.buttonIndex <= selet_option.length) {
+						//							alert(ret.buttonIndex);
+						$('#' + IDname).attr("infoid002", selet_option[ret.buttonIndex - 1].infoid002).html(selet_option[ret.buttonIndex - 1].infonm001);
 					}
-					console.log(JSON.stringify(ret));
-				}, '请选择交易类型', ['交易类型1', '交易类型2', '交易类型3']);
+				}, 'getView002');
 			}
 
 			//交易时间选择器
@@ -284,44 +232,36 @@
 				//1.4、已经新增
 				if (assessinfo) {
 					//更新存量房信息
-					if (type_option) {
-						api.showProgress();
-						H.ajax(function(ret, err) {
-							results(ret, 'Transferee();');
-						}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
-							values : datas
-						});
-					} else {
-						H.toast('请选择证件类型');
-					}
+					api.showProgress();
+					H.ajax(function(ret, err) {
+						results(ret, 'Transferee();');
+					}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
+						values : datas
+					});
 				} else {
 					//新增存量房信息
-					if (type_option) {
-						H.ajax(function(ret, err) {
-							results(ret, function() {
-								//							H.toast(result.message);
-								H.setPrefs(function(ret, err) {
-									api.showProgress();
-									H.ajax(function(ret, err) {
-										results(ret, 'Transferee();');
-									}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + result.data.assessinfo_id, 'post', {
-										values : datas
-									});
-									//									console.log('setPref:rooms======' + JSON.stringify(ret));
-								}, 'rooms', JSON.stringify(result));
-							});
-						}, 'appHouseAssessAdd&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid, 'post', {
-							values : datas
+					H.ajax(function(ret, err) {
+						results(ret, function() {
+							//							H.toast(result.message);
+							H.setPrefs(function(ret, err) {
+								api.showProgress();
+								H.ajax(function(ret, err) {
+									results(ret, 'Transferee();');
+								}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + result.data.assessinfo_id, 'post', {
+									values : datas
+								});
+								//									console.log('setPref:rooms======' + JSON.stringify(ret));
+							}, 'rooms', JSON.stringify(result));
 						});
-					} else {
-						H.toast('请选择证件类型');
-					}
+					}, 'appHouseAssessAdd&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid, 'post', {
+						values : datas
+					});
 				}
 			}
 
 			function post_data() {
 				H.getUserPref(function() {
-					type_option != null && purchaser_certype != null && paytype != null && dates != null ? get_PREFS() : H.toast('您还有未选择的选项');
+					$("#type_option").attr('infoid') != "" && $("#purchaser_certype").attr('infoid') != "" && $("#paytype").attr('infoid') != "" && dates != null ? get_PREFS() : H.toast('您还有未选择的选项');
 				});
 			}
 		</script>
