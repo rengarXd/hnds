@@ -24,18 +24,18 @@
 			<div class="H-border-vertical-both-after">
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房产证号：</span>
-					<input type="text" value="154156412" name="property_number" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="房产证号不能为空" data-errmsg="房产证号填写错误"
+					<input type="text" value="" name="property_number" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="房产证号不能为空" data-errmsg="房产证号填写错误"
 					placeholder="填写房产证号" />
 				</div>
 				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="timePicker();">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						发证日期： <span class="H-padding-horizontal-both-12 H-float-right" id="times">点击选择发证日期</span>
+						发证日期： <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="times">点击选择发证日期</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">丘（地）号：</span>
-					<input type="text" name="place_number" value="131545" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="丘（地）号不能为空" data-errmsg="丘（地）号必须是数字"
+					<input type="text" name="place_number" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="丘（地）号不能为空" data-errmsg="丘（地）号必须是数字"
 					placeholder="请填写丘（地）号" />
 				</div>
 				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
@@ -46,35 +46,35 @@
 				<!--所在区域 start-->
 				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="partType('local_area')">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						所在区域: <span class="H-padding-horizontal-both-12 H-float-right" id="local_area" >请选择所在区域</span>
+						所在区域: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="local_area" >请选择所在区域</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<!--所在区域 end-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋坐落：</span>
-					<input type="text" value="房屋朝向" name="house_location" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写房屋坐落"
+					<input type="text" value="" name="house_location" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="信息不能为空" data-errmsg="填写房屋坐落"
 					placeholder="填写房屋坐落" />
 				</div>
 				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu()">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						评税分区： <span class="H-padding-horizontal-both-12 H-float-right" id="pingshui_type">点击选择评税分区</span>
+						评税分区： <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="pingshui_type">点击选择评税分区</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">幢（楼）号：</span>
-					<input type="text" name="fwzh" value="12" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
+					<input type="text" name="fwzh" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
 					placeholder="填写幢（楼）号" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">单元号：</span>
-					<input type="text" name="dy" value="6" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元号不能为空" data-errmsg="单元号不能为空"
+					<input type="text" name="dy" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元号不能为空" data-errmsg="单元号不能为空"
 					placeholder="填写单元号" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房号：</span>
-					<input type="text" name="fh" value="6" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号不能为空"
+					<input type="text" name="fh" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号不能为空"
 					placeholder="填写户号" />
 				</div>
 			</div>
