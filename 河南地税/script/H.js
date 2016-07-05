@@ -671,7 +671,7 @@
 				},
 				showProgress_CONFIG : {
 					style : 'default',
-					animationType : 'zoom',
+					//					animationType : 'none',
 					title : '加载中',
 					text : '请稍后...',
 					modal : false
@@ -1335,10 +1335,10 @@
 					});
 				}
 			},
-			mulAjax : function(callback, url,data) {
+			mulAjax : function(callback, url, data) {
 				var that = this;
 				that.getUserPref(function() {
-				that.showProgress();
+					that.showProgress();
 					that.ajax(function(ret, err) {
 						if (ret) {
 							if (ret.success) {
@@ -1348,20 +1348,20 @@
 								callback(selet_option);
 							} else {
 								that.hideProgress();
-								that.toast(ret.message)
+								that.toast(ret.message);
 							}
 							//							ret.success ? callback(ret) : that.toast(ret.message);
 						} else {
 							that.hideProgress();
 							that.toast('连接失败，请检查网络配置');
 						}
-					}, url + window.selectUrl, 'post', data);
+					}, 'getView' + url + window.selectUrl, 'post', data);
 				});
 			},
 			selAjax : function(callback, url) {
 				var that = this;
 				that.getUserPref(function() {
-				that.showProgress();
+					that.showProgress();
 					that.ajax(function(ret, err) {
 						if (ret) {
 							if (ret.success) {
@@ -1369,10 +1369,11 @@
 								that.hideProgress();
 								var selet_option = ret.data;
 								var typeArray = new Array();
-								var infoname = 'infonm'+url;
+								var infoname = 'infonm' + url;
 								for (var i = 0, len = selet_option.length; i < len; i++) {
 									typeArray.push(selet_option[i][infoname]);
-									console.log('infonm======'+infoname);;
+									console.log('infonm======' + infoname);
+									;
 								}
 								that.actionSheet(function(ret, err) {
 									callback(ret, selet_option);
@@ -1386,7 +1387,7 @@
 							that.hideProgress();
 							that.toast('连接失败，请检查网络配置');
 						}
-					}, 'getView'+ url + window.selectUrl, 'post', {
+					}, 'getView' + url + window.selectUrl, 'post', {
 						values : {
 							"user_id" : userinfo[0].user_id,
 							"uuid" : userinfo[0].uuid
