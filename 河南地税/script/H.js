@@ -1335,7 +1335,7 @@
 					});
 				}
 			},
-			mulAjax : function(callback, url, data) {
+			dkfpAjax : function(callback, url, name,dm) {
 				var that = this;
 				that.getUserPref(function() {
 					that.showProgress();
@@ -1345,7 +1345,14 @@
 								//					alert(JSON.stringify(ret));
 								that.hideProgress();
 								var selet_option = ret.data;
-								callback(selet_option);
+								console.log(JSON.stringify(selet_option));
+								var typeArray = new Array();
+								for (var i = 0, len = selet_option.length; i < len; i++) {
+									typeArray.push(selet_option[i][name]);
+								}
+								that.actionSheet(function(ret, err) {
+									callback(ret, selet_option);
+								}, '请选择对应选项', typeArray);
 							} else {
 								that.hideProgress();
 								that.toast(ret.message);
@@ -1355,7 +1362,12 @@
 							that.hideProgress();
 							that.toast('连接失败，请检查网络配置');
 						}
-					}, 'getView' + url + window.selectUrl, 'post', data);
+					}, 'getGoldTax' + url + window.selectUrl, 'post', {
+						values : {
+							"user_id" : userinfo[0].user_id,
+							"uuid" : userinfo[0].uuid
+						}
+					});
 				});
 			},
 			selAjax : function(callback, url) {
