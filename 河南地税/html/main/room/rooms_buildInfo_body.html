@@ -96,7 +96,7 @@
 		<script src="../../../script/zepto.min.js" type="text/javascript"></script>
 		<script src="../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var house_type = null;
+			var house_type = null, userinfo = null;
 			H.ready(function() {
 				api.parseTapmode();
 				H.getPrefs(function(ret, err) {
@@ -115,7 +115,7 @@
 						alert(msg);
 					},
 					endSuccess : function(data) {
-						var value = {
+						var selectData = {
 							"house_type" : $('#house_type').attr('infoid'),
 							"building_toward" : $('#building_toward').attr('infoid'),
 							"building_structure" : $('#building_structure').attr('infoid'),
@@ -123,20 +123,21 @@
 							"fqwz" : $('#fqwz').attr('infoid'),
 							"fslx" : $('#fslx').attr('infoid'),
 						};
-						for (var x in value) {
+						for (var x in selectData) {
 							var infoidData = $("#" + x).attr('infoid');
 							if (infoidData == null) {
 								return api.toast({
 									msg : $("#" + x).html() + "未选择"
 								});
-								;
+							} else {
+								if (selectData.fslx) {
+									datas = data;
+									$.extend(datas, selectData);
+									post_data();
+								}
 							}
-							console.log("data=" + infoidData);
+							//							console.log("data=" + infoidData);
 						};
-						datas = data;
-						$.extend(datas, value);
-						//						alert(JSON.stringify(datas));
-						post_data();
 						//												alert(JSON.stringify(datas));
 					}
 				});
@@ -158,39 +159,88 @@
 			//返回结果处理
 			function results(ret, callback) {
 				api.hideProgress();
-				if (ret.success) {
-					result = ret;
-					if ( typeof callback == "function") {
-						callback();
+				if (ret) {
+					if (ret.success) {
+						result = ret;
+						if ( typeof callback == "function") {
+							callback();
+						}
+					} else {
+						H.toast(ret.message);
 					}
-					api.execScript({
-						name : 'rooms_header',
-						script : 'fileInfo();'
-					});
 				} else {
-					H.toast(ret.message);
+					H.toast('连接错误，请检查网络配置');
 				}
+			}
+
+			//打开成功页
+			function openWin() {
+				api.execScript({
+					name : 'rooms_header',
+					script : 'success();'
+				});
+			}
+
+			//提交 申请
+			function house_submit() {
+				H.ajax(function(ret, err) {
+					api.hideProgress();
+					console.log(JSON.stringify(ret));
+					ret.success ? H.removePrefs(function(ret, err) {
+						openWin();
+					}, 'rooms') : api.confirm({
+						title : '存量房申请提交',
+						msg : "提交失败,是否清空填写申请并退出？",
+						buttons : ['确定', '取消']
+					}, function(ret, err) {
+						api.hideProgress();
+						if (ret.buttonIndex == 1) {
+							H.removePrefs(function(ret, err) {
+								H.closeWin();
+							}, 'rooms');
+						} else {
+							H.closeWin();
+						}
+					});
+				}, 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
+					values : {
+						user_id : userinfo[0].user_id,
+						uuid : userinfo[0].uuid,
+						keyid : assessinfo.data.assessinfo_id
+					}
+				});
 			}
 
 			function _ajax() {
 				//1.4、已经登录
 				//更新存量房信息
-				$('#house_type').attr('infoid003') ? H.ajax(function(ret, err) {
-					results(ret);
+				api.showProgress({
+					title : '上传中..'
+				});
+				H.ajax(function(ret, err) {
+					results(ret, function(ret) {
+						api.confirm({
+							title : '存量房申请提交',
+							msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
+							buttons : ['确定', '取消']
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.buttonIndex == 1) {
+									api.showProgress({
+										title : '提交中..'
+									});
+									house_submit();
+								}
+								//									console.log('ret===' + JSON.stringify(ret));
+							} else {
+								api.hideProgress();
+								alert(JSON.stringify(err));
+							}
+						});
+					});
 				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
 					values : datas
-				}) : H.toast('您还有未选择的选项');
-				//				if (type_option && paytype && dates) {
-				////					console.log(JSON.stringify(datas));
-				//					H.ajax(function(ret, err) {
-				//						H.toast(ret.message);
-				//						results(ret);
-				//					}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
-				//						values : datas
-				//					});
-				//				} else {
-				//					H.toast('您还有未选择的选项');
-				//				}
+				});
 			}
 
 			function post_data() {
