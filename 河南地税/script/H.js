@@ -1335,7 +1335,7 @@
 					});
 				}
 			},
-			dkfpAjax : function(callback, url, name,dm) {
+			dkfpAjax : function(callback, url, name, dm) {
 				var that = this;
 				that.getUserPref(function() {
 					that.showProgress();
@@ -1405,6 +1405,35 @@
 							"uuid" : userinfo[0].uuid
 						}
 					});
+				});
+			},
+			openTimePick : function(callback) {
+				var that = this;
+				var date = new Date();
+				var seperator1 = "-";
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if (month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				var currentdate = year + seperator1 + month + seperator1 + strDate;
+				api.openPicker({
+					type : 'date',
+					date : "'" + currentdate + "'"
+				}, function(ret, err) {
+					if (ret) {
+						if (that.isFunction(callback)) {
+							callback(ret);
+						}
+					} else {
+						api.toast({
+							msg : '选择时间错误'
+						});
+					}
 				});
 			},
 			cancelAjax : function(tag) {
