@@ -2,11 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
         <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
         <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
         <title>通知公告body</title>
-        <!--引入aui框架win-->
         <link rel="stylesheet" href="../../../css/Hui.css" />
         <link rel="stylesheet" href="../../../css/aui.css" />
         <style type="text/css">
@@ -20,14 +18,19 @@
                 background: #f5f5f5;
             }
         </style>
-        <!--引入AHelper.js框架-->
     </head>
     <body>
+        <!--渲染部分-->
         <div id="notice_data_body">
+            <!--加载部分-->
             <div id="loading" class="H-center-all H-padding-20">
+                <!--加载图片-->
                 <img src="../../../image/loading_more.gif" width="30" />
+                <!--加载图片-->
             </div>
+            <!--加载部分-->
         </div>
+        <!--渲染部分-->
         <script id="notice_data" type="text/html">
             {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
             <div class="H-padding-10 H-margin-vertical-both-10 H-theme-background-color-white H-border-vertical-both-after" onclick="showFunction('{{ d.data[i].notice_id }}')">
@@ -44,28 +47,61 @@
         <script type="text/javascript">
             var retobj = null;
             H.ready(function() {
-                api.getPrefs({
-                    key : 'userinfo'
-                }, function(ret, err) {
-                    console.log(JSON.stringify(ret));
-                    retobj = eval('(' + ret.value + ')');
-                    get_data();
-                });
+                //初始化用户信息及初始化数据
+                initUserInfo();
+                //初始化下拉刷新
+                initRefreshHeaderInfo();
+            });
+            //初始化下拉刷新
+            function initRefreshHeaderInfo() {
                 //下拉刷新
                 api.setRefreshHeaderInfo({
                     bgColor : '#fff'
                 }, function(ret, err) {
+                    //获取数据
                     get_data();
                 });
-            });
+            }
+
+            //初始化用户信息及初始化数据
+            function initUserInfo() {
+                api.getPrefs({
+                    key : 'userinfo'
+                }, function(ret, err) {
+                    retobj = eval('(' + ret.value + ')');
+                    get_data();
+                });
+            }
+
+            //获取数据
             function get_data() {
+                //访问公告信息接口处理数据
                 H.ajax(function(ret, err) {
+                    //关闭下拉刷新
                     api.refreshHeaderLoadDone();
-                    console.log(JSON.stringify(ret));
-                    var tpl = document.getElementById("notice_data").innerHTML;
-                    laytpl(tpl).render(ret, function(render) {
-                        document.getElementById("notice_data_body").innerHTML = render;
-                    });
+                    //如果返回数据正常并且成功返回
+                    if (ret && ret.success) {
+                        //渲染
+                        var tpl = document.getElementById("notice_data").innerHTML;
+                        laytpl(tpl).render(ret, function(render) {
+                            document.getElementById("notice_data_body").innerHTML = render;
+                        });
+                    } else if (ret && !ret.success) {
+                        api.alert({
+                            title : "登录信息失效",
+                            msg : "抱歉，登录信息失效，点击确定进行登录操作"
+                        }, function(ret, err) {
+                            if (ret && ret.buttonIndex === 1) {
+                                api.openWin({
+                                    name : 'login_body',
+                                    url : '../../login/login_body.html'
+                                });
+                                api.removePrefs({
+                                    key : 'islogin'
+                                });
+                            }
+                        });
+                    }
                 }, 'getNoticeinfo&funid=taxpayer_notice', 'post', {
                     values : {
                         user_id : retobj[0].user_id,
@@ -74,6 +110,7 @@
                 });
             }
 
+            //公告详情信息修改
             function showFunction(id) {
                 H.openWin('notice_show_head', './notice_show_head.html', {
                     id : id
