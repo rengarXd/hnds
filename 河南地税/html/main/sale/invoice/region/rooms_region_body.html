@@ -27,6 +27,8 @@
         <script type="text/javascript">
             var userinfoobj = null;
             function selectd(obj) {
+            get_data(obj)
+            	
             	$(obj).find('input').attr('checked','checked');
                 var typevalue = $(obj).find(".H-flex-item").html();
                 var typeid = $(obj).find(".H-flex-item").attr("dept_id");

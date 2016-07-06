@@ -20,9 +20,7 @@
 			</div>
 		</div>
 		<form id="forms">
-			<div class="H-border-vertical-both-after" id="sale_html">
-				
-			</div>
+			<div class="H-border-vertical-both-after" id="sale_html"></div>
 		</form>
 		<footer class="H-footer H-padding-10 ">
 			<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
@@ -41,28 +39,28 @@
 			<!--纳税人名称 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			纳税人名称: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="gmfszjlxmc">{{ d.transferor_name }}</span>
+			纳税人名称: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="gmfszjlxmc">{{ d.purchaser_name }}</span>
 			</div>
 			</div>
 			<!--纳税人名称 end-->
 			<!--证件类型 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			证件类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="zrf_zjlxnm">{{ d.zrf_zjlxnm }}</span>
+			证件类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="zrf_zjlxnm">{{ d.srf_zjlxnm }}</span>
 			</div>
 			</div>
 			<!--证件类型 end-->
 			<!--证件号码 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			证件号码: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="mfzjhm">{{ d.transferor_certnumber }}</span>
+			证件号码: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="mfzjhm">{{ d.purchaser_certnumber }}</span>
 			</div>
 			</div>
 			<!--证件号码 end-->
 			<!--联系电话 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			联系电话: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="mflxdh">{{ d.transferor_phone }}</span>
+			联系电话: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="mflxdh">{{ d.purchaser_phone }}</span>
 			</div>
 			</div>
 			<!--联系电话 end-->
@@ -101,6 +99,7 @@
 					endSuccess : function(data) {
 						var value = {
 							"gmfgjjc" : $("#gmfgjjc").attr("gjhdqsz_dm"),
+							"gmfgj_dm" : $("#gmfgjjc").html(),
 							"user_id" : userinfo[0].user_id,
 							"uuid" : userinfo[0].uuid
 						};

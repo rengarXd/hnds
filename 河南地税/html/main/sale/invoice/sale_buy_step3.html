@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
 		<title>房屋信息</title>
 		<link href="../../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
@@ -22,135 +22,167 @@
 		<form id="forms">
 			<div class="H-border-vertical-both-after">
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">合同编号：</span>
-					<input type="text" value="1111" name="htbh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同编号不能为空" data-errmsg="合同编号填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号：</span>
+					<input type="text" value="1111" name="htbh" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同编号不能为空" data-errmsg="合同编号填写错误"
 					placeholder="填写合同编号" />
 				</div>
 				<!--时间类型 start-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active"  onclick="htqdrqPick();">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
-						合同签订日期: <span class="H-padding-horizontal-both-12" id="htqdrq" >请选择合同签订日期</span>
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						合同签订日期: <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="htqdrq" id="htqdrq">请选择合同签订日期</span>
 					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<!--时间类型 end-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu()">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
-						主管税务所（科、分局）代码： <span class="H-padding-horizontal-both-12" id="pingshui_type">选择主管税务所（科、分局）</span>
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="xzqhSet('xzqhsz_dm','007','xzqhmc','xzqhsz_dm');">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						行政区划： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="xzqhsz_dm" id="xzqhsz_dm">选择行政区划</span>
 					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+				</div>
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="swjgSet('pingshui_type','008','swjgmc','swjg_dm');">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						税务机关： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="pingshui_type" id="pingshui_type">选择税务机关（科、分局）</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+				</div>
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="swjgSet('jdxz_dm','009','jdxzmc','jdxz_dm')">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						街道乡镇： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" id="jdxz_dm">选择街道乡镇</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">行政区划数字代码：</span>
-					<input type="text" value="11" name="xzqhsz_dm" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="行政区划数字代码不能为空" data-errmsg="行政区划数字代码填写错误"
-					placeholder="填写行政区划数字代码" />
-				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">街道乡镇代码：</span>
-					<input type="text" value="11" name="jdxz_dm" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="街道乡镇代码不能为空" data-errmsg="街道乡镇代码填写错误"
-					placeholder="填写街道乡镇代码" />
-				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房屋产权证书号：</span>
-					<input type="text" value="11" name="fwcqzsh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋产权证书号不能为空" data-errmsg="房屋产权证书号填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋产权证书号：</span>
+					<input type="text" value="11" name="fwcqzsh" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋产权证书号不能为空" data-errmsg="房屋产权证书号填写错误"
 					placeholder="填写房屋产权证书号" />
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房产类型代码：</span>
-					<input type="text" value="11" name="fclx_dm" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房产类型代码不能为空" data-errmsg="房产类型代码填写错误"
-					placeholder="填写房产类型代码" />
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fclx_dm','011','fclxmc','fclx_dm')">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						房产类型： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right"  data-id="fclx_dm" id="fclx_dm">选择房产类型</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房产类型代码：</span>
+				<input type="text" value="11" name="fclx_dm" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房产类型代码不能为空" data-errmsg="房产类型代码填写错误"
+				placeholder="填写房产类型代码" />
+				</div>-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">合同金额：</span>
-					<input type="text" value="111" name="htje" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
+					<input type="text" value="111" name="htje" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写错误"
 					placeholder="填写合同金额" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">面积：</span>
-					<input type="text" value="111" name="mj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="面积不能为空" data-errmsg="面积填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">面积：</span>
+					<input type="text" value="111" name="mj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="面积不能为空" data-errmsg="面积填写错误"
 					placeholder="填写面积" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">套内面积：</span>
-					<input type="text" value="11" name="tnmj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积：</span>
+					<input type="text" value="11" name="tnmj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
 					placeholder="填写套内面积" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房屋幢号：</span>
-					<input type="text" name="fwzh" value="12" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋幢号不能为空" data-errmsg="房屋幢号填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋幢号：</span>
+					<input type="text" name="fwzh" value="12" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋幢号不能为空" data-errmsg="房屋幢号填写错误"
 					placeholder="填写房屋幢号" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">单元：</span>
-					<input type="text" name="dy" value="5" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元不能为空" data-errmsg="单元填写错误"
-					placeholder="填写单元" />
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">单元：</span>
+					<input type="text" name="dy" value="5" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元不能为空" data-errmsg="单元填写错误" placeholder="填写单元"
+					/>
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">楼层：</span>
-					<input type="text" name="lc_1" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="楼层不能为空" data-errmsg="楼层填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">楼层：</span>
+					<input type="text" name="lc_1" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="楼层不能为空" data-errmsg="楼层填写错误"
 					placeholder="填写楼层" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房号：</span>
-					<input type="text" name="fh" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号填写错误"
-					placeholder="填写房号" />
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房号：</span>
+					<input type="text" name="fh" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号填写错误" placeholder="填写房号"
+					/>
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">建筑结构类型代码：</span>
-					<input type="text" name="jzjglx_dm" value="1" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="建筑结构类型代码不能为空" data-errmsg="建筑结构类型代码填写错误"
-					placeholder="填写建筑结构类型代码" />
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('jzjglx_dm','001','jzjglxmc','jzjglx_dm');">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						建筑结构类型： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="jzjglx_dm" id="jzjglx_dm">建筑结构类型</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">朝向代码：</span>
-					<input type="text" name="cx_dm" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="朝向代码不能为空" data-errmsg="朝向代码填写错误"
-					placeholder="填写朝向代码" />
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑结构类型代码：</span>
+				<input type="text" name="jzjglx_dm" value="1" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="建筑结构类型代码不能为空" data-errmsg="建筑结构类型代码填写错误"
+				placeholder="填写建筑结构类型代码" />
+				</div>-->
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('cx_dm','005','cxmc','cx_dm');">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						朝向： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="cx_dm" id="cx_dm">朝向</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">朝向代码：</span>
+				<input type="text" name="cx_dm" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="朝向代码不能为空" data-errmsg="朝向代码填写错误"
+				placeholder="填写朝向代码" />
+				</div>-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">土地、房屋地址：</span>
-					<input type="text" name="tdfwdz" value="河南省地税局" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="土地、房屋地址不能为空" data-errmsg="土地、房屋地址填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">土地、房屋地址：</span>
+					<input type="text" name="tdfwdz" value="河南省地税局" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="土地、房屋地址不能为空" data-errmsg="土地、房屋地址填写错误"
 					placeholder="填写土地、房屋地址" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">交易价格：</span>
-					<input type="text" name="jyjg" value="111" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="交易价格不能为空" data-errmsg="交易价格填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">交易价格：</span>
+					<input type="text" name="jyjg" value="111" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="交易价格不能为空" data-errmsg="交易价格填写错误"
 					placeholder="填写交易价格" />
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">房产交易方式代码：</span>
-					<input type="text" name="fcjyfs_dm" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房产交易方式代码不能为空" data-errmsg="房产交易方式代码填写错误"
-					placeholder="填写房产交易方式代码" />
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fcjyfs_dm','004','fcjyfsmc','fcjyfs_dm');">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						房产交易方式： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="fcjyfs_dm" id="fcjyfs_dm">房产交易方式</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房产交易方式代码：</span>
+				<input type="text" name="fcjyfs_dm" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房产交易方式代码不能为空" data-errmsg="房产交易方式代码填写错误"
+				placeholder="填写房产交易方式代码" />
+				</div>-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">土地使用证编号：</span>
-					<input type="text" name="tdsyzbh" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="土地使用证编号不能为空" data-errmsg="土地使用证编号填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">土地使用证编号：</span>
+					<input type="text" name="tdsyzbh" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="土地使用证编号不能为空" data-errmsg="土地使用证编号填写错误"
 					placeholder="填写土地使用证编号" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">转让面积：</span>
-					<input type="text" name="zrmj" value="111" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让面积不能为空" data-errmsg="转让面积填写错误"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">转让面积：</span>
+					<input type="text" name="zrmj" value="111" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让面积不能为空" data-errmsg="转让面积填写错误"
 					placeholder="填写转让面积" />
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">上次取得房屋方式：</span>
-					<input type="text" name="scqd_fwfs" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="上次取得房屋方式不能为空" data-errmsg="上次取得房屋方式填写错误"
-					placeholder="填写上次取得房屋方式" />
-				</div>
-				<!--时间类型 start-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active"  onclick="scqd_fwsjPick();">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-14 H-padding-vertical-both-12">
-						上次取得房屋时间: <span class="H-padding-horizontal-both-12" id="scqd_fwsj" >上次取得房屋时间</span>
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('scfcqdfs_dm','002','scfcqdfsmc','scfcqdfs_dm');">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						上次取得房屋方式： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" data-id="scfcqdfs_dm" id="scfcqdfs_dm">上次取得房屋方式</span>
 					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+				</div>
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">上次取得房屋方式：</span>
+				<input type="text" name="scqd_fwfs" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="上次取得房屋方式不能为空" data-errmsg="上次取得房屋方式填写错误"
+				placeholder="填写上次取得房屋方式" />
+				</div>-->
+				<!--时间类型 start-->
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="scqd_fwsjPick();">
+					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+						上次取得房屋时间: <span class="H-padding-horizontal-both-12" data-id="scqd_fwsj" id="scqd_fwsj">上次取得房屋时间</span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<!--时间类型 end-->
 				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">上次取得房屋时间：</span>
-				<input type="text" name="scqd_fwsj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="上次取得房屋时间不能为空" data-errmsg="上次取得房屋时间填写错误"
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">上次取得房屋时间：</span>
+				<input type="text" name="scqd_fwsj" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="上次取得房屋时间不能为空" data-errmsg="上次取得房屋时间填写错误"
 				placeholder="填写上次取得房屋时间" />
 				</div>-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-14">上次取得房屋成本：</span>
-					<input type="text" name="scqd_fwcb" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-14 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">上次取得房屋成本：</span>
+					<input type="text" name="scqd_fwcb" value="11" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
 					placeholder="填写上次取得房屋成本" />
 				</div>
 			</div>
@@ -164,7 +196,7 @@
 		<script src="../../../../script/zepto.min.js" type="text/javascript"></script>
 		<script src="../../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var house_type = null, htqdrq = null, scqd_fwsj = null;
+			var house_type = null, htqdrq = null, scqd_fwsj = null, userinfo = null;
 			H.ready(function() {
 				assessinfo_id = api.pageParam.assessinfo_id;
 				initPrefs();
@@ -176,17 +208,45 @@
 						alert(msg);
 					},
 					endSuccess : function(data) {
-						var value = {
+						$("[data-id]").each(function() {
+							var dm = $(this).attr('dm');
+							if (dm == null) {
+								return H.toast($(this).html());
+							}
+							console.log('dm==' + dm);
+						});
+						var selectData = {
 							"htqdrq" : htqdrq,
-							"zgswskfj_dm" : $("#pingshui_type").attr("dept_id"),
+							"xzqhsz_dm" : $("#xzqhsz_dm").attr('dm'),
+							"swjg_dm" : $("#pingshui_type").attr('dm'),
+							"jdxz_dm" : $("#jdxz_dm").attr('dm'),
+							"fclx_dm" : $("#fclx_dm").attr('dm'),
+							"jzjglx_dm" : $("#jzjglx_dm").attr('dm'),
+							"cx_dm" : $("#cx_dm").attr('dm'),
+							"fcjyfs_dm" : $("#fcjyfs_dm").attr('dm'),
+							"scfcqdfs_dm" : $("#scfcqdfs_dm").attr('dm'),
 							"scqd_fwsj" : scqd_fwsj,
 							"user_id" : userinfo[0].user_id,
 							"uuid" : userinfo[0].uuid
 						};
 						datas = data;
-						//						datas.house_type = house_type;
-						$.extend(datas, value);
-						_ajax();
+						$.extend(datas, selectData);
+						_ajax(datas);
+						//						for (var x in selectData) {
+						//							var infoidData = $("#" + x).attr('infoid');
+						//							if (infoidData == null) {
+						//								return api.toast({
+						//									msg : $("#" + x).html() + "未选择"
+						//								});
+						//							} else {
+						//								if (selectData.fslx) {
+						//									datas = data;
+						//									$.extend(datas, selectData);
+						//									post_data();
+						//								}
+						//							}
+						//							//							console.log("data=" + infoidData);
+						//						};
 						//						alert(JSON.stringify(datas));
 					}
 				});
@@ -197,6 +257,8 @@
 				api.openWin({
 					name : 'rooms_region_header',
 					url : 'region/rooms_region_header.html',
+					pageParam : {
+					},
 					animation : {
 						type : "none",
 						duration : 0
@@ -213,24 +275,85 @@
 				}, 'region');
 			}
 
-			//房屋类别
-			function IDtype() {
-				var msgAry = ['身份证', '纳税人识别号', '组织机构代码'];
-				H.actionSheet(function(ret, err) {
-					house_type = ret.buttonIndex;
-					switch (house_type) {
-						case 1:
-							$("#house_type").html(msgAry[0]);
-							break;
-						case 2:
-							$("#house_type").html(msgAry[1]);
-							break;
-						case 3:
-							$("#house_type").html(msgAry[2]);
-							break;
+			//类型选择器
+			function select(IdName, url, nm, dm) {
+				H.dkfpAjax(function(ret, selet_option) {
+					$('#' + IdName).attr("dm", "");
+					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					if (ret.buttonIndex <= selet_option.length) {
+						//							alert(ret.buttonIndex);
+						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
 					}
-					console.log(JSON.stringify(ret));
-				}, '请选择房屋类别', msgAry);
+				}, url, nm);
+			}
+
+			//行政区划选择器
+			var xzqh = null
+			function xzqhSet(IdName, url, nm, dm) {
+				H.dkfpAjax(function(ret, selet_option) {
+					$('#' + IdName).attr("dm", "");
+					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					if (ret.buttonIndex <= selet_option.length) {
+						xzqh = selet_option[ret.buttonIndex - 1].xzqhsz_dm
+						//							alert(ret.buttonIndex);
+						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1].xzqhmc);
+					}
+				}, '007', nm);
+			}
+
+			//			function option_ajax(selet_option, dm) {
+			//				var value = {
+			//					"user_id" : userinfo[0].user_id,
+			//					"uuid" : userinfo[0].uuid
+			//				};
+			//				var dmstr = '{' + dm + ':' + selet_option[ret.buttonIndex - 1][dm] + '}';
+			//				$.extend(value, dmstr);
+			//				_ajax({
+			//					values : value
+			//				});
+			//			}
+			//街道乡镇选择器
+			var swjg = null;
+			function swjgSet(IdName, url, nm, dm) {
+				if (xzqh) {
+					api.showProgress();
+					H.ajax(function(ret, err) {
+						if (ret) {
+							if (ret.success) {
+								//					alert(JSON.stringify(ret));
+								api.hideProgress();
+								var selet_option = ret.data;
+								var typeArray = new Array();
+								for (var i = 0, len = selet_option.length; i < len; i++) {
+									typeArray.push(selet_option[i][nm]);
+								}
+								H.actionSheet(function(ret, err) {
+									$('#' + IdName).attr("dm", "");
+									//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+									if (ret.buttonIndex <= selet_option.length) {
+										//							alert(ret.buttonIndex);
+										swjg = selet_option[ret.buttonIndex - 1][dm]
+										$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
+									}
+								}, '请选择对应选项', typeArray);
+							} else {
+								api.hideProgress();
+								H.toast(ret.message);
+							}
+						} else {
+							that.hideProgress();
+							that.toast('连接失败，请检查网络配置');
+						}
+					}, 'getGoldTax' + url + window.selectUrl, 'post', {
+						values : {
+							"xzqhsz_dm" : xzqh,
+							"user_id" : userinfo[0].user_id,
+							"uuid" : userinfo[0].uuid
+						}
+					});
+				} else {
+					H.toast('请先选择行政区划');
+				}
 			}
 
 			//获取room偏好值
@@ -264,75 +387,33 @@
 				}
 			}
 
-			function _ajax() {
+			function _ajax(datas) {
 				//1.4、已经登录
 				//更新存量房信息
-				if (htqdrq && scqd_fwsj) {
-					api.showProgress();
-					H.ajax(function(ret, err) {
-						//					alert(JSON.stringify(ret));
-						results(ret);
-					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data.fwuuid, 'post', {
-						values : datas
-					})
-				} else {
-					H.toast('您还有未选择的选项');
-				}
+				api.showProgress();
+				H.ajax(function(ret, err) {
+					//					alert(JSON.stringify(ret));
+					results(ret);
+				}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + clfxsxxb_id.data.fwuuid, 'post', {
+					values : datas
+				})
 			}
 
 			//上次取得房屋时间
 			function scqd_fwsjPick() {
-				var date = new Date();
-				var seperator1 = "-";
-				var year = date.getFullYear();
-				var month = date.getMonth() + 1;
-				var strDate = date.getDate();
-				if (month >= 1 && month <= 9) {
-					month = "0" + month;
-				}
-				if (strDate >= 0 && strDate <= 9) {
-					strDate = "0" + strDate;
-				}
-				var currentdate = year + seperator1 + month + seperator1 + strDate;
-				api.openPicker({
-					type : 'date',
-					date : "'" + currentdate + "'"
-				}, function(ret, err) {
-					if (ret) {
-						$("#scqd_fwsj").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
-						scqd_fwsj = ret.year + '-' + ret.month + '-' + ret.day;
-						//                      alert(JSON.stringify(ret));
-					} else {
-						H.toast('选择时间错误');
-					}
+				H.openTimePick(function(ret) {
+					$("#scqd_fwsj").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
+					scqd_fwsj = ret.year + '-' + ret.month + '-' + ret.day;
+					$("#scqd_fwsj").attr('dm', scqd_fwsj);
 				});
 			}
 
 			//交易时间选择器
 			function htqdrqPick() {
-				var date = new Date();
-				var seperator1 = "-";
-				var year = date.getFullYear();
-				var month = date.getMonth() + 1;
-				var strDate = date.getDate();
-				if (month >= 1 && month <= 9) {
-					month = "0" + month;
-				}
-				if (strDate >= 0 && strDate <= 9) {
-					strDate = "0" + strDate;
-				}
-				var currentdate = year + seperator1 + month + seperator1 + strDate;
-				api.openPicker({
-					type : 'date',
-					date : "'" + currentdate + "'"
-				}, function(ret, err) {
-					if (ret) {
-						$("#htqdrq").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
-						htqdrq = ret.year + '-' + ret.month + '-' + ret.day;
-						//                      alert(JSON.stringify(ret));
-					} else {
-						H.toast('选择时间错误');
-					}
+				H.openTimePick(function(ret) {
+					$("#htqdrq").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
+					htqdrq = ret.year + '-' + ret.month + '-' + ret.day;
+					$("#htqdrq").attr('dm', htqdrq);
 				});
 			}
 		</script>
