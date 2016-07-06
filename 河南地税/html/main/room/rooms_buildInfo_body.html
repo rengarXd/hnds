@@ -143,7 +143,7 @@
                 var infoid = 'infoid' + nums;
                 var infonm = 'infonm' + nums;
                 H.selAjax(function(ret, selet_option) {
-                    $('#' + IdName).attr("infoid", "");
+//                  $('#' + IdName).attr("infoid", "");
                     //					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
                     if (ret.buttonIndex <= selet_option.length) {
                         //							alert(ret.buttonIndex);
@@ -188,7 +188,7 @@
                         openWin();
                     } else {
                         api.toast({
-                            msg : '抱歉，提交数据有误，未提交成功！'
+                            msg : ret.message
                         });
                     }
                 }, 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
@@ -210,7 +210,7 @@
                     results(ret, function(ret) {
                         api.confirm({
                             title : '存量房申请提交',
-                            msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
+                            msg : '恭喜您已填写完成所有项，确认提交全部信息吗？',
                             buttons : ['确定', '取消']
                         }, function(ret, err) {
                             if (ret) {

@@ -149,7 +149,7 @@
 			//受让方证件类型选择器
 			function IDtype(IdName, CertNumber) {
 				H.selAjax(function(ret, selet_option, infonm001) {
-					$('#' + IdName).attr("infoid001", "");
+//					$('#' + IdName).attr("infoid001", "");
 					//alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
@@ -168,7 +168,7 @@
 			//交易类型选择器
 			function payType(IdName) {
 				H.selAjax(function(ret, selet_option) {
-					$('#' + IdName).attr("infoid002", "");
+//					$('#' + IdName).attr("infoid002", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
