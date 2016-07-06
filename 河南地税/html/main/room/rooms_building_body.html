@@ -135,11 +135,10 @@
 			//所在区域选择器
 			function partType(IdName) {
 				H.selAjax(function(ret, selet_option) {
-//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
+					//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
 					$('#' + IdName).attr("infoid010", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
-						
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("infoid010", selet_option[ret.buttonIndex - 1].infoid010).html(selet_option[ret.buttonIndex - 1].infonm010);
 					}
@@ -148,12 +147,14 @@
 
 			//打开评税分区
 			function PingShuiFenQu() {
-			console.log($("#local_area").attr("infoid010"));
+				console.log($("#local_area").attr("infoid010"));
 				var psfq = $("#local_area").attr("infoid010");
 				psfq ? api.openWin({
 					name : 'rooms_region_header',
 					url : 'region/rooms_region_header.html',
-					pageParam : {psfq:psfq},
+					pageParam : {
+						psfq : psfq
+					},
 					animation : {
 						type : "none",
 						duration : 0
@@ -188,31 +189,12 @@
 				}
 			}
 
-			//交易时间选择器
+			//发证日期选择器
 			function timePicker() {
-				var date = new Date();
-				var seperator1 = "-";
-				var year = date.getFullYear();
-				var month = date.getMonth() + 1;
-				var strDate = date.getDate();
-				if (month >= 1 && month <= 9) {
-					month = "0" + month;
-				}
-				if (strDate >= 0 && strDate <= 9) {
-					strDate = "0" + strDate;
-				}
-				var currentdate = year + seperator1 + month + seperator1 + strDate;
-				api.openPicker({
-					type : 'date',
-					date : "'" + currentdate + "'"
-				}, function(ret, err) {
-					if (ret) {
-						$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
-						dates = ret.year + '-' + ret.month + '-' + ret.day;
-						//						alert(JSON.stringify(ret));
-					} else {
-						H.toast('选择时间错误');
-					}
+				H.openTimePick(function(ret) {
+					//获取返回时间
+					$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
+					dates = ret.year + '-' + ret.month + '-' + ret.day;
 				});
 			}
 

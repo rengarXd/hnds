@@ -110,9 +110,8 @@
 			var assessinfo = null, type_option = null, purchaser_certype = null, paytype = null, dates = null, result = null;
 			Zepto(function($) {
 			});
-			
 			H.ready(function() {
-			     api.parseTapmode();
+				api.parseTapmode();
 				H.getPrefs(function(ret, err) {
 					if (ret && ret.value) {
 						assessinfo = eval('(' + ret.value + ')');
@@ -131,8 +130,8 @@
 					endSuccess : function(data) {
 						datas = data;
 						var value = {
-							"zrf_zjlxnm":$("#type_option").html(),
-							"srf_zjlxnm":$("#purchaser_certype").html(),
+							"zrf_zjlxnm" : $("#type_option").html(),
+							"srf_zjlxnm" : $("#purchaser_certype").html(),
 							"transferor_name" : $("form input:first-child").val(),
 							"transferor_phone" : $("input[name='transferor_phone']").val(),
 							"transferor_certype" : $("#type_option").attr('infoid001'),
@@ -141,17 +140,15 @@
 							"transaction_type" : $("#paytype").attr('infoid002'),
 							"transaction_date" : dates
 						};
-						
 						$.extend(datas, value);
 						post_data();
 						//						alert(JSON.stringify(data));
 					}
 				});
 			});
-			
 			//受让方证件类型选择器
 			function IDtype(IdName, CertNumber) {
-				H.selAjax(function(ret, selet_option,infonm001) {
+				H.selAjax(function(ret, selet_option, infonm001) {
 					$('#' + IdName).attr("infoid001", "");
 					//alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
@@ -182,33 +179,14 @@
 
 			//交易时间选择器
 			function timePicker() {
-				var date = new Date();
-				var seperator1 = "-";
-				var year = date.getFullYear();
-				var month = date.getMonth() + 1;
-				var strDate = date.getDate();
-				if (month >= 1 && month <= 9) {
-					month = "0" + month;
-				}
-				if (strDate >= 0 && strDate <= 9) {
-					strDate = "0" + strDate;
-				}
-				var currentdate = year + seperator1 + month + seperator1 + strDate;
-				api.openPicker({
-					type : 'date',
-					date : "'" + currentdate + "'"
-				}, function(ret, err) {
-					if (ret) {
-						$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
-						dates = ret.year + '-' + ret.month + '-' + ret.day;
-						//						alert(JSON.stringify(ret));
-					} else {
-						H.toast('选择时间错误');
-					}
+				H.openTimePick(function(ret) {
+					//获取返回时间
+					$("#times").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
+					dates = ret.year + '-' + ret.month + '-' + ret.day;
 				});
 			}
 
-            //处理返回结果
+			//处理返回结果
 			function results(ret, callback) {
 				if (ret.success) {
 					result = ret;
@@ -229,8 +207,8 @@
 					H.toast(ret);
 				}
 			}
-            
-            //更新或新增业务分发
+
+			//更新或新增业务分发
 			function get_PREFS() {
 				console.log('assessinfo=====' + JSON.stringify(assessinfo));
 				//1.4、已经新增
@@ -263,7 +241,7 @@
 				}
 			}
 
-            //发送数据
+			//发送数据
 			function post_data() {
 				H.getUserPref(function() {
 					$("#type_option").attr('infoid') != "" && $("#purchaser_certype").attr('infoid') != "" && $("#paytype").attr('infoid') != "" && dates != null ? get_PREFS() : H.toast('您还有未选择的选项');
