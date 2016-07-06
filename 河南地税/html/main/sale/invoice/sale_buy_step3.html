@@ -278,7 +278,7 @@
 			//类型选择器
 			function select(IdName, url, nm, dm) {
 				H.dkfpAjax(function(ret, selet_option) {
-					$('#' + IdName).attr("dm", "");
+//					$('#' + IdName).attr("dm", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
@@ -291,7 +291,7 @@
 			var xzqh = null
 			function xzqhSet(IdName, url, nm, dm) {
 				H.dkfpAjax(function(ret, selet_option) {
-					$('#' + IdName).attr("dm", "");
+//					$('#' + IdName).attr("dm", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						xzqh = selet_option[ret.buttonIndex - 1].xzqhsz_dm
