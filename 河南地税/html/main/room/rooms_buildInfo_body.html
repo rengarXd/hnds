@@ -127,7 +127,7 @@
                             var infoidData = $("#" + x).attr('infoid');
                             if (infoidData == null) {
                                 return api.toast({
-                                    msg : $("#" + x).html() + "未选择"
+                                    msg : $("#" + x).html()
                                 });
                             } else {
                             }
@@ -210,7 +210,7 @@
                     results(ret, function(ret) {
                         api.confirm({
                             title : '存量房申请提交',
-                            msg : '恭喜您已填写完成所有项，确认提交全部信息吗？',
+                            msg : '恭喜您上传完成所有项，确认提交全部信息吗？',
                             buttons : ['确定', '取消']
                         }, function(ret, err) {
                             if (ret) {
