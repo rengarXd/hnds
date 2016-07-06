@@ -323,19 +323,24 @@
 								//					alert(JSON.stringify(ret));
 								api.hideProgress();
 								var selet_option = ret.data;
-								var typeArray = new Array();
-								for (var i = 0, len = selet_option.length; i < len; i++) {
-									typeArray.push(selet_option[i][nm]);
-								}
-								H.actionSheet(function(ret, err) {
-									$('#' + IdName).attr("dm", "");
-									//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
-									if (ret.buttonIndex <= selet_option.length) {
-										//							alert(ret.buttonIndex);
-										swjg = selet_option[ret.buttonIndex - 1][dm]
-										$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
+								if (selet_option.length == 0) {
+									H.toast('暂无数据');
+									$('#' + IdName).html('');
+								} else {
+									var typeArray = new Array();
+									for (var i = 0, len = selet_option.length; i < len; i++) {
+										typeArray.push(selet_option[i][nm]);
 									}
-								}, '请选择对应选项', typeArray);
+									H.actionSheet(function(ret, err) {
+										$('#' + IdName).attr("dm", "");
+										//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+										if (ret.buttonIndex <= selet_option.length) {
+											//							alert(ret.buttonIndex);
+											swjg = selet_option[ret.buttonIndex - 1][dm]
+											$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
+										}
+									}, '请选择对应选项', typeArray);
+								}
 							} else {
 								api.hideProgress();
 								H.toast(ret.message);
