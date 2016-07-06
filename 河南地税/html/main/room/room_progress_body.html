@@ -7,6 +7,20 @@
         <title>受理进度body</title>
         <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
         <link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+        <style>
+            .h-status {
+                width: 42px;
+                height: 41px;
+                background: rgb(34, 188, 189);
+                border-radius: 42px;
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
+                padding: 6px;
+                margin: 8px;
+                line-height: 42px;
+            }
+        </style>
     </head>
     <body>
         <div class="H-position-absolute H-position-center-all" id="statuss" style="display: none">
@@ -17,6 +31,11 @@
                 </div>
             </div>
         </div>
+        <div class="H-padding-10" onclick="H.openWin('rooms_header','./rooms_header.html');">
+            <button class="H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+                新增申请
+            </button>
+        </div>
         <div id="progress_data_body">
             <div id="loading" class="H-center-all H-padding-20">
                 <img src="../../../image/loading_more.gif" width="30" />
@@ -24,12 +43,22 @@
         </div>
         <script id="progress_data" type="text/html">
             {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-            <div class="H-padding-10 H-theme-background-color-white H-border-vertical-top-after" onclick="showFunction('{{ d.data[i].assessinfo_id }}')">
-            <div class="H-text-show-row-1 H-font-size-16 H-theme-font-color1">
-            {{ d.data[i].approve_state }}
+            <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white">
+            {{# if(d.data[i].approve_state=="未评估"){ }}
+            <div class="H-padding-vertical-both-10 h-status">{{ d.data[i].approve_state }}</div>
+            {{# }else if(d.data[i].approve_state=="审批中"){ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #D7A470">{{ d.data[i].approve_state }}</div>
+            {{# }else if(d.data[i].approve_state=="已评估"){ }}
+             <div class="H-padding-vertical-both-10 h-status" style="background: red">{{ d.data[i].approve_state }}</div>
+            {{# }else{ }}
+             <div class="H-padding-vertical-both-10 h-status" style="background: #ddd">{{ d.data[i].approve_state }}</div>
+             {{# } }}
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+            转让方：{{ d.data[i].transferor_name }}<br />
+            受让方：{{ d.data[i].purchaser_name }}<br />
+            房产证号：{{ d.data[i].property_number }}<br />
+            日期：{{ d.data[i].add_date }}
             </div>
-            <div class="H-font-size-10 d_font_time_color">转让方:{{ d.data[i].transferor_name }}</div>
-            <div class="H-font-size-10 d_font_time_color">受让方:{{ d.data[i].purchaser_name }}</div>
             </div>
             {{# } }}
         </script>
@@ -50,20 +79,21 @@
                         laytpl(tpl).render(ret, function(render) {
                             document.getElementById("progress_data_body").innerHTML = render;
                         });
-                    }, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
+                    }, 'appRateAdvanceList&funid=houses_assessinfo', 'post', {
                         values : {
                             user_id : user_id,
                             uuid : uuid,
+                            type : 1
                         }
                     });
                 });
             });
             function showFunction(assessinfo_id, transferor_certnumber) {
-				H.openWin('sale_header', './invoice/sale_header.html', {
-					assessinfo_id : assessinfo_id,
-					transferor_certnumber : transferor_certnumber
-				});
-			}
+                H.openWin('sale_header', './invoice/sale_header.html', {
+                    assessinfo_id : assessinfo_id,
+                    transferor_certnumber : transferor_certnumber
+                });
+            }
         </script>
     </body>
 </html>
