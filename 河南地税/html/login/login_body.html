@@ -8,9 +8,9 @@
         <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../../css/fonts/iconfont.css" />
         <style type="text/css">
-									html, body {
-										background:#0193e8;
-									}
+            html, body {
+                background: #0193e8;
+            }
         </style>
     </head>
     <body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
@@ -82,10 +82,6 @@
 
             //登录成功处理
             function isSuccess(rets) {
-                //1.登录成功之后延时关闭自已
-                setTimeout(function() {
-                    H.closeWin();
-                }, 1200);
                 //2.标识已经登录成功
                 api.setPrefs({
                     key : 'islogin',
@@ -105,6 +101,10 @@
                                         name : 'main',
                                         url : '../main.html'
                                     });
+                                    //1.登录成功之后延时关闭自已
+                                    setTimeout(function() {
+                                        H.closeWin();
+                                    }, 2000);
                                 }, 'updateRegistration&funid=sys_user', 'post', {
                                     values : {
                                         user_id : rets.data[0].user_id,
