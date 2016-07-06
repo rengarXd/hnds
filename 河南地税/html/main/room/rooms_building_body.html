@@ -107,7 +107,7 @@
 							"local_area" : $("#local_area").attr("infoid010")
 						};
 						datas = data;
-						console.log(JSON.stringify(datas));
+						//						console.log(JSON.stringify(datas));
 						//						datas.issue_date = dates;
 						$.extend(datas, value);
 						post_data();
@@ -136,9 +136,11 @@
 			function partType(IdName) {
 				H.selAjax(function(ret, selet_option) {
 					//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
-//					$('#' + IdName).attr("infoid010", "");
+					//					$('#' + IdName).attr("infoid010", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
+						$("#pingshui_type").html('');
+						$("#pingshui_type").attr("xqdm", '');
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("infoid010", selet_option[ret.buttonIndex - 1].infoid010).html(selet_option[ret.buttonIndex - 1].infonm010);
 					}
@@ -202,7 +204,8 @@
 				//1.4、已经登录
 				//更新存量房信息
 				var pingshui = $("#pingshui_type").attr("xqdm");
-				dates && pingshui ? H.ajax(function(ret, err) {
+				var local_area = $("#local_area").attr("infoid010");
+				dates && pingshui && local_area ? H.ajax(function(ret, err) {
 					results(ret);
 				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo.data.assessinfo_id, 'post', {
 					values : datas
