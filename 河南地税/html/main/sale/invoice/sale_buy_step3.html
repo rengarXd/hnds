@@ -196,7 +196,7 @@
 		<script src="../../../../script/zepto.min.js" type="text/javascript"></script>
 		<script src="../../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var house_type = null, htqdrq = null, scqd_fwsj = null, userinfo = null;
+			var house_type = null, htqdrq = null, scqd_fwsj = null, userinfo = null, datas = null;
 			H.ready(function() {
 				assessinfo_id = api.pageParam.assessinfo_id;
 				initPrefs();
@@ -208,17 +208,19 @@
 						alert(msg);
 					},
 					endSuccess : function(data) {
+						var yanzheng = true;
 						$("[data-id]").each(function() {
 							var dm = $(this).attr('dm');
-							if (dm == null) {
-								return H.toast($(this).html());
+							if (dm == null || dm == "") {
+								H.toast($(this).html());
+								console.log("dm===" + $(this).html());
+								yanzheng = false;
 							}
-							console.log('dm==' + dm);
 						});
 						var selectData = {
 							"htqdrq" : htqdrq,
 							"xzqhsz_dm" : $("#xzqhsz_dm").attr('dm'),
-							"swjg_dm" : $("#pingshui_type").attr('dm'),
+							"zgswskfj_dm" : $("#pingshui_type").attr('dm'),
 							"jdxz_dm" : $("#jdxz_dm").attr('dm'),
 							"fclx_dm" : $("#fclx_dm").attr('dm'),
 							"jzjglx_dm" : $("#jzjglx_dm").attr('dm'),
@@ -231,7 +233,14 @@
 						};
 						datas = data;
 						$.extend(datas, selectData);
-						_ajax(datas);
+						if (yanzheng) {
+							_ajax(datas);
+						}
+						//						yanzheng ? _ajax(datas) : H.toast('您还有未选择的项');
+						//								var yanzheng = true;
+						//						if (yanzheng) {
+						//							_ajax(datas);
+						//						}
 						//						for (var x in selectData) {
 						//							var infoidData = $("#" + x).attr('infoid');
 						//							if (infoidData == null) {
@@ -278,7 +287,7 @@
 			//类型选择器
 			function select(IdName, url, nm, dm) {
 				H.dkfpAjax(function(ret, selet_option) {
-//					$('#' + IdName).attr("dm", "");
+					//					$('#' + IdName).attr("dm", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
@@ -291,14 +300,16 @@
 			var xzqh = null
 			function xzqhSet(IdName, url, nm, dm) {
 				H.dkfpAjax(function(ret, selet_option) {
-//					$('#' + IdName).attr("dm", "");
+					//					$('#' + IdName).attr("dm", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
+						$('#pingshui_type').html('选择税务机关（科、分局）').attr('dm', '');
+						$('#jdxz_dm').html('选择街道乡镇').attr('dm', '');
 						xzqh = selet_option[ret.buttonIndex - 1].xzqhsz_dm
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1].xzqhmc);
 					}
-				}, '007', nm);
+				}, url, nm);
 			}
 
 			//			function option_ajax(selet_option, dm) {
@@ -392,7 +403,8 @@
 				}
 			}
 
-			function _ajax(datas) {
+			function _ajax() {
+				console.log(JSON.stringify(datas));
 				//1.4、已经登录
 				//更新存量房信息
 				api.showProgress();

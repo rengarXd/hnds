@@ -160,8 +160,8 @@
 			//国籍选择器
 			function select(IdName) {
 				H.dkfpAjax(function(ret, selet_option) {
-//					$('#' + IdName).attr("gjhdqsz_dm", "");
-					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					//$('#' + IdName).attr("gjhdqsz_dm", "");
+					//alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("gjhdqsz_dm", selet_option[ret.buttonIndex - 1].gjhdqsz_dm).html(selet_option[ret.buttonIndex - 1].gjhdqjc);
@@ -202,6 +202,7 @@
 			function get_PREFS() {
 				//1.4、已经新增
 				//更新存量房信息
+				var mfgjjc = $("#mfgjjc").attr("gjhdqsz_dm")
 				if (mfgjjc) {
 					api.showProgress();
 					H.ajax(function(ret, err) {
