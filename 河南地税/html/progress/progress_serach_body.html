@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>受理进度查询body</title>
+        <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+        <link href="../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="H-position-absolute H-position-center-all" id="statuss" style="display: none">
+            <div class="H-font-size-14 H-text-align-center">
+                <i class="iconfont icon-jindu H-font-size-32 H-theme-font-color1"></i>
+                <div class="H-theme-font-color1">
+                    受理进度为空
+                </div>
+            </div>
+        </div>
+        
+        <div id="progress_data_body">
+            <div id="loading" class="H-center-all H-padding-20">
+                <img src="../../image/loading_more.gif" width="30" />
+            </div>
+        </div>
+        <script id="progress_data" type="text/html">
+            {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
+            <div class="H-padding-10 H-theme-background-color-white H-border-vertical-top-after" onclick="showFunction('{{ d.data[i].assessinfo_id }}')">
+            <div class="H-text-show-row-1 H-font-size-16 H-theme-font-color1">
+            {{ d.data[i].approve_state }}
+            </div>
+            <div class="H-font-size-10 d_font_time_color">转让方:{{ d.data[i].transferor_name }}</div>
+            <div class="H-font-size-10 d_font_time_color">受让方:{{ d.data[i].purchaser_name }}</div>
+            </div>
+            {{# } }}
+        </script>
+        <script src="../../script/H.js" type="text/javascript"></script>
+        <script src="../../script/zepto.min.js" type="text/javascript"></script>
+        <script src="../../script/tools/laytpl.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            H.ready(function() {
+                api.getPrefs({
+                    key : 'userinfo'
+                }, function(ret, err) {
+                    retobj = eval('(' + ret.value + ')');
+                    var user_id = retobj[0].user_id;
+                    var uuid = retobj[0].uuid;
+                    H.ajax(function(ret, err) {
+                        $("#statuss").hide();
+                        var tpl = document.getElementById("progress_data").innerHTML;
+                        laytpl(tpl).render(ret, function(render) {
+                            document.getElementById("progress_data_body").innerHTML = render;
+                        });
+                    }, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
+                        values : {
+                            user_id : user_id,
+                            uuid : uuid,
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
