@@ -20,6 +20,19 @@
                 margin: 8px;
                 line-height: 42px;
             }
+            .b_style {
+                width: 40px;
+                height: 20px;
+                background: #f5f5f5;
+                border: 1px solid #ddd;
+                font-size: 12px;
+                color: #AFAFAF;
+                border-radius: 4px;
+                float: right;
+                /* width: 20px; */
+                margin-top: 15px;
+                margin-right: 20px;
+            }
         </style>
     </head>
     <body>
@@ -40,22 +53,62 @@
         <div class="H-padding-vertical-top-10"></div>
         <script id="progress_data" type="text/html">
             {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-            <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white">
+            <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white" tapmode="H-active" onclick="show('{{ d.data[i].id }}');">
             {{# if(d.data[i].approve_state=="未评估"){ }}
-            <div class="H-padding-vertical-both-10 h-status">{{ d.data[i].approve_state }}</div>
-            {{# }else if(d.data[i].approve_state=="审批中"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">{{ d.data[i].approve_state }}</div>
-            {{# }else if(d.data[i].approve_state=="已评估"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #89d043">{{ d.data[i].approve_state }}</div>
-            {{# }else{ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">{{ d.data[i].approve_state }}</div>
-            {{# } }}
+            <div class="H-padding-vertical-both-10 h-status">
+            {{ d.data[i].approve_state }}
+            </div>
             <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
             转让方：{{ d.data[i].transferor_name }}<br />
             受让方：{{ d.data[i].purchaser_name }}<br />
             房产证号：{{ d.data[i].property_number }}<br />
             日期：{{ d.data[i].add_date }}
             </div>
+            {{# }else if(d.data[i].approve_state=="审批中"){ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">
+            {{ d.data[i].approve_state }}
+            </div>
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+            转让方：{{ d.data[i].transferor_name }}<br />
+            受让方：{{ d.data[i].purchaser_name }}<br />
+            房产证号：{{ d.data[i].property_number }}<br />
+            日期：{{ d.data[i].add_date }}
+            </div>
+            {{# }else if(d.data[i].approve_state=="已评估"){ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #89d043">
+            {{ d.data[i].approve_state }}
+            </div>
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+            转让方：{{ d.data[i].transferor_name }}<br />
+            受让方：{{ d.data[i].purchaser_name }}<br />
+            房产证号：{{ d.data[i].property_number }}<br />
+            日期：{{ d.data[i].add_date }}
+            </div>
+            {{# }else if(d.data[i].approve_state=="未提交"){ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
+            {{ d.data[i].approve_state }}
+            </div>
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+            转让方：{{ d.data[i].transferor_name }}<br />
+            受让方：{{ d.data[i].purchaser_name }}<br />
+            房产证号：{{ d.data[i].property_number }}<br />
+            日期：{{ d.data[i].add_date }}
+            </div>
+            <div class="H-float-right">
+            <button class="b_style">编辑</button><br/>
+            <button class="b_style">删除</button>
+            </div>
+            {{# }else{ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #fab729">
+            {{ d.data[i].approve_state }}
+            </div>
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+            转让方：{{ d.data[i].transferor_name }}<br />
+            受让方：{{ d.data[i].purchaser_name }}<br />
+            房产证号：{{ d.data[i].property_number }}<br />
+            日期：{{ d.data[i].add_date }}
+            </div>
+            {{# } }}
             </div>
             {{# } }}
         </script>
@@ -98,12 +151,18 @@
                         } else if (ret && !ret.success) {
                             return $common.loginInvalid();
                         }
-                    }, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
+                    }, 'appRateAdvanceList&funid=houses_assessinfo', 'post', {
                         values : {
                             user_id : user_id,
                             uuid : uuid,
                         }
                     });
+                });
+            }
+
+            function show(assessinfo_id) {
+                H.openWin('rooms_show_header', './rooms_show_header.html', {
+                    assessinfo_id : assessinfo_id
                 });
             }
         </script>
