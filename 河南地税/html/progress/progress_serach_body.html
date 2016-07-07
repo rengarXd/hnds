@@ -25,6 +25,11 @@
             <input tapmode="" onclick="EndTime();" type="text" id="endtime" value="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="申请结束时间">
             <span tapmode="" onclick="$('#endtime').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><i class="iconfont icon-shanchu H-font-size-18 H-vertical-middle d_del"></i></span>
         </div>
+        <div class="H-flexbox-horizontal">
+            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-xuyaofapiao01 H-font-size-18 H-vertical-middle"></i></span>
+            <input tapmode="" onclick="Type();" type="text" id="type" value="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="业务类型">
+            <span tapmode="" onclick="$('#type').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><i class="iconfont icon-shanchu H-font-size-18 H-vertical-middle d_del"></i></span>
+        </div>
         <div class="H-flexbox-horizontal" tapmode="" onclick="Status();">
             <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-shenpi H-font-size-18 H-vertical-middle"></i></span>
             <input type="text" id="status" value="全部" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="审批状态">
@@ -128,6 +133,26 @@
             //清空数据
             function delval(id) {
                 $(id).val("");
+            }
+
+            //业务类型
+            function Type() {
+                var type = $("#type");
+                api.actionSheet({
+                    buttons : ['存量房评估申请', '代开发票申请']
+                }, function(ret, err) {
+                    if (ret) {
+                        var index = ret.buttonIndex;
+                        switch(index) {
+                            case 1:
+                                type.val("存量房评估申请");
+                                break;
+                            case 2:
+                                type.val("代开发票申请");
+                                break;
+                        }
+                    }
+                });
             }
         </script>
     </body>

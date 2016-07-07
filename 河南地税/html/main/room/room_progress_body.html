@@ -45,14 +45,22 @@
             {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
             <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white">
             {{# if(d.data[i].approve_state=="未评估"){ }}
-            <div class="H-padding-vertical-both-10 h-status">{{ d.data[i].approve_state }}</div>
+            <div class="H-padding-vertical-both-10 h-status">
+            {{ d.data[i].approve_state }}
+            </div>
             {{# }else if(d.data[i].approve_state=="审批中"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #D7A470">{{ d.data[i].approve_state }}</div>
+            <div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">
+            {{ d.data[i].approve_state }}
+            </div>
             {{# }else if(d.data[i].approve_state=="已评估"){ }}
-             <div class="H-padding-vertical-both-10 h-status" style="background: red">{{ d.data[i].approve_state }}</div>
+            <div class="H-padding-vertical-both-10 h-status" style="background: #89d043">
+            {{ d.data[i].approve_state }}
+            </div>
             {{# }else{ }}
-             <div class="H-padding-vertical-both-10 h-status" style="background: #ddd">{{ d.data[i].approve_state }}</div>
-             {{# } }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
+            {{ d.data[i].approve_state }}
+            </div>
+            {{# } }}
             <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
             转让方：{{ d.data[i].transferor_name }}<br />
             受让方：{{ d.data[i].purchaser_name }}<br />
