@@ -39,37 +39,41 @@
                     };
                     H.openFrame(frameName, frameUrl, framepageParam, _options);
                 }, "#header");
-//              if (oldframeName != '') {
-//                  setTimeout(function() {
-//                      api.closeFrame({
-//                          name : oldframeName
-//                      });
-//                  }, 1000);
-//              }
+                //              if (oldframeName != '') {
+                //                  setTimeout(function() {
+                //                      api.closeFrame({
+                //                          name : oldframeName
+                //                      });
+                //                  }, 1000);
+                //              }
             }
 
-//          function openHouseInfo() {
-//              openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
-//          }
-			//楼栋信息
+            //          function openHouseInfo() {
+            //              openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
+            //          }
+            //楼栋信息
             function Transferee() {
-                openNewframe('rooms_payInfo_body', 'rooms_building_body', 'rooms_building_body.html');
+                openNewframe('rooms_payInfo_body', 'rooms_building_body', 'rooms_building_body.html',api.pageParam);
             }
-			//打开房产信息
+
+            //打开房产信息
             function buildInfo() {
-                openNewframe('rooms_building_body', 'rooms_buildInfo_body', 'rooms_buildInfo_body.html');
+                openNewframe('rooms_building_body', 'rooms_buildInfo_body', 'rooms_buildInfo_body.html',api.pageParam);
             }
+
             //打开上传图片附件
             function fileInfo() {
-            	openNewframe('rooms_buildInfo_body', 'rooms_apply_body', 'rooms_apply_body.html');
+                openNewframe('rooms_buildInfo_body', 'rooms_apply_body', 'rooms_apply_body.html',api.pageParam);
             }
+
             //提交成功
             function success() {
-            	openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html');
+                openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html');
             }
+
             //测试
             function test() {
-            	 openNewframe('rooms_payInfo_body', 'rooms_apply_body', 'rooms_apply_body.html');
+                openNewframe('rooms_payInfo_body', 'rooms_apply_body', 'rooms_apply_body.html');
             }
         </script>
     </body>
