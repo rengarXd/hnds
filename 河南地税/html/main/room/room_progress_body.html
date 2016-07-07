@@ -37,6 +37,9 @@
             .H-active:active {
                 background: #f5f5f5;
             }
+            .h-text-color {
+                color: #f5f5f5;
+            }
         </style>
     </head>
     <body>
@@ -57,6 +60,12 @@
             <div id="loading" class="H-center-all H-padding-20">
                 <img src="../../../image/loading_more.gif" width="30" />
             </div>
+        </div>
+        <div class="H-center-all H-padding-20">
+            <span class="iconfont icon-wushuju H-font-size-36 h-text-color"></span>
+            <p class="H-font-size-12 h-text-color">
+                暂无数据
+            </p>
         </div>
         <script id="progress_data" type="text/html">
             {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
@@ -95,7 +104,7 @@
             <div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
             {{ d.data[i].approve_state }}
             </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].id }}');">
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].assessinfo_id }}');">
             转让方：{{ d.data[i].transferor_name }}<br />
             受让方：{{ d.data[i].purchaser_name }}<br />
             房产证号：{{ d.data[i].property_number }}<br />
@@ -103,7 +112,7 @@
             </div>
             <div class="H-float-right">
             <button class="b_style">编辑</button><br/>
-            <button class="b_style" tapmode="" onclick="del('{{ d.data[i].id }}');">撤销</button>
+            <button class="b_style" tapmode="" onclick="del('{{ d.data[i].assessinfo_id }}');">撤销</button>
             </div>
             {{# }else{ }}
             <div class="H-padding-vertical-both-10 h-status" style="background: #fab729" >
@@ -123,24 +132,40 @@
         <script src="../../../script/zepto.min.js" type="text/javascript"></script>
         <script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
         <script type="text/javascript">
+            var user_id = null, uuid = null;
             H.ready(function() {
                 //初始化用户数据
                 initUserInfo();
+                //初始化刷新
+                initRefreshHeaderInfo();
             });
+            function initRefreshHeaderInfo() {
+                api.setRefreshHeaderInfo({
+                     bgColor : "#ffffff"
+                }, function(ret, err) {
+                    initUserInfo();
+                });
+            }
+
             //初始化用户数据
             function initUserInfo() {
                 api.getPrefs({
                     key : 'userinfo'
                 }, function(ret, err) {
                     retobj = eval('(' + ret.value + ')');
-                    var user_id = retobj[0].user_id;
-                    var uuid = retobj[0].uuid;
+                    user_id = retobj[0].user_id;
+                    uuid = retobj[0].uuid;
+                    api.refreshHeaderLoadDone();
                     H.ajax(function(ret, err) {
-                        $("#statuss").hide();
-                        var tpl = document.getElementById("progress_data").innerHTML;
-                        laytpl(tpl).render(ret, function(render) {
-                            document.getElementById("progress_data_body").innerHTML = render;
-                        });
+                        console.log("ret.data.length" + ret.data.length);
+                        if (ret.data.length == 'undefined') {
+                            $("#statuss").show();
+                        } else {
+                            var tpl = document.getElementById("progress_data").innerHTML;
+                            laytpl(tpl).render(ret, function(render) {
+                                document.getElementById("progress_data_body").innerHTML = render;
+                            });
+                        }
                     }, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
                         values : {
                             user_id : user_id,
@@ -160,6 +185,7 @@
 
             //撤销申请
             function del(id) {
+                console.log('id==' + id);
                 api.confirm({
                     title : "温馨提示",
                     msg : "撤销此申请将不可恢复，确定要撤销吗？",

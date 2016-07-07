@@ -10,6 +10,7 @@
 /A6919788272158/css/Hui.ttf
 /A6919788272158/html/main/room/rooms_apply_body.html
 /A6919788272158/html/setting/userinfo/userinfo_body.html
+/A6919788272158/script/ajax/hnds.js
 /A6919788272158/html/main/room/rooms_houseInfo_body.html
 /A6919788272158/html/login/login_body.html
 /A6919788272158/image/icon3.png
