@@ -43,9 +43,10 @@
 /A6919788272158/html/main/choicetype/choicetype_head.html
 /A6919788272158/html/progress/progress_body_step2.html
 /A6919788272158/html/main/sale/sale_show_header.html
+/A6919788272158/html/main/sale/sale_progress_body_step2.html
 /A6919788272158/image/icon6.png
-/A6919788272158/image/yz.png
 /A6919788272158/css/fonts/iconfont.ttf
+/A6919788272158/image/yz.png
 /A6919788272158/html/main/notices/notice_body.html
 /A6919788272158/image/loading_more.gif
 /A6919788272158/css/fonts/iconfont.woff
