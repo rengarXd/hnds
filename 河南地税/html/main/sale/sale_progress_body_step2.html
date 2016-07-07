@@ -96,8 +96,8 @@
             日期：{{ d.data[i].add_date }}
             </div>
             <div class="H-float-right">
-            <button class="b_style">编辑</button><br/>
-            <button class="b_style">删除</button>
+            <button class="b_style" tapmode onclick="showFunction('{{ d.data[i].assessinfo_id }}', '{{ d.data[i].transferor_certnumber }}');">编辑</button><br/>
+            <button class="b_style" tapmode onclick="del('{{ d.data[i].assessinfo_id }}')">删除</button>
             </div>
             {{# }else{ }}
             <div class="H-padding-vertical-both-10 h-status" style="background: #fab729">
@@ -161,9 +161,41 @@
                     });
                 });
             }
-
+//撤销申请
+            function del(id) {
+                console.log('id==' + id);
+                api.confirm({
+                    title : "温馨提示",
+                    msg : "撤销此申请将不可恢复，确定要撤销吗？",
+                    buttons : ['确定', '取消']
+                }, function(ret, err) {
+                    var index = ret.buttonIndex;
+                    if (index == 1) {
+                        H.ajax(function(ret, err) {
+                            if (ret && ret.success) {
+                                window.location.reload();
+                            } else {
+                            }
+                        }, 'deleteHouse&funid=houses_assessinfo', 'post', {
+                            values : {
+                                user_id : user_id,
+                                uuid : uuid,
+                                assessinfo_id : id
+                            }
+                        });
+                    }
+                });
+            }
+            
+            function showFunction(assessinfo_id, transferor_certnumber) {
+				H.openWin('sale_header', './invoice/sale_header.html', {
+					assessinfo_id : assessinfo_id,
+					transferor_certnumber : transferor_certnumber
+				});
+			}
+            
             function show(assessinfo_id) {
-                H.openWin('rooms_show_header', '../main/sale/sale_show_header.html', {
+                H.openWin('sale_show_header', '../main/sale/sale_show_header.html', {
                     assessinfo_id : assessinfo_id
                 });
             }
