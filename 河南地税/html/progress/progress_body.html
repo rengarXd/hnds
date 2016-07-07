@@ -44,7 +44,11 @@
             {{# if(d.data[i].approve_state=="未评估"){ }}
             <div class="H-padding-vertical-both-10 h-status">{{ d.data[i].approve_state }}</div>
             {{# }else if(d.data[i].approve_state=="审批中"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #D7A470">{{ d.data[i].approve_state }}</div>
+            <div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">{{ d.data[i].approve_state }}</div>
+            {{# }else if(d.data[i].approve_state=="已评估"){ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #89d043">{{ d.data[i].approve_state }}</div>
+            {{# }else{ }}
+            <div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">{{ d.data[i].approve_state }}</div>
             {{# } }}
             <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
             转让方：{{ d.data[i].transferor_name }}<br />
@@ -66,7 +70,6 @@
                 //初始化下拉
                 initRefreshHeaderInfo();
             });
-            
             //初始化下拉
             function initRefreshHeaderInfo() {
                 api.setRefreshHeaderInfo({
