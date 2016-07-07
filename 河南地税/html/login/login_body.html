@@ -89,32 +89,45 @@
                 });
                 //3.存储用户信息
                 H.setPrefs(function() {
-                    //初始化极光推送
-                    var ajpush = api.require('ajpush');
-                    ajpush.init(function(ret) {
-                        if (ret && ret.status) {
-                            ajpush.getRegistrationId(function(ret) {
-                                var registrationId = ret.id;
-                                H.ajax(function(ret, err) {
-                                    console.log(JSON.stringify(ret));
-                                    api.openWin({
-                                        name : 'main',
-                                        url : '../main.html'
+                    var system = api.systemType;
+                    if (system != "ios") {
+                        //初始化极光推送
+                        var ajpush = api.require('ajpush');
+                        ajpush.init(function(ret) {
+                            console.log("极光推送ok");
+                            if (ret && ret.status) {
+                                ajpush.getRegistrationId(function(ret) {
+                                    var registrationId = ret.id;
+                                    H.ajax(function(ret, err) {
+                                        console.log(JSON.stringify(ret));
+                                        api.openWin({
+                                            name : 'main',
+                                            url : '../main.html'
+                                        });
+                                        //1.登录成功之后延时关闭自已
+                                        setTimeout(function() {
+                                            H.closeWin();
+                                        }, 2000);
+                                    }, 'updateRegistration&funid=sys_user', 'post', {
+                                        values : {
+                                            user_id : rets.data[0].user_id,
+                                            uuid : rets.data[0].uuid,
+                                            registrationId : registrationId
+                                        }
                                     });
-                                    //1.登录成功之后延时关闭自已
-                                    setTimeout(function() {
-                                        H.closeWin();
-                                    }, 2000);
-                                }, 'updateRegistration&funid=sys_user', 'post', {
-                                    values : {
-                                        user_id : rets.data[0].user_id,
-                                        uuid : rets.data[0].uuid,
-                                        registrationId : registrationId
-                                    }
                                 });
-                            });
-                        }
-                    });
+                            }
+                        });
+                    } else {
+                        api.openWin({
+                            name : 'main',
+                            url : '../main.html'
+                        });
+                        //1.登录成功之后延时关闭自已
+                        setTimeout(function() {
+                            H.closeWin();
+                        }, 2000);
+                    }
                 }, 'userinfo', JSON.stringify(rets.data));
             }
 
