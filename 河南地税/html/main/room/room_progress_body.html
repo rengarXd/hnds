@@ -7,6 +7,7 @@
         <title>受理进度body</title>
         <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
         <link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+        <link href="../../../css/animate/animate.min.css" rel="stylesheet" type="text/css" />
         <style>
             .h-status {
                 width: 42px;
@@ -59,7 +60,7 @@
         </div>
         <script id="progress_data" type="text/html">
             {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-            <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white H-active">
+            <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white H-active animated fadeIn">
             {{# if(d.data[i].approve_state=="未评估"){ }}
             <div class="H-padding-vertical-both-10 h-status">
             {{ d.data[i].approve_state }}
