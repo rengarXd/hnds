@@ -7,55 +7,128 @@
         <title>受理进度查询body</title>
         <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
         <link href="../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+        <style>
+            .d_del {
+                color: #e2e2e2;
+            }
+        </style>
     </head>
     <body>
         <div class="H-padding-vertical-both-10"></div>
         <div class="H-flexbox-horizontal">
-            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="H-iconfont H-icon-user H-font-size-18 H-vertical-middle"></i></span>
-            <input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="申请起始时间">
+            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-iconfonthuodongriqi01 H-font-size-18 H-vertical-middle"></i></span>
+            <input tapmode="" onclick="StartTime();" type="text" id="starttime" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="申请起始时间">
+            <span tapmode="" onclick="$('#starttime').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><i class="iconfont icon-shanchu H-font-size-18 H-vertical-middle d_del"></i></span>
         </div>
         <div class="H-flexbox-horizontal">
-            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="H-iconfont H-icon-user H-font-size-18 H-vertical-middle"></i></span>
-            <input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="申请结束时间">
+            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-iconfonthuodongriqi02 H-font-size-18 H-vertical-middle"></i></span>
+            <input tapmode="" onclick="EndTime();" type="text" id="endtime" value="" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="申请结束时间">
+            <span tapmode="" onclick="$('#endtime').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><i class="iconfont icon-shanchu H-font-size-18 H-vertical-middle d_del"></i></span>
         </div>
-          <div class="H-flexbox-horizontal">
-            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="H-iconfont H-icon-user H-font-size-18 H-vertical-middle"></i></span>
-            <input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="房产证">
+        <div class="H-flexbox-horizontal" tapmode="" onclick="Status();">
+            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-shenpi H-font-size-18 H-vertical-middle"></i></span>
+            <input type="text" id="status" value="全部" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="审批状态">
         </div>
-          <div class="H-flexbox-horizontal">
-            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="H-iconfont H-icon-user H-font-size-18 H-vertical-middle"></i></span>
-            <input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="审批状态">
-        </div>
-         <div class="H-padding-10" onclick="">
+        <div class="H-padding-10" tapmode="" onclick="Serach();">
             <button class="H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-                查询
+                模糊查询
             </button>
         </div>
-        
-        <script src="../../script/H.js" type="text/javascript"></script>
+        <div class="H-padding-vertical-both-10"></div>
+        <div class="H-flexbox-horizontal">
+            <span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-fangchanzhengming H-font-size-18 H-vertical-middle"></i></span>
+            <input type="text" id="card" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="房产证">
+            <span tapmode="" onclick="$('#card').val('');"  class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><i class="iconfont icon-shanchu H-font-size-18 H-vertical-middle d_del"></i></span>
+        </div>
+        <div class="H-padding-10" tapmode="" onclick="Serach();">
+            <button class="H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+                精确查询
+            </button>
+        </div>
         <script src="../../script/zepto.min.js" type="text/javascript"></script>
         <script type="text/javascript">
-            H.ready(function() {
-                api.getPrefs({
-                    key : 'userinfo'
-                }, function(ret, err) {
-                    retobj = eval('(' + ret.value + ')');
-                    var user_id = retobj[0].user_id;
-                    var uuid = retobj[0].uuid;
-                    H.ajax(function(ret, err) {
-                        $("#statuss").hide();
-//                      var tpl = document.getElementById("progress_data").innerHTML;
-//                      laytpl(tpl).render(ret, function(render) {
-//                          document.getElementById("progress_data_body").innerHTML = render;
-//                      });
-                    }, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
-                        values : {
-                            user_id : user_id,
-                            uuid : uuid,
-                        }
-                    });
-                });
+            apiready = function() {
+                api.parseTapmode();
+            }
+            Zepto(function($) {
+                var myDate = new Date();
+                $("#endtime").val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
             });
+            //开始时间处理
+            function StartTime() {
+                api.openPicker({
+                    type : 'date',
+                    title : '选择申请起始时间'
+                }, function(ret, err) {
+                    if (ret) {
+                        $("#starttime").val(ret.year + "-" + ret.month + "-" + ret.day);
+                    } else {
+                        $("#starttime").val();
+                    }
+                });
+            }
+
+            //结束时间处理
+            function EndTime() {
+                api.openPicker({
+                    type : 'date',
+                    title : '选择申请结束时间'
+                }, function(ret, err) {
+                    if (ret) {
+                        $("#endtime").val(ret.year + "-" + ret.month + "-" + ret.day);
+                    } else {
+                        $("#endtime").val();
+                    }
+                });
+            }
+
+            //选择状态
+            function Status() {
+                var status = $("#status");
+                api.actionSheet({
+                    buttons : ['全部（默认）', '未评估', '审批中', '已审批', '已退回']
+                }, function(ret, err) {
+                    if (ret) {
+                        var index = ret.buttonIndex;
+                        switch(index) {
+                            case 1:
+                                status.val("全部");
+                                break;
+                            case 2:
+                                status.val("未评估");
+                                break;
+                            case 3:
+                                status.val("审批中");
+                                break;
+                            case 4:
+                                status.val("已审批");
+                                break;
+                            case 5:
+                                status.val("已退回");
+                                break;
+                        }
+                    }
+                });
+            }
+
+            //搜索处理
+            function Serach() {
+                var starttime = $("#starttime");
+                var endtime = $("#endtime");
+                var card = $("#card");
+                var status = $("#status");
+                if (!starttime) {
+                    //获取焦点
+                    $("#starttime").focus();
+                    alert("申请");
+                    return;
+                }
+            }
+
+            //清空数据
+            function delval(id) {
+                $(id).val("");
+            }
         </script>
     </body>
 </html>
