@@ -111,7 +111,7 @@
             日期：{{ d.data[i].add_date }}
             </div>
             <div class="H-float-right">
-            <button class="b_style">编辑</button><br/>
+            <button class="b_style" tapmode="" onclick="edit('{{ d.data[i].assessinfo_id }}');">编辑</button><br/>
             <button class="b_style" tapmode="" onclick="del('{{ d.data[i].assessinfo_id }}');">撤销</button>
             </div>
             {{# }else{ }}
@@ -139,9 +139,10 @@
                 //初始化刷新
                 initRefreshHeaderInfo();
             });
+            //初始化刷新
             function initRefreshHeaderInfo() {
                 api.setRefreshHeaderInfo({
-                     bgColor : "#ffffff"
+                    bgColor : "#ffffff"
                 }, function(ret, err) {
                     initUserInfo();
                 });
@@ -205,6 +206,18 @@
                                 assessinfo_id : id
                             }
                         });
+                    }
+                });
+            }
+
+            //编辑
+            function edit(id) {
+                api.openWin({
+                    name : 'rooms_header',
+                    url : './rooms_header.html',
+                    pageParam : {
+                        edit : true,
+                        assessinfo_id:id
                     }
                 });
             }
