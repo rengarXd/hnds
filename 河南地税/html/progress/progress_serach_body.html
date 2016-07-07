@@ -44,7 +44,7 @@
 		</div>
 		<div class="H-flexbox-horizontal" tapmode="" onclick="Status();">
 			<span class="H-icon H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white"><i class="iconfont icon-shenpi H-font-size-18 H-vertical-middle"></i></span>
-			<input type="text" id="status" status="1" value="全部" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="审批状态">
+			<input type="text" id="status" status="" value="全部" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="审批状态">
 		</div>
 		<div class="H-padding-10" tapmode="" onclick="Serach();">
 			<button class="H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
@@ -57,7 +57,7 @@
 			<input type="text" id="card" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="房产证">
 			<span tapmode="" onclick="$('#card').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><i class="iconfont icon-shanchu H-font-size-18 H-vertical-middle d_del"></i></span>
 		</div>
-		<div class="H-padding-10" tapmode="" onclick="Serach();">
+		<div class="H-padding-10" tapmode="" onclick="fcz();">
 			<button class="H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				精确查询
 			</button>
@@ -141,7 +141,6 @@
 						switch (index) {
 							case 1:
 								$("#status").val("全部");
-								$("#status").attr('status', '1');
 								break;
 							case 2:
 								$("#status").val("未评估");
@@ -183,16 +182,12 @@
 					$("#type").focus();
 					alert("查询失败type");
 					return;
-				} else if (status == null || status == '') {
-					$("#status").focus();
-					alert("查询失败status");
-					return;
-				} else {
+				}  else {
 					var data = {
 						user_id : userinfo[0].user_id,
 						uuid : userinfo[0].uuid,
 						type : $("#type").attr('type'),
-						approve_state : $("#status").val(),
+						approve_state : $("#status").attr('status'),
 						startime : starttime,
 						endtime : endtime,
 					};
@@ -222,7 +217,7 @@
 			function _progress(data) {
 				$ds.ajax(function(ret, err) {
 					console.log(JSON.stringify(ret));
-					if (ret.data == {}) {
+					if (ret.data.length == 0) {
 						api.toast({
 							msg : ret.message
 						});
