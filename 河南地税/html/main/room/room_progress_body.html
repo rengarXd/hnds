@@ -115,10 +115,10 @@
             <button class="b_style" tapmode="" onclick="del('{{ d.data[i].assessinfo_id }}');">撤销</button>
             </div>
             {{# }else{ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #fab729" >
+            <div class="H-padding-vertical-both-10 h-status" style="background: #fab729;font-size: 12px" >
             {{ d.data[i].approve_state }}
             </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].id }}');">
+            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].assessinfo_id }}');">
             转让方：{{ d.data[i].transferor_name }}<br />
             受让方：{{ d.data[i].purchaser_name }}<br />
             房产证号：{{ d.data[i].property_number }}<br />
