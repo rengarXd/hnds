@@ -65,7 +65,9 @@
 			Zepto(function($) {
 			});
 			H.ready(function() {
-				initPrefs();
+				assessinfo_id = api.pageParam.assessinfo_id;
+				H.getUserPref(function() {
+				});
 				initData();
 				// 引入过滤压缩模块
 				imageFilter = api.require('imageFilter');
@@ -73,19 +75,17 @@
 				imageBrowser = api.require('imageBrowser');
 			});
 			//获取room偏好值
-			function initPrefs() {
-				assessinfo_id = api.pageParam.assessinfo_id;
-				H.getUserPref(function() {
-				});
-				H.getPrefs(function(ret, err) {
-					if (ret && ret.value) {
-						clfxsxxb_id = eval('(' + ret.value + ')');
-						//console.log(JSON.stringify(assessinfo));
-						$("button").text('下一步(1/4)');
-					} else {
-						$('input').attr('value', '');
-					}
-				}, 'sale' + assessinfo_id);
+//			function initPrefs() {
+				
+//				H.getPrefs(function(ret, err) {
+//					if (ret && ret.value) {
+//						clfxsxxb_id = eval('(' + ret.value + ')');
+//						//console.log(JSON.stringify(assessinfo));
+//						$("button").text('下一步(1/4)');
+//					} else {
+//						$('input').attr('value', '');
+//					}
+//				}, 'sale' + assessinfo_id);
 				//              H.getPrefs(function(ret, err) {
 				//                  if (ret && ret.value) {
 				//                      var imgtext = eval('(' + ret.value + ')');
@@ -101,7 +101,7 @@
 				//                      }
 				//                  }
 				//              }, 'imgAray');
-			}
+//			}
 
 			//模拟数据传输
 			function initData() {
@@ -155,11 +155,11 @@
 			}
 
 			var a = 0;
-			var pagenum = 1;
+//			var pagenum = 1;
 			var c = $('.imgLast').size();
 			var upimgs = null;
 			var imgAray = new Array();
-			function cyecleAJ() {
+			function cyecleAJ(zhonglei,ii) {
 				api.showProgress({
 					title : '上传中..'
 				});
@@ -174,12 +174,12 @@
 							});
 						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 							values : {
-								user_id : userinfo[0].user_id,
-								uuid : userinfo[0].uuid,
-								fwuuid : clfxsxxb_id.data.fwuuid,
-								business_name : zhonglei[ii].business_name,
-								business_typeid : zhonglei[ii].business_typeid,
-								pagenum : pagenum + 1
+								'user_id' : userinfo[0].user_id,
+								'uuid' : userinfo[0].uuid,
+								'fwuuid' : assessinfo_id,
+								'business_name' : zhonglei[ii].business_name,
+								'business_typeid' : zhonglei[ii].business_typeid,
+								'pagenum' : a + 1
 							}
 						});
 					});
@@ -199,7 +199,7 @@
 				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
 					var len = zhonglei.length;
 					if (ii < len) {
-						cyecleAJ();
+						cyecleAJ(zhonglei,ii);
 						$("#Leixing").html(zhonglei[ii].business_name);
 						imgBoolean = true;
 						$("img").parent().remove();
