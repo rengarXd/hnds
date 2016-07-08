@@ -148,7 +148,7 @@
                                 dates = data.transaction_date;
                                 api.hideProgress();
                             } else if (ret && !ret.success) {
-                                return $common.loginInvalid();
+                                return $common.loginInvalid("../../");
                             }
                         }, 'appHouseDetail&funid=houses_assessinfo', 'post', {
                             values : {

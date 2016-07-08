@@ -31,24 +31,20 @@
     }
 
     //登录失效处理
-    u.loginInvalid = function() {
+    //@path ../../
+    u.loginInvalid = function(path) {
         api.alert({
             title : "登录信息失效",
             msg : "抱歉，登录信息失效，点击确定进行登录操作"
         }, function(ret, err) {
             if (ret && ret.buttonIndex === 1) {
-                api.openWin({
-                    name : 'login_body',
-                    url : '../../login/login_body.html'
-                });
-                api.removePrefs({
-                    key : 'islogin'
-                });
+            	//跳轉
+                api.openWin({name : 'login_body',url : path+'login/login_body.html'});
+                api.removePrefs({key : 'islogin'});
             }
         });
     };
 
-    /*end*/
     window.$common = u;
 })(window);
 

@@ -159,7 +159,7 @@
 								document.getElementById("progress_data_body").innerHTML = render;
 							});
 						} else if (ret && !ret.success) {
-							return $common.loginInvalid();
+							return $common.loginInvalid("../../");
 						}
 					}, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
 						values : {

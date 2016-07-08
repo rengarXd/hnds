@@ -43,7 +43,7 @@
                             $("#news_cont").html(retobj[0].news_cont);
                         } else if (ret && !ret.success) {
                             //提示登录失效
-                            return $common.loginInvalid();
+                            return $common.loginInvalid("../../");
                         }
                     }, 'getSingTaxGuide&funid=tax_guide', 'post', {
                         values : {
