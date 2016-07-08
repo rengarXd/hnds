@@ -43,7 +43,7 @@
                             $("#edit_date").html(retobjdata[0].edit_date);
                             $("#news_cont").html(retobjdata[0].news_cont);
                         } else {
-                            return $common.loginInvalid();
+                            return $common.loginInvalid("../../");
                         }
                     }, 'getNoticeSingleinfo&funid=taxpayer_notice', 'post', {
                         values : {

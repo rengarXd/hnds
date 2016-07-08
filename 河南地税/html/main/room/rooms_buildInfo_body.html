@@ -132,7 +132,7 @@
                                 $("#declared_value").val(data.declared_value);
                                 api.hideProgress();
                             } else if (ret && !ret.success) {
-                                return $common.loginInvalid();
+                                return $common.loginInvalid("../../");
                             }
                         }, 'appHouseDetail&funid=houses_assessinfo', 'post', {
                             values : {

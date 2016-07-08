@@ -89,7 +89,7 @@
                         });
                     } else if (ret && !ret.success) {
                         //提示登录失效
-                        return $common.loginInvalid();
+                        return $common.loginInvalid("../../");
                     }
                 }, 'getNoticeinfo&funid=taxpayer_notice', 'post', {
                     values : {
