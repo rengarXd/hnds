@@ -38,6 +38,9 @@
 
 			function setPage(index, url) {
 				setStyle(index);
+				api.sendEvent({
+					name:'pageReload'
+				});
 				if (H.isAPICloud()) {
 					H.setFrameGroupIndex("sale_progress_groups", index, true);
 				} else {
@@ -51,16 +54,10 @@
 					setStyle(ret.index);
 				}, "sale_progress_groups", [{
 					url : './sale_progress_body.html',
-					name : 'sale_progress_body',
-					pageParm : {
-						type : 1
-					}
+					name : 'sale_progress_body'
 				}, {
 					url : './sale_progress_body_step2.html',
-					name : 'sale_progress_body_step2',
-					pageParm : {
-						type : 2
-					}
+					name : 'sale_progress_body_step2'
 				}], 0, "#header", null);
 			});
 		</script>

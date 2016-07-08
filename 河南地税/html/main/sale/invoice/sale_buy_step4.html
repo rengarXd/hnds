@@ -74,35 +74,7 @@
 				//引入图片预览模块
 				imageBrowser = api.require('imageBrowser');
 			});
-			//获取room偏好值
-//			function initPrefs() {
-				
-//				H.getPrefs(function(ret, err) {
-//					if (ret && ret.value) {
-//						clfxsxxb_id = eval('(' + ret.value + ')');
-//						//console.log(JSON.stringify(assessinfo));
-//						$("button").text('下一步(1/4)');
-//					} else {
-//						$('input').attr('value', '');
-//					}
-//				}, 'sale' + assessinfo_id);
-				//              H.getPrefs(function(ret, err) {
-				//                  if (ret && ret.value) {
-				//                      var imgtext = eval('(' + ret.value + ')');
-				//                      if (imgtext.length > 1) {
-				//                          for (var m = 1, len = imgtext.length; m < len; m++) {
-				//                              var imgHtml = '<div class="H-text-align-center"><img src=' + imgtext[m] + ' class="imgyulan imgLast" style="width: 100%;"/><img src="../../../../image/del.jpg" onclick="select(this);" class="del_b"/></div>';
-				//                              $("#target").attr('src', imgtext[0]);
-				//                              $("#yulan").after(imgHtml);
-				//                          }
-				//                      } else {
-				//                          $("#target").attr('src', imgtext[0]);
-				//                          $("#target").after('<img src="../../../../image/del.jpg" onclick="select(this);" class="del_b"/>');
-				//                      }
-				//                  }
-				//              }, 'imgAray');
-//			}
-
+			
 			//模拟数据传输
 			function initData() {
 				H.ajax(function(ret, err) {
@@ -129,37 +101,23 @@
 				H.ajax(function(ret, err) {
 					api.hideProgress();
 					console.log(JSON.stringify(ret));
-					ret.success ? H.removePrefs(function(ret, err) {
-						openWin();
-					}, 'rooms') : api.confirm({
-						title : '存量房申请提交',
-						msg : "提交失败,是否清空填写申请并退出？",
-						buttons : ['确定', '取消']
-					}, function(ret, err) {
-						api.hideProgress();
-						if (ret.buttonIndex == 1) {
-							H.removePrefs(function(ret, err) {
-								H.closeWin();
-							}, 'rooms');
-						} else {
-							H.closeWin();
-						}
+					ret.success ? openWin() : api.toast({
+						msg : ret.message
 					});
-				}, 'audit&funid=houses_assessinfo', 'post', {
+				}, 'audit&funid=wbjh_clfxsxxb&dataType=json&auditvalue=1&tag=1', 'post', {
 					values : {
 						user_id : userinfo[0].user_id,
 						uuid : userinfo[0].uuid,
-						keyid : assessinfo.data.assessinfo_id
+						keyid : assessinfo_id,
 					}
 				});
 			}
 
 			var a = 0;
-//			var pagenum = 1;
 			var c = $('.imgLast').size();
 			var upimgs = null;
 			var imgAray = new Array();
-			function cyecleAJ(zhonglei,ii) {
+			function cyecleAJ(zhonglei, ii) {
 				api.showProgress({
 					title : '上传中..'
 				});
@@ -199,7 +157,7 @@
 				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
 					var len = zhonglei.length;
 					if (ii < len) {
-						cyecleAJ(zhonglei,ii);
+						cyecleAJ(zhonglei, ii);
 						$("#Leixing").html(zhonglei[ii].business_name);
 						imgBoolean = true;
 						$("img").parent().remove();
@@ -216,7 +174,7 @@
 						}, function(ret, err) {
 							if (ret) {
 								if (ret.buttonIndex == 1) {
-									//									house_submit();
+									house_submit();
 								}
 								//									console.log('ret===' + JSON.stringify(ret));
 							} else {
