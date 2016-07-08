@@ -133,14 +133,19 @@
                                 var data = ret.data[0];
                                 $("#transferor_name").val(data.transferor_name);
                                 $("#type_option").text(data.zrf_zjlxnm);
+                                //转让方证件类型
+                                $("#type_option").attr("infoid001",data.transaction_type);
                                 $("#transferor_certnumber").val(data.transferor_certnumber);
                                 $("#transferor_phone").val(data.transferor_phone);
                                 $("#purchaser_name").val(data.purchaser_name);
+                                $("#purchaser_certype").attr("infoid001",data.purchaser_certype);
+                                $("#paytype").attr("infoid002",data.transaction_type);
                                 $("#purchaser_certype").text(data.srf_zjlxnm);
                                 $("#purchaser_certnumber").val(data.purchaser_certnumber);
                                 $("#purchaser_phone").val(data.purchaser_phone);
                                 $("#paytype").text(data.infonm002);
                                 $("#times").text(data.transaction_date);
+                                dates = data.transaction_date;
                                 api.hideProgress();
                             } else if (ret && !ret.success) {
                                 return $common.loginInvalid();
