@@ -99,10 +99,12 @@
                 $ds.getUserPref(function() {
                 });
             }
+           
             Zepto(function($) {
                 var myDate = new Date();
                 $("#endtime").val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
             });
+            
             //开始时间处理
             function StartTime() {
                 api.openPicker({
