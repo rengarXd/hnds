@@ -132,6 +132,10 @@
 				initUserInfo();
 				//初始化下拉
 				initRefreshHeaderInfo();
+				//监听页面刷新
+				H.addEventListener(function(ret,err){
+					location.reload();
+				},'pageReload');
 			});
 			//初始化下拉
 			function initRefreshHeaderInfo() {
