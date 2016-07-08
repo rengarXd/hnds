@@ -70,7 +70,7 @@
 			<!--国籍代码 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('mfgjjc','010');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="mfgjjc">点击选择卖方国籍</span>
+			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right"  id="mfgjjc">点击选择卖方国籍</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -123,7 +123,7 @@
 			<!--国籍代码 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('mfgjjc','010');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="mfgjjc">{{ d.mfgjjc }}</span>
+			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" mfgj_dm="{{ d.mfgj_dm }}" id="mfgjjc">{{ d.mfgjjc }}</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -147,8 +147,6 @@
 			H.ready(function() {
 				assessinfo_id = api.pageParam.assessinfo_id;
 				type = api.pageParam.type;
-				//				var edit = api.pageParam.edit;
-				console.log(type);
 				api.parseTapmode();
 				//				H.getPrefs(function(ret, err) {
 				//					if (ret && ret.value) {
@@ -172,14 +170,14 @@
 						alert(msg);
 					},
 					endSuccess : function(data) {
-						datas = data;
+						//						datas = data;
 						var value = {
-							"mfgj_dm" : $("#mfgjjc").attr("gjhdqsz_dm"),
+							"mfgj_dm" : $("#mfgjjc").attr("mfgj_dm"),
 							"mfgjjc" : $("#mfgjjc").html(),
 							"user_id" : userinfo[0].user_id,
 							"uuid" : userinfo[0].uuid
 						};
-						$.extend(datas, value);
+						datas = H.extendObj(data, value);
 						//						post_data();
 						get_PREFS();
 						//						alert(JSON.stringify(datas));
@@ -219,30 +217,23 @@
 			function InitPref() {
 				H.getUserPref(function() {
 					if (type == 1) {
-						H.removePrefs(function(ret, err) {
-							H.ajax(function(ret, err) {
-								results(ret, function() {
-									var tpl = document.getElementById('sale_data').innerHTML;
-									//方式一：异步渲染（推荐）
-									laytpl(tpl).render(result.data, function(render) {
-										api.hideProgress();
-										document.getElementById('sale_html').innerHTML = render;
-										clfxsxxb_id = result;
-										api.setPrefs({
-											key : 'sale' + assessinfo_id,
-											value : JSON.stringify(result)
-										});
-									});
-									console.log('sale======' + JSON.stringify(ret));
+						H.ajax(function(ret, err) {
+							results(ret, function() {
+								var tpl = document.getElementById('sale_data').innerHTML;
+								assessinfo_id = result.data.fwuuid
+								//方式一：异步渲染（推荐）
+								laytpl(tpl).render(result.data, function(render) {
+									document.getElementById('sale_html').innerHTML = render;
+									api.hideProgress();
 								});
-							}, 'appSaleRecordAdd&funid=wbjh_clfxsxxb&assessinfo_id=' + assessinfo_id, 'post', {
-								values : {
-									"user_id" : userinfo[0].user_id,
-									"uuid" : userinfo[0].uuid
-								}
 							});
-							$("button").text('新增代开发票申请');
-						}, 'sale' + assessinfo_id);
+						}, 'appSaleRecordAdd&funid=wbjh_clfxsxxb&assessinfo_id=' + assessinfo_id, 'post', {
+							values : {
+								"user_id" : userinfo[0].user_id,
+								"uuid" : userinfo[0].uuid
+							}
+						});
+						$("button").text('新增代开发票申请');
 					} else {
 						edit();
 					}
@@ -256,7 +247,7 @@
 					//alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
-						$('#' + IdName).attr("gjhdqsz_dm", selet_option[ret.buttonIndex - 1].gjhdqsz_dm).html(selet_option[ret.buttonIndex - 1].gjhdqjc);
+						$('#' + IdName).attr("mfgj_dm", selet_option[ret.buttonIndex - 1].gjhdqsz_dm).html(selet_option[ret.buttonIndex - 1].gjhdqjc);
 					}
 				}, '010', 'gjhdqjc');
 			}
@@ -294,12 +285,13 @@
 			function get_PREFS() {
 				//1.4、已经新增
 				//更新存量房信息
-				console.log()
-				var mfgjjc = $("#mfgjjc").attr("gjhdqsz_dm");
-				if (mfgjjc || $("#mfgjjc").html()) {
+				var mfgj_dm = $("#mfgjjc").attr("mfgj_dm");
+				if (mfgj_dm && mfgj_dm !== "" && $("#mfgjjc").html() !== "") {
 					api.showProgress();
 					H.ajax(function(ret, err) {
-						results(ret, 'Transferee();');
+						var Transferee = 'Transferee(' + "'" + assessinfo_id + "'" + ');';
+						console.log(Transferee);
+						results(ret, Transferee);
 					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + assessinfo_id, 'post', {
 						values : datas
 					});

@@ -85,6 +85,10 @@
 			房产证号：{{ d.data[i].property_number }}<br />
 			日期：{{ d.data[i].add_date }}
 			</div>
+			<div class="H-float-right">
+			<button class="b_style"  tapmode="H-active" onclick="showFunction('{{ d.data[i].assessinfo_id }}', '{{ d.data[i].transferor_certnumber }}');">新增</button><br/>
+			<!--<button class="b_style" tapmode onclick="del('{{ d.data[i].assessinfo_id }}')">删除</button>-->
+			</div>
 			{{# }else if(d.data[i].approve_state=="未提交"){ }}
 			<div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
 			{{ d.data[i].approve_state }}
