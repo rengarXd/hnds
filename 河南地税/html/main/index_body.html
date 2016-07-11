@@ -67,9 +67,12 @@
         <script>
             var obj = null;
             H.ready(function() {
+                //初始化
                 init();
+                //初始化消息监听
                 initPushListener();
             });
+            //初始化
             function init() {
                 api.getPrefs({
                     key : 'userinfo'
@@ -78,7 +81,8 @@
                 });
                 console.log(obj);
             }
-
+            
+            //初始化消息监听
             function changeUserPassWord() {
                 //获取输入框的数据
                 api.ajax({
@@ -86,7 +90,8 @@
                 }, function(ret, err) {
                 });
             }
-             //初始化消息监听
+
+            //初始化消息监听
             function initPushListener() {
                 api.addEventListener({
                     name : 'appintent'
@@ -97,7 +102,13 @@
                         var title = ajpush.title;
                         var content = ajpush.content;
                         var extra = ajpush.extra;
-                        alert(JSON.stringify(ret));
+                        api.openWin({
+                            name : 'massage_show_head',
+                            url : '../massages/massage_show_head.html',
+                            pageParam : {
+                                news_id : extra.news_id
+                            }
+                        });
                     }
                 })
             }
