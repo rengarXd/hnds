@@ -13,34 +13,47 @@
         </style>
     </head>
     <body>
-        <div class="H-padding-10 H-font-size-16">系统例行维护，在此期间将不可以正常使用本系统</div>
-        <div class="H-font-size-10 d_font_time_color H-padding-10">
-            2016年05月19日12:58:2
-        </div>
-        <div class="H-theme-background-color-white H-font-size-12 H-padding-10">
-            <p>
-                系统例行维护，在此期间将不可以正常使用本系统
-            </p>
-            <p>
-                系统例行维护，在此期间将不可以正常使用本系统
-            </p>
-            <p>
-                系统例行维护，在此期间将不可以正常使用本系统
-            </p>
-            <p>
-                系统例行维护，在此期间将不可以正常使用本系统
-            </p>
-            <p>
-                系统例行维护，在此期间将不可以正常使用本系统
-            </p>
-            <p>
-                系统例行维护，在此期间将不可以正常使用本系统
-            </p>
-        </div>
-        <script src="../../script/H.js" type="text/javascript"></script>
+        <div id="massage_show_body"></div>
+        <script id="massage_show_data" type="text/html">
+            {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
+            <div class="H-padding-10 H-font-size-16">
+            {{ d.data[0].news_title }}
+            </div>
+            <div class="H-font-size-10 d_font_time_color H-padding-10">
+            {{ d.data[0].edit_date }}
+            </div>
+            <div class="H-theme-background-color-white H-font-size-12 H-padding-10">
+            {{ d.data[0].news_cont }}
+            </div>
+            {{# } }}
+        </script>
+        <script src="../../script/ajax/hnds.js" type="text/javascript"></script>
+        <script src="../../script/tools/laytpl.js" type="text/javascript"></script>
         <script type="text/javascript">
-            H.ready(function() {
-            });
+            apiready = function() {
+                $ds.getUserPref(function() {
+                    console.log(JSON.stringify(userinfo));
+                    $ds.ajax(function(ret, err) {
+                        console.log(JSON.stringify(ret));
+                        if (ret.success) {
+                            var tpl = document.getElementById("massage_show_data").innerHTML;
+                            laytpl(tpl).render(ret, function(render) {
+                                document.getElementById("massage_show_body").innerHTML = render;
+                            });
+                            api.sendEvent({
+                                name:"massage_body_reload"
+                            });
+                        } else {
+                        }
+                    }, 'appMessageDetail&funid=sys_msg', 'post', {
+                        values : {
+                            uuid : userinfo[0].uuid,
+                            user_id : userinfo[0].user_id,
+                            news_id : api.pageParam.news_id
+                        }
+                    });
+                });
+            }
         </script>
     </body>
 </html>
