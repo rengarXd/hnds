@@ -8,6 +8,9 @@
 		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
+			html,body {
+				background: #f4f4f4
+			}
 			.H_header_bg {
 				background: #09a4de
 			}
@@ -52,7 +55,7 @@
 			//              openNewframe('rooms_payInfo_body', 'rooms_houseInfo_body', 'rooms_houseInfo_body.html');
 			//          }
 			//楼栋信息
-			function Transferee(assessinfo_id,edit) {
+			function Transferee(assessinfo_id, edit) {
 				openNewframe('rooms_payInfo_body', 'rooms_building_body', 'rooms_building_body.html', {
 					assessinfo_id : assessinfo_id,
 					edit : edit
@@ -60,7 +63,7 @@
 			}
 
 			//打开房产信息
-			function buildInfo(assessinfo_id,edit) {
+			function buildInfo(assessinfo_id, edit) {
 				openNewframe('rooms_building_body', 'rooms_buildInfo_body', 'rooms_buildInfo_body.html', {
 					assessinfo_id : assessinfo_id,
 					edit : edit
