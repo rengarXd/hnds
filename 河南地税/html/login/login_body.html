@@ -29,7 +29,7 @@
                 <input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" placeholder="密码" />
             </div>
             <div class="H-margin-horizontal-both-15">
-                <span class="H-font-size-14 H-theme-font-color-white">忘记密码？</span>
+                <span class="H-font-size-14 H-theme-font-color-white" tapmode onclick="H.openWin('changepassword_head','');">忘记密码？</span>
                 <span class="H-float-right H-font-size-14 H-theme-font-color-white" onclick="H.openWin('register','register.html');">注册</span>
             </div>
             <div class="H-padding-horizontal-both-5 H-margin-vertical-both-15 H-text-align-center">
@@ -44,6 +44,7 @@
         <script type="text/javascript">
             var systemType = null;
             H.ready(function() {
+            	api.parseTapmode();
                 //双击返回退出
                 H.dblclickToCloseApp();
                 //初始化监听
@@ -131,6 +132,11 @@
                     }
                 }, 'userinfo', JSON.stringify(rets.data));
             }
+
+			//忘记密码修改
+			function changePwd() {
+				
+			}
 
             //初始化监听
             function initEventLinstener() {
