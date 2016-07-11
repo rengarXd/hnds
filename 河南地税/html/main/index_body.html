@@ -68,6 +68,7 @@
             var obj = null;
             H.ready(function() {
                 init();
+                initPushListener();
             });
             function init() {
                 api.getPrefs({
@@ -84,6 +85,21 @@
                     url : 'url' + obj.uuid
                 }, function(ret, err) {
                 });
+            }
+             //初始化消息监听
+            function initPushListener() {
+                api.addEventListener({
+                    name : 'appintent'
+                }, function(ret, err) {
+                    if (ret && ret.appParam.ajpush) {
+                        var ajpush = ret.appParam.ajpush;
+                        var id = ajpush.id;
+                        var title = ajpush.title;
+                        var content = ajpush.content;
+                        var extra = ajpush.extra;
+                        alert(JSON.stringify(ret));
+                    }
+                })
             }
         </script>
     </body>
