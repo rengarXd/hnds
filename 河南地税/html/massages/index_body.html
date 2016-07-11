@@ -39,7 +39,17 @@
 
 
 		
-		<script src="../../script/H.js" type="text/javascript"></script>
+		<script src="../../script/ajax/hnds.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		var userinfo = null;
+		  apiready = function () {
+		      $ds.getUserPref(function(){
+		          $ds.ajax(function(ret,err){
+		              
+		          },'');
+		      });
+		  }
+		</script>
 	</body>
 
 </html>

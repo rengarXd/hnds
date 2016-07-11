@@ -94,10 +94,11 @@
                         //初始化极光推送
                         var ajpush = api.require('ajpush');
                         ajpush.init(function(ret) {
-                            console.log("极光推送ok");
+                            
                             if (ret && ret.status) {
                                 ajpush.getRegistrationId(function(ret) {
                                     var registrationId = ret.id;
+                                    console.log("极光推送ok == id"+registrationId);
                                     H.ajax(function(ret, err) {
                                         console.log(JSON.stringify(ret));
                                         api.openWin({
