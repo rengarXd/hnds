@@ -217,6 +217,7 @@
 			function InitPref() {
 				H.getUserPref(function() {
 					if (type == 1) {
+						//新增申请
 						H.ajax(function(ret, err) {
 							results(ret, function() {
 								var tpl = document.getElementById('sale_data').innerHTML;
@@ -233,8 +234,9 @@
 								"uuid" : userinfo[0].uuid
 							}
 						});
-						$("button").text('新增代开发票申请');
+//						$("button").text('新增代开发票申请');
 					} else {
+						//拉取数据更新操作
 						edit();
 					}
 				});
