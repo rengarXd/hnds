@@ -39,7 +39,7 @@
 			function setPage(index, url) {
 				setStyle(index);
 				api.sendEvent({
-					name:'pageReload'
+					name : 'pageReload'
 				});
 				if (H.isAPICloud()) {
 					H.setFrameGroupIndex("sale_progress_groups", index, true);
@@ -58,7 +58,9 @@
 				}, {
 					url : './sale_progress_body_step2.html',
 					name : 'sale_progress_body_step2'
-				}], 0, "#header", null);
+				}], 0, "#header", null, {
+					scrollEnabled : false
+				});
 			});
 		</script>
 	</body>
