@@ -8,6 +8,7 @@
 		<title>消息页面</title>
 		<!--引入aui框架win-->
 		<link rel="stylesheet" href="../../css/Hui.css" />
+		<link rel="stylesheet" href="../../css/fonts/iconfont.css" />
 		<style type="text/css">
 			.d_font_color {
 				color: #09a4de;
@@ -83,7 +84,7 @@
 			function initUserInfo() {
 				$ds.getUserPref(function() {
 					//                  console.log(JSON.stringify(userinfo));
-					$ds.ajax(function(ret, err) {
+					$ds.nodata(function(ret, err) {
 						//                      console.log(JSON.stringify(ret));
 						api.refreshHeaderLoadDone();
 						if (ret.success) {
@@ -103,17 +104,16 @@
 							//                              document.getElementById("massage_body").innerHTML = render;
 							//                          });
 						} else {
-							//								console.log("无数据");
-							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><button class="H-theme-font-color-999">重&nbsp;试</button></div></div>';
-							//$('#progress_data_body').html(html);
-							document.getElementById('massage_body').innerHTML = html;
+							api.toast({
+								msg : ret.message
+							});
 						}
 					}, 'appMessageList&funid=sys_msg', 'post', {
 						values : {
 							uuid : userinfo[0].uuid,
 							user_id : userinfo[0].user_id
 						}
-					});
+					},'massage_body');
 				});
 			}
 
