@@ -38,14 +38,14 @@
 	</head>
 	<body>
 		<div class="H-padding-vertical-top-10"></div>
-		<div class="H-position-absolute H-position-center-all" id="statuss" style="display: none">
-			<div class="H-font-size-14 H-text-align-center">
-				<i class="iconfont icon-jindu H-font-size-32 H-theme-font-color1"></i>
-				<div class="H-theme-font-color1">
-					受理进度为空
-				</div>
-			</div>
+		<!--<div class="H-position-absolute H-position-center-all" id="statuss" style="display: none">
+		<div class="H-font-size-14 H-text-align-center">
+		<i class="iconfont icon-jindu H-font-size-32 H-theme-font-color1"></i>
+		<div class="H-theme-font-color1">
+		受理进度为空
 		</div>
+		</div>
+		</div>-->
 		<div id="progress_data_body">
 			<div id="loading" class="H-center-all H-padding-20">
 				<img src="../../../image/loading_more.gif" width="30" />
@@ -121,22 +121,27 @@
 			</div>
 			{{# } }}
 		</script>
-		<script src="../../../script/H.js" type="text/javascript"></script>
-		<script src="../../../script/zepto.min.js" type="text/javascript"></script>
+		<script src="../../../script/ajax/hnds.js" type="text/javascript"></script>
+		<!--<script src="../../../script/zepto.min.js" type="text/javascript"></script>-->
 		<script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
 		<script src="../../../script/common.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			H.ready(function() {
+			apiready = function() {
 				api.parseTapmode();
 				//初始化用户信息
 				initUserInfo();
 				//初始化下拉
 				initRefreshHeaderInfo();
 				//监听页面刷新
-				H.addEventListener(function(ret,err){
+				api.addEventListener({
+					name : 'pageReload'
+				}, function(ret, err) {
 					location.reload();
-				},'pageReload');
-			});
+				});
+				//				H.addEventListener(function(ret, err) {
+				//
+				//				}, 'pageReload');
+			};
 			//初始化下拉
 			function initRefreshHeaderInfo() {
 				api.setRefreshHeaderInfo({
@@ -154,14 +159,23 @@
 					retobj = eval('(' + ret.value + ')');
 					var user_id = retobj[0].user_id;
 					var uuid = retobj[0].uuid;
-					H.ajax(function(ret, err) {
+					$ds.nodata(function(ret, err) {
 						api.refreshHeaderLoadDone();
-						$("#statuss").hide();
+						//						$("#statuss").hide();
 						if (ret && ret.success) {
-							var tpl = document.getElementById("progress_data").innerHTML;
-							laytpl(tpl).render(ret, function(render) {
-								document.getElementById("progress_data_body").innerHTML = render;
-							});
+//							console.log("ret====" + JSON.stringify(ret));
+//							console.log("ret.data.length==" + ret.data.length);
+							if (undefined == ret.data.length) {
+//								console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">'+ret.message+'</div></div></div>';
+//								$('#progress_data_body').html(html);
+								document.getElementById('progress_data_body').innerHTML = html;
+							} else {
+								var tpl = document.getElementById("progress_data").innerHTML;
+								laytpl(tpl).render(ret, function(render) {
+									document.getElementById("progress_data_body").innerHTML = render;
+								});
+							}
 						} else if (ret && !ret.success) {
 							return $common.loginInvalid("../../");
 						}
@@ -176,11 +190,20 @@
 			}
 
 			function showFunction(assessinfo_id, transferor_certnumber) {
-				H.openWin('sale_header', './invoice/sale_header.html', {
-					assessinfo_id : assessinfo_id,
-					transferor_certnumber : transferor_certnumber,
-					type : 1
+				api.openWin({
+					name : 'sale_header',
+					url : './invoice/sale_header.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						transferor_certnumber : transferor_certnumber,
+						type : 1
+					}
 				});
+				//				H.openWin('sale_header', './invoice/sale_header.html', {
+				//					assessinfo_id : assessinfo_id,
+				//					transferor_certnumber : transferor_certnumber,
+				//					type : 1
+				//				});
 			}
 
 			//			function show(assessinfo_id) {

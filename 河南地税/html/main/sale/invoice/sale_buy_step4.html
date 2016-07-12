@@ -74,16 +74,19 @@
 				//引入图片预览模块
 				imageBrowser = api.require('imageBrowser');
 			});
-			
 			//模拟数据传输
 			function initData() {
 				H.ajax(function(ret, err) {
-					if (ret) {
+					if (ret.success) {
 						zhonglei = ret.data;
 						$("#Leixing").html(zhonglei[0].business_name);
 						$("button").html('上传附件(4/' + parseInt(4 + zhonglei.length - 1) + ')');
+					} else if (ret.success == false) {
+						alert(JSON.stringify(ret.message));
 					} else {
-						alert(JSON.stringify(err));
+						api.toast({
+							msg : '连接错误，请检查网络配置'
+						});
 					}
 				}, 'selHouseAttach&funid=archive_data');
 			}

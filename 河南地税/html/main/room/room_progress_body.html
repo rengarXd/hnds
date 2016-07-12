@@ -159,7 +159,7 @@
                     api.refreshHeaderLoadDone();
                     H.ajax(function(ret, err) {
                         console.log("ret.data.length" + ret.data.length);
-                        if (ret.data.length == 'undefined') {
+                        if (ret.data.length == undefined) {
                             $("#statuss").show();
                         } else {
                             var tpl = document.getElementById("progress_data").innerHTML;

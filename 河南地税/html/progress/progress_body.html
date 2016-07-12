@@ -1,172 +1,175 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-        <title>受理进度body</title>
-        <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
-        <link href="../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="../../css/animate/animate.min.css" />
-        <style>
-            .h-status {
-                width: 42px;
-                height: 41px;
-                background: rgb(34, 188, 189);
-                border-radius: 42px;
-                color: #fff;
-                text-align: center;
-                font-size: 14px;
-                padding: 6px;
-                margin: 8px;
-                line-height: 42px;
-            }
-            .b_style {
-                width: 40px;
-                height: 20px;
-                background: #f5f5f5;
-                border: 1px solid #ddd;
-                font-size: 12px;
-                color: #AFAFAF;
-                border-radius: 4px;
-                float: right;
-                /* width: 20px; */
-                margin-top: 15px;
-                margin-right: 20px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="H-padding-vertical-top-10"></div>
-        <div class="H-position-absolute H-position-center-all" id="statuss" style="display: none">
-            <div class="H-font-size-14 H-text-align-center">
-                <i class="iconfont icon-jindu H-font-size-32 H-theme-font-color1"></i>
-                <div class="H-theme-font-color1">
-                    受理进度为空
-                </div>
-            </div>
-        </div>
-        <div id="progress_data_body">
-            <div id="loading" class="H-center-all H-padding-20">
-                <img src="../../image/loading_more.gif" width="30" />
-            </div>
-        </div>
-        <div class="H-padding-vertical-top-10"></div>
-        <script id="progress_data" type="text/html">
-            {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-            <div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white animated fadeIn" tapmode="H-active" onclick="show('{{ d.data[i].id }}');">
-            {{# if(d.data[i].approve_state=="未评估"){ }}
-            <div class="H-padding-vertical-both-10 h-status">
-            {{ d.data[i].approve_state }}
-            </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
-            转让方：{{ d.data[i].transferor_name }}<br />
-            受让方：{{ d.data[i].purchaser_name }}<br />
-            房产证号：{{ d.data[i].property_number }}<br />
-            日期：{{ d.data[i].add_date }}
-            </div>
-            {{# }else if(d.data[i].approve_state=="审批中"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">
-            {{ d.data[i].approve_state }}
-            </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
-            转让方：{{ d.data[i].transferor_name }}<br />
-            受让方：{{ d.data[i].purchaser_name }}<br />
-            房产证号：{{ d.data[i].property_number }}<br />
-            日期：{{ d.data[i].add_date }}
-            </div>
-            {{# }else if(d.data[i].approve_state=="已评估"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #89d043">
-            {{ d.data[i].approve_state }}
-            </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
-            转让方：{{ d.data[i].transferor_name }}<br />
-            受让方：{{ d.data[i].purchaser_name }}<br />
-            房产证号：{{ d.data[i].property_number }}<br />
-            日期：{{ d.data[i].add_date }}
-            </div>
-            {{# }else if(d.data[i].approve_state=="未提交"){ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
-            {{ d.data[i].approve_state }}
-            </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
-            转让方：{{ d.data[i].transferor_name }}<br />
-            受让方：{{ d.data[i].purchaser_name }}<br />
-            房产证号：{{ d.data[i].property_number }}<br />
-            日期：{{ d.data[i].add_date }}
-            </div>
-            <div class="H-float-right">
-            <button class="b_style">编辑</button><br/>
-            <button class="b_style">删除</button>
-            </div>
-            {{# }else{ }}
-            <div class="H-padding-vertical-both-10 h-status" style="background: #fab729">
-            {{ d.data[i].approve_state }}
-            </div>
-            <div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
-            转让方：{{ d.data[i].transferor_name }}<br />
-            受让方：{{ d.data[i].purchaser_name }}<br />
-            房产证号：{{ d.data[i].property_number }}<br />
-            日期：{{ d.data[i].add_date }}
-            </div>
-            {{# } }}
-            </div>
-            {{# } }}
-        </script>
-        <script src="../../script/H.js" type="text/javascript"></script>
-        <script src="../../script/zepto.min.js" type="text/javascript"></script>
-        <script src="../../script/tools/laytpl.js" type="text/javascript"></script>
-        <script src="../../script/common.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            H.ready(function() {
-                //初始化用户信息
-                initUserInfo();
-                //初始化下拉
-                initRefreshHeaderInfo();
-            });
-            //初始化下拉
-            function initRefreshHeaderInfo() {
-                api.setRefreshHeaderInfo({
-                    bgColor : "#ffffff"
-                }, function(ret, err) {
-                    initUserInfo();
-                });
-            }
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>受理进度body</title>
+		<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../css/animate/animate.min.css" />
+		<style>
+			.h-status {
+				width: 42px;
+				height: 41px;
+				background: rgb(34, 188, 189);
+				border-radius: 42px;
+				color: #fff;
+				text-align: center;
+				font-size: 14px;
+				padding: 6px;
+				margin: 8px;
+				line-height: 42px;
+			}
+			.b_style {
+				width: 40px;
+				height: 20px;
+				background: #f5f5f5;
+				border: 1px solid #ddd;
+				font-size: 12px;
+				color: #AFAFAF;
+				border-radius: 4px;
+				float: right;
+				/* width: 20px; */
+				margin-top: 15px;
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="H-padding-vertical-top-10"></div>
+		<div id="progress_data_body">
+			<div id="loading" class="H-center-all H-padding-20">
+				<img src="../../image/loading_more.gif" width="30" />
+			</div>
+		</div>
+		<div class="H-padding-vertical-top-10"></div>
+		<script id="progress_data" type="text/html">
+			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
+			<div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white animated fadeIn" tapmode="H-active" onclick="show('{{ d.data[i].id }}');">
+			{{# if(d.data[i].approve_state=="未评估"){ }}
+			<div class="H-padding-vertical-both-10 h-status">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].transferor_name }}<br />
+			受让方：{{ d.data[i].purchaser_name }}<br />
+			房产证号：{{ d.data[i].property_number }}<br />
+			日期：{{ d.data[i].add_date }}
+			</div>
+			{{# }else if(d.data[i].approve_state=="审批中"){ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].transferor_name }}<br />
+			受让方：{{ d.data[i].purchaser_name }}<br />
+			房产证号：{{ d.data[i].property_number }}<br />
+			日期：{{ d.data[i].add_date }}
+			</div>
+			{{# }else if(d.data[i].approve_state=="已评估"){ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #89d043">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].transferor_name }}<br />
+			受让方：{{ d.data[i].purchaser_name }}<br />
+			房产证号：{{ d.data[i].property_number }}<br />
+			日期：{{ d.data[i].add_date }}
+			</div>
+			{{# }else if(d.data[i].approve_state=="未提交"){ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].transferor_name }}<br />
+			受让方：{{ d.data[i].purchaser_name }}<br />
+			房产证号：{{ d.data[i].property_number }}<br />
+			日期：{{ d.data[i].add_date }}
+			</div>
+			<div class="H-float-right">
+			<button class="b_style">编辑</button><br/>
+			<button class="b_style">删除</button>
+			</div>
+			{{# }else{ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #fab729">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].transferor_name }}<br />
+			受让方：{{ d.data[i].purchaser_name }}<br />
+			房产证号：{{ d.data[i].property_number }}<br />
+			日期：{{ d.data[i].add_date }}
+			</div>
+			{{# } }}
+			</div>
+			{{# } }}
+		</script>
+		<script src="../../script/H.js" type="text/javascript"></script>
+		<script src="../../script/zepto.min.js" type="text/javascript"></script>
+		<script src="../../script/tools/laytpl.js" type="text/javascript"></script>
+		<script src="../../script/common.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			H.ready(function() {
+				//初始化用户信息
+				initUserInfo();
+				//初始化下拉
+				initRefreshHeaderInfo();
+			});
+			//初始化下拉
+			function initRefreshHeaderInfo() {
+				api.setRefreshHeaderInfo({
+					bgColor : "#ffffff"
+				}, function(ret, err) {
+					initUserInfo();
+				});
+			}
 
-            //初始化用户信息
-            function initUserInfo() {
-                api.getPrefs({
-                    key : 'userinfo'
-                }, function(ret, err) {
-                    retobj = eval('(' + ret.value + ')');
-                    var user_id = retobj[0].user_id;
-                    var uuid = retobj[0].uuid;
-                    H.ajax(function(ret, err) {
-                        api.refreshHeaderLoadDone();
-                        $("#statuss").hide();
-                        if (ret && ret.success) {
-                            var tpl = document.getElementById("progress_data").innerHTML;
-                            laytpl(tpl).render(ret, function(render) {
-                                document.getElementById("progress_data_body").innerHTML = render;
-                            });
-                        } else if (ret && !ret.success) {
-                            return $common.loginInvalid("../../");
-                        }
-                    }, 'appRateAdvanceList&funid=houses_assessinfo', 'post', {
-                        values : {
-                            user_id : user_id,
-                            uuid : uuid,
-                            type:1
-                        }
-                    });
-                });
-            }
+			//初始化用户信息
+			function initUserInfo() {
+				api.getPrefs({
+					key : 'userinfo'
+				}, function(ret, err) {
+					retobj = eval('(' + ret.value + ')');
+					var user_id = retobj[0].user_id;
+					var uuid = retobj[0].uuid;
+					H.ajax(function(ret, err) {
+						api.refreshHeaderLoadDone();
+//						$("#statuss").hide();
+						if (ret && ret.success) {
+							if (undefined == ret.data.length) {
+								console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
+								//$('#progress_data_body').html(html);
+								document.getElementById('progress_data_body').innerHTML = html;
+							} else {
+								var tpl = document.getElementById("progress_data").innerHTML;
+								laytpl(tpl).render(ret, function(render) {
+									document.getElementById("progress_data_body").innerHTML = render;
+								});
+							}
+							//                          var tpl = document.getElementById("progress_data").innerHTML;
+							//                          laytpl(tpl).render(ret, function(render) {
+							//                              document.getElementById("progress_data_body").innerHTML = render;
+							//                          });
+						} else if (ret && !ret.success) {
+							return $common.loginInvalid("../../");
+						}
+					}, 'appRateAdvanceList&funid=houses_assessinfo', 'post', {
+						values : {
+							user_id : user_id,
+							uuid : uuid,
+							type : 1
+						}
+					});
+				});
+			}
 
-            function show(assessinfo_id) {
-                H.openWin('rooms_show_header', '../main/room/rooms_show_header.html', {
-                    assessinfo_id : assessinfo_id
-                });
-            }
-        </script>
-    </body>
+			function show(assessinfo_id) {
+				H.openWin('rooms_show_header', '../main/room/rooms_show_header.html', {
+					assessinfo_id : assessinfo_id
+				});
+			}
+		</script>
+	</body>
 </html>

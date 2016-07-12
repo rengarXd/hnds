@@ -82,6 +82,43 @@
 				});
 			}
 		},
+		nodata : function(callback, url, method, data) {
+			var that = this;
+			var o = {};
+			o.url = window.serverUrl + url;
+			o.method = method ? method : "get";
+
+			if (o.method == "post") {
+				o.data = data;
+			}
+			if ( typeof callback == 'function') {
+				api.ajax(o, function(ret, err) {
+					var systemType = api.systemType;
+					if (systemType == "ios") {
+						var rets = eval('(' + err.body + ')');
+						if ( typeof callback == 'function') {
+							if (rets) {
+								callback(rets);
+							} else {
+								api.toast({
+									msg : '连接错误，请检查网络配置'
+								});
+							}
+						}
+					} else {
+						if ( typeof callback == 'function') {
+							if (ret) {
+								callback(ret);
+							} else {
+								api.toast({
+									msg : '连接错误，请检查网络配置'
+								});
+							}
+						}
+					}
+				});
+			}
+		},
 		openTimePick : function(callback) {
 			var that = this;
 			var date = new Date();
@@ -130,6 +167,10 @@
 		},
 		isElement : function(obj) {
 			return !!(obj && obj.nodeType == 1);
+		},
+		isString : function(obj) {
+			var that = this;
+			return that.isTargetType(obj, "string") && obj != null && obj != undefined;
 		},
 		cloneObj : function(oldObj) {
 			var that = this;
