@@ -1,116 +1,132 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-        <title>消息页面</title>
-        <!--引入aui框架win-->
-        <link rel="stylesheet" href="../../css/Hui.css" />
-        <style type="text/css">
-            .d_font_color {
-                color: #09a4de;
-            }
-            .d_font_time_color {
-                color: #acacac;
-            }
-            .H-theme-background-color-white:active {
-                background: #f5f5f5;
-            }
-        </style>
-        <!--引入AHelper.js框架-->
-    </head>
-    <body>
-        <div id="massage_body">
-            <!--加载部分-->
-            <div id="loading" class="H-center-all H-padding-20">
-                <!--加载图片-->
-                <img src="../../image/loading_more.gif" width="30" />
-                <!--加载图片-->
-            </div>
-            <!--加载部分-->
-        </div>
-        <script id="massage_data" type="text/html">
-            {{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-            <div tapmode="" onclick="open_massage('{{ d.data[i].news_id }}');" class="H-padding-10 H-margin-vertical-both-10 H-theme-background-color-white H-border-vertical-both-after" tapmode="" onclick="H.openWin('massage_show_head','massage_show_head.html');">
-            <!--    <div class="H-text-show-row-1 H-font-size-12 d_font_color">
-            {{ d.data[i].news_title }}
-            </div>-->
-            <div class="H-font-size-14">
-            {{# if( d.data[i].state=="未读"){ }}
-            <span class="H-badge H-display-inline-block H-badge-null H-theme-background-color7 H-border-radius-circle"></span>{{# } }}&nbsp;{{ d.data[i].news_cont }}
-            </div>
-            <div class="H-font-size-10 d_font_time_color">
-            {{ d.data[i].edit_date }}
-            </div>
-            </div>
-            {{# } }}
-        </script>
-        <script src="../../script/ajax/hnds.js" type="text/javascript"></script>
-        <script src="../../script/tools/laytpl.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            var userinfo = null;
-            apiready = function() {
-                 //初始化用户信息
-                initUserInfo();
-                 //初始化下拉刷新
-                initRefreshHeaderInfo();
-                //初始化刷新页面
-                initReloadPage();
-            }
-            //初始化刷新页面
-            function initReloadPage(){
-                api.addEventListener({
-	                name:'massage_body_reload'
-                },function(ret,err){
-                	window.location.reload();
-                });
-            }
-            //初始化下拉刷新
-            function initRefreshHeaderInfo(){
-                  //下拉刷新
-                api.setRefreshHeaderInfo({
-                    bgColor : '#fff'
-                }, function(ret, err) {
-                    //获取数据
-                    initUserInfo();
-                });
-            }
-            
-            //初始化用户信息
-            function initUserInfo() {
-                $ds.getUserPref(function() {
-//                  console.log(JSON.stringify(userinfo));
-                    $ds.ajax(function(ret, err) {
-//                      console.log(JSON.stringify(ret));
-                        api.refreshHeaderLoadDone();
-                        if (ret.success) {
-                            var tpl = document.getElementById("massage_data").innerHTML;
-                            laytpl(tpl).render(ret, function(render) {
-                                document.getElementById("massage_body").innerHTML = render;
-                            });
-                        } else {
-                        }
-                    }, 'appMessageList&funid=sys_msg', 'post', {
-                        values : {
-                            uuid : userinfo[0].uuid,
-                            user_id : userinfo[0].user_id
-                        }
-                    });
-                });
-            }
+	<head>
+		<meta charset="utf-8">
+		<!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>消息页面</title>
+		<!--引入aui框架win-->
+		<link rel="stylesheet" href="../../css/Hui.css" />
+		<style type="text/css">
+			.d_font_color {
+				color: #09a4de;
+			}
+			.d_font_time_color {
+				color: #acacac;
+			}
+			.H-theme-background-color-white:active {
+				background: #f5f5f5;
+			}
+		</style>
+		<!--引入AHelper.js框架-->
+	</head>
+	<body>
+		<div id="massage_body">
+			<!--加载部分-->
+			<div id="loading" class="H-center-all H-padding-20">
+				<!--加载图片-->
+				<img src="../../image/loading_more.gif" width="30" />
+				<!--加载图片-->
+			</div>
+			<!--加载部分-->
+		</div>
+		<script id="massage_data" type="text/html">
+			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
+			<div tapmode="" onclick="open_massage('{{ d.data[i].news_id }}');" class="H-padding-10 H-margin-vertical-both-10 H-theme-background-color-white H-border-vertical-both-after" tapmode="" onclick="H.openWin('massage_show_head','massage_show_head.html');">
+			<!--    <div class="H-text-show-row-1 H-font-size-12 d_font_color">
+			{{ d.data[i].news_title }}
+			</div>-->
+			<div class="H-font-size-14">
+			{{# if( d.data[i].state=="未读"){ }}
+			<span class="H-badge H-display-inline-block H-badge-null H-theme-background-color7 H-border-radius-circle"></span>{{# } }}&nbsp;{{ d.data[i].news_cont }}
+			</div>
+			<div class="H-font-size-10 d_font_time_color">
+			{{ d.data[i].edit_date }}
+			</div>
+			</div>
+			{{# } }}
+		</script>
+		<script src="../../script/ajax/hnds.js" type="text/javascript"></script>
+		<script src="../../script/tools/laytpl.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var userinfo = null;
+			apiready = function() {
+				//初始化用户信息
+				initUserInfo();
+				//初始化下拉刷新
+				initRefreshHeaderInfo();
+				//初始化刷新页面
+				initReloadPage();
+			}
+			//初始化刷新页面
+			function initReloadPage() {
+				api.addEventListener({
+					name : 'massage_body_reload'
+				}, function(ret, err) {
+					window.location.reload();
+				});
+			}
 
-            //打开消息显示页面
-            function open_massage(id) {
-                api.openWin({
-                    name : 'massage_show_head',
-                    url : './massage_show_head.html',
-                    pageParam : {
-                        news_id : id
-                    }
-                });
-            }
-        </script>
-    </body>
+			//初始化下拉刷新
+			function initRefreshHeaderInfo() {
+				//下拉刷新
+				api.setRefreshHeaderInfo({
+					bgColor : '#fff'
+				}, function(ret, err) {
+					//获取数据
+					initUserInfo();
+				});
+			}
+
+			//初始化用户信息
+			function initUserInfo() {
+				$ds.getUserPref(function() {
+					//                  console.log(JSON.stringify(userinfo));
+					$ds.ajax(function(ret, err) {
+						//                      console.log(JSON.stringify(ret));
+						api.refreshHeaderLoadDone();
+						if (ret.success) {
+							if (undefined == ret.data.length) {
+								//								console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
+								//$('#progress_data_body').html(html);
+								document.getElementById('massage_body').innerHTML = html;
+							} else {
+								var tpl = document.getElementById("massage_data").innerHTML;
+								laytpl(tpl).render(ret, function(render) {
+									document.getElementById("massage_body").innerHTML = render;
+								});
+							}
+							//                          var tpl = document.getElementById("massage_data").innerHTML;
+							//                          laytpl(tpl).render(ret, function(render) {
+							//                              document.getElementById("massage_body").innerHTML = render;
+							//                          });
+						} else {
+							//								console.log("无数据");
+							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><button class="H-theme-font-color-999">重&nbsp;试</button></div></div>';
+							//$('#progress_data_body').html(html);
+							document.getElementById('massage_body').innerHTML = html;
+						}
+					}, 'appMessageList&funid=sys_msg', 'post', {
+						values : {
+							uuid : userinfo[0].uuid,
+							user_id : userinfo[0].user_id
+						}
+					});
+				});
+			}
+
+			//打开消息显示页面
+			function open_massage(id) {
+				api.openWin({
+					name : 'massage_show_head',
+					url : './massage_show_head.html',
+					pageParam : {
+						news_id : id
+					}
+				});
+			}
+		</script>
+	</body>
 </html>
