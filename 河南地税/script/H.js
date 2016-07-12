@@ -13,8 +13,8 @@
  */
 
 ;! function(factory) {
-    window.serverUrl = "http://218.29.85.98:8080/etax/fileAction.do?pagetype=grid&nousercheck=1&eventcode=";
-    window.ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
+    window.serverUrl = "http://218.28.41.134:8080/etax/fileAction.do?pagetype=grid&nousercheck=1&eventcode=";
+    window.ImgWebUrl = 'http://218.28.41.134:8080/etax/fileAction.do';
     window.selectUrl = "&funid=app_remote";
     if ( typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         var target = module['exports'] || exports;
