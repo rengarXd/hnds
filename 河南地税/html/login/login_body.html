@@ -76,7 +76,7 @@
 					title : '登录中'
 				});
 				H.ajax(function(ret, err) {
-					console.log("信息" + JSON.stringify(ret));
+//					console.log("信息" + JSON.stringify(ret));
 					api.hideProgress();
 					ret && ret.success ? isSuccess(ret) : alert("抱歉，账号或密码错误！");
 				}, 'userlogin&funid=sys_user', 'post', {
