@@ -200,10 +200,7 @@
 					var index = ret.buttonIndex;
 					if (index == 1) {
 						$ds.ajax(function(ret, err) {
-							if (ret && ret.success) {
-								window.location.reload();
-							} else {
-							}
+							window.location.reload();
 						}, 'deleteSale&funid=wbjh_clfxsxxb', 'post', {
 							values : {
 								user_id : user_id,
