@@ -42,7 +42,7 @@
                 api.getPrefs({
                     key : 'userinfo'
                 }, function(ret, err) {
-                    console.log(JSON.stringify(ret));
+//                  console.log(JSON.stringify(ret));
                     retobj = eval('(' + ret.value + ')');
                     get_data();
                 });
@@ -58,7 +58,7 @@
             function get_data() {
                 H.ajax(function(ret, err) {
                     H.refreshHeaderLoadDone();
-                    console.log(JSON.stringify(ret));
+//                  console.log(JSON.stringify(ret));
                     var tpl = document.getElementById("function_data").innerHTML;
                     laytpl(tpl).render(ret, function(render) {
                         document.getElementById("function_data_body").innerHTML = render;

@@ -103,7 +103,7 @@
 			function house_submit() {
 				H.ajax(function(ret, err) {
 					api.hideProgress();
-					console.log(JSON.stringify(ret));
+//					console.log(JSON.stringify(ret));
 					ret.success ? openWin() : api.toast({
 						msg : ret.message
 					});
@@ -131,7 +131,7 @@
 						H.ajax(function(ret, err) {
 							var imgInfo = ret.data;
 							uploadFile(ImgWebUrl, upimgs, imgInfo, function(serverImg) {
-								console.log('serverImg===' + JSON.stringify(serverImg))
+//								console.log('serverImg===' + JSON.stringify(serverImg))
 							});
 						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 							values : {
@@ -145,7 +145,7 @@
 						});
 					});
 					return H.setPrefs(function(ret, err) {
-						console.log(imgAray);
+//						console.log(imgAray);
 					}, 'imgAray', imgAray);
 				}
 				api.hideProgress();

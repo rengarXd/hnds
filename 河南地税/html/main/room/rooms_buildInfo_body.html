@@ -116,7 +116,7 @@
                         H.ajax(function(ret, err) {
                             $("#statuss").hide();
                             if (ret && ret.success) {
-                                console.log("ret===" + JSON.stringify(ret));
+//                              console.log("ret===" + JSON.stringify(ret));
                                 var data = ret.data[0];
                                 $("#house_type").text(data.infonm003);
                                 $("#building_toward").text(data.infonm005);
@@ -220,7 +220,7 @@
             function house_submit() {
                 H.ajax(function(ret, err) {
                     api.hideProgress();
-                    console.log(JSON.stringify(ret));
+//                  console.log(JSON.stringify(ret));
                     //如果返回成功
                     if (ret.success) {
                         //打开成功页面
@@ -262,7 +262,7 @@
                                 //									console.log('ret===' + JSON.stringify(ret));
                             } else {
                                 api.hideProgress();
-                                alert(JSON.stringify(err));
+                                alert(JSON.stringify(ret.message));
                             }
                         });
                     });

@@ -158,9 +158,9 @@
                     uuid = retobj[0].uuid;
                     api.refreshHeaderLoadDone();
                     H.ajax(function(ret, err) {
-                        console.log("ret.data.length" + ret.data.length);
+//                      console.log("ret.data.length" + ret.data.length);
                         if (undefined == ret.data.length) {
-							console.log("无数据");
+//							console.log("无数据");
 							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
 							//$('#progress_data_body').html(html);
 							document.getElementById('progress_data_body').innerHTML = html;
@@ -189,7 +189,7 @@
 
             //撤销申请
             function del(id) {
-                console.log('id==' + id);
+//              console.log('id==' + id);
                 api.confirm({
                     title : "温馨提示",
                     msg : "撤销此申请将不可恢复，确定要撤销吗？",

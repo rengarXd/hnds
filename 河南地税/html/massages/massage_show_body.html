@@ -32,9 +32,9 @@
         <script type="text/javascript">
             apiready = function() {
                 $ds.getUserPref(function() {
-                    console.log(JSON.stringify(userinfo));
+//                  console.log(JSON.stringify(userinfo));
                     $ds.ajax(function(ret, err) {
-                        console.log(JSON.stringify(ret));
+//                      console.log(JSON.stringify(ret));
                         if (ret.success) {
                             var tpl = document.getElementById("massage_show_data").innerHTML;
                             laytpl(tpl).render(ret, function(render) {

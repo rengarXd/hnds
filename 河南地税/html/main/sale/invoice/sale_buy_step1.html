@@ -192,7 +192,7 @@
 				H.ajax(function(ret, err) {
 					$("#statuss").hide();
 					if (ret && ret.success) {
-						console.log("ret===" + JSON.stringify(ret));
+//						console.log("ret===" + JSON.stringify(ret));
 						var data = ret.data[0];
 						var tpl = document.getElementById('sale_detail_data').innerHTML;
 						//方式一：异步渲染（推荐）
@@ -292,7 +292,7 @@
 					api.showProgress();
 					H.ajax(function(ret, err) {
 						var Transferee = 'Transferee(' + "'" + assessinfo_id + "'" + ');';
-						console.log(Transferee);
+//						console.log(Transferee);
 						results(ret, Transferee);
 					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + assessinfo_id, 'post', {
 						values : datas

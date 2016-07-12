@@ -129,7 +129,7 @@
 						H.ajax(function(ret, err) {
 							$("#statuss").hide();
 							if (ret && ret.success) {
-								console.log("ret===" + JSON.stringify(ret));
+//								console.log("ret===" + JSON.stringify(ret));
 								var data = ret.data[0];
 								$("#transferor_name").val(data.transferor_name);
 								$("#type_option").text(data.zrf_zjlxnm);
@@ -250,7 +250,7 @@
 
 			//更新或新增业务分发
 			function get_PREFS() {
-				console.log('assessinfo=====' + JSON.stringify(assessinfo));
+//				console.log('assessinfo=====' + JSON.stringify(assessinfo));
 				//1.4、已经新增
 				if (assessinfo_id) {
 					//更新存量房信息

@@ -81,9 +81,9 @@
             //初始化用户信息
             function initUserInfo() {
                 $ds.getUserPref(function() {
-                    console.log(JSON.stringify(userinfo));
+//                  console.log(JSON.stringify(userinfo));
                     $ds.ajax(function(ret, err) {
-                        console.log(JSON.stringify(ret));
+//                      console.log(JSON.stringify(ret));
                         api.refreshHeaderLoadDone();
                         if (ret.success) {
                             var tpl = document.getElementById("massage_data").innerHTML;
