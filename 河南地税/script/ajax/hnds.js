@@ -82,12 +82,12 @@
 				});
 			}
 		},
-		nodata : function(callback, url, method, data) {
+		nodata : function(callback, url, method, data, htmlId) {
 			var that = this;
 			var o = {};
 			o.url = window.serverUrl + url;
 			o.method = method ? method : "get";
-
+			that.isString(htmlId) ? htmlId : console.warn('htmlId格式错误');
 			if (o.method == "post") {
 				o.data = data;
 			}
@@ -100,9 +100,11 @@
 							if (rets) {
 								callback(rets);
 							} else {
-								api.toast({
-									msg : '连接错误，请检查网络配置'
-								});
+								api.refreshHeaderLoadDone();
+								//								console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">连接失败，请检查网络配置</div><button class="H-margin-vertical-top-10 H-position-static H-outline-none H-theme-font-color-999 H-theme-border-color-transparent H-border-radius-3 H-theme-font-color1-click" style="min-width:90px;background-color:active:#787373">重&nbsp;&nbsp;试</button></div></div>';
+								//$('#progress_data_body').html(html);
+								document.getElementById(htmlId).innerHTML = html;
 							}
 						}
 					} else {
@@ -110,9 +112,11 @@
 							if (ret) {
 								callback(ret);
 							} else {
-								api.toast({
-									msg : '连接错误，请检查网络配置'
-								});
+								api.refreshHeaderLoadDone();
+								//								console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">连接失败，请检查网络配置</div><button class="H-margin-vertical-top-10 H-position-static H-outline-none H-theme-font-color-999 H-theme-border-color-transparent H-border-radius-3 H-theme-font-color1-click" style="min-width:90px;background-color:active:#787373">重&nbsp;&nbsp;试</button></div></div>';
+								//$('#progress_data_body').html(html);
+								document.getElementById(htmlId).innerHTML = html;
 							}
 						}
 					}
