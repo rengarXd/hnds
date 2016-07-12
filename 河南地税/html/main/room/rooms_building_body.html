@@ -108,7 +108,7 @@
 						H.ajax(function(ret, err) {
 							$("#statuss").hide();
 							if (ret && ret.success) {
-								console.log("ret===" + JSON.stringify(ret));
+//								console.log("ret===" + JSON.stringify(ret));
 								var data = ret.data[0];
 								$("#property_number").val(data.property_number);
 								$("#times").text(data.issue_date);
@@ -190,7 +190,7 @@
 
 			//打开评税分区
 			function PingShuiFenQu() {
-				console.log($("#local_area").attr("infoid010"));
+//				console.log($("#local_area").attr("infoid010"));
 				var psfq = $("#local_area").attr("infoid010");
 				psfq ? api.openWin({
 					name : 'rooms_region_header',
@@ -209,7 +209,7 @@
 			function part() {
 				H.addEventListener(function(ret, err) {
 					//alert('name===='+ret.value.typeval+'id===='+ret.value.typeid);
-					console.log(JSON.stringify(ret));
+//					console.log(JSON.stringify(ret));
 					$("#pingshui_type").html(ret.value.xqnm);
 					$("#pingshui_type").attr("xqdm", ret.value.xqdm);
 				}, 'region');

@@ -24,7 +24,7 @@
         <script src="../../../script/common.js" type="text/javascript"></script>
         <script type="text/javascript">
             H.ready(function() {
-                console.log("fid==" + JSON.stringify(api.pageParam));
+//              console.log("fid==" + JSON.stringify(api.pageParam));
                 api.getPrefs({
                     key : 'userinfo'
                 }, function(ret, err) {
@@ -32,12 +32,12 @@
                     var user_id = retobj[0].user_id;
                     var uuid = retobj[0].uuid;
                     var guide_id = api.pageParam.id;
-                    console.log("function_id==" + guide_id);
+//                  console.log("function_id==" + guide_id);
                     H.ajax(function(ret, err) {
                         //如果返回数据正常并且成功返回
                         if (ret && ret.success) {
                             var retobj = eval(ret.data);
-                            console.log(JSON.stringify(retobj));
+//                          console.log(JSON.stringify(retobj));
                             $("#news_title").html(retobj[0].news_title);
                             $("#edit_date").html(retobj[0].edit_date);
                             $("#news_cont").html(retobj[0].news_cont);

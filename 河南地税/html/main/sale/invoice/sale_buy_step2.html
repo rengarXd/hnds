@@ -141,7 +141,7 @@
 			var datas = null, assessinfo_id = null, gmfsfzjlx_dm = null, clfxsxxb_id = null;
 			H.ready(function() {
 				assessinfo_id = api.pageParam.assessinfo_id;
-				console.log(JSON.stringify(api.pageParam));
+//				console.log(JSON.stringify(api.pageParam));
 				initPrefs();
 				ac.form({
 					area : "#forms",
@@ -173,7 +173,7 @@
 				H.ajax(function(ret, err) {
 					$("#statuss").hide();
 					if (ret && ret.success) {
-						console.log("ret===" + JSON.stringify(ret));
+//						console.log("ret===" + JSON.stringify(ret));
 						var data = ret.data[0];
 						var tpl = document.getElementById('sale_detail_data').innerHTML;
 						//方式一：异步渲染（推荐）
