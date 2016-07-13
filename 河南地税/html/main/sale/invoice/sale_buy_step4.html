@@ -60,7 +60,7 @@
 		<script type="text/javascript" src="../../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
 			var assessinfo = null, clfxsxxb_id = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null, imgBoolean = true;
-			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
+//			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
 			//			var postUrl = 'http://218.29.85.98:8080/etax/fileAction.do?eventcode=appHouseAssessSubmit&funid=houses_assessinfo&pagetype=grid&nousercheck=1';
 			Zepto(function($) {
 			});
@@ -130,7 +130,7 @@
 						upimgs = $(this).attr('src');
 						H.ajax(function(ret, err) {
 							var imgInfo = ret.data;
-							uploadFile(ImgWebUrl, upimgs, imgInfo, function(serverImg) {
+							uploadFile(window.ImgWebUrl, upimgs, imgInfo, function(serverImg) {
 //								console.log('serverImg===' + JSON.stringify(serverImg))
 							});
 						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
