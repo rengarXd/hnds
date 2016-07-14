@@ -94,26 +94,26 @@
 
 			//楼栋信息
 			function Transferee(assessinfo_id) {
-				closeFrm = 'sale_buy_step2';
 				openNewframe('sale_buy_step1', 'sale_buy_step2', 'sale_buy_step2.html', {
 					assessinfo_id : assessinfo_id
 				});
+				closeFrm = 'sale_buy_step2';
 			}
 
 			//打开房产信息
 			function buildInfo(assessinfo_id) {
-				closeFrm = 'sale_buy_step3';
 				openNewframe('sale_buy_step2', 'sale_buy_step3', 'sale_buy_step3.html', {
 					assessinfo_id : assessinfo_id
 				});
+				closeFrm = 'sale_buy_step3';
 			}
 
 			//打开上传图片附件
 			function fileInfo(assessinfo_id) {
-				closeFrm = 'sale_buy_step4';
 				openNewframe('sale_buy_step3', 'sale_buy_step4', 'sale_buy_step4.html', {
 					assessinfo_id : assessinfo_id
 				});
+				closeFrm = 'sale_buy_step4';
 			}
 
 			//提交成功
