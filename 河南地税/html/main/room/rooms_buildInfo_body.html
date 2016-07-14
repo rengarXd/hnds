@@ -61,7 +61,7 @@
                 <!--#############################################-->
                 <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
                     <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">所在楼层：</span>
-                    <input type="text" id="house_floor" name="house_floor" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所在楼层不能为空" data-errmsg="所在楼层填写有误"
+                    <input type="text" id="house_floor" value="" name="house_floor" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所在楼层不能为空" data-errmsg="所在楼层填写有误"
                     placeholder="填写所在楼层" />
                 </div>
                 <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
@@ -89,7 +89,7 @@
         </form>
         <footer class="H-footer H-padding-10 ">
             <button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-                下一步(3/4)
+                下一步(3/3)
             </button>
         </footer>
         <script src="../../../script/H.js" type="text/javascript"></script>
@@ -116,7 +116,7 @@
                         H.ajax(function(ret, err) {
                             $("#statuss").hide();
                             if (ret && ret.success) {
-//                              console.log("ret===" + JSON.stringify(ret));
+                                //                              console.log("ret===" + JSON.stringify(ret));
                                 var data = ret.data[0];
                                 $("#house_type").text(data.infonm003);
                                 $("#building_toward").text(data.infonm005);
@@ -128,7 +128,9 @@
                                 $("#total_floor").val(data.total_floor);
                                 $("#building_area").val(data.building_area);
                                 $("#build_year").val(data.build_year);
-                                $("#declared_value").val(data.declared_value);
+                                if(data.declared_value != '0'){
+                                    $("#declared_value").val();
+                                }
                                 api.hideProgress();
                             } else if (ret && !ret.success) {
                                 return $common.loginInvalid("../../");
@@ -144,7 +146,7 @@
                 }
                 //更新按钮信息
                 if (assessinfo_id) {
-                    $("button").text('更新申请(2/4)');
+                    $("button").text('更新申请(2/3)');
                 }
                 ac.form({
                     area : "#forms",
@@ -220,7 +222,7 @@
             function house_submit() {
                 H.ajax(function(ret, err) {
                     api.hideProgress();
-//                  console.log(JSON.stringify(ret));
+                    //                  console.log(JSON.stringify(ret));
                     //如果返回成功
                     if (ret.success) {
                         //打开成功页面
@@ -243,13 +245,13 @@
                 //1.4、已经登录
                 //更新存量房信息
                 api.showProgress({
-                    title : '上传中..'
+                    title : '提交中..'
                 });
                 H.ajax(function(ret, err) {
                     results(ret, function(ret) {
                         api.confirm({
                             title : '存量房申请提交',
-                            msg : '恭喜您上传完成所有项，确认提交全部信息吗？',
+                            msg : '确认提交全部信息吗？',
                             buttons : ['确定', '取消']
                         }, function(ret, err) {
                             if (ret) {
