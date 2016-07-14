@@ -59,8 +59,8 @@
 		<script type="text/javascript" src="../../../../script/tools/availdate-v1.0.2.js"></script>
 		<script type="text/javascript" src="../../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
-			var assessinfo = null, clfxsxxb_id = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null, imgBoolean = true;
-//			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
+			var assessinfo = null, edImg = null, clfxsxxb_id = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 1, jsonstr = null, userinfo = null, imgBoolean = true;
+			//			var ImgWebUrl = 'http://218.29.85.98:8080/etax/fileAction.do';
 			//			var postUrl = 'http://218.29.85.98:8080/etax/fileAction.do?eventcode=appHouseAssessSubmit&funid=houses_assessinfo&pagetype=grid&nousercheck=1';
 			Zepto(function($) {
 			});
@@ -81,6 +81,7 @@
 						zhonglei = ret.data;
 						$("#Leixing").html(zhonglei[0].business_name);
 						$("button").html('上传附件(4/' + parseInt(4 + zhonglei.length - 1) + ')');
+						editImg();
 					} else if (ret.success == false) {
 						alert(JSON.stringify(ret.message));
 					} else {
@@ -89,6 +90,35 @@
 						});
 					}
 				}, 'selHouseAttach&funid=archive_data');
+			}
+
+			//获取之前的图片
+			function editImg() {
+				H.ajax(function(ret, err) {
+					//					console.log(JSON.stringify(ret));
+					edImg = ret.data;
+					for (var i = 0; i < edImg.length; i++) {
+						if (zhonglei[0].business_typeid == edImg[i].business_typeid) {
+							var imurl = window.ImgDl + edImg[i].attach_path;
+							console.log("imurl===" + imurl);
+							$("#target").attr('src', imurl);
+							$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this);"/>');
+							//							if (edImg[i].attach_path.length > 1) {
+							//								var dom = new Array();
+							//								for (var a = 1; a < edImg[i].attach_path.length; a++) {
+							//									dom.push('<div class="H-text-align-center"><img src="' + window.ImgDl + edImg[i].attach_path[a] + '" style="width: 100%;" class="imgLast" /></div>');
+							//									$("#yulan").after(dom);
+							//								}
+							//							}
+						}
+					}
+				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
+					values : {
+						user_id : userinfo[0].user_id,
+						uuid : userinfo[0].uuid,
+						fwuuid : assessinfo_id,
+					}
+				});
 			}
 
 			//打开成功页
@@ -103,7 +133,7 @@
 			function house_submit() {
 				H.ajax(function(ret, err) {
 					api.hideProgress();
-//					console.log(JSON.stringify(ret));
+					//					console.log(JSON.stringify(ret));
 					ret.success ? openWin() : api.toast({
 						msg : ret.message
 					});
@@ -131,7 +161,7 @@
 						H.ajax(function(ret, err) {
 							var imgInfo = ret.data;
 							uploadFile(window.ImgWebUrl, upimgs, imgInfo, function(serverImg) {
-//								console.log('serverImg===' + JSON.stringify(serverImg))
+								//								console.log('serverImg===' + JSON.stringify(serverImg))
 							});
 						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 							values : {
@@ -145,7 +175,7 @@
 						});
 					});
 					return H.setPrefs(function(ret, err) {
-//						console.log(imgAray);
+						//						console.log(imgAray);
 					}, 'imgAray', imgAray);
 				}
 				api.hideProgress();
