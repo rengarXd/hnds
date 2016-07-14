@@ -162,7 +162,7 @@
 						H.ajax(function(ret, err) {
 							var imgInfo = ret.data;
 							uploadFile(window.ImgWebUrl, upimgs, imgInfo, function(serverImg) {
-								imgBooer = serverImg.success
+								imgBooer = serverImg.success;
 								//								console.log('serverImg===' + JSON.stringify(serverImg))
 							});
 						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
