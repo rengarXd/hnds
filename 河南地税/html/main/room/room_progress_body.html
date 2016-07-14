@@ -148,7 +148,7 @@
 			var user_id = null, uuid = null, retobj = null;
 			apiready = function() {
 				//初始化用户数据
-				console.log("初始化用户数据");
+//				console.log("初始化用户数据");
 				initUserInfo();
 				//初始化刷新
 				initRefreshHeaderInfo();
@@ -170,10 +170,10 @@
 					retobj = eval('(' + ret.value + ')');
 					user_id = retobj[0].user_id;
 					uuid = retobj[0].uuid;
-					console.log("获取偏好值");
+//					console.log("获取偏好值");
 					$ds.nodata(function(ret, err) {
 						api.refreshHeaderLoadDone();
-						console.log("执行ajax请求！");
+//						console.log("执行ajax请求！");
 						if (undefined == ret.data.length) {
 							//							console.log("无数据");
 							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
