@@ -100,7 +100,7 @@
 					for (var i = 0; i < edImg.length; i++) {
 						if (zhonglei[0].business_typeid == edImg[i].business_typeid) {
 							var imurl = window.ImgDl + edImg[i].attach_path;
-							console.log("imurl===" + imurl);
+//							console.log("imurl===" + imurl);
 							$("#target").attr('src', imurl);
 							$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this);"/>');
 							//							if (edImg[i].attach_path.length > 1) {
@@ -149,14 +149,14 @@
 			var a = 0;
 			var c = $('.imgLast').size();
 			var upimgs = null;
-			var imgAray = new Array();
+//			var imgAray = new Array();
 			function cyecleAJ(zhonglei, ii) {
 				api.showProgress({
 					title : '上传中..'
 				});
 				for (var a = 0; a < c; a++) {
 					$('.imgLast').each(function(a) {
-						imgAray.push($(this).attr('src'));
+//						imgAray.push($(this).attr('src'));
 						upimgs = $(this).attr('src');
 						H.ajax(function(ret, err) {
 							var imgInfo = ret.data;
@@ -174,9 +174,8 @@
 							}
 						});
 					});
-					return H.setPrefs(function(ret, err) {
-						//						console.log(imgAray);
-					}, 'imgAray', imgAray);
+//					return H.setPrefs(function(ret, err) {
+//					}, 'imgAray', imgAray);
 				}
 				api.hideProgress();
 			}
@@ -231,11 +230,11 @@
 				}, function(ret, err) {
 					if (ret) {
 						if (ret.buttonIndex == 1) {
-							H.removePrefs(function(ret, err) {
-								$('.imgLast').each(function() {
-									imgAray.push($(this).attr('src'));
-								});
-							}, 'imgAray');
+//							H.removePrefs(function(ret, err) {
+//								$('.imgLast').each(function() {
+//									imgAray.push($(this).attr('src'));
+//								});
+//							}, 'imgAray');
 							$(obj).parent().remove();
 							if ($('.imgLast').size() < 1) {
 								$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');

@@ -130,9 +130,6 @@
 				}, function(ret, err) {
 					location.reload();
 				});
-				//				H.addEventListener(function(ret, err) {
-				//					location.reload();
-				//				}, 'pageReload');
 			};
 			var user_id = null, uuid = null, retobj = null;
 			//初始化下拉
@@ -146,12 +143,12 @@
 
 			function ajax() {
 				$ds.nodata(function(ret, err) {
-//				console.log("返回step2,ret=="+JSON.stringify(ret));
+					//				console.log("返回step2,ret=="+JSON.stringify(ret));
 					api.refreshHeaderLoadDone();
 					//						$("#statuss").hide();
 					if (ret && ret.success) {
 						if (undefined == ret.data.length) {
-//							console.log("无数据");
+							//							console.log("无数据");
 							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
 							//$('#progress_data_body').html(html);
 							document.getElementById('progress_data_body').innerHTML = html;
@@ -161,10 +158,6 @@
 								document.getElementById("progress_data_body").innerHTML = render;
 							});
 						}
-						//						var tpl = document.getElementById("progress_data").innerHTML;
-						//						laytpl(tpl).render(ret, function(render) {
-						//							document.getElementById("progress_data_body").innerHTML = render;
-						//						});
 					} else if (ret && !ret.success) {
 						return $common.loginInvalid("../../");
 					}
@@ -174,7 +167,7 @@
 						uuid : uuid,
 						type : 3
 					}
-				},'progress_data_body');
+				}, 'progress_data_body');
 			}
 
 			//初始化用户信息
@@ -191,7 +184,7 @@
 
 			//撤销申请
 			function del(id) {
-//				console.log('id==' + id);
+				//				console.log('id==' + id);
 				api.confirm({
 					title : "温馨提示",
 					msg : "撤销此申请将不可恢复，确定要撤销吗？",
@@ -222,11 +215,9 @@
 						type : 2
 					}
 				});
-				//				H.openWin('sale_header', './invoice/sale_header.html', {
-				//					assessinfo_id : assessinfo_id,
-				//					transferor_certnumber : transferor_certnumber,
-				//					type : 2
-				//				});
+				setTimeout(function() {
+					location.reload();
+				}, 2000);
 			}
 
 			function show(assessinfo_id) {
@@ -237,9 +228,6 @@
 						assessinfo_id : assessinfo_id
 					}
 				});
-				setTimeout(function() {
-					location.reload();
-				}, 2000);
 				//				H.openWin('sale_show_header', './sale_show_header.html', {
 				//					assessinfo_id : assessinfo_id
 				//				});
