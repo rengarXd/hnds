@@ -35,7 +35,7 @@
 				</div>
 				<div id="yulan" class="H-text-align-center">
 					<img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
-					<img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/>
+					<img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast" onerror="javascript:this.src='../../../../image/yz.png';" />
 				</div>
 				<div class="H-padding-10" id="addpic">
 					点击加号拍照(横屏拍摄)
@@ -100,7 +100,7 @@
 					for (var i = 0; i < edImg.length; i++) {
 						if (zhonglei[0].business_typeid == edImg[i].business_typeid) {
 							var imurl = window.ImgDl + edImg[i].attach_path;
-//							console.log("imurl===" + imurl);
+							//							console.log("imurl===" + imurl);
 							$("#target").attr('src', imurl);
 							$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this);"/>');
 							//							if (edImg[i].attach_path.length > 1) {
@@ -149,14 +149,14 @@
 			var a = 0;
 			var c = $('.imgLast').size();
 			var upimgs = null;
-//			var imgAray = new Array();
+			//			var imgAray = new Array();
 			function cyecleAJ(zhonglei, ii) {
 				api.showProgress({
 					title : '上传中..'
 				});
 				for (var a = 0; a < c; a++) {
 					$('.imgLast').each(function(a) {
-//						imgAray.push($(this).attr('src'));
+						//						imgAray.push($(this).attr('src'));
 						upimgs = $(this).attr('src');
 						H.ajax(function(ret, err) {
 							var imgInfo = ret.data;
@@ -174,8 +174,8 @@
 							}
 						});
 					});
-//					return H.setPrefs(function(ret, err) {
-//					}, 'imgAray', imgAray);
+					//					return H.setPrefs(function(ret, err) {
+					//					}, 'imgAray', imgAray);
 				}
 				api.hideProgress();
 			}
@@ -188,7 +188,7 @@
 				var loadurl = "../../../../image/loading_more.gif";
 				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
 					var len = zhonglei.length;
-					if (ii < len) {
+					if (ii < len - 1) {
 						cyecleAJ(zhonglei, ii);
 						ii++;
 						imgBoolean = true;
@@ -199,6 +199,7 @@
 						$("button").html(nums);
 						api.hideProgress();
 					} else {
+						cyecleAJ(zhonglei, ii);
 						api.confirm({
 							title : '代开发票申请提交',
 							msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
@@ -230,11 +231,11 @@
 				}, function(ret, err) {
 					if (ret) {
 						if (ret.buttonIndex == 1) {
-//							H.removePrefs(function(ret, err) {
-//								$('.imgLast').each(function() {
-//									imgAray.push($(this).attr('src'));
-//								});
-//							}, 'imgAray');
+							//							H.removePrefs(function(ret, err) {
+							//								$('.imgLast').each(function() {
+							//									imgAray.push($(this).attr('src'));
+							//								});
+							//							}, 'imgAray');
 							$(obj).parent().remove();
 							if ($('.imgLast').size() < 1) {
 								$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
@@ -256,7 +257,13 @@
 			function uploadFile(url, dataSrc, imgInfo, callback) {
 				H.oldAjax(function(ret, err) {
 					if (ret) {
-						ret.success ? callback(ret) : H.toast(ret.message);
+						if (ret.success) {
+							callback(ret);
+						} else {
+							callback(ret);
+							H.toast(ret.message);
+						}
+						//						ret.success ? callback(ret) : H.toast(ret.message);
 					} else {
 						api.hideProgress();
 						H.toast('连接错误，请检查网络配置等问题');
