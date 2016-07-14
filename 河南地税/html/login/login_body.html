@@ -1,143 +1,141 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>登陆页面</title>
-		<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="../../css/fonts/iconfont.css" />
-		<style type="text/css">
-			html, body {
-				background: #0193e8;
-			}
-		</style>
-	</head>
-	<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
-		<div class="H-horizontal-center H-padding-vertical-both-25" style="padding-top: 100px">
-			<div class="H-text-align-center">
-				<img src="../../image/icon.png" class="H-border-radius-12 H-margin-vertical-top-10" style="width:60%;height:60%;"/ >
-			</div>
-		</div>
-		<div class="H-margin-vertical-top-10 H-padding-horizontal-both-25">
-			<!--账号-->
-			<div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
-				<span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-shenfenzheng H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
-				<input id="pid" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" placeholder="用户名" />
-			</div>
-			<!--账号-->
-			<!--密碼-->
-			<div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
-				<span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-mima H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
-				<input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" placeholder="密码" />
-			</div>
-			<!--密碼-->
-			<!--忘记密码及注册-->
-			<div class="H-display-block">
-				<span class="H-font-size-13 H-theme-font-color-white H-float-left" tapmode="" onclick="H.openWin('changepassword_head','');">忘记密码？</span>
-				<span class="H-float-right H-font-size-13 H-theme-font-color-white H-float-right" tapmode="" onclick="H.openWin('register','register.html');">注册</span>
-			</div>
-			<div class="H-padding-vertical-bottom-10"></div>
-			<!--忘记密码及注册-->
-			<!--登录按钮-->
-			<div class="H-margin-vertical-both-15 H-text-align-center">
-				<button tapmode="" onclick="login();" class="H-font-size-15 H-button H-padding-vertical-both-10 H-border-none H-width-100-percent H-border-radius-5 H-theme-border-color9-click H-theme-font-color-white" style="background-color: #ffb400;">
-					登录
-				</button>
-			</div>
-			<!--登录按钮-->
-		</div>
-		<script src="../../script/H.js" type="text/javascript"></script>
-		<script src="../../script/zepto.min.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			var systemType = null;
-			H.ready(function() {
-				//优化点击事件
-				api.parseTapmode();
-				//双击返回退出
-				H.dblclickToCloseApp();
-			});
-			
-			// 登录操作
-			function login() {
-				//获取输入的账号
-				var pid = $("#pid").val();
-				//获取输入的密码
-				var pwd = $("#pwd").val();
-				if (!pid) {
-					alert("抱歉，请先输入用户名再登录！");
-					return;
-				}
-				if (!pwd) {
-					alert("抱歉，请先输入密码再登录！");
-					return;
-				}
-				api.showProgress({
-					title : '登录中'
-				});
-				H.ajax(function(ret, err) {
-//					console.log("信息" + JSON.stringify(ret));
-					api.hideProgress();
-					ret && ret.success ? isSuccess(ret) : alert("抱歉，账号或密码错误！");
-				}, 'userlogin&funid=sys_user', 'post', {
-					values : {
-						user_code : pid,
-						user_pwd : pwd
-					}
-				});
-			}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>登陆页面</title>
+        <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="../../css/fonts/iconfont.css" />
+        <style type="text/css">
+            html, body {
+                background: #0193e8;
+            }
+        </style>
+    </head>
+    <body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+        <div class="H-horizontal-center H-padding-vertical-both-25" style="padding-top: 100px">
+            <div class="H-text-align-center">
+                <img src="../../image/icon.png" class="H-border-radius-12 H-margin-vertical-top-10" style="width:60%;height:60%;"/ >
+            </div>
+        </div>
+        <div class="H-margin-vertical-top-10 H-padding-horizontal-both-25">
+            <!--账号-->
+            <div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
+                <span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-shenfenzheng H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
+                <input id="pid" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" placeholder="用户名" />
+            </div>
+            <!--账号-->
+            <!--密碼-->
+            <div class="H-flexbox-horizontal H-margin-vertical-bottom-10 H-theme-background-color-white H-border-radius-5">
+                <span class="H-icon H-vertical-middle H-padding-horizontal-left-10"> <i class="iconfont icon-mima H-font-size-18 H-vertical-middle H-theme-font-color-999"></i> </span>
+                <input id="pwd" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" placeholder="密码" />
+            </div>
+            <!--密碼-->
+            <!--忘记密码及注册-->
+            <div class="H-display-block">
+                <span class="H-font-size-13 H-theme-font-color-white H-float-left" tapmode="" onclick="H.openWin('changepassword_head','');">忘记密码？</span>
+                <span class="H-float-right H-font-size-13 H-theme-font-color-white H-float-right" tapmode="" onclick="H.openWin('register','register.html');">注册</span>
+            </div>
+            <div class="H-padding-vertical-bottom-10"></div>
+            <!--忘记密码及注册-->
+            <!--登录按钮-->
+            <div class="H-margin-vertical-both-15 H-text-align-center">
+                <button tapmode="" onclick="login();" class="H-font-size-15 H-button H-padding-vertical-both-10 H-border-none H-width-100-percent H-border-radius-5 H-theme-border-color9-click H-theme-font-color-white" style="background-color: #ffb400;">
+                    登录
+                </button>
+            </div>
+            <!--登录按钮-->
+        </div>
+        <script src="../../script/H.js" type="text/javascript"></script>
+        <script src="../../script/zepto.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var systemType = null;
+            H.ready(function() {
+                //优化点击事件
+                api.parseTapmode();
+                //双击返回退出
+                H.dblclickToCloseApp();
+            });
+            // 登录操作
+            function login() {
+                //获取输入的账号
+                var pid = $("#pid").val();
+                //获取输入的密码
+                var pwd = $("#pwd").val();
+                if (!pid) {
+                    alert("抱歉，请先输入用户名再登录！");
+                    return;
+                }
+                if (!pwd) {
+                    alert("抱歉，请先输入密码再登录！");
+                    return;
+                }
+                api.showProgress({
+                    title : '登录中'
+                });
+                H.ajax(function(ret, err) {
+                    //					console.log("信息" + JSON.stringify(ret));
+                    api.hideProgress();
+                    ret && ret.success ? isSuccess(ret) : alert("抱歉，账号或密码错误！");
+                }, 'userlogin&funid=sys_user', 'post', {
+                    values : {
+                        user_code : pid,
+                        user_pwd : pwd
+                    }
+                });
+            }
 
-			//登录成功处理
-			function isSuccess(rets) {
-				//2.标识已经登录成功
-				api.setPrefs({
-					key : 'islogin',
-					value : 'true'
-				});
-				//3.存储用户信息
-				H.setPrefs(function() {
-					var system = api.systemType;
-					if (system != "ios") {
-						//初始化极光推送
-						var ajpush = api.require('ajpush');
-						ajpush.init(function(ret) {
-							if (ret && ret.status) {
-								ajpush.getRegistrationId(function(ret) {
-									var registrationId = ret.id;
-//									console.log("极光推送ok == id" + registrationId);
-									H.ajax(function(ret, err) {
-//										console.log(JSON.stringify(ret));
-										api.openWin({
-											name : 'main',
-											url : '../main.html'
-										});
-										//1.登录成功之后延时关闭自已
-										setTimeout(function() {
-											H.closeWin();
-										}, 2000);
-									}, 'updateRegistration&funid=sys_user', 'post', {
-										values : {
-											user_id : rets.data[0].user_id,
-											uuid : rets.data[0].uuid,
-											registrationId : registrationId
-										}
-									});
-								});
-							}
-						});
-					} else {
-						api.openWin({
-							name : 'main',
-							url : '../main.html'
-						});
-						//1.登录成功之后延时关闭自已
-						setTimeout(function() {
-							H.closeWin();
-						}, 2000);
-					}
-				}, 'userinfo', JSON.stringify(rets.data));
-			}
-
-		</script>
-	</body>
+            //登录成功处理
+            function isSuccess(rets) {
+                //2.标识已经登录成功
+                api.setPrefs({
+                    key : 'islogin',
+                    value : 'true'
+                });
+                //3.存储用户信息
+                H.setPrefs(function() {
+                    var system = api.systemType;
+                    if (system != "ios") {
+                        //初始化极光推送
+                        var ajpush = api.require('ajpush');
+                        ajpush.init(function(ret) {
+                            if (ret && ret.status) {
+                                ajpush.getRegistrationId(function(ret) {
+                                    var registrationId = ret.id;
+                                    //									console.log("极光推送ok == id" + registrationId);
+                                    H.ajax(function(ret, err) {
+                                        //										console.log(JSON.stringify(ret));
+                                        api.openWin({
+                                            name : 'main',
+                                            url : '../main.html'
+                                        });
+                                        //1.登录成功之后延时关闭自已
+                                        setTimeout(function() {
+                                            H.closeWin();
+                                        }, 2000);
+                                    }, 'updateRegistration&funid=sys_user', 'post', {
+                                        values : {
+                                            user_id : rets.data[0].user_id,
+                                            uuid : rets.data[0].uuid,
+                                            registrationId : registrationId
+                                        }
+                                    });
+                                });
+                            }
+                        });
+                    } else {
+                        api.openWin({
+                            name : 'main',
+                            url : '../main.html'
+                        });
+                        //1.登录成功之后延时关闭自已
+                        setTimeout(function() {
+                            H.closeWin();
+                        }, 2000);
+                    }
+                }, 'userinfo', JSON.stringify(rets.data));
+            }
+        </script>
+    </body>
 </html>
