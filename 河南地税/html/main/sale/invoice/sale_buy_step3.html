@@ -185,7 +185,7 @@
 							var dm = $(this).attr('dm');
 							if (dm == null || dm == "") {
 								H.toast($(this).html());
-//								console.log("dm===" + $(this).html());
+								//								console.log("dm===" + $(this).html());
 								yanzheng = false;
 							}
 						});
@@ -303,7 +303,7 @@
 										typeArray.push(selet_option[i][nm]);
 									}
 									H.actionSheet(function(ret, err) {
-//										$('#' + IdName).attr("dm", "");
+										//										$('#' + IdName).attr("dm", "");
 										//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 										if (ret.buttonIndex <= selet_option.length) {
 											//							alert(ret.buttonIndex);
@@ -340,7 +340,7 @@
 				H.ajax(function(ret, err) {
 					$("#statuss").hide();
 					if (ret && ret.success) {
-//						console.log("ret===" + JSON.stringify(ret));
+						//						console.log("ret===" + JSON.stringify(ret));
 						var data = ret.data[0];
 						var tpl = document.getElementById('sale_detail_data').innerHTML;
 						//方式一：异步渲染（推荐）
@@ -395,7 +395,7 @@
 			}
 
 			function _ajax() {
-//				console.log(JSON.stringify(datas));
+				//				console.log(JSON.stringify(datas));
 				//1.4、已经登录
 				//更新存量房信息
 				api.showProgress();
