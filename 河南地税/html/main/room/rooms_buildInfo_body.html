@@ -119,16 +119,22 @@
                                 //                              console.log("ret===" + JSON.stringify(ret));
                                 var data = ret.data[0];
                                 $("#house_type").text(data.infonm003);
+                                $("#house_type").attr('infoid', data.house_type);
                                 $("#building_toward").text(data.infonm005);
+                                $("#building_toward").attr('infoid', data.building_toward);
                                 $("#building_structure").text(data.infonm006);
+                                $("#building_structure").text(data.building_structure);
                                 $("#dywz").text(data.infonm007);
+                                $("#dywz").text(data.dywz);
                                 $("#fqwz").text(data.infonm008);
+                                $("#fqwz").text(data.fqwz);
                                 $("#fslx").text(data.infonm009);
+                                $("#fslx").text(data.fslx);
                                 $("#house_floor").val(data.house_floor);
                                 $("#total_floor").val(data.total_floor);
                                 $("#building_area").val(data.building_area);
                                 $("#build_year").val(data.build_year);
-                                if(data.declared_value != '0'){
+                                if (data.declared_value != '0') {
                                     $("#declared_value").val();
                                 }
                                 api.hideProgress();
@@ -168,7 +174,7 @@
                             var infoidData = $("#" + x).attr('infoid');
                             if (infoidData == null) {
                                 return api.toast({
-                                    msg : $("#" + x).html()
+                                    msg : '抱歉' + $("#" + x).html() + '未填写'
                                 });
                             } else {
                             }
@@ -184,8 +190,6 @@
                 var infoid = 'infoid' + nums;
                 var infonm = 'infonm' + nums;
                 H.selAjax(function(ret, selet_option) {
-                    //                  $('#' + IdName).attr("infoid", "");
-                    //					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
                     if (ret.buttonIndex <= selet_option.length) {
                         //							alert(ret.buttonIndex);
                         $('#' + IdName).attr('infoid', selet_option[ret.buttonIndex - 1][infoid]).html(selet_option[ret.buttonIndex - 1][infonm]);
