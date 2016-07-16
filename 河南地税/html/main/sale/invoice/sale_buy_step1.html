@@ -26,7 +26,7 @@
 		</form>
 		<div class="footer H-padding-10">
 			<button onclick="gyrxx();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				共有人信息
+				共有人信息（可选）
 			</button>
 		</div>
 		<footer class="H-footer H-padding-10 ">
@@ -38,7 +38,7 @@
 			<!--纳税人识别号 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">纳税人识别号：</span>
-			<input type="text" value="{{ d.mfnsrsbh }}" name="mfnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="纳税人识别号不能为空" data-errmsg="纳税人识别号填写错误"
+			<input type="text" value="{{ d.property_number }}" name="property_number" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
 			placeholder="纳税人识别号" />
 			</div>
 			<!--纳税人识别号 end-->
@@ -74,7 +74,7 @@
 			<!--国籍代码 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('mfgjjc','010');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right"  id="mfgjjc">点击选择卖方国籍</span>
+			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" mfgj_dm="156" id="mfgjjc">中国</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -82,7 +82,7 @@
 			<!--地址 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">地址：</span>
-			<input type="text" value="{{ d.mfdz }}" name="mfdz" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
+			<input type="text" value="" name="mfdz" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
 			placeholder="地址" />
 			</div>
 			<!--地址 end-->
@@ -91,7 +91,7 @@
 			<!--纳税人识别号 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">纳税人识别号：</span>
-			<input type="text" value="{{ d.mfnsrsbh }}" name="mfnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="纳税人识别号不能为空" data-errmsg="纳税人识别号填写错误"
+			<input type="text" value="{{ d.mfnsrsbh }}" name="mfnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
 			placeholder="纳税人识别号" />
 			</div>
 			<!--纳税人识别号 end-->
