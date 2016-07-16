@@ -22,6 +22,11 @@
 		<form id="forms">
 			<div class="H-border-vertical-both-after" id="sale_html"></div>
 		</form>
+		<div class="H-padding-10">
+			<button onclick="gyrxx();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+				共有人信息
+			</button>
+		</div>
 		<footer class="H-footer H-padding-10 ">
 			<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				下一步(2/4)
@@ -190,6 +195,17 @@
 						"user_id" : userinfo[0].user_id,
 						"uuid" : userinfo[0].uuid,
 						"fwuuid" : assessinfo_id
+					}
+				});
+			}
+
+			function gyrxx() {
+				api.openWin({
+					name : 'sale_gyr_head',
+					url : './gyrxx/sale_gyr_head.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						mflx : '1'
 					}
 				});
 			}

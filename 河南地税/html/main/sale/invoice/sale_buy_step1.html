@@ -24,7 +24,11 @@
 		<form id="forms">
 			<div id="sale_html" class=""></div>
 		</form>
-		<div class="footer"></div>
+		<div class="footer H-padding-10">
+			<button onclick="gyrxx();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+				共有人信息
+			</button>
+		</div>
 		<footer class="H-footer H-padding-10 ">
 			<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				下一步(1/4)
@@ -34,7 +38,7 @@
 			<!--纳税人识别号 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">纳税人识别号：</span>
-			<input type="text" value="1515165156" name="mfnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="纳税人识别号不能为空" data-errmsg="纳税人识别号填写错误"
+			<input type="text" value="{{ d.mfnsrsbh }}" name="mfnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="纳税人识别号不能为空" data-errmsg="纳税人识别号填写错误"
 			placeholder="纳税人识别号" />
 			</div>
 			<!--纳税人识别号 end-->
@@ -78,7 +82,7 @@
 			<!--地址 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">地址：</span>
-			<input type="text" value="河南省地方税务局" name="mfdz" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
+			<input type="text" value="{{ d.mfdz }}" name="mfdz" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
 			placeholder="地址" />
 			</div>
 			<!--地址 end-->
@@ -184,6 +188,17 @@
 					}
 				});
 			});
+			function gyrxx() {
+				api.openWin({
+					name : 'sale_gyr_head',
+					url : './gyrxx/sale_gyr_head.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						mflx : '0'
+					}
+				});
+			}
+
 			function edit() {
 				//继续编辑处理
 				api.showProgress({

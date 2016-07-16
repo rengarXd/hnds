@@ -112,7 +112,6 @@
 						//计算上传附件的长度
 						$("button").html('上传附件(4/' + parseInt(4 + zhonglei.length - 1) + ')');
 						if (type == 2) {
-							//编辑图片的方法
 							editImg();
 						}
 					} else if (ret.success == false) {
@@ -137,22 +136,22 @@
 						var imgs = [];
 						for (var i = 0; i < edImg.length; i++) {
 							if (zhonglei[0].business_typeid == edImg[i].business_typeid) {
-								var imurl = window.ImgDl + edImg[i].attach_path;
-								imgs.push(imurl);
+								//								var imurl = window.ImgDl + edImg[i].attach_path;
+								imgs.push(edImg[i]);
 								console.log("imurl===" + imurl);
 							}
 						}
+						console.log('imgs===' + JSON.stringify(imgs));
 						if (imgs.length > 1) {
 							var dom = new Array();
-							for (var a = 1; a < edImg[i].attach_path.length; a++) {
-								dom.push('<div class="H-text-align-center"><img src="' + window.ImgDl + edImg[i].attach_path[a] + '" style="width: 100%;" class="imgLast" /></div>');
-								$("#yulan").after(dom).append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + edImg[i].id + "'" + ');"/>');
+							for (var a = 1; a < imgs.length; a++) {
+								dom.push('<div class="H-text-align-center"><img src="' + window.ImgDl + imgs[a].attach_path + '" style="width: 100%;" class="imgLast" /><img src="../../../../image/del.jpg" class="del_b" onclick="select(this,' + "'" + edImg[a].keyid + "'" + ');"/></div>');
 							}
+							$("#yulan").after(dom);
 						} else {
-							$("#target").attr('src', imurl);
-							$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + edImg[i].id + "'" + ');"/>');
+							$("#target").attr('src', window.ImgDl + imgs[0].attach_path);
+							$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + imgs[0].keyid + "'" + ');"/>');
 						}
-						console.log('imgs===' + JSON.stringify(imgs));
 					}
 				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 					values : {
@@ -337,7 +336,7 @@
 						eventcode : "create",
 						dataType : "byte",
 						datafunid : datafunid,
-						fileField : fileField,
+						//						fileField : fileField,
 						dataid : dataid,
 						attach_name : dataSrc
 					},
@@ -348,7 +347,7 @@
 			}
 
 			function addImgInfo(callback) {
-//				a = 1;
+				//				a = 1;
 				H.ajax(function(ret, err) {
 					var imgInfo = ret.data;
 					if (ret.success) {
@@ -385,16 +384,19 @@
 					var returnUrl = ret.data;
 					if (returnUrl !== "") {
 						var browerImgs = [];
+						console.log();
 						if (c <= 1) {
 							// 图片压缩
 							$("#target").hide();
 							$("#loading").show();
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
 								$("#loading").hide();
-								imgBoolean = false;
+								//								imgBoolean = false;
 								//请求添加图片信息
-								if (edImg) {
-									uploadFile(window.ImgWebUrl, compressImg, edImg.datafunid, edImg.dataid, function(serverImg) {
+								var compressImg = compressImg;
+								addImgInfo(function(imgInfo) {
+									uploadFile(window.ImgWebUrl, compressImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
+										//attachId = serverImg.data.attachId;
 										//处理图片返回状态
 										imgBooer = serverImg.success;
 										//在页面中渲染图片
@@ -410,31 +412,32 @@
 										}).after(del);
 										//								console.log('serverImg===' + JSON.stringify(serverImg))
 									});
-								} else {
-									addImgInfo(function(imgInfo) {
-										uploadFile(window.ImgWebUrl, compressImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
-											//attachId = serverImg.data.attachId;
-											//处理图片返回状态
-											imgBooer = serverImg.success;
-											//在页面中渲染图片
-											var del = '	<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');"/>'
-											$("#target").attr({
-												"src" : compressImg,
-												"style" : "width:100%;"
-											}).on("click", function() {
-												// 将图片追加到数组中
-												browerImgs.push($("#target").attr("src"));
-												// 调用图片预览函数
-												img.openImageBrowser(browerImgs);
-											}).after(del);
-											//								console.log('serverImg===' + JSON.stringify(serverImg))
-										});
-									});
-								}
+								});
+								//								if (edImg) {
+								//									var compressAddImg = compressAddImg;
+								//									uploadFile(window.ImgWebUrl, compressImg, edImg.datafunid, edImg.dataid, function(serverImg) {
+								//										//处理图片返回状态
+								//										imgBooer = serverImg.success;
+								//										//在页面中渲染图片
+								//										var del = '	<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');"/>'
+								//										$("#target").attr({
+								//											"src" : compressImg,
+								//											"style" : "width:100%;"
+								//										}).on("click", function() {
+								//											// 将图片追加到数组中
+								//											browerImgs.push($("#target").attr("src"));
+								//											// 调用图片预览函数
+								//											img.openImageBrowser(browerImgs);
+								//										}).after(del);
+								//										//								console.log('serverImg===' + JSON.stringify(serverImg))
+								//									});
+								//								} else {
+								//
+								//								}
 							});
 						} else {
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
-								imgBoolean = false;
+								//								imgBoolean = false;
 								var compressAddImg = compressAddImg;
 								addImgInfo(function(imgInfo) {
 									uploadFile(window.ImgWebUrl, compressAddImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
