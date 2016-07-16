@@ -106,13 +106,13 @@
 					if (ret.success) {
 						//图片选项数据
 						zhonglei = ret.data;
-						console.log("zhonglei==" + JSON.stringify(zhonglei));
+						//						console.log("zhonglei==" + JSON.stringify(zhonglei));
 						//第一个文件标题
 						$("#Leixing").html(zhonglei[0].business_name);
 						//计算上传附件的长度
 						$("button").html('上传附件(4/' + parseInt(4 + zhonglei.length - 1) + ')');
 						if (type == 2) {
-							editImg();
+							editImg(0);
 						}
 					} else if (ret.success == false) {
 						alert(JSON.stringify(ret.message));
@@ -125,7 +125,7 @@
 			}
 
 			//获取之前的图片
-			function editImg() {
+			function editImg(num) {
 				H.ajax(function(ret, err) {
 					if (undefined == ret.data.length) {
 						api.toast({
@@ -133,25 +133,24 @@
 						});
 					} else {
 						edImg = ret.data;
+						imgBoolean = false;
 						var imgs = [];
 						for (var i = 0; i < edImg.length; i++) {
-							if (zhonglei[0].business_typeid == edImg[i].business_typeid) {
+							if (zhonglei[num].business_typeid == edImg[i].business_typeid) {
 								//								var imurl = window.ImgDl + edImg[i].attach_path;
 								imgs.push(edImg[i]);
-								console.log("imurl===" + imurl);
+								if (imgs.length > 1) {
+									$("#yulan").after('<div class="H-text-align-center"><img src="' + window.ImgDl + imgs[i].attach_path + '" style="width: 100%;" class="imgLast" /><img src="../../../../image/del.jpg" class="del_b" onclick="select(this,' + "'" + edImg[i].keyid + "'" + ');"/></div>');
+								} else {
+									var imgurl = window.ImgDl + imgs[0].attach_path;
+									//							console.log(imgurl);
+									$("#target").attr('src', imgurl);
+									$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + imgs[0].keyid + "'" + ');"/>');
+									//									imgBoolean = false;
+								}
 							}
 						}
 						console.log('imgs===' + JSON.stringify(imgs));
-						if (imgs.length > 1) {
-							var dom = new Array();
-							for (var a = 1; a < imgs.length; a++) {
-								dom.push('<div class="H-text-align-center"><img src="' + window.ImgDl + imgs[a].attach_path + '" style="width: 100%;" class="imgLast" /><img src="../../../../image/del.jpg" class="del_b" onclick="select(this,' + "'" + edImg[a].keyid + "'" + ');"/></div>');
-							}
-							$("#yulan").after(dom);
-						} else {
-							$("#target").attr('src', window.ImgDl + imgs[0].attach_path);
-							$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + imgs[0].keyid + "'" + ');"/>');
-						}
 					}
 				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 					values : {
@@ -237,6 +236,7 @@
 							$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
 							var nums = '上传附件(' + parseInt(4 + ii) + '/' + parseInt(4 + len - 1) + ')';
 							$("button").html(nums);
+							editImg(ii);
 						}
 						api.hideProgress();
 					} else {
@@ -274,13 +274,27 @@
 						if (ret.buttonIndex == 1) {
 							H.oldAjax(function(ret, err) {
 								if (ret.success) {
-									$(obj).parent().remove();
-									if ($('.imgLast').size() < 1) {
-										$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
-										imgBoolean = true;
-									}
-									api.toast({
-										msg : '删除成功'
+									H.ajax(function(ret, err) {
+										if (ret.success) {
+											$(obj).parent().remove();
+											if ($('.imgLast').size() < 1) {
+												$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
+												imgBoolean = true;
+											}
+											api.toast({
+												msg : '删除成功'
+											});
+										} else {
+											api.toast({
+												msg : ret.message
+											});
+										}
+									}, 'delAttachRec&funid=wbjh_clfxsxxb_attachs', 'post', {
+										values : {
+											'user_id' : userinfo[0].user_id,
+											'uuid' : userinfo[0].uuid,
+											'keyid' : attachId
+										}
 									});
 								} else {
 									api.toast({
@@ -314,7 +328,7 @@
 			 datafunid数据功能标识（必填）（string）
 			 dataid数据id（必填）（string）
 			 * */
-			function uploadFile(url, dataSrc, datafunid, dataid, fileField, callback) {
+			function uploadFile(url, dataSrc, datafunid, dataid, callback) {
 				H.oldAjax(function(ret, err) {
 					if (ret) {
 						if (ret.success) {
@@ -384,14 +398,14 @@
 					var returnUrl = ret.data;
 					if (returnUrl !== "") {
 						var browerImgs = [];
-						console.log();
-						if (c <= 1) {
+						console.log("c---" + c);
+						if (imgBoolean) {
 							// 图片压缩
 							$("#target").hide();
 							$("#loading").show();
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
 								$("#loading").hide();
-								//								imgBoolean = false;
+								imgBoolean = false;
 								//请求添加图片信息
 								var compressImg = compressImg;
 								addImgInfo(function(imgInfo) {
@@ -437,11 +451,12 @@
 							});
 						} else {
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
-								//								imgBoolean = false;
+								imgBoolean = false;
 								var compressAddImg = compressAddImg;
 								addImgInfo(function(imgInfo) {
 									uploadFile(window.ImgWebUrl, compressAddImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
 										imgBooer = serverImg.success;
+										console.log(compressAddImg);
 										var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' class="imgyulan imgLast" style="width: 100%;"/><img src="../../../../image/del.jpg"  onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');" class="del_b"/></div>';
 										// 追加图片
 										$("#addpic").before(showImgHtml);
