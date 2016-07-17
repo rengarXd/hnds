@@ -25,9 +25,9 @@
 			<div id="sale_html" class="">
 				<!--共有人纳税人识别号 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">共有人纳税人识别号：</span>
-					<input type="text" value="" name="gyrnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="共有人纳税人识别号不能为空" data-errmsg="共有人纳税人识别号填写错误"
-					placeholder="共有人纳税人识别号" />
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">纳税人识别号：</span>
+					<input type="text" value="" name="gyrnsrsbh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
+					placeholder="纳税人识别号" />
 				</div>
 				<!--共有人纳税人识别号 end-->
 				<!--共有人姓名 start-->
@@ -84,28 +84,32 @@
 				<!--所占份额 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">所占份额：</span>
-					<input type="text" value="" name="szfe_1" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="所占份额不能为空" data-errmsg="所占份额填写错误"
+					<input type="text" value="" name="szfe_1" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所占份额不能为空" data-errmsg="所占份额填写错误"
 					placeholder="填写所占份额" />
 				</div>
 				<!--所占份额 end-->
 				<!--转让份额 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">转让份额：</span>
-					<input type="text" value="" name="zrfe" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让份额不能为空" data-errmsg="转让份额填写错误"
+					<input type="text" value="" name="zrfe" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="转让份额不能为空" data-errmsg="转让份额填写错误"
 					placeholder="转让份额" />
 				</div>
 				<!--转让份额 end-->
 			</div>
 		</form>
-		<div class="footer  H-padding-10 ">
-			<button tapmode onclick="delet();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				删除
-			</button>
-		</div>
-		<footer class="H-footer H-padding-10 ">
-			<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				提交
-			</button>
+		<footer class="H-footer H-padding-10">
+			<div class="H-flexbox-horizontal">
+				<div class="H-flex-item">
+					<button tapmode onclick="delet();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color7 H-theme-font-color-white H-theme-border-color7 H-theme-background-color7-click H-theme-font-color1-click ">
+						删除
+					</button>
+				</div>
+				<div class="H-flex-item">
+					<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+						提交
+					</button>
+				</div>
+			</div>
 		</footer>
 		<script type="text/html" id="sale_data">
 			<!--共有人纳税人识别号 start-->
@@ -125,7 +129,7 @@
 			<!--证件类型 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="IDtype('sfzjlx_dm', 'zjhm');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			证件类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" dm=""  id="sfzjlx_dm">点击选择证件类型</span>
+			证件类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" dm="{{ d.sfzjlx_dm }}"  id="sfzjlx_dm">点击选择证件类型</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -226,6 +230,7 @@
 						if (ret && ret.value) {
 							//1.2如果有数据则拉取数据并渲染
 							gyrid = eval('(' + ret.value + ')');
+							console.log(JSON.stringify(gyrid));
 							//1.3渲染
 							edit();
 							//								var tpl = document.getElementById('sale_data').innerHTML;
@@ -240,13 +245,14 @@
 							H.ajax(function(ret, err) {
 								//						console.log(Transferee);
 								results(ret, function(ret) {
-									alert(JSON.stringify(ret.data));
-									//									api.setPrefs({
-									//										key : 'sale' + assessinfo_id,
-									//										value : JSON.stringify(ret.data)
-									//									});
+									//									alert(JSON.stringify(ret.data));
+									gyrid = ret.data.gyrid;
+									api.setPrefs({
+										key : 'sale' + assessinfo_id,
+										value : gyrid
+									});
 								});
-							}, 'wbjhGyrxxAdd&funid=wbjh_clfxsxxb_gyrxx&fwuuid=' + assessinfo_id, 'post', {
+							}, 'wbjhGyrxxAdd&funid=wbjh_clfxsxxb_gyrxx', 'post', {
 								values : {
 									"user_id" : userinfo[0].user_id,
 									"uuid" : userinfo[0].uuid,
@@ -258,7 +264,7 @@
 					}, 'sale' + assessinfo_id);
 				});
 			}
-			
+
 			//删除该记录
 			function delet() {
 				api.confirm({
@@ -272,6 +278,9 @@
 							results(ret, function(ret) {
 								api.toast({
 									msg : ret.message
+								});
+								api.removePrefs({
+									key : 'sale' + assessinfo_id
 								});
 								api.closeWin();
 							});
@@ -330,6 +339,12 @@
 								'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
 								'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
 							});
+						} else {
+							$("input[name=" + CertNumber + "]").attr({
+								'data-rule' : 'n',
+								'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
+								'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
+							});
 						}
 					}
 				}, '001');
@@ -375,7 +390,7 @@
 						results(ret, function(ret) {
 							api.closeWin();
 						});
-					}, 'wbjhGyrxxAdd&funid=wbjh_clfxsxxb_gyrxx&fwuuid=' + assessinfo_id, 'post', {
+					}, 'wbjhGyrxxAdd&funid=wbjh_clfxsxxb_gyrxx', 'post', {
 						values : datas
 					});
 				} else {

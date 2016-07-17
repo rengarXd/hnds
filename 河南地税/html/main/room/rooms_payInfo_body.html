@@ -198,12 +198,18 @@
                         //							alert(ret.buttonIndex);
                         $('#' + IdName).attr("infoid001", selet_option[ret.buttonIndex - 1].infoid001).html(selet_option[ret.buttonIndex - 1].infonm001);
                         if (selet_option[ret.buttonIndex - 1].infonm001 == "身份证") {
-                            $("input[name=" + CertNumber + "]").attr({
-                                'data-rule' : 'idcard',
-                                'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
-                                'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
-                            });
-                        }
+							$("input[name=" + CertNumber + "]").attr({
+								'data-rule' : 'idcard',
+								'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
+								'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
+							});
+						}else{
+							$("input[name=" + CertNumber + "]").attr({
+								'data-rule' : 'n',
+								'data-nullmsg' : selet_option[ret.buttonIndex - 1].infonm001 + "不能为空!",
+								'data-errmsg' : selet_option[ret.buttonIndex - 1].infonm001 + '填写错误'
+							});
+						}
                     }
                 }, '001');
             }

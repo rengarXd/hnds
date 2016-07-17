@@ -31,7 +31,7 @@
 		<div class="H-flexbox-vertical" id="stap1">
 			<div class="H-flex-item H-theme-background-color-white H-padding-10">
 				<!--证件名称start-->
-				<div class="H-padding-10 H-font-size-14" id="Leixing"></div>
+				<div class="H-padding-10" id="Leixing"></div>
 				<!--证件名称end-->
 				<!--图片区域start-->
 				<div id="yulan" class="H-text-align-center">
@@ -133,24 +133,43 @@
 						});
 					} else {
 						edImg = ret.data;
-						imgBoolean = false;
 						var imgs = [];
+						var browerImgs = [];
 						for (var i = 0; i < edImg.length; i++) {
 							if (zhonglei[num].business_typeid == edImg[i].business_typeid) {
-								//								var imurl = window.ImgDl + edImg[i].attach_path;
 								imgs.push(edImg[i]);
 								if (imgs.length > 1) {
-									$("#yulan").after('<div class="H-text-align-center"><img src="' + window.ImgDl + imgs[i].attach_path + '" style="width: 100%;" class="imgLast" /><img src="../../../../image/del.jpg" class="del_b" onclick="select(this,' + "'" + edImg[i].keyid + "'" + ');"/></div>');
+									for (var a = 1; a < imgs.length; a++) {
+										//										console.log('imgs===' + JSON.stringify(imgs));
+										var imgurls = window.ImgDl + imgs[a].attach_path;
+										//										console.log(imgurl);
+										$("#yulan").after('<div class="H-text-align-center"><img src="' + imgurls + '" style="width: 100%;" class="imgLast imgyulan" /><img src="../../../../image/del.jpg" class="del_b" onclick="select(this,' + "'" + imgs[a].keyid + "'" + ');"/></div>');
+										// 将图片追加到数组中
+										browerImgs.push(imgurls);
+									}
+									$(".H-flex-item .imgyulan").eq($(this).index()).on("click", function() {
+										// 调用图片预览函数
+										img.openImageBrowser(browerImgs);
+									});
+									//									imgBoolean = false;
 								} else {
+									//									imgBoolean = true;
+									//									var browerImgs = [];
 									var imgurl = window.ImgDl + imgs[0].attach_path;
 									//							console.log(imgurl);
-									$("#target").attr('src', imgurl);
+									// 将图片追加到数组中
+									browerImgs.push(imgurl);
+									$("#target").attr('src', imgurl).on("click", function() {
+										// 调用图片预览函数
+										img.openImageBrowser(browerImgs);
+									});
 									$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + imgs[0].keyid + "'" + ');"/>');
 									//									imgBoolean = false;
 								}
 							}
 						}
-						console.log('imgs===' + JSON.stringify(imgs));
+						imgs.length == 0 ? imgBoolean = true : imgBoolean = false;
+						console.log('imgs.length===' + imgs.length);
 					}
 				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 					values : {
@@ -187,7 +206,7 @@
 
 			var a = 0;
 			var c = $('.imgLast').size();
-			var upimgs = null;
+			//			var upimgs = null;
 			var imgBooer = true;
 			//上传图片操作
 			function cyecleAJ(zhonglei, ii) {
@@ -272,10 +291,14 @@
 				}, function(ret, err) {
 					if (ret) {
 						if (ret.buttonIndex == 1) {
+							api.showProgress({
+								title : '删除中..'
+							});
 							H.oldAjax(function(ret, err) {
 								if (ret.success) {
 									H.ajax(function(ret, err) {
 										if (ret.success) {
+											api.hideProgress();
 											$(obj).parent().remove();
 											if ($('.imgLast').size() < 1) {
 												$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
@@ -285,6 +308,7 @@
 												msg : '删除成功'
 											});
 										} else {
+											api.hideProgress();
 											api.toast({
 												msg : ret.message
 											});
@@ -297,6 +321,7 @@
 										}
 									});
 								} else {
+									api.hideProgress();
 									api.toast({
 										msg : '删除失败'
 									});
@@ -329,8 +354,12 @@
 			 dataid数据id（必填）（string）
 			 * */
 			function uploadFile(url, dataSrc, datafunid, dataid, callback) {
+				api.showProgress({
+					title : '上传中..'
+				});
 				H.oldAjax(function(ret, err) {
 					if (ret) {
+						api.hideProgress();
 						if (ret.success) {
 							callback(ret);
 						} else {
@@ -398,14 +427,13 @@
 					var returnUrl = ret.data;
 					if (returnUrl !== "") {
 						var browerImgs = [];
-						console.log("c---" + c);
+						console.log("imgBoolean---" + imgBoolean);
 						if (imgBoolean) {
 							// 图片压缩
 							$("#target").hide();
 							$("#loading").show();
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
 								$("#loading").hide();
-								imgBoolean = false;
 								//请求添加图片信息
 								var compressImg = compressImg;
 								addImgInfo(function(imgInfo) {
@@ -424,6 +452,8 @@
 											// 调用图片预览函数
 											img.openImageBrowser(browerImgs);
 										}).after(del);
+										//判断是否为原始图片
+										imgBoolean = false;
 										//								console.log('serverImg===' + JSON.stringify(serverImg))
 									});
 								});
@@ -451,12 +481,11 @@
 							});
 						} else {
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
-								imgBoolean = false;
 								var compressAddImg = compressAddImg;
 								addImgInfo(function(imgInfo) {
 									uploadFile(window.ImgWebUrl, compressAddImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
 										imgBooer = serverImg.success;
-										console.log(compressAddImg);
+										//										console.log(compressAddImg);
 										var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' class="imgyulan imgLast" style="width: 100%;"/><img src="../../../../image/del.jpg"  onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');" class="del_b"/></div>';
 										// 追加图片
 										$("#addpic").before(showImgHtml);
@@ -466,6 +495,8 @@
 											// 调用图片预览函数
 											img.openImageBrowser(browerImgs);
 										});
+										//判断是否为原始图片
+										imgBoolean = false;
 										//								console.log('serverImg===' + JSON.stringify(serverImg))
 									});
 								});
