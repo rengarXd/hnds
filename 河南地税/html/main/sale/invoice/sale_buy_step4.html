@@ -69,15 +69,17 @@
 		<script type="text/javascript" src="../../../../script/uploadimg/upImg.js"></script>
 		<script type="text/javascript">
 			//@assessinfo 业务ID
-			//@edImg
-			//@clfxsxxb_id
+			//@edImg 拉取的附件数据
+			//@targetBl 判断是否为target的图片
 			//@imageFilter 压缩模块对象
 			//@imageBrowser 图片浏览模块
 			//@zhonglei
 			//@type 1新增2编辑
 			//@ii 业务序列
 			//@edImg 查询图片编辑时返回的数据
-			var assessinfo = null, type = null, edImg = null, clfxsxxb_id = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 0, jsonstr = null, userinfo = null, imgBoolean = true;
+			//@imgBooer 图片是否上传失败
+			var assessinfo = null, type = null, edImg = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 0, userinfo = null, targetBl = true;
+			var imgBooer = true;
 			H.ready(function() {
 				//接收业务ID
 				assessinfo_id = api.pageParam.assessinfo_id;
@@ -115,7 +117,7 @@
 							editImg(0);
 						}
 					} else if (ret.success == false) {
-						alert(JSON.stringify(ret.message));
+						alert(ret.message);
 					} else {
 						api.toast({
 							msg : '连接错误，请检查网络配置'
@@ -151,9 +153,9 @@
 										// 调用图片预览函数
 										img.openImageBrowser(browerImgs);
 									});
-									//									imgBoolean = false;
+									//									targetBl = false;
 								} else {
-									//									imgBoolean = true;
+									//									targetBl = true;
 									//									var browerImgs = [];
 									var imgurl = window.ImgDl + imgs[0].attach_path;
 									//							console.log(imgurl);
@@ -164,12 +166,12 @@
 										img.openImageBrowser(browerImgs);
 									});
 									$("#yulan").append('<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + imgs[0].keyid + "'" + ');"/>');
-									//									imgBoolean = false;
+									//									targetBl = false;
 								}
 							}
 						}
-						imgs.length == 0 ? imgBoolean = true : imgBoolean = false;
-						console.log('imgs.length===' + imgs.length);
+						imgs.length == 0 ? targetBl = true : targetBl = false;
+//						console.log('imgs.length===' + imgs.length);
 					}
 				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 					values : {
@@ -181,17 +183,18 @@
 			}
 
 			//打开成功页
-			//			function openWin() {
-			//				api.execScript({
-			//					name : 'sale_header',
-			//					script : 'success();'
-			//				});
-			//			}
+			function openWin() {
+				api.execScript({
+					name : 'sale_header',
+					script : 'success();'
+				});
+			}
+
 			//提交 申请
 			function house_submit() {
 				H.ajax(function(ret, err) {
 					api.hideProgress();
-					//					console.log(JSON.stringify(ret));
+					//判断是否提交正确
 					ret.success ? openWin() : api.toast({
 						msg : ret.message
 					});
@@ -207,59 +210,71 @@
 			var a = 0;
 			var c = $('.imgLast').size();
 			//			var upimgs = null;
-			var imgBooer = true;
 			//上传图片操作
-			function cyecleAJ(zhonglei, ii) {
-				api.showProgress({
-					title : '上传中..'
-				});
-				for (var a = 0; a < c; a++) {
-					$('.imgLast').each(function(a) {
-						upimgs = $(this).attr('src');
-						H.ajax(function(ret, err) {
-							var imgInfo = ret.data;
-							uploadFile(window.ImgWebUrl, upimgs, imgInfo, function(serverImg) {
-								imgBooer = serverImg.success;
-								//								console.log('serverImg===' + JSON.stringify(serverImg))
-							});
-						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
-							values : {
-								'user_id' : userinfo[0].user_id,
-								'uuid' : userinfo[0].uuid,
-								'fwuuid' : assessinfo_id,
-								'business_name' : zhonglei[ii].business_name,
-								'business_typeid' : zhonglei[ii].business_typeid,
-								'pagenum' : a + 1
-							}
-						});
-					});
-				}
-				api.hideProgress();
-			}
-
+			//			function cyecleAJ(zhonglei, ii) {
+			//				api.showProgress({
+			//					title : '上传中..'
+			//				});
+			//				for (var a = 0; a < c; a++) {
+			//					$('.imgLast').each(function(a) {
+			//						upimgs = $(this).attr('src');
+			//						H.ajax(function(ret, err) {
+			//							var imgInfo = ret.data;
+			//							uploadFile(window.ImgWebUrl, upimgs, imgInfo, function(serverImg) {
+			//								imgBooer = serverImg.success;
+			//								//								console.log('serverImg===' + JSON.stringify(serverImg))
+			//							});
+			//						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
+			//							values : {
+			//								'user_id' : userinfo[0].user_id,
+			//								'uuid' : userinfo[0].uuid,
+			//								'fwuuid' : assessinfo_id,
+			//								'business_name' : zhonglei[ii].business_name,
+			//								'business_typeid' : zhonglei[ii].business_typeid,
+			//								'pagenum' : a + 1
+			//							}
+			//						});
+			//					});
+			//				}
+			//				api.hideProgress();
+			//			}
 			//下一步
 			function nextPart() {
+				// ################### 下一个附件项 #########################
 				var imgurl = $("#target").attr("src");
-				// ################### 上传图片 #########################
 				var oldurl = "../../../../image/yz.png";
 				var loadurl = "../../../../image/loading_more.gif";
+				//判断是否符合上传图片的条件
 				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
 					var len = zhonglei.length;
 					if (ii < len - 1) {
 						//						cyecleAJ(zhonglei, ii);
+						//判断如果图片上传失败将
 						if (imgBooer) {
+							//自增下一项的业务序列
 							ii++;
-							imgBoolean = true;
+							//首个拍照图片位置判断
+							targetBl = true;
+							//需要上传附件每一项的名称
 							$("#Leixing").html(zhonglei[ii].business_name);
+							//清除原有图片信息
 							$("img").parent().remove();
+							//初始化示例图
 							$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
+							//更改按钮名称
 							var nums = '上传附件(' + parseInt(4 + ii) + '/' + parseInt(4 + len - 1) + ')';
 							$("button").html(nums);
+							//从服务器拉取数据
 							editImg(ii);
+						} else {
+							api.toast({
+								msg : '上传失败，请重新拍照！'
+							});
 						}
 						api.hideProgress();
 					} else {
 						//						cyecleAJ(zhonglei, ii);
+						//代开发票提交
 						api.confirm({
 							title : '代开发票申请提交',
 							msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
@@ -267,6 +282,7 @@
 						}, function(ret, err) {
 							if (ret) {
 								if (ret.buttonIndex == 1) {
+									//代开发票提交函数
 									house_submit();
 								}
 								//									console.log('ret===' + JSON.stringify(ret));
@@ -278,11 +294,12 @@
 					}
 				} else {
 					api.toast({
-						msg : '上传失败，请确认拍照图片是否正确。'
+						msg : '上传失败，请重新拍照！'
 					});
 				}
 			}
 
+			//删除图片函数
 			function select(obj, attachId) {
 				api.confirm({
 					title : '删除图片',
@@ -294,15 +311,18 @@
 							api.showProgress({
 								title : '删除中..'
 							});
+							//1.1删除图片
 							H.oldAjax(function(ret, err) {
 								if (ret.success) {
+									//1.1删除记录
 									H.ajax(function(ret, err) {
 										if (ret.success) {
 											api.hideProgress();
+											/*删除图片界面渲染处理*/
 											$(obj).parent().remove();
 											if ($('.imgLast').size() < 1) {
 												$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
-												imgBoolean = true;
+												targetBl = true;
 											}
 											api.toast({
 												msg : '删除成功'
@@ -350,9 +370,10 @@
 			// data：上传的文件
 			// callback：上传成功返回地址
 			/*
-			 datafunid数据功能标识（必填）（string）
-			 dataid数据id（必填）（string）
-			 * */
+			 @dataSrc 本地图片路径
+			 @datafunid 数据功能标识（必填）（string）
+			 @dataid 数据id（必填）（string）
+			 */
 			function uploadFile(url, dataSrc, datafunid, dataid, callback) {
 				api.showProgress({
 					title : '上传中..'
@@ -389,8 +410,8 @@
 				});
 			}
 
+			//添加附件记录
 			function addImgInfo(callback) {
-				//				a = 1;
 				H.ajax(function(ret, err) {
 					var imgInfo = ret.data;
 					if (ret.success) {
@@ -410,8 +431,6 @@
 				});
 			}
 
-			//附件的主键ID
-			//			var attachId = null;
 			//打开照相机获取
 			function openCamera() {
 				img.openCamera({
@@ -423,15 +442,17 @@
 					quality : 100,
 					saveToPhotoAlbum : false
 				}, function(ret) {
-					//					alert(JSON.stringify(ret));
+					//路径
 					var returnUrl = ret.data;
 					if (returnUrl !== "") {
+						//图片预览数组
 						var browerImgs = [];
-						console.log("imgBoolean---" + imgBoolean);
-						if (imgBoolean) {
-							// 图片压缩
+						//判断是在示例图上显示，还是在target下添加
+						if (targetBl) {
 							$("#target").hide();
+							//加载图显示
 							$("#loading").show();
+							// 图片压缩
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
 								$("#loading").hide();
 								//请求添加图片信息
@@ -453,37 +474,17 @@
 											img.openImageBrowser(browerImgs);
 										}).after(del);
 										//判断是否为原始图片
-										imgBoolean = false;
+										targetBl = false;
 										//								console.log('serverImg===' + JSON.stringify(serverImg))
 									});
 								});
-								//								if (edImg) {
-								//									var compressAddImg = compressAddImg;
-								//									uploadFile(window.ImgWebUrl, compressImg, edImg.datafunid, edImg.dataid, function(serverImg) {
-								//										//处理图片返回状态
-								//										imgBooer = serverImg.success;
-								//										//在页面中渲染图片
-								//										var del = '	<img src="../../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');"/>'
-								//										$("#target").attr({
-								//											"src" : compressImg,
-								//											"style" : "width:100%;"
-								//										}).on("click", function() {
-								//											// 将图片追加到数组中
-								//											browerImgs.push($("#target").attr("src"));
-								//											// 调用图片预览函数
-								//											img.openImageBrowser(browerImgs);
-								//										}).after(del);
-								//										//								console.log('serverImg===' + JSON.stringify(serverImg))
-								//									});
-								//								} else {
-								//
-								//								}
 							});
 						} else {
 							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
 								var compressAddImg = compressAddImg;
 								addImgInfo(function(imgInfo) {
 									uploadFile(window.ImgWebUrl, compressAddImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
+										//判断图片是否上传成功
 										imgBooer = serverImg.success;
 										//										console.log(compressAddImg);
 										var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' class="imgyulan imgLast" style="width: 100%;"/><img src="../../../../image/del.jpg"  onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');" class="del_b"/></div>';
@@ -496,7 +497,7 @@
 											img.openImageBrowser(browerImgs);
 										});
 										//判断是否为原始图片
-										imgBoolean = false;
+										targetBl = false;
 										//								console.log('serverImg===' + JSON.stringify(serverImg))
 									});
 								});
