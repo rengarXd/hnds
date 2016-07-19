@@ -11,19 +11,22 @@
 	<body style="background: #ffffff">
 		<div class="H-theme-background-color-white H-padding-25 H-text-align-center">
 			<span class="H-font-size-36 H-theme-font-color9 iconfont icon-chenggong"></span>
-			<h1 class="H-center-all H-font-size-14">申请提交成功</h1>
+			<h1 class="H-center-all H-font-size-15">存量房申请提交成功</h1>
 			<p class="H-font-size-12">
-				请留意我们系统的推送通知，以及进行代开发票申请！
+				请填写代开发票申请，留意我们系统的推送通知！
 			</p>
-			<p class="H-font-size-15" >
-				<span id="time">3</span>秒后自动退出
+			<button tapmode="H-theme-font-color9-click" onclick="openDk();" class="H-button H-font-size-15 H-outline-none H-theme-background-color-transparent H-padding-vertical-both-8 H-padding-horizontal-both-20 H-theme-font-color9 H-theme-border-color9 H-theme-border-color9-click H-theme-background-color9-click H-theme-font-color9-click">
+				进入代开发票申请
+			</button>
+			<p class="H-font-size-14" >
+				<span id="time">5</span>秒后自动退出
 			</p>
 		</div>
-		<script src="../../../../script/H.js" type="text/javascript"></script>
+		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			var times = null, isinerval = null;
 			H.ready(function() {
-				times = 4;
+				times = 5;
 				isinerval = setInterval("CountDown()", 1000);
 			});
 			/**
@@ -35,9 +38,14 @@
 					api.closeWin();
 					return;
 				} else {
-					document.getElementById('time').innerHTML = times
+					document.getElementById('time').innerHTML = times;
 					times--;
 				}
+			}
+
+			//代开发票
+			function openDk() {
+				H.openWin('sale_progress_header', '../sale/sale_progress_header.html');
 			}
 		</script>
 	</body>

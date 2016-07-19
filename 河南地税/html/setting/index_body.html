@@ -1,121 +1,126 @@
-
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-        <title>首页</title>
-        <!--引入aui框架win-->
-        <link rel="stylesheet" href="../../css/Hui.css" />
-        <link rel="stylesheet" href="../../css/fonts/iconfont.css" />
-        <!--引入AHelper.js框架-->
-    </head>
-    <body>
-        <div class="H-padding-vertical-bottom-10"></div>
-        <div class="H-text-list H-flexbox-horizontal H-border-vertical-buttom-after H-border-vertical-top-after H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode onclick="H.openWin('userinfo_head','./userinfo/userinfo_head.html');">
-            <span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color6 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-gerenxinxi H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
-            <div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-                个人信息
-            </div>
-            <span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
-        </div>
-        <div class="H-padding-vertical-bottom-10"></div>
-        <div class="H-text-list H-flexbox-horizontal H-border-vertical-top-after H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" tapmode onclick="H.openWin('function_head','function_head.html');">
-            <span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color5 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-iconmoban215 H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
-            <div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-                功能介绍
-            </div>
-            <span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
-        </div>
-        <div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="checkVersion();">
-            <span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color7 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-banbengengxin H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
-            <div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-                版本更新&nbsp;&nbsp;&nbsp;<span class="H-badge H-display-inline H-margin-horizontal-right-5"><label class="H-display-inline-block H-theme-background-color-red H-theme-font-color-white H-font-size-12" style="display: none;" id="newVer">new</label></span>
-            </div>
-            <span class="H-display-block H-margin-horizontal-right-5"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-black H-font-size-12" id="sysVer"></label></span>
-            <span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
-        </div>
-        <div class="H-padding-vertical-bottom-10"></div>
-        <div class="H-text-list H-flexbox-horizontal H-border-vertical-top-after H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="H.openWin('aboutus_head','aboutus_head.html');">
-            <span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color8 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-guanyuwomen H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
-            <div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-                关于我们
-            </div>
-            <span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
-        </div>
-        <script src="../../script/H.js" type="text/javascript"></script>
-        <script src="../../script/zepto.min.js" type="text/javascript"></script>
-    </body>
-    <script type="text/javascript">
-        var sysVer = null;
-        Zepto(function($) {
-        });
-        H.ready(function() {
-            H.getPrefs(function(ret, err) {
-                $("#sysVer").html(api.appVersion);
-                if (ret.update) {
-                    sysVer = eval('(' + ret.value + ')');
-                    $("#newVer").show();
-                } else {
-                }
-//              console.log(JSON.stringify(ret));
-            }, 'systemVer');
-        });
-        function checkVersion() {
-            var mam = api.require('mam');
-            mam.checkUpdate(function(ret, err) {
-                if (ret) {
-                    var result = ret.result;
-                    H.setPrefs(function() {
-                    }, 'systemVer', JSON.stringify(result));
-                    if (result.update == true & result.closed == false) {
-                        var str = '最新版本号:' + result.version + '\n' + result.updateTip + '\n发布时间:' + result.time;
-                        api.confirm({
-                            title : '有新版本更新 ',
-                            msg : str,
-                            buttons : ['确定', '取消']
-                        }, function(ret, err) {
-                            if (ret.buttonIndex == 1) {
-                                if (api.systemType == "android") {
-                                    api.download({
-                                        url : result.source,
-                                        report : true
-                                    }, function(ret, err) {
-                                        if (ret && 0 == ret.state) {/* 下载进度 */
-                                            api.toast({
-                                                msg : "正在下载应用" + ret.percent + "%",
-                                                duration : 2000
-                                            });
-                                        }
-                                        if (ret && 1 == ret.state) {/* 下载完成 */
-                                            var savePath = ret.savePath;
-                                            api.installApp({
-                                                appUri : savePath
-                                            });
-                                        }
-                                    });
-                                }
-                                if (api.systemType == "ios") {
-                                    api.installApp({
-                                        appUri : result.source
-                                    });
-                                }
-                            }
-                        });
-                    } else {
-                        //                      api.toast({
-                        //                          msg : "暂无更新"
-                        //                      });
-                    }
-                } else {
-                    api.toast({
-                        msg : err.msg
-                    });
-                }
-            });
-        }
-    </script>
-    </body>
+	<head>
+		<meta charset="utf-8">
+		<!--确保绘制和缩放的效果需要在<head>标签中添加 viewport 元数据标签-->
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>首页</title>
+		<!--引入aui框架win-->
+		<link rel="stylesheet" href="../../css/Hui.css" />
+		<link rel="stylesheet" href="../../css/fonts/iconfont.css" />
+		<!--引入AHelper.js框架-->
+	</head>
+	<body>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-text-list H-flexbox-horizontal H-border-vertical-buttom-after H-border-vertical-top-after H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode onclick="H.openWin('userinfo_head','./userinfo/userinfo_head.html');">
+			<span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color6 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-gerenxinxi H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				个人信息
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-text-list H-flexbox-horizontal H-border-vertical-top-after H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" tapmode onclick="H.openWin('function_head','function_head.html');">
+			<span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color5 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-iconmoban215 H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				功能介绍
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="checkVersion();">
+			<span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color7 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-banbengengxin H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				版本更新&nbsp;&nbsp;&nbsp;<span class="H-badge H-display-inline H-margin-horizontal-right-5"><label class="H-display-inline-block H-theme-background-color-red H-theme-font-color-white H-font-size-12" style="display: none;" id="newVer">new</label></span>
+			</div>
+			<span class="H-display-block H-margin-horizontal-right-5"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-black H-font-size-12" id="sysVer"></label></span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="H.openWin('share_head','share_head.html');">
+			<span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color9 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-fenxiang H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				分享app
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-text-list H-flexbox-horizontal H-border-vertical-top-after H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="H.openWin('aboutus_head','aboutus_head.html');">
+			<span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color8 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-guanyuwomen H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				关于我们
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<script src="../../script/H.js" type="text/javascript"></script>
+		<script src="../../script/zepto.min.js" type="text/javascript"></script>
+	</body>
+	<script type="text/javascript">var sysVer = null;
+		Zepto(function($) {
+		});
+		H.ready(function() {
+			H.getPrefs(function(ret, err) {
+				$("#sysVer").html(api.appVersion);
+				if (ret.update) {
+					sysVer = eval('(' + ret.value + ')');
+					$("#newVer").show();
+				} else {
+				}
+				//              console.log(JSON.stringify(ret));
+			}, 'systemVer');
+		});
+
+		function checkVersion() {
+			var mam = api.require('mam');
+			mam.checkUpdate(function(ret, err) {
+				if (ret) {
+					var result = ret.result;
+					H.setPrefs(function() {
+					}, 'systemVer', JSON.stringify(result));
+					if (result.update == true & result.closed == false) {
+						var str = '最新版本号:' + result.version + '\n' + result.updateTip + '\n发布时间:' + result.time;
+						api.confirm({
+							title : '有新版本更新 ',
+							msg : str,
+							buttons : ['确定', '取消']
+						}, function(ret, err) {
+							if (ret.buttonIndex == 1) {
+								if (api.systemType == "android") {
+									api.download({
+										url : result.source,
+										report : true
+									}, function(ret, err) {
+										if (ret && 0 == ret.state) {/* 下载进度 */
+											api.toast({
+												msg : "正在下载应用" + ret.percent + "%",
+												duration : 2000
+											});
+										}
+										if (ret && 1 == ret.state) {/* 下载完成 */
+											var savePath = ret.savePath;
+											api.installApp({
+												appUri : savePath
+											});
+										}
+									});
+								}
+								if (api.systemType == "ios") {
+									api.installApp({
+										appUri : result.source
+									});
+								}
+							}
+						});
+					} else {
+						//                      api.toast({
+						//                          msg : "暂无更新"
+						//                      });
+					}
+				} else {
+					api.toast({
+						msg : err.msg
+					});
+				}
+			});
+		}</script>
+	</body>
 </html>
