@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hui</title>
+		<link href="../../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link href="../../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+			.H-header {
+				min-height: 160px;
+			}
+			.error {
+				position: fixed;
+				top: 36px;
+				right: 26px;
+				color: #ffffff;
+				font-size: 21px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="H-header H_header_bg H-flexbox-vertical" id="header">
+			<div class="H-height-75">
+				<span class="iconfont icon-gb error" tapmode onclick="api.closeWin();"></span>
+			</div>
+			<!--<span tapmode="" onclick="H.closeWin();" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-left-5 H-z-index-100"><i class="iconfont icon-fanhui H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15">返回</label></span>-->
+			<div class="H-flex-item H-header-title H-float-left H-padding-25 H-font-size-20 H-text-show-row-1 H-theme-font-color-white H-position-absolute">
+				房屋校验
+			</div>
+		</header>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div id="" class="H-padding-10">
+			<!--证件类型 start-->
+			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="IDtype('type_option','transferor_certnumber');">
+				<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+					小区: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="type_option">点击选择</span>
+				</div>
+				<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<!--证件类型 end-->
+			<!--证件类型 start-->
+			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="IDtype('type_option','transferor_certnumber');">
+				<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+					房屋坐落: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="type_option">点击选择</span>
+				</div>
+				<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<!--证件类型 end-->
+			<!--证件号码 start-->
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<!--<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">小区及房屋坐落补充：</span>-->
+				<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写小区及房屋坐落补充（如果以上选项有则不填）"></textarea>
+				<!--<input type="text" value="" id="transferor_certnumber" name="transferor_certnumber" class="H-textbox H-theme-font-color-666 H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写小区及房屋坐落补充" />-->
+			</div>
+			<!--证件号码 end-->
+		</div>
+		<footer class="H-footer H-padding-10 ">
+			<button tapmode onclick="check();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+				提交校验
+			</button>
+		</footer>
+		<script type="text/javascript" src="../../../../script/ajax/hnds.js"></script>
+		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
+		<script type="text/javascript">
+			apiready = function() {
+//				$ds.getUserPref(function() {
+//				});
+			};
+			function check() {
+			}
+		</script>
+	</body>
+</html>
