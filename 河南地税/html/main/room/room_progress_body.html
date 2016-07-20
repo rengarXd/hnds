@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
 		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>受理进度body</title>
+		<title>信息提交body</title>
 		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
 		<link href="../../../css/animate/animate.min.css" rel="stylesheet" type="text/css" />
@@ -51,7 +51,7 @@
 		</div>
 		</div>
 		</div>-->
-		<div class="H-padding-10" onclick="api.openWin({name:'rooms_header',url:'./rooms_header.html'});">
+		<div class="H-padding-10" onclick="api.openWin({name:'rooms_header',url:'./rooms_header.html',pageParam:{edit:1}});">
 			<button class="H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				新增申请
 			</button>
@@ -196,18 +196,15 @@
 			}
 
 			//显示方法
-			function show(assessinfo_id) {
-				api.openWin({
-					name : 'rooms_show_header',
-					url : './rooms_show_header.html',
-					pageParam : {
-						assessinfo_id : assessinfo_id
-					}
-				});
-				//				H.openWin('rooms_show_header', './rooms_show_header.html', {
-				//					assessinfo_id : assessinfo_id
-				//				});
-			}
+//			function show(assessinfo_id) {
+//				api.openWin({
+//					name : 'rooms_show_header',
+//					url : './rooms_show_header.html',
+//					pageParam : {
+//						assessinfo_id : assessinfo_id
+//					}
+//				});
+//			}
 
 			//撤销申请
 			function del(id) {
@@ -238,7 +235,7 @@
 					name : 'rooms_header',
 					url : './rooms_header.html',
 					pageParam : {
-						edit : true,
+						edit : 2,
 						assessinfo_id : id
 					}
 				});

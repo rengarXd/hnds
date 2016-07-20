@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
 		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>Hui</title>
+		<title>信息提交</title>
 		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			html,body {
+			html, body {
 				background: #f4f4f4
 			}
 			.H_header_bg {
@@ -20,7 +20,7 @@
 		<header class="H-header H_header_bg" id="header">
 			<span tapmode="" onclick="H.closeWin();" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-left-5 H-z-index-100"><i class="iconfont icon-fanhui H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15">返回</label></span>
 			<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
-				存量房评估申请
+				信息提交
 			</div>
 		</header>
 		<script src="../../../script/H.js" type="text/javascript"></script>
@@ -42,13 +42,13 @@
 					};
 					H.openFrame(frameName, frameUrl, framepageParam, _options);
 				}, "#header");
-				//              if (oldframeName != '') {
-				//                  setTimeout(function() {
-				//                      api.closeFrame({
-				//                          name : oldframeName
-				//                      });
-				//                  }, 1000);
-				//              }
+				//				if (oldframeName != '') {
+				//					setTimeout(function() {
+				//						api.closeFrame({
+				//							name : oldframeName
+				//						});
+				//					}, 2000);
+				//				}
 			}
 
 			//楼栋信息
@@ -74,10 +74,17 @@
 			//				});
 			//          }
 			//提交成功
-			function success() {
-				openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html');
+			function success(assessinfo_id,edit) {
+				//				openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html');
+				api.openWin({
+					name : 'sale_header',
+					url : '../sale/invoice/sale_header.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						type : edit
+					}
+				});
 			}
-
 		</script>
 	</body>
 </html>
