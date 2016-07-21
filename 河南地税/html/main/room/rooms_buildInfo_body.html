@@ -1,288 +1,287 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-		<title>房产信息body</title>
-		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
-		<style type="text/css">
-			.H_header_bg {
-				background: #09a4de
-			}
-		</style>
-	</head>
-	<body>
-		<div class="H-padding-vertical-bottom-10"></div>
-		<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
-			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
-			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
-				房产信息
-			</div>
-		</div>
-		<form id="forms">
-			<div class="H-border-vertical-both-after">
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('house_type', '003');">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						房屋类别: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="house_type">请选择房屋类别</span>
-					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
-				</div>
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_toward', '005');">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						建筑朝向: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_toward">请选择建筑朝向</span>
-					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
-				</div>
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_structure', '006');">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						建筑结构: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_structure">请选择建筑结构</span>
-					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
-				</div>
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('dywz', '007');">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						单元位置: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="dywz">请选择单元位置</span>
-					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
-				</div>
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fqwz', '008');">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						分区位置: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fqwz">请选择分区位置</span>
-					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
-				</div>
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fslx', '009');">
-					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						复式类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fslx">请选择复式类型</span>
-					</div>
-					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
-				</div>
-				<!--#############################################-->
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">所在楼层：</span>
-					<input type="text" id="house_floor" value="" name="house_floor" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所在楼层不能为空" data-errmsg="所在楼层填写有误"
-					placeholder="填写所在楼层" />
-				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">总楼层：</span>
-					<input type="text" id="total_floor" name="total_floor" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="总楼层不能为空" data-errmsg="总楼总楼层"
-					placeholder="填写总楼层" />
-				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑面积：</span>
-					<input type="text" id="building_area" name="building_area" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-5" data-nullmsg="建筑面积不能为空" data-errmsg="建筑面积填写有误"
-					placeholder="填写建筑面积" />
-				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑年份：</span>
-					<input type="text" id="build_year" name="build_year" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n-4" data-nullmsg="建筑年份不能为空" data-errmsg="建筑年份填写有误"
-					placeholder="填写建筑年份" />
-				</div>
-				<div class="H-padding-vertical-bottom-10"></div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
-					<input type="text" id="declared_value" name="declared_value" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
-					placeholder="填写申报价格" />
-				</div>
-			</div>
-		</form>
-		<footer class="H-footer H-padding-10 ">
-			<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				下一步(3/6)
-			</button>
-		</footer>
-		<script src="../../../script/H.js" type="text/javascript"></script>
-		<script src="../../../script/zepto.min.js" type="text/javascript"></script>
-		<script src="../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			var house_type = null, userinfo = null, assessinfo_id = null;
-			var retobj = null, user_id = null, uuid = null, edit = null;
-			H.ready(function() {
-				api.parseTapmode();
-				edit = api.pageParam.edit;
-				assessinfo_id = api.pageParam.assessinfo_id;
-				if (edit == 2) {
-					//继续编辑处理
-					api.getPrefs({
-						key : 'userinfo'
-					}, function(ret, err) {
-						retobj = eval('(' + ret.value + ')');
-						user_id = retobj[0].user_id;
-						uuid = retobj[0].uuid;
-						api.showProgress({
-							title : "拉取数据中..."
-						});
-						H.ajax(function(ret, err) {
-							$("#statuss").hide();
-							if (ret && ret.success) {
-								//                              console.log("ret===" + JSON.stringify(ret));
-								var data = ret.data[0];
-								$("#house_type").text(data.infonm003);
-								$("#house_type").attr('infoid', data.house_type);
-								$("#building_toward").text(data.infonm005);
-								$("#building_toward").attr('infoid', data.building_toward);
-								$("#building_structure").text(data.infonm006);
-								$("#building_structure").attr('infoid', data.building_structure);
-								$("#dywz").text(data.infonm007);
-								$("#dywz").attr('infoid', data.dywz);
-								$("#fqwz").text(data.infonm008);
-								$("#fqwz").attr('infoid', data.fqwz);
-								$("#fslx").text(data.infonm009);
-								$("#fslx").attr('infoid', data.fslx);
-								$("#house_floor").val(data.house_floor);
-								$("#total_floor").val(data.total_floor);
-								$("#building_area").val(data.building_area);
-								$("#build_year").val(data.build_year);
-								if (data.declared_value != '0') {
-									$("#declared_value").val();
-								}
-								api.hideProgress();
-							} else if (ret && !ret.success) {
-								return $common.loginInvalid("../../");
-							}
-						}, 'appHouseDetail&funid=houses_assessinfo', 'post', {
-							values : {
-								user_id : user_id,
-								uuid : uuid,
-								assessinfo_id : assessinfo_id
-							}
-						});
-					});
-				}
-				//更新按钮信息
-				if (assessinfo_id) {
-					$("button").text('下一步(3/6)');
-				}
-				ac.form({
-					area : "#forms",
-					btn : "#btn", // 触发验证的按钮或者元素，支持标签，id，class，推荐使用id或者class
-					singleError : function(e, msg) {
-						// 自定义弹窗格式###############
-						alert(msg);
-					},
-					endSuccess : function(data) {
-						var selectData = {
-							"house_type" : $('#house_type').attr('infoid'),
-							"building_toward" : $('#building_toward').attr('infoid'),
-							"building_structure" : $('#building_structure').attr('infoid'),
-							"dywz" : $('#dywz').attr('infoid'),
-							"fqwz" : $('#fqwz').attr('infoid'),
-							"fslx" : $('#fslx').attr('infoid')
-						};
-						for (var x in selectData) {
-							var infoidData = $("#" + x).attr('infoid');
-							if (infoidData == null) {
-								return api.toast({
-									msg : '抱歉' + $("#" + x).html() + '未填写'
-								});
-							} else {
-							}
-						};
-						datas = data;
-						$.extend(datas, selectData);
-						post_data();
-					}
-				});
-			});
-			//类别选择器
-			function select(IdName, nums) {
-				var infoid = 'infoid' + nums;
-				var infonm = 'infonm' + nums;
-				H.selAjax(function(ret, selet_option) {
-					if (ret.buttonIndex <= selet_option.length) {
-						//							alert(ret.buttonIndex);
-						$('#' + IdName).attr('infoid', selet_option[ret.buttonIndex - 1][infoid]).html(selet_option[ret.buttonIndex - 1][infonm]);
-					}
-				}, nums);
-			}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+        <title>房产信息body</title>
+        <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            .H_header_bg {
+                background: #09a4de
+            }
+        </style>
+    </head>
+    <body>
+        <div class="H-padding-vertical-bottom-10"></div>
+        <div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+            <div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+            <div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+                房产信息
+            </div>
+        </div>
+        <form id="forms">
+            <div class="H-border-vertical-both-after">
+                <div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('house_type', '003');">
+                    <div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+                        房屋类别: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="house_type">请选择房屋类别</span>
+                    </div>
+                    <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+                </div>
+                <div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_toward', '005');">
+                    <div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+                        建筑朝向: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_toward">请选择建筑朝向</span>
+                    </div>
+                    <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+                </div>
+                <div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_structure', '006');">
+                    <div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+                        建筑结构: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_structure">请选择建筑结构</span>
+                    </div>
+                    <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+                </div>
+                <div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('dywz', '007');">
+                    <div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+                        单元位置: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="dywz">请选择单元位置</span>
+                    </div>
+                    <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+                </div>
+                <div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fqwz', '008');">
+                    <div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+                        分区位置: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fqwz">请选择分区位置</span>
+                    </div>
+                    <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+                </div>
+                <div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fslx', '009');">
+                    <div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+                        复式类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fslx">请选择复式类型</span>
+                    </div>
+                    <span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+                </div>
+                <!--#############################################-->
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">所在楼层：</span>
+                    <input type="text" id="house_floor" value="" name="house_floor" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所在楼层不能为空" data-errmsg="所在楼层填写有误"
+                    placeholder="填写所在楼层" />
+                </div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">总楼层：</span>
+                    <input type="text" id="total_floor" name="total_floor" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="总楼层不能为空" data-errmsg="总楼总楼层"
+                    placeholder="填写总楼层" />
+                </div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑面积：</span>
+                    <input type="text" id="building_area" name="building_area" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-5" data-nullmsg="建筑面积不能为空" data-errmsg="建筑面积填写有误"
+                    placeholder="填写建筑面积" />
+                </div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑年份：</span>
+                    <input type="text" id="build_year" name="build_year" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n-4" data-nullmsg="建筑年份不能为空" data-errmsg="建筑年份填写有误"
+                    placeholder="填写建筑年份" />
+                </div>
+                <div class="H-padding-vertical-bottom-10"></div>
+                <div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+                    <span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
+                    <input type="text" id="declared_value" name="declared_value" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
+                    placeholder="填写申报价格" />
+                </div>
+            </div>
+        </form>
+        <footer class="H-footer H-padding-10 ">
+            <button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+                下一步(3/3)
+            </button>
+        </footer>
+        <script src="../../../script/H.js" type="text/javascript"></script>
+        <script src="../../../script/zepto.min.js" type="text/javascript"></script>
+        <script src="../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var house_type = null, userinfo = null, assessinfo_id = null;
+            var retobj = null, user_id = null, uuid = null;
+            H.ready(function() {
+                api.parseTapmode();
+                var edit = api.pageParam.edit;
+                assessinfo_id = api.pageParam.assessinfo_id;
+                if (edit) {
+                    //继续编辑处理
+                    api.getPrefs({
+                        key : 'userinfo'
+                    }, function(ret, err) {
+                        retobj = eval('(' + ret.value + ')');
+                        user_id = retobj[0].user_id;
+                        uuid = retobj[0].uuid;
+                        api.showProgress({
+                            title : "拉取数据中..."
+                        });
+                        H.ajax(function(ret, err) {
+                            $("#statuss").hide();
+                            if (ret && ret.success) {
+                                //                              console.log("ret===" + JSON.stringify(ret));
+                                var data = ret.data[0];
+                                $("#house_type").text(data.infonm003);
+                                $("#house_type").attr('infoid', data.house_type);
+                                $("#building_toward").text(data.infonm005);
+                                $("#building_toward").attr('infoid', data.building_toward);
+                                $("#building_structure").text(data.infonm006);
+                                $("#building_structure").attr('infoid',data.building_structure);
+                                $("#dywz").text(data.infonm007);
+                                $("#dywz").attr('infoid',data.dywz);
+                                $("#fqwz").text(data.infonm008);
+                                $("#fqwz").attr('infoid',data.fqwz);
+                                $("#fslx").text(data.infonm009);
+                                $("#fslx").attr('infoid',data.fslx);
+                                $("#house_floor").val(data.house_floor);
+                                $("#total_floor").val(data.total_floor);
+                                $("#building_area").val(data.building_area);
+                                $("#build_year").val(data.build_year);
+                                if (data.declared_value != '0') {
+                                    $("#declared_value").val();
+                                }
+                                api.hideProgress();
+                            } else if (ret && !ret.success) {
+                                return $common.loginInvalid("../../");
+                            }
+                        }, 'appHouseDetail&funid=houses_assessinfo', 'post', {
+                            values : {
+                                user_id : user_id,
+                                uuid : uuid,
+                                assessinfo_id : assessinfo_id
+                            }
+                        });
+                    });
+                }
+                //更新按钮信息
+                if (assessinfo_id) {
+                    $("button").text('更新申请(2/3)');
+                }
+                ac.form({
+                    area : "#forms",
+                    btn : "#btn", // 触发验证的按钮或者元素，支持标签，id，class，推荐使用id或者class
+                    singleError : function(e, msg) {
+                        // 自定义弹窗格式###############
+                        alert(msg);
+                    },
+                    endSuccess : function(data) {
+                        var selectData = {
+                            "house_type" : $('#house_type').attr('infoid'),
+                            "building_toward" : $('#building_toward').attr('infoid'),
+                            "building_structure" : $('#building_structure').attr('infoid'),
+                            "dywz" : $('#dywz').attr('infoid'),
+                            "fqwz" : $('#fqwz').attr('infoid'),
+                            "fslx" : $('#fslx').attr('infoid')
+                        };
+                        for (var x in selectData) {
+                            var infoidData = $("#" + x).attr('infoid');
+                            if (infoidData == null) {
+                                return api.toast({
+                                    msg : '抱歉' + $("#" + x).html() + '未填写'
+                                });
+                            } else {
+                            }
+                        };
+                        datas = data;
+                        $.extend(datas, selectData);
+                        post_data();
+                    }
+                });
+            });
+            //类别选择器
+            function select(IdName, nums) {
+                var infoid = 'infoid' + nums;
+                var infonm = 'infonm' + nums;
+                H.selAjax(function(ret, selet_option) {
+                    if (ret.buttonIndex <= selet_option.length) {
+                        //							alert(ret.buttonIndex);
+                        $('#' + IdName).attr('infoid', selet_option[ret.buttonIndex - 1][infoid]).html(selet_option[ret.buttonIndex - 1][infonm]);
+                    }
+                }, nums);
+            }
 
-			//返回结果处理
-			function results(ret, callback) {
-				api.hideProgress();
-				if (ret) {
-					if (ret.success) {
-						result = ret;
-						if ( typeof callback == "function") {
-							callback();
-						}
-					} else {
-						H.toast(ret.message);
-					}
-				} else {
-					H.toast('连接错误，请检查网络配置');
-				}
-			}
+            //返回结果处理
+            function results(ret, callback) {
+                api.hideProgress();
+                if (ret) {
+                    if (ret.success) {
+                        result = ret;
+                        if ( typeof callback == "function") {
+                            callback();
+                        }
+                    } else {
+                        H.toast(ret.message);
+                    }
+                } else {
+                    H.toast('连接错误，请检查网络配置');
+                }
+            }
 
-			//打开成功页
-			function openWin() {
-				api.execScript({
-					name : 'rooms_header',
-					script : 'success(' + "'" + assessinfo_id + "'" + ',' + "'" + edit + "'" + ');'
-				});
-			}
+            //打开成功页
+            function openWin() {
+                api.execScript({
+                    name : 'rooms_header',
+                    script : 'success();'
+                });
+            }
 
-			//提交 申请
-			function house_submit() {
-				H.ajax(function(ret, err) {
-					api.hideProgress();
-					//                  console.log(JSON.stringify(ret));
-					//如果返回成功
-					if (ret.success) {
-						//打开成功页面
-						openWin();
-					} else {
-						api.toast({
-							msg : ret.message
-						});
-					}
-				}, 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
-					values : {
-						user_id : userinfo[0].user_id,
-						uuid : userinfo[0].uuid,
-						keyid : assessinfo_id
-					}
-				});
-			}
+            //提交 申请
+            function house_submit() {
+                H.ajax(function(ret, err) {
+                    api.hideProgress();
+                    //                  console.log(JSON.stringify(ret));
+                    //如果返回成功
+                    if (ret.success) {
+                        //打开成功页面
+                        openWin();
+                    } else {
+                        api.toast({
+                            msg : ret.message
+                        });
+                    }
+                }, 'audit&funid=houses_assessinfo&dataType=json&auditvalue=1&tag=1', 'post', {
+                    values : {
+                        user_id : userinfo[0].user_id,
+                        uuid : userinfo[0].uuid,
+                        keyid : assessinfo_id
+                    }
+                });
+            }
 
-			function _ajax() {
-				//1.4、已经登录
-				//更新存量房信息
-				api.showProgress({
-					title : '提交中..'
-				});
-				H.ajax(function(ret, err) {
-					results(ret, function(ret) {
-						house_submit();
-//						api.confirm({
-//							title : '存量房申请提交',
-//							msg : '确认提交全部信息吗？',
-//							buttons : ['确定', '取消']
-//						}, function(ret, err) {
-//							if (ret) {
-//								if (ret.buttonIndex == 1) {
-//									api.showProgress({
-//										title : '提交中..'
-//									});
-//									house_submit();
-//								}
-//								//									console.log('ret===' + JSON.stringify(ret));
-//							} else {
-//								api.hideProgress();
-//								alert(JSON.stringify(ret.message));
-//							}
-//						});
-					});
-				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo_id, 'post', {
-					values : datas
-				});
-			}
+            function _ajax() {
+                //1.4、已经登录
+                //更新存量房信息
+                api.showProgress({
+                    title : '提交中..'
+                });
+                H.ajax(function(ret, err) {
+                    results(ret, function(ret) {
+                        api.confirm({
+                            title : '存量房申请提交',
+                            msg : '确认提交全部信息吗？',
+                            buttons : ['确定', '取消']
+                        }, function(ret, err) {
+                            if (ret) {
+                                if (ret.buttonIndex == 1) {
+                                    api.showProgress({
+                                        title : '提交中..'
+                                    });
+                                    house_submit();
+                                }
+                                //									console.log('ret===' + JSON.stringify(ret));
+                            } else {
+                                api.hideProgress();
+                                alert(JSON.stringify(ret.message));
+                            }
+                        });
+                    });
+                }, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo_id, 'post', {
+                    values : datas
+                });
+            }
 
-			function post_data() {
-				H.getUserPref(function() {
-					_ajax();
-				});
-			}
-		</script>
-	</body>
+            function post_data() {
+                H.getUserPref(function() {
+                    _ajax();
+                });
+            }
+        </script>
+    </body>
 </html>
