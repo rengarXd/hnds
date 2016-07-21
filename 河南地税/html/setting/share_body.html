@@ -7,7 +7,7 @@
 		<title>分享body</title>
 		<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			html,body{
+			html, body {
 				background-color: white;
 			}
 		</style>
@@ -22,12 +22,31 @@
 			</p>
 		</div>
 		<div class="H-border-vertical-bottom-after"></div>
-		<!--<div style="padding: 0px 35px 10px 35px;">
-			<img src="../../image/share.png" style="width: 100%"/>
-		</div>-->
+		<div style="padding: 0px 35px 10px 35px;" id="imgTwo">
+			<img src="" style="width: 100%" id="ewm"/>
+		</div>
 		<script src="../../script/H.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			H.ready(function() {
+				var FNScanner = api.require('FNScanner');
+				FNScanner.encodeImg({
+					content : 'http://downloadpkg.apicloud.com/app/download?path=http://7xunpo.com1.z0.glb.clouddn.com/e25286e414f6f60292b58e997a260ad_d',
+					//不保存到相册，每次进入都生成
+					saveToAlbum : false,
+					saveImg : {
+						path : 'fs://album.png',
+						w : 240,
+						h : 240
+					}
+				}, function(ret, err) {
+					if (ret.status) {
+						//							document.getElementById("imgTwo").display = "block";
+						document.getElementById("ewm").src = ret.imgPath
+						//alert( JSON.stringify( ret ) );
+					} else {
+						//alert(JSON.stringify(err));
+					}
+				});
 			});
 		</script>
 	</body>
