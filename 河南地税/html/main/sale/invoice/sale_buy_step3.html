@@ -59,6 +59,11 @@
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋产权证书号：</span>
+			<input type="text" value="{{ d.fwcqzsh }}" name="fwcqzsh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋产权证书号不能为空" data-errmsg="房屋产权证书号填写错误"
+			placeholder="填写房屋产权证书号" />
+			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fclx_dm','011','fclxmc','fclx_dm')">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
 			房产类型： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" dm="{{ d.fclx_dm }}" data-id="fclx_dm" id="fclx_dm">{{ d.fclxmc }}</span>
@@ -79,6 +84,43 @@
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积：</span>
 			<input type="text" value="{{# if(d.tnmj !== '0') { }}{{ d.tnmj }}{{# } }}" name="tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
 			placeholder="填写套内面积" />
+			</div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋幢号：</span>
+			<input type="text" name="fwzh" value="{{ d.fwzh }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋幢号不能为空" data-errmsg="房屋幢号填写错误"
+			placeholder="填写房屋幢号" />
+			</div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">单元：</span>
+			<input type="text" name="dy" value="{{ d.dy }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元不能为空" data-errmsg="单元填写错误" placeholder="填写单元"
+			/>
+			</div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">楼层：</span>
+			<input type="text" name="lc_1" value="{{# if(d.lc_1 !== '0') { }}{{ d.lc_1 }}{{# } }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="楼层不能为空" data-errmsg="楼层填写错误"
+			placeholder="填写楼层" />
+			</div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房号：</span>
+			<input type="text" name="fh" value="{{ d.fh }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号填写错误" placeholder="填写房号"
+			/>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('jzjglx_dm','001','jzjglxmc','jzjglx_dm');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			建筑结构类型： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" dm="{{ d.jzjglx_dm }}" data-id="jzjglx_dm" id="jzjglx_dm">{{ d.jzjglxmc }}</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('cx_dm','005','cxmc','cx_dm');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			朝向： <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" dm="{{ d.cx_dm }}" data-id="cx_dm" id="cx_dm">{{ d.cxmc }}</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">土地、房屋地址：</span>
+			<input type="text" name="tdfwdz" value="{{ d.tdfwdz }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="土地、房屋地址不能为空" data-errmsg="土地、房屋地址填写错误"
+			placeholder="填写土地、房屋地址" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">交易价格：</span>
