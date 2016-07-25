@@ -295,7 +295,6 @@
 						w : that.winWidth
 					}
 				};
-
 				options = options || {};
 				var opt = that.extendObj(_options, options);
 				that.openFrame(frameName, frameUrl, framePageParam, opt);
