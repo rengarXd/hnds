@@ -22,31 +22,31 @@
 			</p>
 		</div>
 		<div class="H-border-vertical-bottom-after"></div>
-		<div style="padding: 0px 35px 10px 35px;" id="imgTwo">
+		<!--<div style="padding: 0px 35px 10px 35px;" id="imgTwo">
 			<img src="" style="width: 100%" id="ewm"/>
-		</div>
+		</div>-->
 		<script src="../../script/H.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			H.ready(function() {
-				var FNScanner = api.require('FNScanner');
-				FNScanner.encodeImg({
-					content : 'http://downloadpkg.apicloud.com/app/download?path=http://7xunpo.com1.z0.glb.clouddn.com/6200c1273886836490afc57f5195625e_d',
-					//不保存到相册，每次进入都生成
-					saveToAlbum : false,
-					saveImg : {
-						path : 'fs://album.png',
-						w : 240,
-						h : 240
-					}
-				}, function(ret, err) {
-					if (ret.status) {
-						//							document.getElementById("imgTwo").display = "block";
-						document.getElementById("ewm").src = ret.imgPath
-						//alert( JSON.stringify( ret ) );
-					} else {
-						//alert(JSON.stringify(err));
-					}
-				});
+//				var FNScanner = api.require('FNScanner');
+//				FNScanner.encodeImg({
+//					content : 'http://downloadpkg.apicloud.com/app/download?path=http://7xunpo.com1.z0.glb.clouddn.com/6200c1273886836490afc57f5195625e_d',
+//					//不保存到相册，每次进入都生成
+//					saveToAlbum : false,
+//					saveImg : {
+//						path : 'fs://album.png',
+//						w : 240,
+//						h : 240
+//					}
+//				}, function(ret, err) {
+//					if (ret.status) {
+//						//							document.getElementById("imgTwo").display = "block";
+//						document.getElementById("ewm").src = ret.imgPath
+//						//alert( JSON.stringify( ret ) );
+//					} else {
+//						//alert(JSON.stringify(err));
+//					}
+//				});
 			});
 		</script>
 	</body>
