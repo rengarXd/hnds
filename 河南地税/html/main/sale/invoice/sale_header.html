@@ -24,7 +24,7 @@
 		<script type="text/javascript">
 			var closeFrm = null;
 			H.ready(function() {
-				openNewframe('', 'sale_buy_step1', 'sale_buy_step1.html', api.pageParam);
+				openNewframe('sale_buy_step1', 'sale_buy_step1.html', api.pageParam);
 				//				addEvts();
 				closeFrm = 'sale_buy_step1';
 				api.addEventListener({
@@ -60,7 +60,7 @@
 				}
 			}
 
-			function openNewframe(oldframeName, frameName, frameUrl, pageParam) {
+			function openNewframe(frameName, frameUrl, pageParam) {
 				var framepageParam = H.isObject(pageParam) ? pageParam : {};
 				H.fixStatusBar(function(offset) {
 					var _options = {
@@ -78,7 +78,7 @@
 
 			//楼栋信息
 			function Transferee(assessinfo_id) {
-				openNewframe('sale_buy_step1', 'sale_buy_step2', 'sale_buy_step2.html', {
+				openNewframe('sale_buy_step2', 'sale_buy_step2.html', {
 					assessinfo_id : assessinfo_id
 				});
 				closeFrm = 'sale_buy_step2';
@@ -86,7 +86,7 @@
 
 			//打开房产信息
 			function buildInfo(assessinfo_id) {
-				openNewframe('sale_buy_step2', 'sale_buy_step3', 'sale_buy_step3.html', {
+				openNewframe('sale_buy_step3', 'sale_buy_step3.html', {
 					assessinfo_id : assessinfo_id
 				});
 				closeFrm = 'sale_buy_step3';
@@ -94,7 +94,7 @@
 
 			//打开上传图片附件
 			function fileInfo(assessinfo_id) {
-				openNewframe('sale_buy_step3', 'sale_buy_step4', 'sale_buy_step4.html', {
+				openNewframe('sale_buy_step4', 'sale_buy_step4.html', {
 					assessinfo_id : assessinfo_id,
 					type : api.pageParam.type
 				});
@@ -103,7 +103,7 @@
 
 			//提交成功
 			function success() {
-				openNewframe('sale_buy_step4', 'sale_buy_success', 'sale_buy_success.html', api.pageParam);
+				openNewframe('sale_buy_success', 'sale_buy_success.html', api.pageParam);
 			}
 		</script>
 	</body>
