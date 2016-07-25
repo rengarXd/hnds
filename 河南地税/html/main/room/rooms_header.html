@@ -74,8 +74,11 @@
 			//				});
 			//          }
 			//提交成功
-			function success() {
-				openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html');
+			function success(assessinfo_id,edit) {
+				openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html',{
+					assessinfo_id : assessinfo_id,
+					edit : edit
+				});
 			}
 
 		</script>
