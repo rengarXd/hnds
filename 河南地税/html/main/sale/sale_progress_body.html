@@ -149,6 +149,11 @@
 						location.reload();
 					}
 				});
+				api.addEventListener({
+					name : 'saleReload'
+				}, function(ret, err) {
+					location.reload();
+				});
 			};
 			//初始化下拉
 			function initRefreshHeaderInfo() {

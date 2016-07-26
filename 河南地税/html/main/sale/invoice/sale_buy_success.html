@@ -25,6 +25,9 @@
 			H.ready(function() {
 				times = 3;
 				isinerval = setInterval("CountDown()", 1000);
+				api.sendEvent({
+					name : 'saleReload'
+				});
 			});
 			/**
 			 * 计时器

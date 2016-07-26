@@ -77,13 +77,13 @@
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑年份：</span>
 					<input type="text" id="build_year" name="build_year" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n-4" data-nullmsg="建筑年份不能为空" data-errmsg="建筑年份填写有误"
-					placeholder="填写建筑年份（单位：年）" />
+					placeholder="填写建筑年份（年）" />
 				</div>
 				<div class="H-padding-vertical-bottom-10"></div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
 					<input type="text" id="declared_value" name="declared_value" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="money" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
-					placeholder="填写申报价格（单位：元）" />
+					placeholder="填写申报价格（元）" />
 				</div>
 			</div>
 		</form>
@@ -152,7 +152,7 @@
 				}
 				//更新按钮信息
 				if (assessinfo_id) {
-					$("button").text('更新申请(3/3)');
+					$("button").text('下一步(3/3)');
 				}
 				ac.form({
 					area : "#forms",
