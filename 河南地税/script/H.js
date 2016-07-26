@@ -1336,7 +1336,7 @@
                     });
                 }
             },
-            dkfpAjax : function(callback, url, name, dm) {
+            dkfpAjax : function(callback, url, name) {
                 var that = this;
                 that.getUserPref(function() {
                     that.showProgress();
