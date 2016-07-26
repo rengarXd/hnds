@@ -61,15 +61,11 @@
 					key : 'userinfo'
 				}, function(ret, err) {
 					userinfo = eval('(' + ret.value + ')');
-					if (mflx == '0') {
-						$(".gyrmc").html('转让方');
-						edit();
-					} else {
-						$(".gyrmc").html('受让方');
-						edit();
-					}
+					edit();
 				});
+				//初始化下拉刷新
 				initRefreshHeaderInfo();
+				//监听页面刷新
 				api.addEventListener({
 					name : 'gyrReload'
 				}, function(ret, err) {
@@ -85,6 +81,7 @@
 				});
 			}
 
+			//打开新增也
 			function openApl() {
 				api.openWin({
 					name : 'sale_gyr_head',
@@ -97,6 +94,7 @@
 				});
 			}
 
+			//打开更新页
 			function show(gyrid) {
 				api.openWin({
 					name : 'sale_gyr_head',
@@ -110,13 +108,6 @@
 				});
 			}
 
-			//			function initData(){
-			//				if (mflx == '0') {
-			//					edit();
-			//				} else {
-			//					$(".gyrmc").html('受让方');
-			//				}
-			//			}
 			function edit() {
 				//继续编辑处理
 				//				alert(assessinfo_id);
@@ -142,6 +133,8 @@
 							laytpl(tpl).render(data, function(render) {
 								api.hideProgress();
 								document.getElementById('gyr_html').innerHTML = render;
+								//显示共有人名称
+								mflx == '0' ? $(".gyrmc").html('转让方') : $(".gyrmc").html('受让方');
 							});
 						}
 					} else if (ret && !ret.success) {
