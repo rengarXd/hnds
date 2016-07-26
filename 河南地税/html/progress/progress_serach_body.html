@@ -70,7 +70,7 @@
 		</div>
 		<script id="progress_data" type="text/html">
 			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-			<div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white" tapmode onclick="infoShow('{{ d.data[i].id }}');">
+			<div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white H-touch-active" tapmode="H-touch-active" onclick="infoShow('{{ d.data[i].id }}');">
 			{{# if(d.data[i].approve_state=="未评估"){ }}
 			<div class="H-padding-vertical-both-10 h-status">{{ d.data[i].approve_state }}</div>
 			{{# }else if(d.data[i].approve_state=="审批中"){ }}
