@@ -19,58 +19,191 @@
 				新增申请
 			</button>
 		</div>
-		<div id="" class="H-padding-10">
-			<div class="H-flexbox-horizontal H-margin-vertical-both-3 H-theme-background-color-white animated fadeIn">
-				<div class="H-flex-item H-font-size-14 H-theme-font-color-666 H-padding-10" tapmode="H-touch-active" onclick="showFunction();">
-					<span class="gyrmc">转让方</span>：<span class="H-theme-font-color5">徐某某</span><span class="H-float-right H-text-show-row-1">房产证号：1561616516</span>
-					<br />
-					<span class="H-margin-vertical-both-8">日期：2016-07-22</span>
-				</div>
-				<span tapmode onclick="delet();" class="iconfont icon-gb H-padding-15 H-theme-font-color-666"></span>
+		<div id="gyr_html" class="H-padding-10">
+			<!--<div class="H-flexbox-horizontal H-margin-vertical-both-3 H-theme-background-color-white animated fadeIn">
+			<div class="H-flex-item H-font-size-14 H-theme-font-color-666 H-padding-10" tapmode="H-touch-active" onclick="openApl();">
+			<span class="gyrmc">转让方</span>：<span class="H-theme-font-color5">徐某某</span><span class="H-float-right H-text-show-row-1">房产证号：1561616516</span>
+			<br />
+			<span class="H-margin-vertical-both-8">日期：2016-07-22</span>
+			</div>
+			<span tapmode onclick="delet();" class="iconfont icon-gb H-padding-15 H-theme-font-color-666"></span>
 			</div>
 			<div class="H-flexbox-horizontal H-margin-vertical-both-3 H-theme-background-color-white animated fadeIn">
-				<div class="H-flex-item H-font-size-14 H-theme-font-color-666 H-padding-10" tapmode="H-touch-active" onclick="showFunction();">
-					<span class="gyrmc">转让方</span>：<span class="H-theme-font-color5">徐某某</span><span class="H-float-right H-text-show-row-1">房产证号：156161651623</span>
-					<br />
-					<span class="H-margin-vertical-both-8">日期：2016-07-22</span>
-				</div>
-				<span tapmode onclick="delet();" class="iconfont icon-gb H-padding-12 H-theme-font-color-666"></span>
+			<div class="H-flex-item H-font-size-14 H-theme-font-color-666 H-padding-10" tapmode="H-touch-active" onclick="openApl();">
+			<span class="gyrmc">转让方</span>：<span class="H-theme-font-color5">徐某某</span><span class="H-float-right H-text-show-row-1">房产证号：156161651623</span>
+			<br />
+			<span class="H-margin-vertical-both-8">日期：2016-07-22</span>
 			</div>
+			<span tapmode onclick="delet();" class="iconfont icon-gb H-padding-12 H-theme-font-color-666"></span>
+			</div>-->
 		</div>
-	</body>
-	<script type="text/javascript" src="../../../../../script/H.js"></script>
-	<script type="text/javascript" src="../../../../../script/tools/laytpl.js" ></script>
-	<script type="text/javascript" src="../../../../../script/zepto.min.js"></script>
-	<script type="text/javascript">
-		var assessinfo_id = null,mflx = null;
-		apiready = function() {
-			assessinfo_id = api.pageParam.assessinfo_id;
-			mflx = api.pageParam.mflx;
-			if(mflx == '0'){
-				$(".gyrmc").html('转让方');
-			}else{
-				$(".gyrmc").html('受让方');
+		<script type="text/html" id="gyr_data">
+			{{# for(var i = 0, len = d.length; i < len; i++){ }}
+			<div class="H-flexbox-horizontal H-margin-vertical-both-3 H-theme-background-color-white animated fadeIn">
+			<div class="H-flex-item H-font-size-14 H-theme-font-color-666 H-padding-10" tapmode="H-touch-active" onclick="show('{{ d[i].gyrid }}');">
+			<span class="gyrmc">转让方</span>：<span class="H-theme-font-color5">{{ d[i].gyrxm }}</span><span class="H-float-right H-text-show-row-1">序号：<span class="H-theme-font-color-ccc">{{ d[i].xh }}</span></span>
+			<br />
+			<span class="H-margin-vertical-both-8">证件号码：{{ d[i].zjhm }}</span>
+			</div>
+			<span tapmode onclick="delet('{{ d[i].gyrid }}');" class="iconfont icon-gb H-padding-15 H-theme-font-color-666"></span>
+			</div>
+			{{# } }}
+		</script>
+		<script type="text/javascript" src="../../../../../script/H.js"></script>
+		<script type="text/javascript" src="../../../../../script/tools/laytpl.js" ></script>
+		<script type="text/javascript" src="../../../../../script/zepto.min.js"></script>
+		<script type="text/javascript">
+			var assessinfo_id = null, mflx = null, userinfo = null;
+			apiready = function() {
+				assessinfo_id = api.pageParam.assessinfo_id;
+				mflx = api.pageParam.mflx;
+				api.getPrefs({
+					key : 'userinfo'
+				}, function(ret, err) {
+					userinfo = eval('(' + ret.value + ')');
+					if (mflx == '0') {
+						$(".gyrmc").html('转让方');
+						edit();
+					} else {
+						$(".gyrmc").html('受让方');
+						edit();
+					}
+				});
+				initRefreshHeaderInfo();
+				api.addEventListener({
+					name : 'gyrReload'
+				}, function(ret, err) {
+					location.reload();
+				});
+			};
+			//初始化下拉
+			function initRefreshHeaderInfo() {
+				api.setRefreshHeaderInfo({
+					bgColor : "#ffffff"
+				}, function(ret, err) {
+					edit();
+				});
 			}
-		};
-		function openApl() {
-			api.openWin({
-				name : 'sale_gyr_head',
-				url : 'sale_gyr_head.html',
-				pageParam : {
-					assessinfo_id : assessinfo_id,
-					mflx : mflx
-				}
-			});
-		}
 
-		function delet() {
-			api.confirm({
-				title : '温馨提示',
-				msg : '确定删除这条记录吗？'
-			}, function(ret, err) {
-				if (ret.buttonIndex == 1) {
+			function openApl() {
+				api.openWin({
+					name : 'sale_gyr_head',
+					url : 'sale_gyr_head.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						mflx : mflx,
+						type : 1
+					}
+				});
+			}
+
+			function show(gyrid) {
+				api.openWin({
+					name : 'sale_gyr_head',
+					url : 'sale_gyr_head.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						mflx : mflx,
+						gyrid : gyrid,
+						type : 2
+					}
+				});
+			}
+
+			//			function initData(){
+			//				if (mflx == '0') {
+			//					edit();
+			//				} else {
+			//					$(".gyrmc").html('受让方');
+			//				}
+			//			}
+			function edit() {
+				//继续编辑处理
+				//				alert(assessinfo_id);
+				//				alert(mflx);
+				api.showProgress({
+					title : "拉取数据中..."
+				});
+				H.ajax(function(ret, err) {
+					$("#statuss").hide();
+					if (ret && ret.success) {
+						//console.log("ret===" + JSON.stringify(ret));
+						api.refreshHeaderLoadDone();
+						api.hideProgress();
+						if (undefined == ret.data.length) {
+							//							console.log("无数据");
+							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
+							//$('#progress_data_body').html(html);
+							document.getElementById('gyr_html').innerHTML = html;
+						} else {
+							var data = ret.data;
+							var tpl = document.getElementById('gyr_data').innerHTML;
+							//方式一：异步渲染（推荐）
+							laytpl(tpl).render(data, function(render) {
+								api.hideProgress();
+								document.getElementById('gyr_html').innerHTML = render;
+							});
+						}
+					} else if (ret && !ret.success) {
+						api.hideProgress();
+						return $common.loginInvalid("../../../");
+					}
+				}, 'appGyrxxDetail&funid=wbjh_clfxsxxb_gyrxx', 'post', {
+					values : {
+						"user_id" : userinfo[0].user_id,
+						"uuid" : userinfo[0].uuid,
+						"fwuuid" : assessinfo_id,
+						"mflx" : mflx
+					}
+				});
+			}
+
+			//删除该记录
+			function delet(gyrid) {
+				api.confirm({
+					title : '买方共有人信息',
+					msg : '确定删除此共有人信息吗？',
+					buttons : ['确定', '取消']
+				}, function(ret, err) {
+					var index = ret.buttonIndex;
+					if (index == 1) {
+						H.ajax(function(ret, err) {
+							results(ret, function() {
+								api.toast({
+									msg : result.message
+								});
+								location.reload();
+								//								api.removePrefs({
+								//									key : 'buy' + assessinfo_id
+								//								});
+								//								api.closeWin();
+							});
+						}, 'deleteGyrxx&funid=wbjh_clfxsxxb_gyrxx', 'post', {
+							values : {
+								"user_id" : userinfo[0].user_id,
+								"uuid" : userinfo[0].uuid,
+								"gyrid" : gyrid,
+							}
+						});
+					}
+				});
+			}
+
+			function results(ret, callback) {
+				if (ret.success) {
+					result = ret;
+					if ( typeof callback == 'function') {
+						callback();
+					}
+					api.hideProgress();
+				} else if (ret.message) {
+					api.hideProgress();
+					H.toast(ret.message);
+				} else {
+					api.hideProgress();
+					H.toast(ret);
 				}
-			});
-		}
-	</script>
+			}
+		</script>
+	</body>
 </html>
