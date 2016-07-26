@@ -47,7 +47,7 @@
 					点击加号拍照(横屏拍摄)
 				</div>
 				<!--打开相机start-->
-				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" onclick="openCamera();">
+				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" tapmode onclick="openCamera();">
 					<span class="iconfont icon-tianjia H-font-size-36 H-theme-font-color1"></span>
 					<div style="display: none;"></div>
 				</div>
@@ -57,7 +57,7 @@
 			<div class="H-flex-item">
 				<div class="footer"></div>
 				<footer class="H-footer H-padding-10">
-					<button onclick="nextPart();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+					<button tapmode onclick="nextPart();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 						下一步(6/6)
 					</button>
 				</footer>
@@ -81,6 +81,7 @@
 			var assessinfo = null, type = null, edImg = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 0, userinfo = null, targetBl = true;
 			var imgBooer = true;
 			H.ready(function() {
+				api.parseTapmode();
 				//接收业务ID
 				assessinfo_id = api.pageParam.assessinfo_id;
 				type = api.pageParam.type;
