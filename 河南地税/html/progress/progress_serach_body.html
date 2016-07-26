@@ -70,7 +70,7 @@
 		</div>
 		<script id="progress_data" type="text/html">
 			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-			<div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white">
+			<div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white" tapmode onclick="infoShow('{{ d.data[i].id }}');">
 			{{# if(d.data[i].approve_state=="未评估"){ }}
 			<div class="H-padding-vertical-both-10 h-status">{{ d.data[i].approve_state }}</div>
 			{{# }else if(d.data[i].approve_state=="审批中"){ }}
@@ -103,6 +103,27 @@
 				var myDate = new Date();
 				$("#endtime").val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
 			});
+			//进入信息详情
+			function infoShow(assessinfo_id) {
+				if ($("#type").attr('type') == '2') {
+					api.openWin({
+						name : 'sale_show_header',
+						url : '../main/sale/sale_show_header.html',
+						pageParam : {
+							assessinfo_id : assessinfo_id
+						}
+					});
+				} else {
+					api.openWin({
+						name : 'rooms_show_header',
+						url : '../main/room/rooms_show_header.html',
+						pageParam : {
+							assessinfo_id : assessinfo_id
+						}
+					});
+				}
+			}
+
 			//开始时间处理
 			function StartTime() {
 				api.openPicker({

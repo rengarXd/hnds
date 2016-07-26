@@ -87,10 +87,10 @@
 			房产证号：{{ d.data[i].property_number }}<br />
 			日期：{{ d.data[i].add_date }}
 			</div>
-			<div class="H-float-right">
+			<!--<div class="H-float-right">
 			<button class="b_style">编辑</button><br/>
 			<button class="b_style">删除</button>
-			</div>
+			</div>-->
 			{{# }else{ }}
 			<div class="H-padding-vertical-both-10 h-status" style="background: #fab729">
 			{{ d.data[i].approve_state }}
@@ -165,7 +165,7 @@
 			}
 
 			function show(assessinfo_id) {
-				H.openWin('rooms_show_header', '../main/sale/sale_show_header.html', {
+				H.openWin('sale_show_header', '../main/sale/sale_show_header.html', {
 					assessinfo_id : assessinfo_id
 				});
 			}
