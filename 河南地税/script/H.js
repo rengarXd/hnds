@@ -1346,7 +1346,7 @@
                                 //					alert(JSON.stringify(ret));
                                 that.hideProgress();
                                 var selet_option = ret.data;
-                                console.log(JSON.stringify(selet_option));
+//                              console.log(JSON.stringify(selet_option));
                                 var typeArray = new Array();
                                 for (var i = 0, len = selet_option.length; i < len; i++) {
                                     typeArray.push(selet_option[i][name]);
@@ -1385,8 +1385,7 @@
                                 var infoname = 'infonm' + url;
                                 for (var i = 0, len = selet_option.length; i < len; i++) {
                                     typeArray.push(selet_option[i][infoname]);
-                                    console.log('infonm======' + infoname);
-                                    ;
+//                                  console.log('infonm======' + infoname);
                                 }
                                 that.actionSheet(function(ret, err) {
                                     callback(ret, selet_option);
