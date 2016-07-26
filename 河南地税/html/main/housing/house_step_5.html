@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>综合修正</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+		</style>
+	</head>
+	<body>
+		<form id="forms">
+			<div id="sale_html">
+				<div class="H-padding-vertical-bottom-10"></div>
+				<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+					<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+					<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+						综合修正
+					</div>
+				</div>
+				<div class="H-border-vertical-both-after">
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('house_type', '003');">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							是否景观房: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="house_type">请选择房屋类别</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_toward', '005');">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							装修情况: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_toward">请选择建筑朝向</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_structure', '006');">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							采光: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_structure">请选择建筑结构</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('dywz', '007');">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							附属花园平台阁楼: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="dywz">请选择单元位置</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fqwz', '008');">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							通透情况: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fqwz">请选择分区位置</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fslx', '009');">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							特殊情况: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fslx">请选择复式类型</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+				</div>
+				<div class="H-padding-vertical-bottom-10"></div>
+				<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+					<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+					<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+						合同信息
+					</div>
+				</div>
+				<div class="H-border-vertical-both-after">
+					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号：</span>
+						<input type="text" value="{{ d.htbh }}" name="htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同编号不能为空" data-errmsg="合同编号填写错误"
+						placeholder="填写合同编号" />
+					</div>
+					<!--时间类型 start-->
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
+						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+							合同签订日期: <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" dm="{{ d.htqdrq }}" data-id="htqdrq" id="htqdrq">{{ d.htqdrq }}</span>
+						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+					</div>
+					<!--时间类型 end-->
+					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
+						<input type="text" value="{{# if(d.htje !== '0'){ }}{{ d.htje }}{{# } }}" name="htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写错误"
+						placeholder="填写合同金额" />
+					</div>
+				</div>
+				<div class="H-padding-vertical-bottom-10"></div>
+				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
+					<input type="text" id="declared_value" name="declared_value" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
+					placeholder="填写申报价格" />
+				</div>
+			</div>
+			</div>
+		</form>
+		<footer class="H-footer H-padding-10 ">
+			<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+				下一步(5/5)
+			</button>
+		</footer>
+		<script type="text/html" id="sale_detail_data">
+			<div class="H-padding-vertical-bottom-10"></div>
+			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+			综合修正
+			</div>
+			</div>
+			<div class="H-border-vertical-both-after">
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('house_type', '003');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			是否景观房: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="house_type">请选择房屋类别</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_toward', '005');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			装修情况: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_toward">请选择建筑朝向</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('building_structure', '006');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			采光: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="building_structure">请选择建筑结构</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('dywz', '007');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			附属花园平台阁楼: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="dywz">请选择单元位置</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fqwz', '008');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			通透情况: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fqwz">请选择分区位置</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('fslx', '009');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			特殊情况: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" id="fslx">请选择复式类型</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			</div>
+			<div class="H-padding-vertical-bottom-10"></div>
+			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+			合同信息
+			</div>
+			</div>
+			<div class="H-border-vertical-both-after">
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号：</span>
+			<input type="text" value="{{ d.htbh }}" name="htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同编号不能为空" data-errmsg="合同编号填写错误"
+			placeholder="填写合同编号" />
+			</div>
+			<!--时间类型 start-->
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			合同签订日期: <span class="H-padding-horizontal-both-12  H-theme-font-color-666 H-float-right" dm="{{ d.htqdrq }}" data-id="htqdrq" id="htqdrq">{{ d.htqdrq }}</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<!--时间类型 end-->
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
+			<input type="text" value="{{# if(d.htje !== '0'){ }}{{ d.htje }}{{# } }}" name="htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写错误"
+			placeholder="填写合同金额" />
+			</div>
+			</div>
+			<div class="H-padding-vertical-bottom-10"></div>
+			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+			交易信息
+			</div>
+			</div>
+			<div class="H-border-vertical-both-after">
+			<!--交易类型 start-->
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="payType('paytype');">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			交易类型：<span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="paytype">点击选择交易类型</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<!--交易类型 end-->
+			<!--交易日期 start-->
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="timePicker();">
+			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
+			交易时间：<span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="times">点击选择交易时间</span>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
+			</div>
+			<!--交易日期 end-->
+			</div>
+			<div class="H-padding-vertical-bottom-10"></div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
+			<input type="text" id="declared_value" name="declared_value" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
+			placeholder="填写申报价格" />
+			</div>
+			</div>
+		</script>
+		<script src="../../../script/H.js" type="text/javascript"></script>
+		<script src="../../../script/zepto.min.js" type="text/javascript"></script>
+		<script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
+		<script src="../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var house_type = null, htqdrq = null, scqd_fwsj = null, userinfo = null, datas = null;
+			H.ready(function() {
+				assessinfo_id = api.pageParam.assessinfo_id;
+				initPrefs();
+				ac.form({
+					area : "#forms",
+					btn : "#btn", // 触发验证的按钮或者元素，支持标签，id，class，推荐使用id或者class
+					singleError : function(e, msg) {
+						// 自定义弹窗格式###############
+						alert(msg);
+					},
+					endSuccess : function(data) {
+						var yanzheng = true;
+						$("[data-id]").each(function() {
+							var dm = $(this).attr('dm');
+							if (dm == null || dm == "") {
+								H.toast('有' + $(this).html() + '未填写项');
+								//								console.log("dm===" + $(this).html());
+								yanzheng = false;
+							}
+						});
+						var selectData = {
+							"htqdrq" : $("#htqdrq").attr('dm'),
+							"xzqhsz_dm" : $("#xzqhsz_dm").attr('dm'),
+							"zgswskfj_dm" : $("#pingshui_type").attr('dm'),
+							"jdxz_dm" : $("#jdxz_dm").attr('dm'),
+							"fclx_dm" : $("#fclx_dm").attr('dm'),
+							"jzjglx_dm" : $("#jzjglx_dm").attr('dm'),
+							"cx_dm" : $("#cx_dm").attr('dm'),
+							"fcjyfs_dm" : $("#fcjyfs_dm").attr('dm'),
+							"scqd_fwfs" : $("#scqd_fwfs").attr('dm'),
+							"scqd_fwsj" : $("#scqd_fwsj").attr('dm'),
+							"user_id" : userinfo[0].user_id,
+							"uuid" : userinfo[0].uuid
+						};
+						datas = H.extendObj(data, selectData);
+						if (yanzheng) {
+							api.execScript({
+								name : 'house_head',
+								script : 'success();'
+							});
+							//							_ajax(datas);
+						}
+						//						yanzheng ? _ajax(datas) : H.toast('您还有未选择的项');
+						//								var yanzheng = true;
+						//						if (yanzheng) {
+						//							_ajax(datas);
+						//						}
+						//						for (var x in selectData) {
+						//							var infoidData = $("#" + x).attr('infoid');
+						//							if (infoidData == null) {
+						//								return api.toast({
+						//									msg : $("#" + x).html() + "未选择"
+						//								});
+						//							} else {
+						//								if (selectData.fslx) {
+						//									datas = data;
+						//									$.extend(datas, selectData);
+						//									post_data();
+						//								}
+						//							}
+						//							//							console.log("data=" + infoidData);
+						//						};
+						//						alert(JSON.stringify(datas));
+					}
+				});
+				part();
+			});
+			//打开评税分区
+			function PingShuiFenQu() {
+				api.openWin({
+					name : 'rooms_region_header',
+					url : 'region/rooms_region_header.html',
+					pageParam : {
+					},
+					animation : {
+						type : "none",
+						duration : 0
+					}
+				})
+			}
+
+			//获取所选的评税分区
+			function part() {
+				H.addEventListener(function(ret, err) {
+					//					alert('name===='+ret.value.typeval+'id===='+ret.value.typeid);
+					$("#pingshui_type").html(ret.value.typeval);
+					$("#pingshui_type").attr("dept_id", ret.value.typeid);
+				}, 'region');
+			}
+
+			//类型选择器
+			function select(IdName, url, nm, dm) {
+				H.dkfpAjax(function(ret, selet_option) {
+					//					$('#' + IdName).attr("dm", "");
+					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+					if (ret.buttonIndex <= selet_option.length) {
+						//							alert(ret.buttonIndex);
+						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
+					}
+				}, url, nm);
+			}
+
+			//交易类型选择器
+			function payType(IdName) {
+				H.selAjax(function(ret, selet_option) {
+					if (ret.buttonIndex <= selet_option.length) {
+						$('#' + IdName).attr("infoid002", selet_option[ret.buttonIndex - 1].infoid002).html(selet_option[ret.buttonIndex - 1].infonm002);
+					}
+				}, '002');
+			}
+
+			//交易时间选择器
+			function timePicker() {
+				H.openTimePick(function(ret) {
+					//获取返回时间
+					$("#times").text(ret.year + '-' + ret.month + '-' + ret.day);
+					dates = ret.year + '-' + ret.month + '-' + ret.day;
+				});
+			}
+
+			function edit() {
+				//继续编辑处理
+				api.showProgress({
+					title : "拉取数据中..."
+				});
+				H.ajax(function(ret, err) {
+					$("#statuss").hide();
+					if (ret && ret.success) {
+						//						console.log("ret===" + JSON.stringify(ret));
+						var data = ret.data[0];
+						var tpl = document.getElementById('sale_detail_data').innerHTML;
+						//方式一：异步渲染（推荐）
+						laytpl(tpl).render(data, function(render) {
+							api.hideProgress();
+							document.getElementById('sale_html').innerHTML = render;
+						});
+						api.hideProgress();
+					} else if (ret && !ret.success) {
+						return $common.loginInvalid("../../../");
+					}
+				}, 'appSaleDetail&funid=wbjh_clfxsxxb', 'post', {
+					values : {
+						"user_id" : userinfo[0].user_id,
+						"uuid" : userinfo[0].uuid,
+						"fwuuid" : assessinfo_id
+					}
+				});
+			}
+
+			//获取room偏好值
+			function initPrefs() {
+				H.getUserPref(function() {
+					if (type == 2) {
+						//拉取数据更新操作
+						edit();
+					} else {
+						$("#btn").html('下一步（5/5）');
+					}
+				});
+			}
+
+			//返回结果处理
+			function results(ret, callback) {
+				api.hideProgress();
+				if (ret.success) {
+					if ( typeof callback == "function") {
+						callback();
+					}
+					var fileInfo = 'fileInfo(' + "'" + assessinfo_id + "'" + ');';
+					api.execScript({
+						name : 'sale_header',
+						script : fileInfo
+					});
+				} else {
+					H.toast(ret.message);
+				}
+			}
+
+			function _ajax() {
+				//				console.log(JSON.stringify(datas));
+				//1.4、已经登录
+				//更新存量房信息
+				api.showProgress();
+				H.ajax(function(ret, err) {
+					//					alert(JSON.stringify(ret));
+					results(ret);
+				}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + assessinfo_id, 'post', {
+					values : datas
+				})
+			}
+
+			//上次取得房屋时间
+			function scqd_fwsjPick() {
+				H.openTimePick(function(ret) {
+					$("#scqd_fwsj").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
+					scqd_fwsj = ret.year + '-' + ret.month + '-' + ret.day;
+					$("#scqd_fwsj").attr('dm', scqd_fwsj);
+				});
+			}
+
+			//交易时间选择器
+			function htqdrqPick() {
+				H.openTimePick(function(ret) {
+					$("#htqdrq").text(ret.year + '年' + ret.month + '月' + ret.day + '日');
+					htqdrq = ret.year + '-' + ret.month + '-' + ret.day;
+					$("#htqdrq").attr('dm', htqdrq);
+				});
+			}
+		</script>
+	</body>
+</html>
