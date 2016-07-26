@@ -427,6 +427,9 @@
 						H.ajax(function(ret, err) {
 							//						console.log(Transferee);
 							results(ret, function(ret) {
+								api.sendEvent({
+									name : 'gyrReload'
+								});
 								api.closeWin();
 							});
 						}, 'wbjhGyrxxAdd&funid=wbjh_clfxsxxb_gyrxx', 'post', {
