@@ -202,11 +202,13 @@
 					url : './rooms_show_header.html',
 					pageParam : {
 						assessinfo_id : assessinfo_id
+					},
+					animation : {
+						type : "none", //动画类型（详见动画类型常量）
+						//subType : "from_right", //动画子类型（详见动画子类型常量）
+						duration : 0 //动画过渡时间，默认300毫秒
 					}
 				});
-				//				H.openWin('rooms_show_header', './rooms_show_header.html', {
-				//					assessinfo_id : assessinfo_id
-				//				});
 			}
 
 			//撤销申请
