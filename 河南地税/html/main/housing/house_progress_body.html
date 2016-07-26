@@ -131,12 +131,9 @@
 				initRefreshHeaderInfo();
 				//监听页面刷新
 				api.addEventListener({
-					name : 'pageReload'
+					name : 'roomReload'
 				}, function(ret, err) {
-					if (ret.value.key == 1) {
-						//              		alert(ret.value.key);
-						location.reload();
-					}
+					location.reload();
 				});
 			};
 			var user_id = null, uuid = null, retobj = null;
@@ -197,7 +194,7 @@
 					url : url,
 					animation : {
 						type : "none", //动画类型（详见动画类型常量）
-						curve :"linear",
+						curve : "linear",
 						//subType : "from_right", //动画子类型（详见动画子类型常量）
 						duration : 0 //动画过渡时间，默认300毫秒
 					}

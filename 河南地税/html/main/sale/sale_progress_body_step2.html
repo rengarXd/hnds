@@ -133,6 +133,11 @@
 						location.reload();
 					}
 				});
+				api.addEventListener({
+					name : 'saleReload'
+				}, function(ret, err) {
+					location.reload();
+				});
 			};
 			var user_id = null, uuid = null, retobj = null;
 			//初始化下拉

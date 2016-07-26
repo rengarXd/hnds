@@ -72,37 +72,37 @@
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-			<input type="text" value="{{# if(d.htje !== '0'){ }}{{ d.htje }}{{# } }}" name="htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写错误"
+			<input type="text" value="{{# if(d.htje !== '0'){ }}{{ d.htje }}{{# } }}" name="htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="money" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写错误"
 			placeholder="填写合同金额" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">面积：</span>
-			<input type="text" value="{{# if(d.mj !== '0') { }}{{ d.mj }}{{# } }}" name="mj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="面积不能为空" data-errmsg="面积填写错误"
+			<input type="text" value="{{# if(d.mj !== '0') { }}{{ d.mj }}{{# } }}" name="mj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="面积不能为空" data-errmsg="面积填写错误"
 			placeholder="填写面积" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积：</span>
-			<input type="text" value="{{# if(d.tnmj !== '0') { }}{{ d.tnmj }}{{# } }}" name="tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
+			<input type="text" value="{{# if(d.tnmj !== '0') { }}{{ d.tnmj }}{{# } }}" name="tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
 			placeholder="填写套内面积" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋幢号：</span>
-			<input type="text" name="fwzh" value="{{ d.fwzh }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房屋幢号不能为空" data-errmsg="房屋幢号填写错误"
+			<input type="text" name="fwzh" value="{{ d.fwzh }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="房屋幢号不能为空" data-errmsg="房屋幢号填写错误"
 			placeholder="填写房屋幢号" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">单元：</span>
-			<input type="text" name="dy" value="{{ d.dy }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元不能为空" data-errmsg="单元填写错误" placeholder="填写单元"
+			<input type="text" name="dy" value="{{ d.dy }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="单元不能为空" data-errmsg="单元填写错误" placeholder="填写单元"
 			/>
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">楼层：</span>
-			<input type="text" name="lc_1" value="{{# if(d.lc_1 !== '0') { }}{{ d.lc_1 }}{{# } }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="楼层不能为空" data-errmsg="楼层填写错误"
+			<input type="text" name="lc_1" value="{{# if(d.lc_1 !== '0') { }}{{ d.lc_1 }}{{# } }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="楼层不能为空" data-errmsg="楼层填写错误"
 			placeholder="填写楼层" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房号：</span>
-			<input type="text" name="fh" value="{{ d.fh }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号填写错误" placeholder="填写房号"
+			<input type="text" name="fh" value="{{ d.fh }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="房号不能为空" data-errmsg="房号填写错误" placeholder="填写房号"
 			/>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('jzjglx_dm','001','jzjglxmc','jzjglx_dm');">
@@ -159,7 +159,7 @@
 			<!--时间类型 end-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">上次取得房屋成本：</span>
-			<input type="text" name="scqd_fwcb" value="{{# if(d.scqd_fwcb !== '0') { }}{{ d.scqd_fwcb }}{{# } }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
+			<input type="text" name="scqd_fwcb" value="{{# if(d.scqd_fwcb !== '0') { }}{{ d.scqd_fwcb }}{{# } }}" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号填写错误"
 			placeholder="填写上次取得房屋成本" />
 			</div>
 		</script>

@@ -29,6 +29,9 @@
 				assessinfo_id = api.pageParam.assessinfo_id;
 				times = 5;
 				isinerval = setInterval("CountDown()", 1000);
+				api.sendEvent({
+					name:'roomReload'
+				});
 			});
 			/**
 			 * 计时器DOM
