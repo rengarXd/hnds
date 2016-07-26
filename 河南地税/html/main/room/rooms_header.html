@@ -8,7 +8,7 @@
 		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			html,body {
+			html, body {
 				background: #f4f4f4
 			}
 			.H_header_bg {
@@ -38,7 +38,13 @@
 							h : api.winHeight - offset.h,
 							w : api.winWidth
 						},
-						bounces : false
+						bounces : false,
+						softInputMode : 'resize',
+						animation : {
+							type : "none", //动画类型（详见动画类型常量）
+							//subType : "from_right", //动画子类型（详见动画子类型常量）
+							duration : 0 //动画过渡时间，默认300毫秒
+						}
 					};
 					H.openFrame(frameName, frameUrl, framepageParam, _options);
 				}, "#header");
@@ -74,13 +80,12 @@
 			//				});
 			//          }
 			//提交成功
-			function success(assessinfo_id,edit) {
-				openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html',{
+			function success(assessinfo_id, edit) {
+				openNewframe('rooms_apply_body', 'rooms_success_body', 'rooms_success_body.html', {
 					assessinfo_id : assessinfo_id,
 					edit : edit
 				});
 			}
-
 		</script>
 	</body>
 </html>

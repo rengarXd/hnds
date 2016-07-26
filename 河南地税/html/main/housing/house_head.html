@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>二手房信息提交</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+		</style>
+	</head>
+	<body>
+		<header class="H-header H_header_bg" id="header">
+			<span tapmode="" onclick="closeFn();" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-left-5 H-z-index-100"><i class="iconfont icon-fanhui H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15">返回</label></span>
+			<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+				二手房信息提交
+			</div>
+		</header>
+		<script src="../../../script/H.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var closeFrm = null;
+			H.ready(function() {
+				openNewframe('house_step_1', 'house_step_1.html', api.pageParam);
+				//				addEvts();
+				closeFrm = 'house_step_1';
+				api.addEventListener({
+					name : 'keyback'
+				}, function(ret, err) {
+					closeFn();
+				});
+			});
+			//关闭窗口
+			function closeFn() {
+				switch (closeFrm) {
+					case 'house_step_1':
+						api.closeWin();
+						break;
+					case 'house_step_2':
+						api.closeFrame({
+							name : 'house_step_2'
+						});
+						closeFrm = 'house_step_1';
+						break;
+					case 'house_step_3':
+						api.closeFrame({
+							name : 'house_step_3'
+						});
+						closeFrm = 'house_step_2';
+						break;
+					case 'house_step_4':
+						api.closeFrame({
+							name : 'house_step_4'
+						});
+						closeFrm = 'house_step_3';
+						break;
+					case 'house_step_5':
+						api.closeFrame({
+							name : 'house_step_5'
+						});
+						closeFrm = 'house_step_4';
+						break;
+				}
+			}
+
+			function openNewframe(frameName, frameUrl, pageParam) {
+				var framepageParam = H.isObject(pageParam) ? pageParam : {};
+				H.fixStatusBar(function(offset) {
+					var _options = {
+						rect : {
+							x : 0,
+							y : offset.h,
+							h : api.winHeight - offset.h,
+							w : api.winWidth
+						},
+						bounces : false,
+						softInputMode : 'resize',
+						animation : {
+							type : "none", //动画类型（详见动画类型常量）
+							//subType : "from_right", //动画子类型（详见动画子类型常量）
+							duration : 0 //动画过渡时间，默认300毫秒
+						}
+					};
+					H.openFrame(frameName, frameUrl, framepageParam, _options);
+				}, "#header");
+			}
+
+			//受让方信息
+			function Transferee(assessinfo_id) {
+				openNewframe('house_step_2', 'house_step_2.html', {
+					assessinfo_id : assessinfo_id
+				});
+				closeFrm = 'house_step_2';
+			}
+
+			//打开楼栋信息
+			function buildInfo(assessinfo_id) {
+				openNewframe('house_step_3', 'house_step_3.html', {
+					assessinfo_id : assessinfo_id
+				});
+				closeFrm = 'house_step_3';
+			}
+
+			//打开房产
+			function houseInfo(assessinfo_id) {
+				openNewframe('house_step_4', 'house_step_4.html', {
+					assessinfo_id : assessinfo_id
+				});
+				closeFrm = 'house_step_4';
+			}
+
+			//综合修正
+			function correction(assessinfo_id) {
+				openNewframe('house_step_5', 'house_step_5.html', {
+					assessinfo_id : assessinfo_id
+				});
+				closeFrm = 'house_step_5';
+			}
+
+			//提交成功
+			function success() {
+				openNewframe('sale_buy_success', 'sale_buy_success.html', api.pageParam);
+			}
+		</script>
+	</body>
+</html>
