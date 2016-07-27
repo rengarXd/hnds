@@ -123,13 +123,13 @@
 							"uuid" : userinfo[0].uuid
 						};
 						datas = H.extendObj(data, value);
-						//						post_data();
+						//						_ajax();
 						if (yanzheng) {
 							api.execScript({
 								name : 'house_head',
 								script : 'houseInfo(' + "'" + assessinfo_id + "'" + ');'
 							});
-							//							get_PREFS();
+							//							_ajax();
 						}
 						//						alert(JSON.stringify(datas));
 					}
@@ -173,7 +173,7 @@
 							$("#fwzh").val(data.fwzh);
 							$("#dy").val(data.dy);
 							$("#fh").val(data.fh);
-							$("#local_area").attr("infoid010", data.local_area);
+							$("#local_area").attr("dm", data.local_area);
 							$("#pingshui_type").attr("xqdm", data.assess_partition)
 							api.hideProgress();
 						} else if (ret && !ret.success) {
@@ -191,7 +191,7 @@
 
 			//所在区域选择器
 			function partType(IdName) {
-				H.selAjax(function(ret, selet_option) {
+				H.dkfpAjax(function(ret, selet_option) {
 					//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
 					//					$('#' + IdName).attr("infoid010", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
@@ -199,15 +199,15 @@
 						$("#pingshui_type").html('');
 						$("#pingshui_type").attr("xqdm", '');
 						//							alert(ret.buttonIndex);
-						$('#' + IdName).attr("infoid010", selet_option[ret.buttonIndex - 1].infoid010).html(selet_option[ret.buttonIndex - 1].infonm010);
+						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1].szqycd).html(selet_option[ret.buttonIndex - 1].szqynm);
 					}
-				}, '010');
+				}, 'selszqy','szqynm');
 			}
 
 			//打开评税分区
 			function PingShuiFenQu() {
 				//				console.log($("#local_area").attr("infoid010"));
-				var psfq = $("#local_area").attr("infoid010");
+				var psfq = $("#local_area").attr("dm");
 				psfq ? api.openWin({
 					name : 'rooms_region_header',
 					url : 'region/rooms_region_header.html',
@@ -238,7 +238,7 @@
 					result = ret;
 					var buildInfo = 'buildInfo(' + "'" + result.data.assessinfo_id + "'" + ',' + type + ');';
 					api.execScript({
-						name : 'rooms_header',
+						name : 'house_head',
 						script : buildInfo
 					});
 					//                  api.execScript({
@@ -263,10 +263,10 @@
 				//1.4、已经登录
 				//更新存量房信息
 				var pingshui = $("#pingshui_type").attr("xqdm");
-				var local_area = $("#local_area").attr("infoid010");
-				console.log('pingshui==' + pingshui);
-				console.log('local_area==' + local_area);
-				console.log('dates==' + dates);
+				var local_area = $("#local_area").attr("dm");
+//				console.log('pingshui==' + pingshui);
+//				console.log('local_area==' + local_area);
+//				console.log('dates==' + dates);
 				dates && pingshui && local_area ? H.ajax(function(ret, err) {
 					results(ret);
 				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo_id, 'post', {
