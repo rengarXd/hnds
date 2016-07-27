@@ -352,7 +352,7 @@
 							});
 						}
 					}
-				}, '006', 'sfzjlxmc');
+				}, 'getGoldTax006', 'sfzjlxmc');
 			}
 
 			//国籍选择器
@@ -364,7 +364,7 @@
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1].gjhdqsz_dm).html(selet_option[ret.buttonIndex - 1].gjhdqjc);
 					}
-				}, url, 'gjhdqjc');
+				}, 'getGoldTax'+url, 'gjhdqjc');
 			}
 
 			function results(ret, callback) {
