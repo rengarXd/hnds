@@ -78,7 +78,10 @@
 			</button>
 		</div>
 		<footer class="H-footer H-padding-10 ">
-			<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			<!--<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			下一步(1/5)
+			</button>-->
+			<button onclick="openNext();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				下一步(1/5)
 			</button>
 		</footer>
@@ -169,16 +172,19 @@
 						datas = H.extendObj(data, value);
 						//						post_data();
 						if (yanzheng) {
-							api.execScript({
-								name : 'house_head',
-								script : 'Transferee(' + "'" + assessinfo_id + "'" + ');'
-							});
 							//							get_PREFS();
 						}
 						//						alert(JSON.stringify(datas));
 					}
 				});
 			});
+			function openNext() {
+				api.execScript({
+					name : 'house_head',
+					script : 'Transferee(' + "'" + assessinfo_id + "'" + ');'
+				});
+			}
+
 			function gyrSwitch() {
 				//				gyr = false;
 				if (gyr) {
@@ -223,7 +229,7 @@
 							});
 						}
 					}
-				}, 'selparamdict','zjlxnm');
+				}, 'selparamdict', 'zjlxnm');
 			}
 
 			//			function gyrxx() {
