@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>影像资料</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+			.addh_active:active {
+				background: #f5f5f5;
+			}
+			.del_a {
+				position: absolute;
+				right: 10px;
+				top: 64px;
+				width: 32px;
+			}
+			.del_b {
+				position: absolute;
+				right: 10px;
+				width: 32px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-flexbox-vertical" id="stap1">
+			<div class="H-flex-item H-theme-background-color-white H-padding-10">
+				<!--证件名称start-->
+				<div class="H-padding-10" id="Leixing"></div>
+				<!--证件名称end-->
+				<!--图片区域start-->
+				<div id="yulan" class="H-text-align-center">
+					<!--加载中图标-->
+					<img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/>
+					<!--加载中图标-->
+					<!--右上角删除图标  onerror="javascript:this.src='../../../../image/yz.png';" -->
+					<img src="../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"  />
+					<!--右上角删除图标-->
+				</div>
+				<!--图片区域end-->
+				<div class="H-padding-10" id="addpic">
+					点击加号拍照(横屏拍摄)
+				</div>
+				<!--打开相机start-->
+				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" tapmode="" onclick="openCamera();">
+					<span class="iconfont icon-tianjia H-font-size-36 H-theme-font-color1"></span>
+					<div style="display: none;"></div>
+				</div>
+				<!--打开相机end-->
+			</div>
+			<!--下一步按钮-->
+			<div class="H-flex-item">
+				<div class="footer"></div>
+				<footer class="H-footer H-padding-10">
+					<button tapmode="" onclick="nextPart();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+						下一步(6/6)
+					</button>
+				</footer>
+			</div>
+			<!--下一步按钮-->
+		</div>
+		<script type="text/javascript" src="../../../script/H.js"></script>
+		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../../../script/uploadimg/upImg.js"></script>
+		<script type="text/javascript">
+			//@assessinfo 业务ID
+			//@edImg 拉取的附件数据
+			//@targetBl 判断是否为target的图片
+			//@imageFilter 压缩模块对象
+			//@imageBrowser 图片浏览模块
+			//@zhonglei
+			//@type 1新增2编辑
+			//@ii 业务序列
+			//@edImg 查询图片编辑时返回的数据
+			//@imgBooer 图片是否上传失败
+			var assessinfo = null, type = null, edImg = null, imageFilter = null, imageBrowser = null, zhonglei = null, ii = 0, userinfo = null, targetBl = true;
+			var imgBooer = true;
+			H.ready(function() {
+				api.parseTapmode();
+				//接收业务ID
+				assessinfo_id = api.pageParam.assessinfo_id;
+				type = api.pageParam.type;
+				//				console.log("xxxx===" + type);
+				//获取用户信息
+				H.getUserPref(function() {
+				});
+				//初始化模型
+				initModel();
+				//初始化数据
+				initData();
+			});
+			//初始化模块
+			function initModel() {
+				// 引入过滤压缩模块
+				imageFilter = api.require('imageFilter');
+				//引入图片预览模块
+				imageBrowser = api.require('imageBrowser');
+			}
+
+			//模拟数据传输
+			function initData() {
+				//请求图片接口
+				H.ajax(function(ret, err) {
+					if (ret.success) {
+						//图片选项数据
+						zhonglei = ret.data;
+						//						console.log("zhonglei==" + JSON.stringify(zhonglei));
+						//第一个文件标题
+						$("#Leixing").html(zhonglei[0].business_name);
+						//计算上传附件的长度
+						$("button").html('下一步(4/' + parseInt(4 + zhonglei.length - 1) + ')');
+						if (type == 2) {
+							editImg(0);
+						}
+					} else if (ret.success == false) {
+						alert(ret.message);
+					} else {
+						api.toast({
+							msg : '连接错误，请检查网络配置'
+						});
+					}
+				}, 'selHouseAttach&funid=archive_data');
+			}
+
+			//获取之前的图片
+			function editImg(num) {
+				H.ajax(function(ret, err) {
+					if (undefined == ret.data.length) {
+						api.toast({
+							msg : ret.message
+						});
+					} else {
+						edImg = ret.data;
+						var imgs = [];
+						var browerImgs = [];
+						for (var i = 0; i < edImg.length; i++) {
+							if (zhonglei[num].business_typeid == edImg[i].business_typeid) {
+								imgs.push(edImg[i]);
+								if (imgs.length > 1) {
+									for (var a = 1; a < imgs.length; a++) {
+										//										console.log('imgs===' + JSON.stringify(imgs));
+										var imgurls = window.ImgDl + imgs[a].attach_path;
+										//										console.log(imgurl);
+										$("#yulan").after('<div class="H-text-align-center"><img src="' + imgurls + '" style="width: 100%;" class="imgLast imgyulan" /><img src="../../../image/del.jpg" class="del_b" onclick="select(this,' + "'" + imgs[a].keyid + "'" + ');"/></div>');
+										// 将图片追加到数组中
+										browerImgs.push(imgurls);
+									}
+									$(".H-flex-item .imgyulan").eq($(this).index()).on("click", function() {
+										// 调用图片预览函数
+										img.openImageBrowser(browerImgs);
+									});
+									//									targetBl = false;
+								} else {
+									//									targetBl = true;
+									//									var browerImgs = [];
+									var imgurl = window.ImgDl + imgs[0].attach_path;
+									//							console.log(imgurl);
+									// 将图片追加到数组中
+									browerImgs.push(imgurl);
+									$("#target").attr('src', imgurl).on("click", function() {
+										// 调用图片预览函数
+										img.openImageBrowser(browerImgs);
+									});
+									$("#yulan").append('<img src="../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + imgs[0].keyid + "'" + ');"/>');
+									//									targetBl = false;
+								}
+							}
+						}
+						imgs.length == 0 ? targetBl = true : targetBl = false;
+//						console.log('imgs.length===' + imgs.length);
+					}
+				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
+					values : {
+						user_id : userinfo[0].user_id,
+						uuid : userinfo[0].uuid,
+						fwuuid : assessinfo_id,
+					}
+				});
+			}
+
+			//打开成功页
+			function openWin() {
+				api.execScript({
+					name : 'house_head',
+					script : 'success();'
+				});
+			}
+
+			//提交 申请
+			function house_submit() {
+				H.ajax(function(ret, err) {
+					api.hideProgress();
+					//判断是否提交正确
+					ret.success ? openWin() : api.toast({
+						msg : ret.message
+					});
+				}, 'audit&funid=wbjh_clfxsxxb&dataType=json&auditvalue=1&tag=1', 'post', {
+					values : {
+						user_id : userinfo[0].user_id,
+						uuid : userinfo[0].uuid,
+						keyid : assessinfo_id,
+					}
+				});
+			}
+
+			var a = 0;
+			var c = $('.imgLast').size();
+			//			var upimgs = null;
+			//上传图片操作
+			//			function cyecleAJ(zhonglei, ii) {
+			//				api.showProgress({
+			//					title : '上传中..'
+			//				});
+			//				for (var a = 0; a < c; a++) {
+			//					$('.imgLast').each(function(a) {
+			//						upimgs = $(this).attr('src');
+			//						H.ajax(function(ret, err) {
+			//							var imgInfo = ret.data;
+			//							uploadFile(window.ImgWebUrl, upimgs, imgInfo, function(serverImg) {
+			//								imgBooer = serverImg.success;
+			//								//								console.log('serverImg===' + JSON.stringify(serverImg))
+			//							});
+			//						}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
+			//							values : {
+			//								'user_id' : userinfo[0].user_id,
+			//								'uuid' : userinfo[0].uuid,
+			//								'fwuuid' : assessinfo_id,
+			//								'business_name' : zhonglei[ii].business_name,
+			//								'business_typeid' : zhonglei[ii].business_typeid,
+			//								'pagenum' : a + 1
+			//							}
+			//						});
+			//					});
+			//				}
+			//				api.hideProgress();
+			//			}
+			//下一步
+			function nextPart() {
+				// ################### 下一个附件项 #########################
+				var imgurl = $("#target").attr("src");
+				var oldurl = "../../../image/yz.png";
+				var loadurl = "../../../image/loading_more.gif";
+				//判断是否符合上传图片的条件
+				if (zhonglei !== null && imgurl != oldurl && imgurl != loadurl) {
+					var len = zhonglei.length;
+					if (ii < len - 1) {
+						//						cyecleAJ(zhonglei, ii);
+						//判断如果图片上传失败将
+						if (imgBooer) {
+							//自增下一项的业务序列
+							ii++;
+							//首个拍照图片位置判断
+							targetBl = true;
+							//需要上传附件每一项的名称
+							$("#Leixing").html(zhonglei[ii].business_name);
+							//清除原有图片信息
+							$("img").parent().remove();
+							//初始化示例图
+							$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
+							//更改按钮名称
+							var nums = '下一步(' + parseInt(4 + ii) + '/' + parseInt(4 + len - 1) + ')';
+							$("button").html(nums);
+							//从服务器拉取数据
+							editImg(ii);
+						} else {
+							api.toast({
+								msg : '上传失败，请重新拍照！'
+							});
+						}
+						api.hideProgress();
+					} else {
+						//						cyecleAJ(zhonglei, ii);
+						//代开发票提交
+						api.confirm({
+							title : '代开发票申请提交',
+							msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
+							buttons : ['确定', '取消']
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.buttonIndex == 1) {
+									//代开发票提交函数
+									house_submit();
+								}
+								//									console.log('ret===' + JSON.stringify(ret));
+							} else {
+								api.hideProgress();
+								alert(JSON.stringify(err));
+							}
+						});
+					}
+				} else {
+					api.toast({
+						msg : '上传失败，请重新拍照！'
+					});
+				}
+			}
+
+			//删除图片函数
+			function select(obj, attachId) {
+				api.confirm({
+					title : '删除图片',
+					msg : '确定删除此图片吗？',
+					buttons : ['确定', '取消']
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.buttonIndex == 1) {
+							api.showProgress({
+								title : '删除中..'
+							});
+							//1.1删除图片
+							H.oldAjax(function(ret, err) {
+								if (ret.success) {
+									//1.1删除记录
+									H.ajax(function(ret, err) {
+										if (ret.success) {
+											api.hideProgress();
+											/*删除图片界面渲染处理*/
+											$(obj).parent().remove();
+											if ($('.imgLast').size() < 1) {
+												$("#Leixing").after('<div id="yulan" class="H-text-align-center"><img src="../../../image/yz.png" style="width: 100%;" id="target" class="imgLast"/><img src="../../../image/loading_more.gif" style="width: 50px;display: none;margin: 50px 0;" id="loading"/></div>');
+												targetBl = true;
+											}
+											api.toast({
+												msg : '删除成功'
+											});
+										} else {
+											api.hideProgress();
+											api.toast({
+												msg : ret.message
+											});
+										}
+									}, 'delAttachRec&funid=wbjh_clfxsxxb_attachs', 'post', {
+										values : {
+											'user_id' : userinfo[0].user_id,
+											'uuid' : userinfo[0].uuid,
+											'keyid' : attachId
+										}
+									});
+								} else {
+									api.hideProgress();
+									api.toast({
+										msg : '删除失败'
+									});
+								}
+							}, window.ImgWebUrl, 'post', {
+								values : {
+									funid : 'sys_attach',
+									pagetype : 'editgrid',
+									eventcode : 'delete',
+									nousercheck : '1',
+									dataType : 'json',
+									keyid : attachId
+								}
+							});
+						}
+						//console.log('ret===' + JSON.stringify(ret));
+					} else {
+						api.hideProgress();
+						alert(JSON.stringify(err));
+					}
+				});
+			}
+
+			// 上传图片
+			// url：上传的url地址
+			// data：上传的文件
+			// callback：上传成功返回地址
+			/*
+			 @dataSrc 本地图片路径
+			 @datafunid 数据功能标识（必填）（string）
+			 @dataid 数据id（必填）（string）
+			 */
+			function uploadFile(url, dataSrc, datafunid, dataid, callback) {
+				api.showProgress({
+					title : '上传中..'
+				});
+				H.oldAjax(function(ret, err) {
+					if (ret) {
+						api.hideProgress();
+						if (ret.success) {
+							callback(ret);
+						} else {
+							imgBooer = ret.success;
+							H.toast(ret.message);
+						}
+						//						ret.success ? callback(ret) : H.toast(ret.message);
+					} else {
+						api.hideProgress();
+						H.toast('连接错误，请检查网络配置等问题');
+					}
+				}, url, "post", {
+					values : {
+						pagetype : "editgrid",
+						funid : "sys_attach",
+						nousercheck : "1",
+						eventcode : "create",
+						dataType : "byte",
+						datafunid : datafunid,
+						//						fileField : fileField,
+						dataid : dataid,
+						attach_name : dataSrc
+					},
+					files : {
+						attach_path : dataSrc,
+					}
+				});
+			}
+
+			//添加附件记录
+			function addImgInfo(callback) {
+				H.ajax(function(ret, err) {
+					var imgInfo = ret.data;
+					if (ret.success) {
+						callback(imgInfo);
+					} else {
+						H.toast(ret.message);
+					}
+				}, 'addHouseAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
+					values : {
+						'user_id' : userinfo[0].user_id,
+						'uuid' : userinfo[0].uuid,
+						'fwuuid' : assessinfo_id,
+						'business_name' : zhonglei[ii].business_name,
+						'business_typeid' : zhonglei[ii].business_typeid,
+						'pagenum' : ++a
+					}
+				});
+			}
+
+			//打开照相机获取
+			function openCamera() {
+				img.openCamera({
+					sourceType : 'camera',
+					encodingType : 'jpg',
+					mediaValue : 'pic',
+					destinationType : 'url',
+					allowEdit : false,
+					quality : 100,
+					saveToPhotoAlbum : false
+				}, function(ret) {
+					//路径
+					var returnUrl = ret.data;
+					if (returnUrl !== "") {
+						//图片预览数组
+						var browerImgs = [];
+						//判断是在示例图上显示，还是在target下添加
+						if (targetBl) {
+							$("#target").hide();
+							//加载图显示
+							$("#loading").show();
+							// 图片压缩
+							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressImg) {
+								$("#loading").hide();
+								//请求添加图片信息
+								var compressImg = compressImg;
+								addImgInfo(function(imgInfo) {
+									uploadFile(window.ImgWebUrl, compressImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
+										//attachId = serverImg.data.attachId;
+										//处理图片返回状态
+										imgBooer = serverImg.success;
+										//在页面中渲染图片
+										var del = '	<img src="../../../image/del.jpg" class="del_a" onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');"/>'
+										$("#target").attr({
+											"src" : compressImg,
+											"style" : "width:100%;"
+										}).on("click", function() {
+											// 将图片追加到数组中
+											browerImgs.push($("#target").attr("src"));
+											// 调用图片预览函数
+											img.openImageBrowser(browerImgs);
+										}).after(del);
+										//判断是否为原始图片
+										targetBl = false;
+										//								console.log('serverImg===' + JSON.stringify(serverImg))
+									});
+								});
+							});
+						} else {
+							img.imgCompress(returnUrl, 0.5, 0.5, img.getExt(returnUrl), function(compressAddImg) {
+								var compressAddImg = compressAddImg;
+								addImgInfo(function(imgInfo) {
+									uploadFile(window.ImgWebUrl, compressAddImg, imgInfo.datafunid, imgInfo.dkfp_id, function(serverImg) {
+										//判断图片是否上传成功
+										imgBooer = serverImg.success;
+										//										console.log(compressAddImg);
+										var showImgHtml = '<div class="H-text-align-center"><img src=' + compressAddImg + ' class="imgyulan imgLast" style="width: 100%;"/><img src="../../../image/del.jpg"  onclick="select(this,' + "'" + serverImg.data.attachId + "'" + ');" class="del_b"/></div>';
+										// 追加图片
+										$("#addpic").before(showImgHtml);
+										$(".H-flex-item .imgyulan").eq($(this).index()).on("click", function() {
+											// 将图片追加到数组中
+											browerImgs.push(compressAddImg);
+											// 调用图片预览函数
+											img.openImageBrowser(browerImgs);
+										});
+										//判断是否为原始图片
+										targetBl = false;
+										//								console.log('serverImg===' + JSON.stringify(serverImg))
+									});
+								});
+							});
+						}
+					}
+				}, '用户取消');
+			}
+		</script>
+	</body>
+</html>

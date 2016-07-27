@@ -22,8 +22,9 @@
 		</header>
 		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var closeFrm = null;
+			var closeFrm = null, type = null;
 			H.ready(function() {
+				type = api.pageParam.type;
 				openNewframe('house_step_1', 'house_step_1.html', api.pageParam);
 				//				addEvts();
 				closeFrm = 'house_step_1';
@@ -63,6 +64,12 @@
 						});
 						closeFrm = 'house_step_4';
 						break;
+					case 'house_step_image':
+						api.closeFrame({
+							name : 'house_step_image'
+						});
+						closeFrm = 'house_step_5';
+						break;
 				}
 			}
 
@@ -91,7 +98,8 @@
 			//受让方信息
 			function Transferee(assessinfo_id) {
 				openNewframe('house_step_2', 'house_step_2.html', {
-					assessinfo_id : assessinfo_id
+					assessinfo_id : assessinfo_id,
+					type : type
 				});
 				closeFrm = 'house_step_2';
 			}
@@ -99,7 +107,8 @@
 			//打开楼栋信息
 			function buildInfo(assessinfo_id) {
 				openNewframe('house_step_3', 'house_step_3.html', {
-					assessinfo_id : assessinfo_id
+					assessinfo_id : assessinfo_id,
+					type : type
 				});
 				closeFrm = 'house_step_3';
 			}
@@ -107,7 +116,8 @@
 			//打开房产
 			function houseInfo(assessinfo_id) {
 				openNewframe('house_step_4', 'house_step_4.html', {
-					assessinfo_id : assessinfo_id
+					assessinfo_id : assessinfo_id,
+					type : type
 				});
 				closeFrm = 'house_step_4';
 			}
@@ -115,9 +125,19 @@
 			//综合修正
 			function correction(assessinfo_id) {
 				openNewframe('house_step_5', 'house_step_5.html', {
-					assessinfo_id : assessinfo_id
+					assessinfo_id : assessinfo_id,
+					type : type
 				});
 				closeFrm = 'house_step_5';
+			}
+
+			//综合修正
+			function image(assessinfo_id) {
+				openNewframe('house_step_image', 'house_step_image.html', {
+					assessinfo_id : assessinfo_id,
+					type : type
+				});
+				closeFrm = 'house_step_image';
 			}
 
 			//提交成功

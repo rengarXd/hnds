@@ -23,11 +23,11 @@
 		<script type="text/javascript">
 			var times = null, isinerval = null;
 			H.ready(function() {
-				times = 3;
-				isinerval = setInterval("CountDown()", 1000);
 				api.sendEvent({
 					name : 'roomReload'
 				});
+				times = 2;
+				isinerval = setInterval("CountDown()", 1000);
 			});
 			/**
 			 * 计时器

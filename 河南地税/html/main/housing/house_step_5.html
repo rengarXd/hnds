@@ -226,9 +226,10 @@
 		<script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
 		<script src="../../../script/tools/availdate-v1.0.2.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var house_type = null, htqdrq = null, scqd_fwsj = null, userinfo = null, datas = null;
+			var house_type = null, htqdrq = null, scqd_fwsj = null, userinfo = null, datas = null, type = null;
 			H.ready(function() {
 				assessinfo_id = api.pageParam.assessinfo_id;
+				type = api.pageParam.type;
 				initPrefs();
 				ac.form({
 					area : "#forms",
@@ -296,7 +297,7 @@
 			function openNext() {
 				api.execScript({
 					name : 'house_head',
-					script : 'success();'
+					script : 'image(' + "'" + assessinfo_id + "'" + ');'
 				});
 			}
 
