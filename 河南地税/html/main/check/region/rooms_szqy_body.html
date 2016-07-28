@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>税区选择</title>
+		<link href="../../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link href="../../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div id="diqu"></div>
+		<script type="text/html" id="fenqu_data">
+			{{# for(var i=0,l=d.length;i<l;i++){ }}
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode onclick="selectd(this);">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12" szqycd="{{ d[i].szqycd }}">
+			{{ d[i].szqynm }}
+			</div>
+			<input type="radio" name="types"  class="H-radio H-radio-null H-display-block H-vertical-align-middle H-font-size-18 H-theme-font-color4 H-border-radius-circle H-margin-horizontal-right-10">
+			</div>
+			{{# } }}
+		</script>
+		<script type="text/javascript" src="../../../../script/H.js"></script>
+		<script type="text/javascript" src="../../../../script/tools/laytpl.js" ></script>
+		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
+		<script type="text/javascript">
+			var userinfoobj = null, nums = null;
+			function selectd(obj) {
+				$(obj).find('input').attr('checked', 'checked');
+//				var szqynm = $(obj).find(".H-flex-item").html();
+				var szqycd = $(obj).find(".H-flex-item").attr("szqycd");
+				api.openWin({
+					name : 'rooms_region_header',
+					url : 'rooms_region_header.html',
+					pageParam : {
+						psfq : szqycd
+					}
+				});
+				//				H.setPrefs(function(ret, err) {
+				//					//					alert("typeval:" + typevalue + ",typeid:" + typeid);
+				//					api.sendEvent({
+				//						name : 'region',
+				//						extra : {
+				//							xqdm : xqdm,
+				//							xqnm : xqnm
+				//						}
+				//					});
+				//					api.closeWin();
+				//				}, 'type_name', '{xqdm:"' + xqdm + '",xqnm:"' + xqnm + '"}');
+			}
+
+
+			H.ready(function() {
+				nums = api.pageParam.psfq;
+				//				console.log(JSON.stringify(nums));
+				api.parseTapmode();
+				get_data(nums);
+			});
+			//ajax请求数据模板渲染
+			function get_data(nums) {
+				api.showProgress();
+				H.getUserPref(function() {
+					H.ajax(function(ret, err) {
+						if (ret) {
+							if (0 == ret.data.length) {
+								api.hideProgress();
+								//							console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">取得住宅评税分区为空 </div></div></div>';
+								//$('#progress_data_body').html(html);
+								document.getElementById('diqu').innerHTML = html;
+							} else {
+								var tpl = document.getElementById('fenqu_data').innerHTML;
+								//读取模版
+								//方式一：异步渲染（推荐）
+								laytpl(tpl).render(ret.data, function(render) {
+									api.hideProgress();
+									document.getElementById('diqu').innerHTML = render;
+								});
+							}
+						} else {
+							api.hideProgress();
+							api.alert({
+								msg : JSON.stringify(err)
+							});
+						}
+					}, 'getParamSzqy&funid=param_dict', 'post', {
+						values : {
+							user_id : userinfo[0].user_id,
+							uuid : userinfo[0].uuid
+						}
+					});
+				});
+			}
+		</script>
+	</body>
+</html>
