@@ -59,12 +59,12 @@
 		<div class="H-padding-vertical-top-10"></div>
 		<script id="progress_data" type="text/html">
 			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-			<div class="H-margin-vertical-both-3  H-flexbox-horizontal H-theme-background-color-white animated fadeIn">
-			{{# if(d.data[i].approve_state=="退回"){ }}
+			<div class="H-margin-vertical-both-3  H-flexbox-horizontal H-theme-background-color-white animated fadeIn" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
+			{{# if(d.data[i].approve_state=="退回编辑"){ }}
 			<div class="H-padding-vertical-both-10 h-status">
 			{{ d.data[i].approve_state }}
 			</div>
-			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
 			转让方：{{ d.data[i].mfmc_nsrmc }}<br />
 			受让方：{{ d.data[i].gmfmc_csfnsrmc }}<br />
 			房产证号：{{ d.data[i].fwcqzsh_fczh }}<br />
@@ -87,6 +87,26 @@
 			<div class="H-float-right">
 			<button class="b_style" tapmode onclick="showFunction('{{ d.data[i].fwuuid }}', '{{ d.data[i].transferor_certnumber }}');">编辑</button><br/>
 			<button class="b_style" tapmode onclick="del('{{ d.data[i].fwuuid }}')">删除</button>
+			</div>
+			{{# }else if(d.data[i].approve_state=="受理中"){ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].mfmc_nsrmc }}<br />
+			受让方：{{ d.data[i].gmfmc_csfnsrmc }}<br />
+			房产证号：{{ d.data[i].fwcqzsh_fczh }}<br />
+			日期：{{ d.data[i].add_date }}
+			</div>
+			{{# }else if(d.data[i].approve_state=="已审验"){ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #89d043">
+			{{ d.data[i].approve_state }}
+			</div>
+			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8">
+			转让方：{{ d.data[i].mfmc_nsrmc }}<br />
+			受让方：{{ d.data[i].gmfmc_csfnsrmc }}<br />
+			房产证号：{{ d.data[i].fwcqzsh_fczh }}<br />
+			日期：{{ d.data[i].add_date }}
 			</div>
 			{{# } }}
 			</div>

@@ -59,14 +59,14 @@
 			<!--评税分区 end-->
 		</div>
 		<div id="bc" class="H-padding-10" style="display: none">
-		<!--补充内容 start-->
+			<!--补充内容 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
-			<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请补充您的房屋坐落"></textarea>
+				<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请补充您的房屋坐落"></textarea>
 			</div>
 			<!--补充内容 end-->
 			<!--补充内容 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
-			<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请补充您的评税分区"></textarea>
+				<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请补充您的评税分区"></textarea>
 			</div>
 			<!--补充内容 end-->
 		</div>
@@ -137,7 +137,13 @@
 							msg : '房屋可以评估，可进行二手房信息申请'
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
-								api.closeWin();
+								api.openWin({
+									name : 'house_progress_head',
+									url : '../housing/house_progress_head.html'
+								});
+								setTimeout(function() {
+									api.closeWin();
+								}, 2000);
 							}
 						});
 					} else {
@@ -147,15 +153,14 @@
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
 								api.closeWin();
-//								$("#jy").hide();
-//								$("#bc").show();
-//								$("#btn_1").hide();
-//								$("#btn_2").show();
-//								api.openWin({
-//									name : 'check_frame',
-//									url : './check_frame.html'
-//								});
-								//								api.closeWin();
+								//								$("#jy").hide();
+								//								$("#bc").show();
+								//								$("#btn_1").hide();
+								//								$("#btn_2").show();
+								//								api.openWin({
+								//									name : 'check_frame',
+								//									url : './check_frame.html'
+								//								});
 							}
 						});
 					}
@@ -169,9 +174,9 @@
 					}
 				});
 			}
+
 			//补充接口
 			function bcxx() {
-				
 			}
 		</script>
 	</body>
