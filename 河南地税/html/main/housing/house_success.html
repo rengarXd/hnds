@@ -26,6 +26,10 @@
 				api.sendEvent({
 					name : 'roomReload'
 				});
+				api.setPrefs({
+					key : 'jiaoyan',
+					value : ''
+				});
 				times = 2;
 				isinerval = setInterval("CountDown()", 1000);
 			});
