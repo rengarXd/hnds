@@ -186,7 +186,7 @@
 				api.getPrefs({
 					key : 'jiaoyan'
 				}, function(ret, err) {
-//					console.log('jiaoyan===' + ret.value);
+					//					console.log('jiaoyan===' + ret.value);
 					if (ret && ret.value) {
 						var jy = eval('(' + ret.value + ')');
 						if (jy.success == true) {
@@ -197,10 +197,9 @@
 									type : 1
 								},
 								animation : {
-									type : "none", //动画类型（详见动画类型常量）
-									curve : "linear",
-									//subType : "from_right", //动画子类型（详见动画子类型常量）
-									duration : 0 //动画过渡时间，默认300毫秒
+									type : 'reveal',
+									subType : 'from_right',
+									duration : 100
 								}
 							});
 						} else {
@@ -245,6 +244,11 @@
 					pageParam : {
 						assessinfo_id : assessinfo_id,
 						type : 2
+					},
+					animation : {
+						type : 'reveal',
+						subType : 'from_right',
+						duration : 0
 					}
 				});
 				setTimeout(function() {
@@ -258,6 +262,11 @@
 					url : '../progress/progress_show_head.html',
 					pageParam : {
 						assessinfo_id : assessinfo_id
+					},
+					animation : {
+						type : 'reveal',
+						subType : 'from_right',
+						duration : 100
 					}
 				});
 			}
