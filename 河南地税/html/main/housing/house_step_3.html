@@ -147,7 +147,14 @@
 					//拉取数据更新操作
 					edit();
 				} else {
-					$("#btn").html('下一步（3/5）');
+					api.getPrefs({
+						key : 'userinfo'
+					}, function(ret, err) {
+						retobj = eval('(' + ret.value + ')');
+						user_id = retobj[0].user_id;
+						uuid = retobj[0].uuid;
+						$("#btn").html('下一步（3/5）');
+					});
 				}
 			}
 
