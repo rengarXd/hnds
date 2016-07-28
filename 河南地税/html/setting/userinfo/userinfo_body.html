@@ -115,12 +115,16 @@
 				api.removePrefs({
 					key : 'rooms'
 				});
+				api.setPrefs({
+					key : 'jiaoyan',
+					value : ''
+				});
 				api.openWin({
 					name : 'login_body',
 					url : '../../login/login_body.html'
 				});
 				setTimeout(function() {
-					H.closeWin();
+					api.closeWin();
 				}, 1200);
 			}
 

@@ -29,7 +29,7 @@
 				</div>
 				<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="timePicker();">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						发证日期： <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="fwcqzsh_fczh" dm="" id="times">点击选择发证日期</span>
+						发证日期： <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="times" dm="" id="times">点击选择发证日期</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
@@ -43,16 +43,16 @@
 				/>
 				</div>-->
 				<!--所在区域 start-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="partType('xzqhsz_szqy')">
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="partType('xzqhsz_szqy');">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						所在区域: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="xzqhsz_szqy" >请选择所在区域</span>
+						所在区域: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="xzqhsz_szqy" id="xzqhsz_szqy" >请选择所在区域</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
 				<!--所在区域 end-->
-				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu()">
+				<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu();">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						评税分区： <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="pingshui_type">点击选择评税分区</span>
+						评税分区： <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666"  id="pingshui_type">点击选择评税分区</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
@@ -79,12 +79,12 @@
 			</div>
 		</form>
 		<footer class="H-footer H-padding-10 ">
-			<!--<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				下一步(3/5)
-			</button>-->
-			<button onclick="openNext();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				下一步(3/5)
 			</button>
+			<!--<button onclick="openNext();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			下一步(3/5)
+			</button>-->
 		</footer>
 		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script src="../../../script/zepto.min.js" type="text/javascript"></script>
@@ -122,15 +122,13 @@
 						var value = {
 							"c_fzrq" : $("#times").attr('dm'),
 							"xzqhsz_szqy" : $("#xzqhsz_szqy").attr('dm'),
-							"c_xqnm" : $("#pingshui_type").attr('xqdm'),
-							"user_id" : userinfo[0].user_id,
-							"uuid" : userinfo[0].uuid
+							"c_xqnm" : $("#pingshui_type").attr('xqdm')
 						};
 						datas = H.extendObj(data, value);
 						//						_ajax();
 						if (yanzheng) {
-							alert(JSON.stringify(datas));
-							//							_ajax();
+							//							alert(JSON.stringify(datas));
+							_ajax();
 						}
 						//						alert(JSON.stringify(datas));
 					}
@@ -145,14 +143,12 @@
 
 			//获取偏好值及渲染数据
 			function InitPref() {
-				H.getUserPref(function() {
-					if (type == 2) {
-						//拉取数据更新操作
-						edit();
-					} else {
-						$("#btn").html('下一步（3/5）');
-					}
-				});
+				if (type == 2) {
+					//拉取数据更新操作
+					edit();
+				} else {
+					$("#btn").html('下一步（3/5）');
+				}
 			}
 
 			function edit() {
@@ -169,29 +165,35 @@
 					H.ajax(function(ret, err) {
 						$("#statuss").hide();
 						if (ret && ret.success) {
-							//								console.log("ret===" + JSON.stringify(ret));
+							console.log("ret===" + JSON.stringify(ret));
 							var data = ret.data[0];
-							dates = data.issue_date;
-							$("#property_number").val(data.property_number);
-							$("#times").text(dates.substring(-1, 10));
-							$("#place_number").val(data.place_number);
-							$("#local_area").text(data.infonm010);
-							$("#house_location").val(data.house_location);
+							api.sendEvent({
+								name : 'szqyInfo',
+								extra : {
+									szqy : data.xzqhsz_szqy
+								}
+							});
+							$("#fwcqzsh_fczh").val(data.fwcqzsh_fczh);
+							$("#c_qdh").val(data.c_qdh);
+							$("#times").text(data.c_fzrq);
+							$("#times").attr("dm", data.c_fzrq);
+							$("#tdfwdz_zcdzl").val(data.tdfwdz_zcdzl);
+							$("#xzqhsz_szqy").text(data.szqynm);
+							$("#xzqhsz_szqy").attr("dm", data.xzqhsz_szqy);
+							$("#fwzh_zh").val(data.fwzh_zh);
 							$("#pingshui_type").text(data.xqnm011);
-							$("#fwzh").val(data.fwzh);
-							$("#dy").val(data.dy);
-							$("#fh").val(data.fh);
-							$("#local_area").attr("dm", data.local_area);
-							$("#pingshui_type").attr("xqdm", data.assess_partition)
+							$("#pingshui_type").attr("xqdm", data.c_xqnm);
+							$("#dy_dy").val(data.dy_dy);
+							$("#fh_bwjfh").val(data.fh_bwjfh);
 							api.hideProgress();
 						} else if (ret && !ret.success) {
 							return $common.loginInvalid("../../");
 						}
-					}, 'appHouseDetail&funid=houses_assessinfo', 'post', {
+					}, 'appClfxsxxbDetail&funid=houses_clfxsxxbcheck', 'post', {
 						values : {
 							user_id : user_id,
 							uuid : uuid,
-							assessinfo_id : assessinfo_id
+							fwuuid : assessinfo_id
 						}
 					});
 				});
@@ -199,23 +201,29 @@
 
 			//所在区域选择器
 			function partType(IdName) {
-				H.dkfpAjax(function(ret, selet_option) {
+				H.selectAjax(function(ret, selet_option) {
 					//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
 					//					$('#' + IdName).attr("infoid010", "");
 					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
 						$("#pingshui_type").html('');
 						$("#pingshui_type").attr("xqdm", '');
-						//							alert(ret.buttonIndex);
+						//						alert(selet_option[ret.buttonIndex - 1].szqycd);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1].szqycd).html(selet_option[ret.buttonIndex - 1].szqynm);
+						api.sendEvent({
+							name : 'szqyInfo',
+							extra : {
+								szqy : selet_option[ret.buttonIndex - 1].szqycd
+							}
+						});
 					}
-				}, 'selszqy', 'szqynm');
+				}, 'getParamSzqy&funid=param_dict', 'szqynm');
 			}
 
 			//打开评税分区
 			function PingShuiFenQu() {
 				//				console.log($("#local_area").attr("infoid010"));
-				var psfq = $("#local_area").attr("dm");
+				var psfq = $("#xzqhsz_szqy").attr("dm");
 				psfq ? api.openWin({
 					name : 'rooms_region_header',
 					url : 'region/rooms_region_header.html',
@@ -244,10 +252,10 @@
 				api.hideProgress();
 				if (ret.success) {
 					result = ret;
-					var buildInfo = 'buildInfo(' + "'" + result.data.assessinfo_id + "'" + ',' + type + ');';
+					var houseInfo = 'houseInfo(' + "'" + assessinfo_id + "'" + ',' + type + ');';
 					api.execScript({
 						name : 'house_head',
-						script : buildInfo
+						script : houseInfo
 					});
 					//                  api.execScript({
 					//                      name : 'rooms_header',
@@ -271,21 +279,16 @@
 			function _ajax() {
 				//1.4、已经登录
 				//更新存量房信息
-				var pingshui = $("#pingshui_type").attr("xqdm");
-				var local_area = $("#local_area").attr("dm");
-				//				console.log('pingshui==' + pingshui);
-				//				console.log('local_area==' + local_area);
-				//				console.log('dates==' + dates);
-				dates && pingshui && local_area ? H.ajax(function(ret, err) {
+				H.ajax(function(ret, err) {
 					results(ret);
-				}, 'appHouseAssessUpdate&funid=houses_assessinfo&user_id=' + userinfo[0].user_id + '&uuid=' + userinfo[0].uuid + '&assessinfo_id=' + assessinfo_id, 'post', {
+				}, 'appClfxsxxbUpdate&funid=houses_clfxsxxbcheck&user_id=' + user_id + '&uuid=' + uuid + '&fwuuid=' + assessinfo_id, 'post', {
 					values : datas
-				}) : H.toast('您还有未选择的选项');
+				});
 			}
 
-			function post_data() {
-				_ajax();
-			}
+			//			function post_data() {
+			//				_ajax();
+			//			}
 		</script>
 	</body>
 </html>

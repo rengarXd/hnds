@@ -51,7 +51,7 @@
 		</div>
 		</div>
 		</div>-->
-		<div id="progress_data_body">
+		<div id="progress_data_body" class="H-padding-horizontal-both-10">
 			<div id="loading" class="H-center-all H-padding-20">
 				<img src="../../../image/loading_more.gif" width="30" />
 			</div>
@@ -59,60 +59,34 @@
 		<div class="H-padding-vertical-top-10"></div>
 		<script id="progress_data" type="text/html">
 			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-			<div class="H-margin-vertical-both-3 H-flexbox-horizontal H-theme-background-color-white animated fadeIn">
-			{{# if(d.data[i].approve_state=="未评估"){ }}
+			<div class="H-margin-vertical-both-3  H-flexbox-horizontal H-theme-background-color-white animated fadeIn">
+			{{# if(d.data[i].approve_state=="退回"){ }}
 			<div class="H-padding-vertical-both-10 h-status">
 			{{ d.data[i].approve_state }}
 			</div>
 			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
-			转让方：{{ d.data[i].mfmc }}<br />
-			受让方：{{ d.data[i].gmfmc }}<br />
-			房产证号：{{ d.data[i].fwcqzsh }}<br />
-			日期：{{ d.data[i].add_date }}
-			</div>
-			{{# }else if(d.data[i].approve_state=="审批中"){ }}
-			<div class="H-padding-vertical-both-10 h-status" style="background: #00aeef">
-			{{ d.data[i].approve_state }}
-			</div>
-			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
-			转让方：{{ d.data[i].mfmc }}<br />
-			受让方：{{ d.data[i].gmfmc }}<br />
-			房产证号：{{ d.data[i].fwcqzsh }}<br />
-			日期：{{ d.data[i].add_date }}
-			</div>
-			{{# }else if(d.data[i].approve_state=="已评估"){ }}
-			<div class="H-padding-vertical-both-10 h-status" style="background: #89d043">
-			{{ d.data[i].approve_state }}
-			</div>
-			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
-			转让方：{{ d.data[i].mfmc }}<br />
-			受让方：{{ d.data[i].gmfmc }}<br />
-			房产证号：{{ d.data[i].fwcqzsh }}<br />
-			日期：{{ d.data[i].add_date }}
-			</div>
-			{{# }else if(d.data[i].approve_state=="未提交"){ }}
-			<div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
-			{{ d.data[i].approve_state }}
-			</div>
-			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
-			转让方：{{ d.data[i].mfmc }}<br />
-			受让方：{{ d.data[i].gmfmc }}<br />
-			房产证号：{{ d.data[i].fwcqzsh }}<br />
+			转让方：{{ d.data[i].mfmc_nsrmc }}<br />
+			受让方：{{ d.data[i].gmfmc_csfnsrmc }}<br />
+			房产证号：{{ d.data[i].fwcqzsh_fczh }}<br />
 			日期：{{ d.data[i].add_date }}
 			</div>
 			<div class="H-float-right">
 			<button class="b_style" tapmode onclick="showFunction('{{ d.data[i].fwuuid }}', '{{ d.data[i].transferor_certnumber }}');">编辑</button><br/>
 			<button class="b_style" tapmode onclick="del('{{ d.data[i].fwuuid }}')">删除</button>
 			</div>
-			{{# }else{ }}
-			<div class="H-padding-vertical-both-10 h-status" style="background: #fab729">
+			{{# }else if(d.data[i].approve_state=="未提交"){ }}
+			<div class="H-padding-vertical-both-10 h-status" style="background: #31c27c">
 			{{ d.data[i].approve_state }}
 			</div>
 			<div class="H-flex-item H-font-size-12 H-theme-font-color-666 H-padding-8" tapmode="H-active" onclick="show('{{ d.data[i].fwuuid }}');">
-			转让方：{{ d.data[i].mfmc }}<br />
-			受让方：{{ d.data[i].gmfmc }}<br />
-			房产证号：{{ d.data[i].fwcqzsh }}<br />
+			转让方：{{ d.data[i].mfmc_nsrmc }}<br />
+			受让方：{{ d.data[i].gmfmc_csfnsrmc }}<br />
+			房产证号：{{ d.data[i].fwcqzsh_fczh }}<br />
 			日期：{{ d.data[i].add_date }}
+			</div>
+			<div class="H-float-right">
+			<button class="b_style" tapmode onclick="showFunction('{{ d.data[i].fwuuid }}', '{{ d.data[i].transferor_certnumber }}');">编辑</button><br/>
+			<button class="b_style" tapmode onclick="del('{{ d.data[i].fwuuid }}')">删除</button>
 			</div>
 			{{# } }}
 			</div>
@@ -123,6 +97,7 @@
 		<script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
 		<script src="../../../script/common.js" type="text/javascript"></script>
 		<script type="text/javascript">
+			var user_id = null, uuid = null, retobj = null;
 			apiready = function() {
 				api.parseTapmode();
 				//初始化用户信息
@@ -136,7 +111,6 @@
 					location.reload();
 				});
 			};
-			var user_id = null, uuid = null, retobj = null;
 			//初始化下拉
 			function initRefreshHeaderInfo() {
 				api.setRefreshHeaderInfo({
@@ -154,7 +128,7 @@
 					if (ret && ret.success) {
 						if (undefined == ret.data.length) {
 							//							console.log("无数据");
-							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">' + ret.message + '</div></div></div>';
+							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">暂无申请记录</div></div></div>';
 							//$('#progress_data_body').html(html);
 							document.getElementById('progress_data_body').innerHTML = html;
 						} else {
@@ -166,11 +140,11 @@
 					} else if (ret && !ret.success) {
 						return $common.loginInvalid("../../");
 					}
-				}, 'appHouseAssessList&funid=houses_assessinfo', 'post', {
+				}, 'appClfxsxxbList&funid=houses_clfxsxxbcheck', 'post', {
 					values : {
 						user_id : user_id,
-						uuid : uuid,
-						type : 3
+						uuid : uuid
+						//						type : 3
 					}
 				}, 'progress_data_body');
 			}
@@ -189,14 +163,33 @@
 
 			//打开 新增申请
 			function openWin(name, url) {
-				api.openWin({
-					name : name,
-					url : url,
-					animation : {
-						type : "none", //动画类型（详见动画类型常量）
-						curve : "linear",
-						//subType : "from_right", //动画子类型（详见动画子类型常量）
-						duration : 0 //动画过渡时间，默认300毫秒
+				api.getPrefs({
+					key : 'jiaoyan'
+				}, function(ret, err) {
+					console.log('jiaoyan===' + ret.value);
+					if (ret && ret.value) {
+						var jy = eval('(' + ret.value + ')');
+						if (jy.success == true) {
+							api.openWin({
+								name : name,
+								url : url,
+								pageParam : {
+									type : 1
+								},
+								animation : {
+									type : "none", //动画类型（详见动画类型常量）
+									curve : "linear",
+									//subType : "from_right", //动画子类型（详见动画子类型常量）
+									duration : 0 //动画过渡时间，默认300毫秒
+								}
+							});
+						} else {
+							alert(jy.message + '不能进行二手房信息申请');
+						}
+					} else {
+						api.toast({
+							msg : '请先进行房屋校验！'
+						});
 					}
 				});
 			}
@@ -213,7 +206,7 @@
 					if (index == 1) {
 						$ds.ajax(function(ret, err) {
 							window.location.reload();
-						}, 'deleteSale&funid=wbjh_clfxsxxb', 'post', {
+						}, 'deleteClfxsxxb&funid=houses_clfxsxxbcheck', 'post', {
 							values : {
 								user_id : user_id,
 								uuid : uuid,
@@ -224,13 +217,13 @@
 				});
 			}
 
+			//编辑更新
 			function showFunction(assessinfo_id, transferor_certnumber) {
 				api.openWin({
-					name : 'sale_header',
-					url : './invoice/sale_header.html',
+					name : 'house_head',
+					url : 'house_head.html',
 					pageParam : {
 						assessinfo_id : assessinfo_id,
-						//						transferor_certnumber : transferor_certnumber,
 						type : 2
 					}
 				});
@@ -241,15 +234,12 @@
 
 			function show(assessinfo_id) {
 				api.openWin({
-					name : 'sale_show_header',
-					url : './sale_show_header.html',
+					name : 'progress_show_head',
+					url : '../progress/progress_show_head.html',
 					pageParam : {
 						assessinfo_id : assessinfo_id
 					}
 				});
-				//				H.openWin('sale_show_header', './sale_show_header.html', {
-				//					assessinfo_id : assessinfo_id
-				//				});
 			}
 		</script>
 	</body>

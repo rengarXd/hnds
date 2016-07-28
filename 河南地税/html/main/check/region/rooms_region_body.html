@@ -31,19 +31,20 @@
 				$(obj).find('input').attr('checked', 'checked');
 				var xqnm = $(obj).find(".H-flex-item").html();
 				var xqdm = $(obj).find(".H-flex-item").attr("xqdm");
-				H.setPrefs(function(ret, err) {
-					//					alert("typeval:" + typevalue + ",typeid:" + typeid);
-					api.sendEvent({
-						name : 'region',
-						extra : {
-							xqdm : xqdm,
-							xqnm : xqnm
-						}
-					});
-					api.closeToWin({
-	                    name: 'room_check_head'
-                    });
-				}, 'type_name', '{xqdm:"' + xqdm + '",xqnm:"' + xqnm + '"}');
+				api.sendEvent({
+					name : 'confirmRegion',
+					extra : {
+						xqdm : xqdm,
+						xqnm : xqnm
+					}
+				});
+				api.closeToWin({
+					name : 'room_check_head'
+				});
+				//				H.setPrefs(function(ret, err) {
+				//					//					alert("typeval:" + typevalue + ",typeid:" + typeid);
+				//
+				//				}, 'type_name', '{xqdm:"' + xqdm + '",xqnm:"' + xqnm + '"}');
 			}
 
 

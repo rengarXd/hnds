@@ -34,6 +34,42 @@
 				};
 			},
 		},
+		oldAjax : function(callback, url, method, data) {
+			var o = {};
+			o.url = window.serverUrl + url;
+			o.method = method ? method : "get";
+			if (o.method == "post") {
+				o.data = data;
+			}
+			if ( typeof callback == 'function') {
+				api.ajax(o, function(ret, err) {
+					var systemType = api.systemType;
+					if (systemType == "ios") {
+						var rets = eval('(' + err.body + ')');
+						if ( typeof callback == 'function') {
+							if (rets) {
+								callback(rets);
+							} else {
+								api.toast({
+									msg : '连接错误，请检查网络配置'
+								});
+							}
+
+						}
+					} else {
+						if ( typeof callback == 'function') {
+							if (ret) {
+								callback(ret);
+							} else {
+								api.toast({
+									msg : '连接错误，请检查网络配置'
+								});
+							}
+						}
+					}
+				});
+			}
+		},
 		ajax : function(callback, url, method, data) {
 			var o = {};
 			o.url = window.serverUrl + url;
@@ -122,6 +158,49 @@
 					}
 				});
 			}
+		},
+		selAjax : function(callback, url) {
+			var that = this;
+			that.getUserPref(function() {
+				api.showProgress();
+				that.ajax(function(ret, err) {
+					if (ret) {
+						if (ret.success) {
+							//alert(JSON.stringify(ret));
+							api.hideProgress();
+							var selet_option = ret.data;
+							var typeArray = new Array();
+							var infoname = 'infonm' + url;
+							for (var i = 0, len = selet_option.length; i < len; i++) {
+								typeArray.push(selet_option[i][infoname]);
+								//                                  console.log('infonm======' + infoname);
+							}
+							api.actionSheet({
+								title : '请选择对应选项',
+								buttons : typeArray
+							}, function(ret, err) {
+								callback(ret, selet_option);
+							});
+						} else {
+							api.hideProgress();
+							api.toast({
+								msg : ret.message
+							});
+						}
+						//							ret.success ? callback(ret) : that.toast(ret.message);
+					} else {
+						api.hideProgress();
+						api.toast({
+							msg : '连接失败，请检查网络配置'
+						});
+					}
+				}, 'getView' + url + window.selectUrl, 'post', {
+					values : {
+						"user_id" : userinfo[0].user_id,
+						"uuid" : userinfo[0].uuid
+					}
+				});
+			});
 		},
 		openTimePick : function(callback) {
 			var that = this;

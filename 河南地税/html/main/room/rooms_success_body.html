@@ -27,11 +27,11 @@
 			var times = null, isinerval = null, assessinfo_id = null;
 			H.ready(function() {
 				assessinfo_id = api.pageParam.assessinfo_id;
-				times = 5;
-				isinerval = setInterval("CountDown()", 1000);
 				api.sendEvent({
-					name:'roomReload'
+					name : 'roomReload'
 				});
+				times = 4;
+				isinerval = setInterval("CountDown()", 1000);
 			});
 			/**
 			 * 计时器DOM
