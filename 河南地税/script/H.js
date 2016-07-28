@@ -1336,6 +1336,41 @@
 					});
 				}
 			},
+			selectAjax : function(callback, url, name) {
+				var that = this;
+				that.getUserPref(function() {
+					that.showProgress();
+					that.ajax(function(ret, err) {
+						if (ret) {
+							if (ret.success) {
+								//					alert(JSON.stringify(ret));
+								that.hideProgress();
+								var selet_option = ret.data;
+								//                              console.log(JSON.stringify(selet_option));
+								var typeArray = new Array();
+								for (var i = 0, len = selet_option.length; i < len; i++) {
+									typeArray.push(selet_option[i][name]);
+								}
+								that.actionSheet(function(ret, err) {
+									callback(ret, selet_option);
+								}, '请选择对应选项', typeArray);
+							} else {
+								that.hideProgress();
+								that.toast(ret.message);
+							}
+							//							ret.success ? callback(ret) : that.toast(ret.message);
+						} else {
+							that.hideProgress();
+							that.toast('连接失败，请检查网络配置');
+						}
+					}, url, 'post', {
+						values : {
+							"user_id" : userinfo[0].user_id,
+							"uuid" : userinfo[0].uuid
+						}
+					});
+				});
+			},
 			dkfpAjax : function(callback, url, name) {
 				var that = this;
 				that.getUserPref(function() {

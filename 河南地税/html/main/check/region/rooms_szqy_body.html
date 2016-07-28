@@ -53,13 +53,13 @@
 
 
 			H.ready(function() {
-				nums = api.pageParam.psfq;
+//				nums = api.pageParam.psfq;
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
-				get_data(nums);
+				get_data();
 			});
 			//ajax请求数据模板渲染
-			function get_data(nums) {
+			function get_data() {
 				api.showProgress();
 				H.getUserPref(function() {
 					H.ajax(function(ret, err) {

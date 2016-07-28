@@ -37,7 +37,7 @@
 				<!--证件类型 start-->
 				<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="IDtype('mfsfzjlx_zjlx','mfzjhm_zjhm');">
 					<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-						证件类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="mfsfzjlx_zjlx">点击选择证件类型</span>
+						证件类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="mfsfzjlx_zjlx" dm="01001" id="mfsfzjlx_zjlx">居民身份证</span>
 					</div>
 					<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 				</div>
@@ -45,7 +45,7 @@
 				<!--证件号码 start-->
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">证件号码：</span>
-					<input type="text" value="" name="mfzjhm_zjhm" class="H-textbox H-theme-font-color-666 H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="转让方证件号码" />
+					<input type="text" value="" data-rule="idcard" data-nullmsg="身份证号不能为空" data-errmsg="身份证号填写错误" name="mfzjhm_zjhm" class="H-textbox H-theme-font-color-666 H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="转让方证件号码" />
 				</div>
 				<!--证件号码 end-->
 				<!--联系电话 start-->
@@ -78,25 +78,25 @@
 			</button>
 		</div>
 		<footer class="H-footer H-padding-10 ">
-			<!--<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-			下一步(1/5)
-			</button>-->
-			<button onclick="openNext();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			<button id="btn" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				下一步(1/5)
 			</button>
+			<!--<button onclick="openNext();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			下一步(1/5)
+			</button>-->
 		</footer>
 		<script type="text/html" id="sale_detail_data">
 			<!--转让方 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">转让方：</span>
-			<input type="text" value="" name="mfmc_nsrmc" class="H-textbox H-text-align-right H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让方信息不能为空" data-errmsg="转让方信息填写有误"
+			<input type="text" value="{{ d.mfmc_nsrmc }}" name="mfmc_nsrmc" class="H-textbox H-text-align-right H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="转让方信息不能为空" data-errmsg="转让方信息填写有误"
 			placeholder="转让方姓名" />
 			</div>
 			<!--转让方 end-->
 			<!--证件类型 start-->
-			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="IDtype('type_option','transferor_certnumber');">
+			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="IDtype('mfsfzjlx_zjlx','transferor_certnumber');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			证件类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="mfsfzjlx_zjlx">点击选择证件类型</span>
+			证件类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" dm="{{ d.mfsfzjlx_zjlx }}" id="mfsfzjlx_zjlx">{{ d.z_mfsfzjlxmc }}</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -104,20 +104,20 @@
 			<!--证件号码 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">证件号码：</span>
-			<input type="text" value="" name="mfzjhm_zjhm" class="H-textbox H-theme-font-color-666 H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="转让方证件号码" />
+			<input type="text" value="{{ d.mfzjhm_zjhm }}" {{# if(d.z_gmfsfzjlxmc == "居民身份证") { }}data-rule="idcard" data-nullmsg="身份证号不能为空" data-errmsg="身份证号填写错误"{{# }else{ }}data-rule="s" data-nullmsg="{{ d.z_gmfsfzjlxmc }}不能为空" data-errmsg="{{ d.z_gmfsfzjlxmc }}填写错误"{{# } }} name="mfzjhm_zjhm" class="H-textbox H-theme-font-color-666 H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="转让方证件号码" />
 			</div>
 			<!--证件号码 end-->
 			<!--联系电话 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">联系电话：</span>
-			<input type="text" value="" name="mflxdh_lxdh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-text-align-right H-vertical-middle H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-font-size-16" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写错误"
+			<input type="text" value="{{ d.mflxdh_lxdh }}" name="mflxdh_lxdh" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-text-align-right H-vertical-middle H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-font-size-16" data-rule="tm" data-nullmsg="联系电话不能为空" data-errmsg="联系电话填写错误"
 			placeholder="转让方联系电话" />
 			</div>
 			<!--联系电话 end-->
 			<!--国籍代码 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select('mfgjjc','010');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" mfgj_dm="156" id="mfgjjc">中国</span>
+			国籍: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" mfgj_dm="{{ d.g_mfgj }}" id="mfgjjc">{{ d.z_mfgjmc }}</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -125,7 +125,7 @@
 			<!--地址 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">地址：</span>
-			<input type="text" value="" name="g_mfdz" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
+			<input type="text" value="{{ d.g_mfdz }}" name="g_mfdz" class="H-textbox H-vertical-align-middle H-theme-font-color-666 H-vertical-middle H-text-align-right H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="地址不能为空" data-errmsg="地址填写错误"
 			placeholder="地址" />
 			</div>
 			<!--地址 end-->
@@ -172,7 +172,8 @@
 						datas = H.extendObj(data, value);
 						//						post_data();
 						if (yanzheng) {
-							//							get_PREFS();
+							//							alert(JSON.stringify(datas));
+							get_PREFS();
 						}
 						//						alert(JSON.stringify(datas));
 					}
@@ -209,7 +210,7 @@
 
 			//证件类型选择器*
 			function IDtype(IdName, CertNumber) {
-				H.dkfpAjax(function(ret, selet_option) {
+				H.selectAjax(function(ret, selet_option) {
 					//					$('#' + IdName).attr("infoid001", "");
 					//alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
 					if (ret.buttonIndex <= selet_option.length) {
@@ -229,7 +230,7 @@
 							});
 						}
 					}
-				}, 'selparamdict', 'zjlxnm');
+				}, 'getParamDict&funid=param_dict', 'zjlxnm');
 			}
 
 			//			function gyrxx() {
@@ -262,7 +263,7 @@
 					} else if (ret && !ret.success) {
 						return $common.loginInvalid("../../../");
 					}
-				}, 'appSaleDetail&funid=wbjh_clfxsxxb', 'post', {
+				}, 'appClfxsxxbDetail&funid=houses_clfxsxxbcheck', 'post', {
 					values : {
 						"user_id" : userinfo[0].user_id,
 						"uuid" : userinfo[0].uuid,
@@ -303,7 +304,7 @@
 						callback();
 					} else if ( typeof callback == 'string') {
 						api.execScript({
-							name : 'sale_header',
+							name : 'house_head',
 							script : callback
 						});
 					}
@@ -327,16 +328,17 @@
 						var Transferee = 'Transferee(' + "'" + assessinfo_id + "'" + ');';
 						//						console.log(Transferee);
 						results(ret, Transferee);
-					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + assessinfo_id, 'post', {
+					}, 'appClfxsxxbUpdate&funid=houses_clfxsxxbcheck&fwuuid=' + assessinfo_id, 'post', {
 						values : datas
 					});
 				} else {
 					api.showProgress();
 					H.ajax(function(ret, err) {
+						assessinfo_id = ret.data.fwuuid;
 						var Transferee = 'Transferee(' + "'" + assessinfo_id + "'" + ');';
 						//						console.log(Transferee);
 						results(ret, Transferee);
-					}, 'appSaleRecordUpdate&funid=wbjh_clfxsxxb&fwuuid=' + assessinfo_id, 'post', {
+					}, 'appClfxsxxbAdd&funid=houses_clfxsxxbcheck', 'post', {
 						values : datas
 					});
 				}

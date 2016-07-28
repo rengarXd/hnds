@@ -264,7 +264,7 @@
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
 					}
-				}, url, nm);
+				}, 'getGoldTax'+url, nm);
 			}
 
 			//行政区划选择器
@@ -280,7 +280,7 @@
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1].xzqhmc);
 					}
-				}, url, nm);
+				}, 'getGoldTax'+url, nm);
 			}
 
 			//街道乡镇选择器

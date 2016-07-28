@@ -129,8 +129,10 @@
 
 			//获取之前的图片
 			function editImg(num) {
+				api.showProgress();
 				H.ajax(function(ret, err) {
 					if (undefined == ret.data.length) {
+						api.hideProgress();
 						api.toast({
 							msg : ret.message
 						});
@@ -171,8 +173,9 @@
 								}
 							}
 						}
+						api.hideProgress();
 						imgs.length == 0 ? targetBl = true : targetBl = false;
-//						console.log('imgs.length===' + imgs.length);
+						//						console.log('imgs.length===' + imgs.length);
 					}
 				}, 'selAttach&funid=wbjh_clfxsxxb_attachs', 'post', {
 					values : {
@@ -193,13 +196,14 @@
 
 			//提交 申请
 			function house_submit() {
+				api.showProgress();
 				H.ajax(function(ret, err) {
 					api.hideProgress();
 					//判断是否提交正确
 					ret.success ? openWin() : api.toast({
 						msg : ret.message
 					});
-				}, 'audit&funid=wbjh_clfxsxxb&dataType=json&auditvalue=1&tag=1', 'post', {
+				}, 'audit&funid=houses_clfxsxxbcheck&dataType=json&auditvalue=1&tag=1', 'post', {
 					values : {
 						user_id : userinfo[0].user_id,
 						uuid : userinfo[0].uuid,
@@ -427,6 +431,8 @@
 						'fwuuid' : assessinfo_id,
 						'business_name' : zhonglei[ii].business_name,
 						'business_typeid' : zhonglei[ii].business_typeid,
+						'sxnm' : zhonglei[ii].sxnm,
+						'sxid' : zhonglei[ii].sxid,
 						'pagenum' : ++a
 					}
 				});

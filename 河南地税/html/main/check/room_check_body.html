@@ -40,44 +40,54 @@
 		</div>
 		</header>-->
 		<div class="H-padding-vertical-bottom-10"></div>
-		<div id="" class="H-padding-10">
-			<!--证件类型 start-->
-			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after H-vertical-middle H-touch-active" onclick="IDtype('type_option','transferor_certnumber');">
+		<div id="jy" class="H-padding-10">
+			<!--房屋类型 start-->
+			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after H-vertical-middle H-touch-active" tapmode onclick="select_fwlx('c_fwlx', '003');">
 				<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-					房屋类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="type_option">点击选择</span>
+					房屋类型: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="c_fwlx">点击选择</span>
 				</div>
 				<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
-			<!--证件类型 end-->
-			<!--证件类型 start-->
+			<!--房屋类型 end-->
+			<!--评税分区 start-->
 			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-border-vertical-top-margin-left-10-after H-vertical-middle H-touch-active" onclick="PingShuiFenQu();">
 				<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-					评税分区: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="type_option">点击选择</span>
+					评税分区: <span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" id="pingshui_type">点击选择</span>
 				</div>
 				<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
-			<!--证件类型 end-->
-			<!--证件号码 start-->
+			<!--评税分区 end-->
+		</div>
+		<div id="bc" class="H-padding-10" style="display: none">
+		<!--补充内容 start-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
-				<!--<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">小区及房屋坐落补充：</span>-->
-				<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写小区及房屋坐落补充（如果以上选项有则不填）"></textarea>
-				<!--<input type="text" value="" id="transferor_certnumber" name="transferor_certnumber" class="H-textbox H-theme-font-color-666 H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写小区及房屋坐落补充" />-->
+			<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请补充您的房屋坐落"></textarea>
 			</div>
-			<!--证件号码 end-->
+			<!--补充内容 end-->
+			<!--补充内容 start-->
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
+			<textarea name="" id="" cols="20" rows="2" class="H-textbox H-theme-font-color-666 H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请补充您的评税分区"></textarea>
+			</div>
+			<!--补充内容 end-->
 		</div>
 		<footer class="H-footer H-padding-10 ">
-			<button tapmode onclick="check();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			<button id="btn_1" tapmode onclick="check();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				提交校验
+			</button>
+			<button id="btn_2" style="display: none" tapmode onclick="bcxx();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+				提交补充信息
 			</button>
 		</footer>
 		<script type="text/javascript" src="../../../script/ajax/hnds.js"></script>
 		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
 		<script type="text/javascript">
+			var userinfo = null;
 			apiready = function() {
+				api.parseTapmode();
 				$ds.getUserPref(function() {
 				});
 				api.addEventListener({
-					name : 'region'
+					name : 'confirmRegion'
 				}, function(ret, err) {
 					$("#pingshui_type").html(ret.value.xqnm);
 					$("#pingshui_type").attr("xqdm", ret.value.xqdm);
@@ -95,7 +105,73 @@
 				})
 			}
 
+			//房屋类型选择器
+			function select_fwlx(IdName, nums) {
+				var infoid = 'infoid' + nums;
+				var infonm = 'infonm' + nums;
+				$ds.selAjax(function(ret, selet_option) {
+					if (ret.buttonIndex <= selet_option.length) {
+						//						alert('select_fwlx===' + JSON.stringify(selet_option));
+						$('#' + IdName).attr('dm', selet_option[ret.buttonIndex - 1][infoid]).html(selet_option[ret.buttonIndex - 1][infonm]);
+						api.sendEvent({
+							name : 'fwlxInfo',
+							extra : {
+								fwlx : selet_option[ret.buttonIndex - 1]['infoid' + nums]
+							}
+						});
+					}
+				}, nums);
+			}
+
 			function check() {
+				api.showProgress();
+				$ds.oldAjax(function(ret) {
+					api.hideProgress();
+					api.setPrefs({
+						key : 'jiaoyan',
+						value : JSON.stringify(ret)
+					});
+					if (ret.success) {
+						api.alert({
+							title : '校验结果',
+							msg : '房屋可以评估，可进行二手房信息申请'
+						}, function(ret, err) {
+							if (ret.buttonIndex == 1) {
+								api.closeWin();
+							}
+						});
+					} else {
+						api.alert({
+							title : '校验结果',
+							msg : '房屋暂不能评估，请提交相关信息我们会尽快处理'
+						}, function(ret, err) {
+							if (ret.buttonIndex == 1) {
+								api.closeWin();
+//								$("#jy").hide();
+//								$("#bc").show();
+//								$("#btn_1").hide();
+//								$("#btn_2").show();
+//								api.openWin({
+//									name : 'check_frame',
+//									url : './check_frame.html'
+//								});
+								//								api.closeWin();
+							}
+						});
+					}
+					//					alert(JSON.stringify(ret));
+				}, 'selClffwjy&funid=clf_fwjy', 'post', {
+					values : {
+						"xqdm011" : $("#pingshui_type").attr("xqdm"),
+						"infoid003" : $("#c_fwlx").attr('dm'),
+						"user_id" : userinfo[0].user_id,
+						"uuid" : userinfo[0].uuid,
+					}
+				});
+			}
+			//补充接口
+			function bcxx() {
+				
 			}
 		</script>
 	</body>

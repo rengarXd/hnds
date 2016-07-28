@@ -20,97 +20,105 @@
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">交易信息</div>
 			</div>
 			<div class="H-padding-vertical-both-5"></div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-padding-horizontal-both-10">
+			<!--<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			转让方纳税人识别号
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfnsrsbh }}</span>
-			</div>
+			</div>-->
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			转让方姓名
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfmc }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfmc_nsrmc }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			转让方证件类型
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfsfzjlxmc }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].z_mfsfzjlxmc }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			转让方证件号码
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfzjhm }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfzjhm_zjhm }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			转让方联系电话
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mflxdh }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mflxdh_lxdh }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			转让方国籍
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].z_mfgjmc }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			转让方地址
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_mfdz }}</span>
+			</div>
+			<!--<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			受让方纳税人识别号
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfnsrsbh }}</span>
-			</div>
+			</div>-->
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			受让方姓名
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfmc }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfmc_csfnsrmc }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			受让方证件类型
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfszjlxmc }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].z_gmfsfzjlxmc }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			受让方证件号码
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfzjhm }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfzjhm_csfzjhm }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			受让方联系电话
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmflxdh }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmflxdh_csflxdh }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			买房国籍
+			受让方国籍
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfgjjc }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			卖方国籍
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfgjjc }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].z_gmfgj }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			卖方地址
+			受让方地址
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mfdz }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_gmfdz }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			买方地址
+			交易类型
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].gmfdz }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].infonm002 }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			交易日期
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_jysj }}</span>
 			</div>
 			</div>
 			<div class="H-padding-vertical-both-5"></div>
-			<!--<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
-			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
-			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">卖方共有人信息</div>
-			</div>
-			<div class="H-padding-vertical-both-5"></div>-->
 			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">房屋信息</div>
@@ -119,39 +127,129 @@
 			<div class="H-padding-horizontal-both-10">
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			房屋产权证书号
+			房产证号
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fwcqzsh }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fwcqzsh_fczh }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			土地使用证编号
+			发证日期
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].tdsyzbh }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_fzrq }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			丘（地）号
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_qdh }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			所在区域
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].szqynm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			评税分区
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].xqnm011 }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			房屋坐落
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].tdfwdz_zcdzl }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			幢（楼）号
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fwzh_zh }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			单元
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].dy }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].dy_dy }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			转让面积
+			户号
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].zrmj }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			套内面积
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].tnmj }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fh_bwjfh }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			房号
+			房屋类型
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fh }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].infonm003 }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			建筑朝向
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].jzcxnm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			建筑结构
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].jzjgnm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			单元位置
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].infonm007 }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			分区位置
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].infonm008 }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			复式类型
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].infonm009 }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			所在楼层
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].lc_1_szlc }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			总楼层
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_zlc }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			建筑年份
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_jcsj }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			建筑面积
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_jzmj }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			申报价格
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].jyjg_sbjg }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			街道乡镇
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].jdxzmc }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
@@ -161,15 +259,21 @@
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			土地、房屋地址
+			房产类型
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].tdfwdz }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fclxmc }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			面积
+			套内面积
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].mj }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_tnmj }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			房产交易方式
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fcjyfsmc }}</span>
 			</div>
 			<!--</div>
 			<div class="H-padding-vertical-both-5"></div>
@@ -181,69 +285,15 @@
 			<div class="H-padding-horizontal-both-10">-->
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			合同金额
+			土地使用证编号
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].htje }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			合同编号
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].htbh }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_tdsyzbh }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			行政区划
+			转让面积
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].xzqhmc }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			房屋朝向
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].cxmc }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			房屋幢号
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fwzh }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			街道乡镇
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].jdxzmc }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			所在楼层
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].lc_1 }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			房产类型
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fclxmc }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			合同签订日期
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].htqdrq }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			采集流水号
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].cjlsh }}</span>
-			</div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			房产交易方式
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].fcjyfsmc }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_zrmj }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
@@ -255,32 +305,93 @@
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			上次取得房屋时间
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].scqd_fwsj }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_scqdfwsj }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			上次取得房屋成本
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].scqd_fwcb }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_scqdfwcb }}</span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			交易价格
+			合同金额
 			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].jyjg }}</span>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_htje }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			合同编号
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_htbh }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			合同签订日期
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].g_htqdrq }}</span>
+			</div>
+			</div>
+			<div class="H-padding-vertical-both-5"></div>
+			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">综合修正</div>
+			</div>
+			<div class="H-padding-horizontal-both-10">
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			是否景观房
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_sfjgfm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			采光
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_cgm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			通透情况
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_ttqkm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			附属花园平台阁楼
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_fshyptglm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			装修情况
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_zxqkm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			特殊情况
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_tsqkm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			附属设施
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_fsssm }}</span>
+			</div>
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+			层高
+			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16">{{ d.data[0].c_cenggm }}</span>
 			</div>
 			</div>
 			<div class="H-padding-vertical-both-5"></div>
 			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">申请状态</div>
-			</div>
-			<div class="H-padding-vertical-both-5"></div>
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-			状态
-			</div>
-			<span class="H-icon H-padding-horizontal-right-5 H-display-block H-font-size-16 H-theme-font-color1">{{ d.data[0].approve_state }}</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block H-font-size-16 H-theme-font-color1">{{ d.data[0].approve_state }}</span>
 			</div>
 			<div class="H-padding-vertical-both-5"></div>
 			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
@@ -336,7 +447,7 @@
 								fwuuid : assessinfo_id,
 							}
 						});
-					}, 'appSaleDetail&funid=wbjh_clfxsxxb', 'post', {
+					}, 'appClfxsxxbDetail&funid=houses_clfxsxxbcheck', 'post', {
 						values : {
 							user_id : user_id,
 							uuid : uuid,
