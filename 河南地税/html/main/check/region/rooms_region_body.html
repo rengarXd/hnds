@@ -78,7 +78,7 @@
 						} else {
 							api.hideProgress();
 							api.alert({
-								msg : JSON.stringify(err)
+								msg : err.msg
 							});
 						}
 					}, 'getView011' + window.selectUrl, 'post', {

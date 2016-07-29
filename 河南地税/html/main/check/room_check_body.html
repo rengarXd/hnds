@@ -137,6 +137,18 @@
 							msg : '房屋可以评估，可进行二手房信息申请'
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
+								//								api.setPrefs({
+								//									key : 'c_fwlx',
+								//									value : $("#c_fwlx").attr('dm')
+								//								});
+								var fwlx = $("#c_fwlx").attr("dm");
+								var fwlx_nm = $("#c_fwlx").html();
+								var pingshui = $("#pingshui_type").attr("xqdm");
+								var pingshui_nm = $("#pingshui_type").html();
+								api.setPrefs({
+									key : 'psfqfwlx',
+									value : '{c_fwlx : ' + "'" + fwlx + "'" + ',c_fwlx_nm :' + "'" + fwlx_nm + "'" + ',xqdm : ' + "'" + pingshui + "'" + ',xqnm : ' + "'" + pingshui_nm + "'" + ',}'
+								});
 								api.openWin({
 									name : 'house_progress_head',
 									url : '../housing/house_progress_head.html'
