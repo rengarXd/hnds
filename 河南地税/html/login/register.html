@@ -55,7 +55,7 @@
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="select();">
 				<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-					纳税身份: <span class="H-padding-horizontal-both-12" id="cole_no">一般纳税人</span>
+					纳税身份: <span class="H-padding-horizontal-both-12" types="07" id="cole_no">一般纳税人</span>
 				</div >
 				<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i> </span>
 			</div>
@@ -199,13 +199,13 @@
 					buttons : ['一般纳税人', '房产经纪人']
 				}, function(ret, err) {
 					if (ret && ret.buttonIndex == 1) {
-						$("#cole_no").attr("types", "04");
+						$("#cole_no").attr("types", "07");
 						$("#cole_no").text("一般纳税人");
 					} else if (ret && ret.buttonIndex == 2) {
-						$("#cole_no").attr("types", "05");
+						$("#cole_no").attr("types", "08");
 						$("#cole_no").text("房产经纪人")
 					} else {
-						$("#cole_no").attr("types", "04");
+						$("#cole_no").attr("types", "07");
 						$("#cole_no").text("一般纳税人");
 					}
 				});

@@ -143,17 +143,17 @@
 		</form>
 		<footer class="H-footer H-padding-10 ">
 			<button id="btn" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-			下一步(4/5)
+				下一步(4/5)
 			</button>
 			<!--<button onclick="openNext();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				下一步(3/5)
+			下一步(3/5)
 			</button>-->
 		</footer>
 		<script type="text/html" id="sale_detail_data">
 			<div class="H-border-vertical-both-after">
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select_fwlx('c_fwlx', '003');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-			房屋类别: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" data-id="c_fwlx" dm="{{ d.c_fwlx }}" id="c_fwlx">{{ d.infonm003 }}</span>
+			房屋类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" data-id="c_fwlx" dm="{{ d.c_fwlx }}" id="c_fwlx">{{ d.infonm003 }}</span>
 			</div>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
@@ -362,6 +362,8 @@
 								fwlx : selet_option[ret.buttonIndex - 1]['infoid' + nums]
 							}
 						});
+					} else {
+						$('#' + IdName).attr("dm", '').html('');
 					}
 				}, nums);
 			}
@@ -374,6 +376,8 @@
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr('dm', selet_option[ret.buttonIndex - 1][infoid]).html(selet_option[ret.buttonIndex - 1][infonm]);
+					} else {
+						$('#' + IdName).attr("dm", '').html('');
 					}
 				}, nums);
 			}
@@ -386,6 +390,8 @@
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
+					} else {
+						$('#' + IdName).attr("dm", '').html('');
 					}
 				}, url, nm);
 			}
@@ -398,71 +404,58 @@
 					if (ret.buttonIndex <= selet_option.length) {
 						//							alert(ret.buttonIndex);
 						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
-					}
-				}, 'getGoldTax' + url, nm);
-			}
-
-			//行政区划选择器
-			var xzqh = null
-			function xzqhSet(IdName, url, nm, dm) {
-				H.dkfpAjax(function(ret, selet_option) {
-					//					$('#' + IdName).attr("dm", "");
-					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
-					if (ret.buttonIndex <= selet_option.length) {
-						$('#pingshui_type').html('选择税务机关（科、分局）').attr('dm', '');
-						$('#jdxz_dm').html('选择街道乡镇').attr('dm', '');
-						xzqh = selet_option[ret.buttonIndex - 1].xzqhsz_dm
-						//							alert(ret.buttonIndex);
-						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1].xzqhmc);
+					} else {
+						$('#' + IdName).attr("dm", '').html('');
 					}
 				}, 'getGoldTax' + url, nm);
 			}
 
 			//税务机关选择器
-
 			//街道乡镇选择器
 			var swjg = null;
 			function swjgSet(IdName, url, nm, dm) {
 				api.showProgress();
-					H.ajax(function(ret, err) {
-						if (ret) {
-							if (ret.success) {
-								//					alert(JSON.stringify(ret));
-								api.hideProgress();
-								var selet_option = ret.data;
-								if (selet_option.length == 0) {
-									H.toast('暂无数据');
-									$('#' + IdName).html('');
-								} else {
-									var typeArray = new Array();
-									for (var i = 0, len = selet_option.length; i < len; i++) {
-										typeArray.push(selet_option[i][nm]);
-									}
-									H.actionSheet(function(ret, err) {
-										//										$('#' + IdName).attr("dm", "");
-										//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
-										if (ret.buttonIndex <= selet_option.length) {
-											//							alert(ret.buttonIndex);
-											swjg = selet_option[ret.buttonIndex - 1][dm]
-											$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
-										}
-									}, '请选择对应选项', typeArray);
-								}
+				H.ajax(function(ret, err) {
+					if (ret) {
+						if (ret.success) {
+							//					alert(JSON.stringify(ret));
+							api.hideProgress();
+							var selet_option = ret.data;
+							if (selet_option.length == 0) {
+								H.toast('暂无数据');
+								$('#' + IdName).html('');
 							} else {
-								api.hideProgress();
-								H.toast(ret.message);
+								var typeArray = new Array();
+								for (var i = 0, len = selet_option.length; i < len; i++) {
+									typeArray.push(selet_option[i][nm]);
+								}
+								H.actionSheet(function(ret, err) {
+									//										$('#' + IdName).attr("dm", "");
+									//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+									if (ret.buttonIndex <= selet_option.length) {
+										//							alert(ret.buttonIndex);
+										swjg = selet_option[ret.buttonIndex - 1][dm]
+										$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
+									} else {
+										$('#' + IdName).attr("dm", '').html('');
+									}
+								}, '请选择对应选项', typeArray);
 							}
 						} else {
-							that.hideProgress();
-							that.toast('连接失败，请检查网络配置');
+							api.hideProgress();
+							H.toast(ret.message);
 						}
-					}, 'getGoldTax' + url + window.selectUrl, 'post', {
-						values : {
-							"szqy" : szqy,
-							"user_id" : userinfo[0].user_id,
-							"uuid" : userinfo[0].uuid
-						}
-					});
+					} else {
+						that.hideProgress();
+						that.toast('连接失败，请检查网络配置');
+					}
+				}, 'getGoldTax' + url + window.selectUrl, 'post', {
+					values : {
+						"szqy" : szqy,
+						"user_id" : userinfo[0].user_id,
+						"uuid" : userinfo[0].uuid
+					}
+				});
 			}
 
 			function edit() {

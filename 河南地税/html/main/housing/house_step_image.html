@@ -44,7 +44,7 @@
 				</div>
 				<!--图片区域end-->
 				<div class="H-padding-10" id="addpic">
-					点击加号拍照(横屏拍摄)
+					点击加号拍照
 				</div>
 				<!--打开相机start-->
 				<div class="addh_active H-padding-20 H-text-align-center H-border-both-after" tapmode="" onclick="openCamera();">
@@ -281,8 +281,8 @@
 						//						cyecleAJ(zhonglei, ii);
 						//代开发票提交
 						api.confirm({
-							title : '代开发票申请提交',
-							msg : '恭喜您已经上传完成所有附件，确认提交全部信息吗？',
+							title : '二手房信息提交',
+							msg : '恭喜您已经上传完成所有信息，确认提交全部信息吗？（提交后这条记录不可更改，如需更改请再新增一条）',
 							buttons : ['确定', '取消']
 						}, function(ret, err) {
 							if (ret) {
@@ -338,7 +338,7 @@
 												msg : ret.message
 											});
 										}
-									}, 'delAttachRec&funid=wbjh_clfxsxxb_attachs', 'post', {
+									}, 'delAttachRec&funid=clfxdxxb_attachs', 'post', {
 										values : {
 											'user_id' : userinfo[0].user_id,
 											'uuid' : userinfo[0].uuid,
