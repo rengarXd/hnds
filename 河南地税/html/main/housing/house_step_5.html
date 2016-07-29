@@ -18,7 +18,7 @@
 				<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 					<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 					<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
-						综合修正*
+						综合修正
 					</div>
 				</div>
 				<div class="H-border-vertical-both-after">
@@ -81,7 +81,7 @@
 				<div class="H-border-vertical-both-after">
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号：</span>
-						<input type="text" value="" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同编号" />
+						<input type="text" value="" id="g_htbh" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同编号" />
 					</div>
 					<!--时间类型 start-->
 					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
@@ -93,7 +93,7 @@
 					<!--时间类型 end-->
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-						<input type="text" value="" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同金额" />
+						<input type="text" value="" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同金额" />
 					</div>
 				</div>
 				<div class="H-padding-vertical-bottom-10"></div>
@@ -146,11 +146,12 @@
 			</button>-->
 		</footer>
 		<script type="text/html" id="sale_detail_data">
+			<div class="H-border-both-after">带*号的项目为非必填项，如果不需要则不填，如果需要则须填写</div>
 			<div class="H-padding-vertical-bottom-10"></div>
 			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
-			综合修正*
+			综合修正
 			</div>
 			</div>
 			<div class="H-border-vertical-both-after">
@@ -207,13 +208,13 @@
 			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
-			合同信息（可选填）
+			合同信息*
 			</div>
 			</div>
 			<div class="H-border-vertical-both-after">
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号：</span>
-			<input type="text" value="{{ d.g_htbh }}" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同编号" />
+			<input type="text" value="{{ d.g_htbh }}" id="g_htbh" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同编号" />
 			</div>
 			<!--时间类型 start-->
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
@@ -225,7 +226,7 @@
 			<!--时间类型 end-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-			<input type="text" value="{{ d.g_htje }}" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同金额" />
+			<input type="text" value="{{ d.g_htje }}" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="填写合同金额" />
 			</div>
 			</div>
 			<div class="H-padding-vertical-bottom-10"></div>
@@ -297,14 +298,9 @@
 								yanzheng = false;
 							}
 						});
-						//						$("[zhxz]").each(function() {
-						//							var dm = $(this).attr('dm');
-						//							if (dm !== null || dm !== "") {
-						//								selectData
-						//								H.toast('有' + $(this).html() + '未填写项');
-						//							}
-						//						});
 						var selectData = {
+							"g_htbh" : $("#g_htbh").val(),
+							"g_htje" : $("#g_htje").val(),
 							"g_htqdrq" : $("#g_htqdrq").html(),
 							"c_jylx" : $("#c_jylx").attr('dm'),
 							"c_jysj" : $("#c_jysj").attr('dm'),
@@ -388,6 +384,8 @@
 									if (ret.buttonIndex <= selet_option.length) {
 										//							alert(ret.buttonIndex);
 										$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1].infoid013).html(selet_option[ret.buttonIndex - 1].infonm013);
+									} else {
+										$('#' + IdName).attr("dm", '').html('');
 									}
 								}, '请选择对应选项', typeArray);
 							}
@@ -411,17 +409,6 @@
 				});
 			}
 
-			//类型选择器
-			//			function select(IdName, url, nm, dm) {
-			//				H.dkfpAjax(function(ret, selet_option) {
-			//					//					$('#' + IdName).attr("dm", "");
-			//					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
-			//					if (ret.buttonIndex <= selet_option.length) {
-			//						//							alert(ret.buttonIndex);
-			//						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1][dm]).html(selet_option[ret.buttonIndex - 1][nm]);
-			//					}
-			//				}, 'selgetview013' + url, nm);
-			//			}
 			//交易类型选择器
 			function payType(IdName) {
 				H.selAjax(function(ret, selet_option) {

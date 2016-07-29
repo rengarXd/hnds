@@ -642,7 +642,7 @@
 				ajax_CONFIG : {
 					method : "get",
 					cache : false,
-					timeout : 30,
+					timeout : 6,
 					dataType : "json",
 					charset : "utf-8",
 					report : false,

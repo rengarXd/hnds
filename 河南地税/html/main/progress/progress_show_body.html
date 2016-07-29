@@ -337,6 +337,7 @@
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">综合修正</div>
 			</div>
+			<div class="H-padding-vertical-both-5"></div>
 			<div class="H-padding-horizontal-both-10">
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
@@ -406,16 +407,20 @@
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
 			{{ d.data[i].attach_type }}<br />
-			<img src="http://218.28.41.134:8080{{ d.data[i].attach_path }}" alt="" style="width: 100%;margin-top:10px" onerror="javascript:this.src='../../../image/yz.png';" />
+			<img onclick="showPhoto('http://218.28.41.134:8080{{ d.data[i].attach_path }}');" src="http://218.28.41.134:8080{{ d.data[i].attach_path }}" alt="" style="width: 100%;margin-top:10px" onerror="javascript:this.src='../../../image/yz.png';" />
 			</div>
 			</div>
 			{{# } }}
 		</script>
 		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
+		<script src="../../../script/uploadimg/upImg.js" type="text/javascript"></script>
 		<script type="text/javascript">
+			var imageBrowser = null;
 			H.ready(function() {
 				var assessinfo_id = api.pageParam.assessinfo_id;
+				//引入图片预览模块
+				imageBrowser = api.require('imageBrowser');
 				api.getPrefs({
 					key : 'userinfo'
 				}, function(ret, err) {
@@ -456,6 +461,13 @@
 					});
 				});
 			});
+			function showPhoto(url) {
+				var browerImgs = [];
+				// 将图片追加到数组中
+				browerImgs.push(url);
+				// 调用图片预览函数
+				img.openImageBrowser(browerImgs);
+			}
 		</script>
 	</body>
 </html>

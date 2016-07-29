@@ -38,6 +38,7 @@
 			var o = {};
 			o.url = window.serverUrl + url;
 			o.method = method ? method : "get";
+						o.timeout = 6;
 			if (o.method == "post") {
 				o.data = data;
 			}
@@ -74,6 +75,7 @@
 			var o = {};
 			o.url = window.serverUrl + url;
 			o.method = method ? method : "get";
+			o.timeout = 6;
 			if (o.method == "post") {
 				o.data = data;
 			}
@@ -123,6 +125,7 @@
 			var o = {};
 			o.url = window.serverUrl + url;
 			o.method = method ? method : "get";
+			o.timeout = 6;
 			that.isString(htmlId) ? htmlId : console.warn('htmlId格式错误');
 			if (o.method == "post") {
 				o.data = data;
