@@ -29,8 +29,12 @@
 			var userinfoobj = null, nums = null;
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
-//				var szqynm = $(obj).find(".H-flex-item").html();
+				var szqynm = $(obj).find(".H-flex-item").html();
 				var szqycd = $(obj).find(".H-flex-item").attr("szqycd");
+				api.setPrefs({
+					key : 'szqyType',
+					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
+				});
 				api.openWin({
 					name : 'rooms_region_header',
 					url : 'rooms_region_header.html',
@@ -53,7 +57,7 @@
 
 
 			H.ready(function() {
-//				nums = api.pageParam.psfq;
+				//				nums = api.pageParam.psfq;
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
 				get_data();
