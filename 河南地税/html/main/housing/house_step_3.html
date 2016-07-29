@@ -98,12 +98,12 @@
 				type = api.pageParam.type;
 				assessinfo_id = api.pageParam.assessinfo_id;
 				//获取焦点上弹页面
-//				$("input").focus(function(){
-//					$("#jianpan").show();
-//				});
-//				$("input").blur(function() {
-//					$("#jianpan").hide();
-//				});
+				//				$("input").focus(function(){
+				//					$("#jianpan").show();
+				//				});
+				//				$("input").blur(function() {
+				//					$("#jianpan").hide();
+				//				});
 				//初始化数据
 				InitPref();
 				//评税分区获取数据
@@ -163,10 +163,39 @@
 						user_id = retobj[0].user_id;
 						uuid = retobj[0].uuid;
 						$("#btn").html('下一步（3/5）');
+						typePref();
 					});
 				}
 			}
 
+			//获取所在区域、评税分区值
+			function typePref() {
+				api.getPrefs({
+					key : 'psfqfwlx'
+				}, function(ret, err) {
+					var typ = eval('(' + ret.value + ')');
+					$("#pingshui_type").html(typ.xqnm);
+					$("#pingshui_type").attr('xqdm', typ.xqdm);
+					//					alert('psfqfwlx====' + JSON.stringify(ret));
+				});
+				api.getPrefs({
+					key : 'szqyType'
+				}, function(ret, err) {
+					var szq = eval('(' + ret.value + ')');
+					//					alert(szq.szqynm);
+					$("#xzqhsz_szqy").html(szq.szqynm);
+					$("#xzqhsz_szqy").attr('dm', szq.szqycd);
+					api.sendEvent({
+						name : 'szqyInfo',
+						extra : {
+							szqy : szq.szqycd
+						}
+					});
+					//					alert('szqyType===' + JSON.stringify(ret));
+				});
+			}
+
+			//编辑方法
 			function edit() {
 				//继续编辑处理
 				api.getPrefs({
@@ -202,6 +231,8 @@
 							$("#dy_dy").val(data.dy_dy);
 							$("#fh_bwjfh").val(data.fh_bwjfh);
 							api.hideProgress();
+							//获取所在区域、评税分区值
+							typePref();
 						} else if (ret && !ret.success) {
 							return $common.loginInvalid("../../");
 						}

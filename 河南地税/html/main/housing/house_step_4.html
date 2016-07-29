@@ -482,6 +482,7 @@
 							document.getElementById('sale_html').innerHTML = render;
 						});
 						api.hideProgress();
+						fwlxData();
 					} else if (ret && !ret.success) {
 						return $common.loginInvalid("../../../");
 					}
@@ -494,6 +495,23 @@
 				});
 			}
 
+			//初始化fwlx数据
+			function fwlxData() {
+				api.getPrefs({
+					key : 'psfqfwlx'
+				}, function(ret, err) {
+					var fwl = eval('(' + ret.value + ')');
+					$("#c_fwlx").attr('dm', fwl.c_fwlx);
+					$("#c_fwlx").html(fwl.c_fwlx_nm);
+					api.sendEvent({
+						name : 'fwlxInfo',
+						extra : {
+							fwlx : fwl.c_fwlx
+						}
+					});
+				});
+			}
+
 			//初始化数据
 			function initPrefs() {
 				H.getUserPref(function() {
@@ -502,7 +520,9 @@
 						edit();
 					} else {
 						$("#btn").html('下一步（3/5）');
+						fwlxData();
 					}
+					
 				});
 			}
 
