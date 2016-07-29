@@ -114,9 +114,10 @@
 						$("#Leixing").html(zhonglei[0].business_name);
 						//计算上传附件的长度
 						$("button").html('下一步(4/' + parseInt(4 + zhonglei.length - 1) + ')');
-						if (type == 2) {
-							editImg(0);
-						}
+						//						if (type == 2) {
+						//							editImg(0);
+						//						}
+						editImg(0);
 					} else if (ret.success == false) {
 						alert(ret.message);
 					} else {
