@@ -27,6 +27,13 @@
 		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
 		<script type="text/javascript">
 			var userinfoobj = null, nums = null;
+			H.ready(function() {
+				nums = api.pageParam.psfq;
+				//				console.log(JSON.stringify(nums));
+				api.parseTapmode();
+				get_data(nums);
+			});
+			
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
 				var xqnm = $(obj).find(".H-flex-item").html();
@@ -47,13 +54,6 @@
 				//				}, 'type_name', '{xqdm:"' + xqdm + '",xqnm:"' + xqnm + '"}');
 			}
 
-
-			H.ready(function() {
-				nums = api.pageParam.psfq;
-				//				console.log(JSON.stringify(nums));
-				api.parseTapmode();
-				get_data(nums);
-			});
 			//ajax请求数据模板渲染
 			function get_data(nums) {
 				api.showProgress();
