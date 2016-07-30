@@ -134,7 +134,7 @@
 					if (ret.success) {
 						api.alert({
 							title : '校验结果',
-							msg : '房屋可以评估，可进行二手房信息申请'
+							msg : '房屋可以评估，可进行存量房信息申请'
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
 								//								api.setPrefs({
@@ -161,7 +161,7 @@
 					} else {
 						api.alert({
 							title : '校验结果',
-							msg : '房屋暂不能评估，请提交相关信息到有关部门，我们会尽快处理！'
+							msg : '房屋暂不能评估，请等待相关部门维护！'
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
 								api.closeWin();
