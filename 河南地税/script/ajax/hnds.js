@@ -38,7 +38,7 @@
 			var o = {};
 			o.url = window.serverUrl + url;
 			o.method = method ? method : "get";
-						o.timeout = 6;
+			o.timeout = 6;
 			if (o.method == "post") {
 				o.data = data;
 			}
@@ -51,6 +51,7 @@
 							if (rets) {
 								callback(rets);
 							} else {
+								api.hideProgress();
 								api.toast({
 									msg : '连接错误，请检查网络配置'
 								});
@@ -62,6 +63,7 @@
 							if (ret) {
 								callback(ret);
 							} else {
+								api.hideProgress();
 								api.toast({
 									msg : '连接错误，请检查网络配置'
 								});
