@@ -21,10 +21,10 @@
 			}
 		</style>
 	</head>
-	<body class="H-flexbox-vertical">
+	<body class="H-flexbox-vertical" id="main">
 		<header class="H-header H_header_bg" id="index_header">
-			<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18">
-				首页<span id="update"></span>
+			<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18" id="update">
+				首页 <!--<span id="update"></span>-->
 			</div>
 		</header>
 		<header class="H-header H-header-title H_header_bg H-display-none" id="massages_header">
@@ -66,7 +66,7 @@
 		//1.1设备准备完毕
 		H.ready(function() {
 			//1.2檢測軟件是否更新
-//			checkUpdate();
+			checkUpdate();
 			//1.3页面初始化函数
 			pageInit();
 			//1.4连按两次退出APP
@@ -117,7 +117,13 @@
 											report : true
 										}, function(ret, err) {
 											if (ret && 0 == ret.state) {/* 下载进度 */
-												$("#update").html(ret.percent + "%");
+												//												api.alert({
+												//													title:'温馨提示',
+												//													msg:"下载进度：  " + ret.percent + "%"
+												//                                              },function(ret,err){
+												//                                              });
+												//												alert("下载进度：  " + ret.percent + "%");
+												$("#update").html("下载进度：  " + ret.percent + "%");
 											}
 											if (ret && 1 == ret.state) {/* 下载完成 */
 												var savePath = ret.savePath;
