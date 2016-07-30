@@ -22,10 +22,11 @@
 		<form id="forms">
 			<div class="" id="sale_html">
 				<div class="H-border-vertical-both-after">
-					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle">
+					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select_fwlx('c_fwlx', '003');">
 						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
 							房屋类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" data-id="c_fwlx" id="c_fwlx"></span>
 						</div>
+						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 					</div>
 					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select_b('cx_dm_fwcx', 'jzcxnm','jzcxcd','getParamJzcx&funid=param_dict');">
 						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
@@ -150,10 +151,11 @@
 		</footer>
 		<script type="text/html" id="sale_detail_data">
 			<div class="H-border-vertical-both-after">
-			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle">
+			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select_fwlx('c_fwlx', '003');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
 			房屋类型: <span class="H-padding-horizontal-both-12 H-theme-font-color-666 H-float-right" data-id="c_fwlx" dm="{{ d.c_fwlx }}" id="c_fwlx">{{ d.infonm003 }}</span>
 			</div>
+			<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="select_b('cx_dm_fwcx', 'jzcxnm','jzcxcd','getParamJzcx&funid=param_dict');">
 			<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
@@ -520,6 +522,7 @@
 						$("#btn").html('下一步（3/5）');
 						fwlxData();
 					}
+					
 				});
 			}
 
