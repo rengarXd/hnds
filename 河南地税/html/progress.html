@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/Hui.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/animate/animate.min.css"/>
+		<style>
+			html, body {
+				background: rgba(0,0,0,0.2);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="H-position-absolute H-position-center-all"  style="width:310px;height: 120px;">
+			<div class="H-theme-background-color-white H-padding-25 animated fadeIn">
+				<div class="H-text-align-left H-padding-horizontal-both-15">
+					下载中：<span id="text"></span>%
+				</div>
+				<div class="H-progress H-theme-background-color-eee H-width-100-percent H-border-radius-5 H-line-height-0 H-overflow-hidden" style="height:8px">
+					<div class="H-height-100-percent H-theme-background-color1" id="progress" style="width: 0; "></div>
+				</div>
+			</div>
+		</div>
+		<!--	<script type="text/javascript" src="../script/api.js"></script>-->
+		<script type="text/javascript">
+			apiready = function() {
+				api.addEventListener({
+					name : 'downloadProgress'
+				}, function(ret, err) {
+					//				alert(JSON.stringify(ret));
+					document.getElementById('text').innerHTML = ret.value.percent
+					document.getElementById('progress').style.width = ret.value.percent + "%"
+					if (ret.value.percent == 100) {
+						api.closeFrame();
+					}
+				});
+			};
+		</script>
+	</body>
+</html>
