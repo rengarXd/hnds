@@ -302,8 +302,8 @@
 							}
 						});
 						var selectData = {
-							"g_htbh" : $("#g_htbh").val(),
-							"g_htje" : $("#g_htje").val(),
+//							"g_htbh" : $("#g_htbh").val(),
+//							"g_htje" : $("#g_htje").val(),
 							"g_htqdrq" : $("#g_htqdrq").html(),
 							"c_jylx" : $("#c_jylx").attr('dm'),
 							"c_jysj" : $("#c_jysj").attr('dm'),
@@ -502,7 +502,7 @@
 				})
 			}
 
-			//交易时间选择器
+			//合同签订日期选择器
 			function htqdrqPick() {
 				H.openTimePick(function(ret) {
 					$("#g_htqdrq").text(ret.year + '-' + ret.month + '-' + ret.day);
