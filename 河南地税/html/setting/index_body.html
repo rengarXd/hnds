@@ -31,9 +31,9 @@
 		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="checkVersion();">
 			<span class="H-border-radius-15 H-icon H-display-block H-margin-horizontal-left-10 H-theme-font-color-white H-theme-background-color7 H-center-all" style="height: 30px; width: 30px;"><i class="iconfont icon-banbengengxin H-font-size-20 H-vertical-middle wx_10aeff"></i></span>
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
-				版本更新&nbsp;&nbsp;&nbsp;<span class="H-badge H-display-inline H-margin-horizontal-right-5"><label class="H-display-inline-block H-theme-background-color-red H-theme-font-color-white H-font-size-12" style="display: none;" id="newVer">new</label></span>
+				检查更新&nbsp;&nbsp;&nbsp;<span class="H-badge H-display-inline H-margin-horizontal-right-5"><label class="H-display-inline-block H-theme-background-color-red H-theme-font-color-white H-font-size-12" style="display: none;" id="newVer">new</label></span>
 			</div>
-			<span class="H-display-block H-margin-horizontal-right-5"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-black H-font-size-12" id="sysVer"></label></span>
+			<span class="H-display-block H-margin-horizontal-right-5"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-ccc H-font-size-12">当前版本：v<span id="sysVer" class="H-theme-font-color-999"></span></label></span>
 			<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="iconfont icon-you H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
 		</div>
 		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode="H-touch-active" onclick="H.openWin('share_head','share_head.html');">
@@ -54,7 +54,8 @@
 		<script src="../../script/H.js" type="text/javascript"></script>
 		<script src="../../script/zepto.min.js" type="text/javascript"></script>
 	</body>
-	<script type="text/javascript">var sysVer = null;
+	<script type="text/javascript">
+		var sysVer = null;
 		Zepto(function($) {
 		});
 		H.ready(function() {
@@ -68,7 +69,6 @@
 				//              console.log(JSON.stringify(ret));
 			}, 'systemVer');
 		});
-
 		function checkVersion() {
 			var mam = api.require('mam');
 			mam.checkUpdate(function(ret, err) {
@@ -81,7 +81,7 @@
 						api.confirm({
 							title : '有新版本更新 ',
 							msg : str,
-							buttons : ['确定', '取消']
+							buttons : ['立即更新', '取消']
 						}, function(ret, err) {
 							if (ret.buttonIndex == 1) {
 								if (api.systemType == "android") {
@@ -90,9 +90,15 @@
 										report : true
 									}, function(ret, err) {
 										if (ret && 0 == ret.state) {/* 下载进度 */
-											api.toast({
-												msg : "正在下载应用" + ret.percent + "%",
-												duration : 2000
+											api.openFrame({
+												name : 'progress',
+												url : '../progress.html',
+											});
+											api.sendEvent({
+												name : 'downloadProgress',
+												extra : {
+													percent : ret.percent
+												}
 											});
 										}
 										if (ret && 1 == ret.state) {/* 下载完成 */
@@ -121,6 +127,7 @@
 					});
 				}
 			});
-		}</script>
+		}
+	</script>
 	</body>
 </html>
