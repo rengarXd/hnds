@@ -3,8 +3,8 @@
  * Copyright (c) 2014 apicloud.com
  */
 ;! function(window) {
-	window.serverUrl = "http://218.28.41.134:8080/etax/fileAction.do?pagetype=grid&nousercheck=1&eventcode=";
-	window.ImgWebUrl = 'http://218.28.41.134:8080/etax/fileAction.do';
+	window.serverUrl = "http://218.28.41.134:8081/etax/fileAction.do?pagetype=grid&nousercheck=1&eventcode=";
+	window.ImgWebUrl = 'http://218.28.41.134:8081/etax/fileAction.do';
 	window.selectUrl = "&funid=app_remote";
 	var isAndroid = (/android/gi).test(navigator.appVersion);
 	var uzStorage = function() {
