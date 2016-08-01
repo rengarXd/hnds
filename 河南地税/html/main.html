@@ -71,6 +71,20 @@
 			pageInit();
 			//1.4连按两次退出APP
 			H.dblclickToCloseApp();
+			//监听云修复
+			api.addEventListener({
+				name : 'smartupdatefinish'
+			}, function(ret, err) {
+				api.confirm({
+					title : '温馨提示',
+					msg : '有增量更新包',
+					buttons : ['确定', '取消']
+				}, function(ret, err) {
+					if (ret.buttonIndex == 1) {
+						api.rebootApp();
+					}
+				});
+			});
 		});
 		//页面初始化函数
 		function pageInit() {
