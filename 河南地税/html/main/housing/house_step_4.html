@@ -63,27 +63,27 @@
 					<!--#############################################-->
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">所在楼层：</span>
-						<input type="text" id="house_floor" value="" name="lc_1_szlc" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所在楼层不能为空" data-errmsg="所在楼层填写有误"
+						<input type="text" value="" name="lc_1_szlc" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="所在楼层不能为空" data-errmsg="所在楼层填写有误"
 						placeholder="填写所在楼层" />
 					</div>
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">总楼层：</span>
-						<input type="text" id="total_floor" name="c_zlc" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="总楼层不能为空" data-errmsg="总楼总楼层"
+						<input type="text" name="c_zlc" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n1-3" data-nullmsg="总楼层不能为空" data-errmsg="总楼总楼层"
 						placeholder="填写总楼层" />
 					</div>
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑面积：</span>
-						<input type="text" id="building_area" name="c_jzmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="建筑面积不能为空" data-errmsg="建筑面积填写有误"
+						<input type="text"  name="c_jzmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="建筑面积不能为空" data-errmsg="建筑面积填写有误"
 						placeholder="填写建筑面积" />
 					</div>
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">建筑年份：</span>
-						<input type="text" id="build_year" name="c_jcsj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n-4" data-nullmsg="建筑年份不能为空" data-errmsg="建筑年份填写有误"
+						<input type="text" name="c_jcsj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="n-4" data-nullmsg="建筑年份不能为空" data-errmsg="建筑年份填写有误"
 						placeholder="填写建筑年份（年）" />
 					</div>
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积：</span>
-						<input type="text" value="" name="g_tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
+						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积*：</span>
+						<input type="text" value="" id="g_tnmj" name="g_tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
 						placeholder="填写套内面积" />
 					</div>
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
@@ -211,8 +211,8 @@
 			placeholder="填写建筑年份（年）" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积：</span>
-			<input type="text" value="{{ d.g_tnmj }}" name="g_tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="pn" data-nullmsg="套内面积不能为空" data-errmsg="套内面积填写错误"
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">套内面积*：</span>
+			<input type="text" value="{{ d.g_tnmj }}" id="g_tnmj" name="g_tnmj" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
 			placeholder="填写套内面积" />
 			</div>
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
@@ -300,6 +300,7 @@
 							}
 						});
 						var selectData = {
+							"g_tnmj":$("#g_tnmj").val(),
 							"g_tdsyzbh" : $("#g_tdsyzbh").val(),
 							"c_fwlx" : $("#c_fwlx").attr('dm'),
 							"cx_dm_fwcx" : $("#cx_dm_fwcx").attr('dm'),
