@@ -71,7 +71,7 @@
 			<!--补充内容 end-->
 		</div>
 		<footer class="H-footer H-padding-10 ">
-			<button id="btn_1" tapmode onclick="check();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			<button id="btn_1" tapmode onclick="upCheck();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				提交校验
 			</button>
 			<button id="btn_2" style="display: none" tapmode onclick="bcxx();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
@@ -96,8 +96,8 @@
 			function PingShuiFenQu() {
 				//				console.log($("#local_area").attr("infoid010"));
 				api.openWin({
-					name : 'rooms_szqy_head',
-					url : 'region/rooms_szqy_head.html',
+					name : 'rooms_city_head',
+					url : 'region/rooms_city_head.html',
 					animation : {
 						type : "none",
 						duration : 0
@@ -121,6 +121,16 @@
 						});
 					}
 				}, nums);
+			}
+
+			function upCheck() {
+				if ($("#c_fwlx").attr('dm') && $("#pingshui_type").attr('xqdm')) {
+					check();
+				} else {
+					api.toast({
+						msg : '您还有未选择的选项'
+					});
+				}
 			}
 
 			function check() {

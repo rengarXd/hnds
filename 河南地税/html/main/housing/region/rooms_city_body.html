@@ -15,8 +15,8 @@
 		<script type="text/html" id="fenqu_data">
 			{{# for(var i=0,l=d.length;i<l;i++){ }}
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode onclick="selectd(this);">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12" xqdm="{{ d[i].xqdm011 }}">
-			{{ d[i].xqnm011 }}
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12" szqycd="{{ d[i].szqycd }}" szqy_id="{{ d[i].szqy_id }}">
+			{{ d[i].szqynm }}
 			</div>
 			<input type="radio" name="types"  class="H-radio H-radio-null H-display-block H-vertical-align-middle H-font-size-18 H-theme-font-color4 H-border-radius-circle H-margin-horizontal-right-10">
 			</div>
@@ -27,29 +27,33 @@
 		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
 		<script type="text/javascript">
 			var userinfoobj = null, nums = null;
-			function selectd(obj) {
-				$(obj).find('input').attr('checked', 'checked');
-				var xqnm = $(obj).find(".H-flex-item").html();
-				var xqdm = $(obj).find(".H-flex-item").attr("xqdm");
-				api.sendEvent({
-					name : 'region',
-					extra : {
-						xqdm : xqdm,
-						xqnm : xqnm
-					}
-				});
-				api.closeWin();
-			}
-
-
 			H.ready(function() {
-				nums = api.pageParam.psfq;
+				//				nums = api.pageParam.psfq;
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
-				get_data(nums);
+				get_data();
 			});
+			
+			function selectd(obj) {
+				$(obj).find('input').attr('checked', 'checked');
+				var szqynm = $(obj).find(".H-flex-item").html();
+				var szqycd = $(obj).find(".H-flex-item").attr("szqycd");
+				var szqy_id = $(obj).find(".H-flex-item").attr("szqy_id");
+				api.setPrefs({
+					key : 'szqyType',
+					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
+				});
+				api.openWin({
+					name : 'rooms_szqy_head',
+					url : 'rooms_szqy_head.html',
+					pageParam : {
+						szqy_id : szqy_id
+					}
+				});
+			}
+
 			//ajax请求数据模板渲染
-			function get_data(nums) {
+			function get_data() {
 				api.showProgress();
 				H.getUserPref(function() {
 					H.ajax(function(ret, err) {
@@ -57,7 +61,7 @@
 							if (0 == ret.data.length) {
 								api.hideProgress();
 								//							console.log("无数据");
-								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">取得住宅评税分区为空 </div></div></div>';
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">取得所在区域为空 </div></div></div>';
 								//$('#progress_data_body').html(html);
 								document.getElementById('diqu').innerHTML = html;
 							} else {
@@ -72,14 +76,13 @@
 						} else {
 							api.hideProgress();
 							api.alert({
-								msg : JSON.stringify(err)
+								msg : err.msg
 							});
 						}
-					}, 'getView011' + window.selectUrl, 'post', {
+					}, 'selSzqy&funid=param_szqy', 'post', {
 						values : {
 							user_id : userinfo[0].user_id,
-							uuid : userinfo[0].uuid,
-							szqy : nums
+							uuid : userinfo[0].uuid
 						}
 					});
 				});

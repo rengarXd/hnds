@@ -26,14 +26,14 @@
 		<script type="text/javascript" src="../../../../script/tools/laytpl.js" ></script>
 		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
 		<script type="text/javascript">
-			var userinfoobj = null, nums = null;
+			var userinfoobj = null, nums = null, szqy_id = null;
 			H.ready(function() {
+				szqy_id = api.pageParam.szqy_id;
 				//				nums = api.pageParam.psfq;
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
 				get_data();
 			});
-			
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
 				var szqynm = $(obj).find(".H-flex-item").html();
@@ -86,11 +86,12 @@
 						} else {
 							api.hideProgress();
 							api.alert({
-								msg : JSON.stringify(err)
+								msg : err.msg
 							});
 						}
-					}, 'getParamSzqy&funid=param_dict', 'post', {
+					}, 'selSzqyYx&funid=param_szqy', 'post', {
 						values : {
+							szqy_id : szqy_id,
 							user_id : userinfo[0].user_id,
 							uuid : userinfo[0].uuid
 						}
