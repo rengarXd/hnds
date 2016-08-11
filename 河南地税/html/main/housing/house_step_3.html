@@ -250,25 +250,29 @@
 
 			//所在区域选择器
 			function partType(IdName) {
-				H.selectAjax(function(ret, selet_option) {
-					//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
-					//					$('#' + IdName).attr("infoid010", "");
-					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
-					if (ret.buttonIndex <= selet_option.length) {
-						$("#pingshui_type").html('');
-						$("#pingshui_type").attr("xqdm", '');
-						//						alert(selet_option[ret.buttonIndex - 1].szqycd);
-						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1].szqycd).html(selet_option[ret.buttonIndex - 1].szqynm);
-						api.sendEvent({
-							name : 'szqyInfo',
-							extra : {
-								szqy : selet_option[ret.buttonIndex - 1].szqycd
-							}
-						});
-					} else {
-						$('#' + IdName).attr("dm", '').html('');
-					}
-				}, 'getParamSzqy&funid=param_dict', 'szqynm');
+				api.openWin({
+					name : 'rooms_city_head',
+					url : 'region/rooms_city_head.html'
+				});
+				//				H.selectAjax(function(ret, selet_option) {
+				//					//					psfq = selet_option[ret.buttonIndex - 1].infoid010;
+				//					//					$('#' + IdName).attr("infoid010", "");
+				//					//					alert("ret.buttonIndex==="+ret.buttonIndex+"selet_option.length==="+selet_option.length);
+				//					if (ret.buttonIndex <= selet_option.length) {
+				//						$("#pingshui_type").html('');
+				//						$("#pingshui_type").attr("xqdm", '');
+				//						//						alert(selet_option[ret.buttonIndex - 1].szqycd);
+				//						$('#' + IdName).attr("dm", selet_option[ret.buttonIndex - 1].szqycd).html(selet_option[ret.buttonIndex - 1].szqynm);
+				//						api.sendEvent({
+				//							name : 'szqyInfo',
+				//							extra : {
+				//								szqy : selet_option[ret.buttonIndex - 1].szqycd
+				//							}
+				//						});
+				//					} else {
+				//						$('#' + IdName).attr("dm", '').html('');
+				//					}
+				//				}, 'getParamSzqy&funid=param_dict', 'szqynm');
 			}
 
 			//打开评税分区
@@ -290,6 +294,14 @@
 
 			//获取所选的评税分区
 			function part() {
+				api.addEventListener({
+					name : 'szqyEvent'
+				}, function(ret, err) {
+					if (ret) {
+						$("#xzqhsz_szqy").html(ret.value.szqynm);
+						$("#xzqhsz_szqy").attr('dm', ret.value.szqycd);
+					}
+				});
 				H.addEventListener(function(ret, err) {
 					//alert('name===='+ret.value.typeval+'id===='+ret.value.typeid);
 					//					console.log(JSON.stringify(ret));

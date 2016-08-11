@@ -15,8 +15,8 @@
 		<script type="text/html" id="fenqu_data">
 			{{# for(var i=0,l=d.length;i<l;i++){ }}
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode onclick="selectd(this);">
-			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12" xqdm="{{ d[i].xqdm011 }}">
-			{{ d[i].xqnm011 }}
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12" szqycd="{{ d[i].szqycd }}">
+			{{ d[i].szqynm }}
 			</div>
 			<input type="radio" name="types"  class="H-radio H-radio-null H-display-block H-vertical-align-middle H-font-size-18 H-theme-font-color4 H-border-radius-circle H-margin-horizontal-right-10">
 			</div>
@@ -26,30 +26,48 @@
 		<script type="text/javascript" src="../../../../script/tools/laytpl.js" ></script>
 		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
 		<script type="text/javascript">
-			var userinfoobj = null, nums = null;
-			function selectd(obj) {
-				$(obj).find('input').attr('checked', 'checked');
-				var xqnm = $(obj).find(".H-flex-item").html();
-				var xqdm = $(obj).find(".H-flex-item").attr("xqdm");
-				api.sendEvent({
-					name : 'region',
-					extra : {
-						xqdm : xqdm,
-						xqnm : xqnm
-					}
-				});
-				api.closeWin();
-			}
-
-
+			var userinfoobj = null, nums = null,szqy_id=null;
 			H.ready(function() {
-				nums = api.pageParam.psfq;
+				szqy_id = api.pageParam.szqy_id;
+				//				nums = api.pageParam.psfq;
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
-				get_data(nums);
+				get_data();
 			});
+			
+			//选择方法
+			function selectd(obj) {
+				$(obj).find('input').attr('checked', 'checked');
+				var szqynm = $(obj).find(".H-flex-item").html();
+				var szqycd = $(obj).find(".H-flex-item").attr("szqycd");
+				//更改 所在区域偏好值
+				api.sendEvent({
+					name : 'szqyEvent',
+					extra : {
+						szqynm : szqynm,
+						szqycd : szqycd
+					}
+				});
+				//用于房产信息，综合修正
+				api.sendEvent({
+					name : 'szqyInfo',
+					extra : {
+						szqy : szqycd
+					}
+				});
+				//更改所在区域偏好值
+				api.setPrefs({
+					key : 'szqyType',
+					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
+				});
+				//关闭窗口到house_head
+				api.closeToWin({
+					name : 'house_head'
+				});
+			}
+
 			//ajax请求数据模板渲染
-			function get_data(nums) {
+			function get_data() {
 				api.showProgress();
 				H.getUserPref(function() {
 					H.ajax(function(ret, err) {
@@ -72,14 +90,14 @@
 						} else {
 							api.hideProgress();
 							api.alert({
-								msg : JSON.stringify(err)
+								msg : err.msg
 							});
 						}
-					}, 'getView011' + window.selectUrl, 'post', {
+					}, 'selSzqyYx&funid=param_szqy', 'post', {
 						values : {
+							szqy_id : szqy_id,
 							user_id : userinfo[0].user_id,
-							uuid : userinfo[0].uuid,
-							szqy : nums
+							uuid : userinfo[0].uuid
 						}
 					});
 				});
