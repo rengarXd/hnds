@@ -50,8 +50,10 @@
 		<script src="../../script/H.js" type="text/javascript"></script>
 		<script src="../../script/zepto.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			var systemType = null;
+			var systemType = null,ajpush = null;
 			H.ready(function() {
+				//加载极光推送模块
+				ajpush = api.require('ajpush');
 				//优化点击事件
 				api.parseTapmode();
 				//双击返回退出
@@ -84,7 +86,7 @@
 					//					console.log("信息" + JSON.stringify(ret));
 					if (ret) {
 						if (ret.success) {
-							isSuccess(ret)
+							isSuccess(ret);
 						} else {
 							api.hideProgress();
 							alert("抱歉，账号或密码错误！")
@@ -116,7 +118,6 @@
 					var system = api.systemType;
 					if (system != "ios") {
 						//初始化极光推送
-						var ajpush = api.require('ajpush');
 						ajpush.init(function(ret) {
 							if (ret && ret.status) {
 								ajpush.getRegistrationId(function(ret) {
