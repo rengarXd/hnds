@@ -114,7 +114,8 @@
 								if (api.systemType == "android") {
 									api.download({
 										url : result.source,
-										report : true
+										report : true,
+										allowResume:true
 									}, function(ret, err) {
 										if (ret && 0 == ret.state) {/* 下载进度 */
 											api.openFrame({
