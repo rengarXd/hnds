@@ -246,6 +246,10 @@
 				}
 			});
 		},
+		isFunction : function(obj) {
+			var that = this;
+			return that.isTargetType(obj, "function");
+		},
 		isTargetType : function(obj, typeString) {
 			return typeof obj === typeString;
 		},
