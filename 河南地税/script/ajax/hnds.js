@@ -16,22 +16,45 @@
 	};
 	var u = {
 		DEFAULT_CONFIG : {
-			parseArguments : function(url, data, fnSuc, dataType) {
-				if ( typeof (data) == 'function') {
-					dataType = fnSuc;
-					fnSuc = data;
-					data = undefined;
-				}
-				if ( typeof (fnSuc) != 'function') {
-					dataType = fnSuc;
-					fnSuc = undefined;
-				}
-				return {
-					url : url,
-					data : data,
-					fnSuc : fnSuc,
-					dataType : dataType
-				};
+			openFrameGroup_CONFIG : {
+				scrollEnabled : true,
+				rect : {
+					x : 0,
+					y : 0,
+					w : 'auto',
+					h : 'auto',
+					marginLeft : 0,
+					marginTop : 0,
+					marginBottom : 0,
+					marginRight : 0
+				},
+				index : 0,
+				preload : 1
+			},
+			openFrame_CONFIG : {
+				bounces : true,
+				bgColor : "rgba(0,0,0,0)",
+				scrollToTop : true,
+				vScrollBarEnabled : false,
+				hScrollBarEnabled : false,
+				scaleEnabled : false,
+				rect : {
+					x : 0,
+					y : 0,
+					w : 'auto',
+					h : 'auto',
+					marginLeft : 0,
+					marginTop : 0,
+					marginBottom : 0,
+					marginRight : 0
+				},
+				//progress: {
+				//    type: "page",
+				//    color: "#45C01A"
+				//},
+				reload : false,
+				allowEdit : false,
+				softInputMode : 'auto'
 			},
 		},
 		oldAjax : function(callback, url, method, data) {
@@ -246,6 +269,9 @@
 				}
 			});
 		},
+		isArray : function(arr) {
+			return (toString.apply(arr) === '[object Array]') || arr instanceof NodeList;
+		},
 		isFunction : function(obj) {
 			var that = this;
 			return that.isTargetType(obj, "function");
@@ -263,6 +289,9 @@
 		isString : function(obj) {
 			var that = this;
 			return that.isTargetType(obj, "string") && obj != null && obj != undefined;
+		},
+		isNumber : function(str) {
+			return !isNaN(str);
 		},
 		cloneObj : function(oldObj) {
 			var that = this;
@@ -292,53 +321,66 @@
 			}
 			return temp;
 		},
-		offset : function(el) {
-			if (!u.isElement(el)) {
-				console.warn('$api.offset Function need el param, el param must be DOM Element');
-				return;
-			}
-			var sl = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
-			var st = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+		offset : function(cssSelectorOrElement) {
+			var that = this;
+			var element = that.returnElement(cssSelectorOrElement);
+			if (!that.isElement(element)) {
+				return {
+					l : 0,
+					t : 0,
+					w : 0,
+					h : 0
+				};
+			} else {
+				var sl = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
+				var st = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
 
-			var rect = el.getBoundingClientRect();
-			return {
-				l : rect.left + sl,
-				t : rect.top + st,
-				w : el.offsetWidth,
-				h : el.offsetHeight
-			};
-		},
-		fixIos7Bar : function(el) {
-			if (!u.isElement(el)) {
-				console.warn('$api.fixIos7Bar Function need el param, el param must be DOM Element');
-				return;
+				var rect = element.getBoundingClientRect();
+				return {
+					l : rect.left + sl,
+					t : rect.top + st,
+					w : element.offsetWidth,
+					h : element.offsetHeight
+				};
 			}
-			var strDM = api.systemType;
+		},
+		fixIos7Bar : function(cssSelectorOrElement) {
+			var that = this;
+			var element = that.returnElement(cssSelectorOrElement);
+			if (!that.isElement(element)) {
+				console.warn('没有找到DOM元素');
+			}
+
+			var strDM = that.systemType;
 			if (strDM == 'ios') {
-				var strSV = api.systemVersion;
+				var strSV = that.systemVersion;
 				var numSV = parseInt(strSV, 10);
-				var fullScreen = api.fullScreen;
-				var iOS7StatusBarAppearance = api.iOS7StatusBarAppearance;
+				var fullScreen = that.fullScreen;
+				var iOS7StatusBarAppearance = that.iOS7StatusBarAppearance;
 				if (numSV >= 7 && !fullScreen && iOS7StatusBarAppearance) {
-					el.style.paddingTop = '20px';
+					element.style.paddingTop = '20px';
 				}
 			}
 		},
-		fixStatusBar : function(callback, el) {
-			if (!u.isElement(el)) {
-				console.warn('$ds,Function need el param, el param must be DOM Element');
-				return;
+		fixStatusBar : function(callback, cssSelectorOrElement) {
+			var that = this;
+
+			var element = that.returnElement(cssSelectorOrElement);
+			if (!that.isElement(element)) {
+				console.error('没有找到DOM元素');
 			}
-			var sysType = api.systemType;
+
+			var sysType = that.systemType;
 			if (sysType == 'ios') {
-				u.fixIos7Bar(el);
+				that.fixIos7Bar(element);
 			} else if (sysType == 'android') {
-				var ver = api.systemVersion;
+				var ver = that.systemVersion;
 				ver = parseFloat(ver);
 				if (ver >= 4.4) {
-					el.style.paddingTop = '25px';
+					element.style.paddingTop = '25px';
 				}
 			}
+
 			var _offset = that.offset(element);
 			if (that.isFunction(callback)) {
 				callback(_offset);
@@ -368,7 +410,7 @@
 					},
 					bounces : false
 				};
-				H.openFrame(frameName, frameUrl, framepageParam, _options);
+				that.openFrame(frameName, frameUrl, framepageParam, _options);
 			}, "#header");
 		},
 		openFrameNavOrFoot : function(frameName, frameUrl, headerSelector, framePageParam, footerSelector, options) {
@@ -379,8 +421,8 @@
 					rect : {
 						x : 0,
 						y : offset.h,
-						h : that.winHeight - offset.h - footerOffset.h,
-						w : that.winWidth
+						h : api.winHeight - offset.h - footerOffset.h,
+						w : api.winWidth
 					}
 				};
 				options = options || {};
@@ -396,8 +438,8 @@
 				options.rect = {
 					x : 0,
 					y : offset.h,
-					h : that.winHeight - offset.h - footerOffset.h,
-					w : that.winWidth
+					h : api.winHeight - offset.h - footerOffset.h,
+					w : api.winWidth
 				};
 
 				that.openFrameGroup(callback, groupName, frames, index, options);
