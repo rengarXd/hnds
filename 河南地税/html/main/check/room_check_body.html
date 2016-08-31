@@ -74,9 +74,9 @@
 			<button id="btn_1" tapmode onclick="upCheck();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
 				提交校验
 			</button>
-			<button id="btn_2" style="display: none" tapmode onclick="bcxx();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				提交补充信息
-			</button>
+			<!--<button id="btn_2" style="display: none" tapmode onclick="bcxx();" name="xinzeng" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+			提交补充信息
+			</button>-->
 		</footer>
 		<script type="text/javascript" src="../../../script/ajax/hnds.js"></script>
 		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
@@ -173,17 +173,6 @@
 							title : '校验结果',
 							msg : '房屋暂不能评估，请等待相关部门维护！'
 						}, function(ret, err) {
-							if (ret.buttonIndex == 1) {
-								api.closeWin();
-								//								$("#jy").hide();
-								//								$("#bc").show();
-								//								$("#btn_1").hide();
-								//								$("#btn_2").show();
-								//								api.openWin({
-								//									name : 'check_frame',
-								//									url : './check_frame.html'
-								//								});
-							}
 						});
 					}
 					//					alert(JSON.stringify(ret));
