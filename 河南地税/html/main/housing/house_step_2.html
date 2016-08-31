@@ -71,8 +71,11 @@
 			</div>
 		</form>
 		<div class="footer H-padding-10" id="gyrBtn" style="display: none;">
+			<button  onclick="mgyrxx();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
+				卖方共有人信息（选填）
+			</button>
 			<button  onclick="gyrxx();" class="H-margin-vertical-top-10 H-position-static H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color1 H-theme-font-color-white H-theme-border-color1 H-theme-background-color1-click H-theme-font-color1-click ">
-				共有人信息（选填）
+				买方共有人信息（选填）
 			</button>
 		</div>
 		<footer class="H-footer H-padding-10 ">
@@ -201,6 +204,17 @@
 					pageParam : {
 						assessinfo_id : assessinfo_id,
 						mflx : '1'
+					}
+				});
+			}
+
+			function mgyrxx() {
+				api.openWin({
+					name : 'gyr_list_header',
+					url : './gyrxx/gyr_list_header.html',
+					pageParam : {
+						assessinfo_id : assessinfo_id,
+						mflx : '0'
 					}
 				});
 			}
