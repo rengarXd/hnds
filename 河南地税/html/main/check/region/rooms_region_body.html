@@ -7,11 +7,27 @@
 		<link href="../../../../css/Hui.css" rel="stylesheet" type="text/css" />
 		<link href="../../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
 		<style>
+			/*input::input-placeholder {
+				color: #999999;
+			}*/
+			input::-webkit-input-placeholder {
+				color: #999999;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="H-padding-vertical-bottom-10"></div>
-		<div id="diqu"></div>
+		<div class="H-margin-horizontal-both-8 H-border-both-after">
+			<div class="H-flexbox-horizontal">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16"><img src="../../../../image/common_map.png" width="20" style="margin-top:4px" /></span>
+				<input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="输入想要搜索的地址" id="serach_value">
+				<span tapmode="" onclick="$('#serach_value').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><img src="../../../../image/common_del.png" width="20" style="margin-top: 4px"></img></span>
+			</div>
+		</div>
+		<div class="H-padding-vertical-both-8 H-padding-horizontal-both-10 H-font-size-12 H-theme-font-color-999">
+			您可以直接从以下列表中选或者在上面搜索框中搜索
+		</div>
+		<div id="diqu" class="H-padding-horizontal-both-10"></div>
 		<script type="text/html" id="fenqu_data">
 			{{# for(var i=0,l=d.length;i<l;i++){ }}
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-after H-vertical-middle H-touch-active" tapmode onclick="selectd(this);">
@@ -32,8 +48,10 @@
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
 				get_data(nums);
+				document.getElementById("serach_value").addEventListener('input', function() {
+					searchInCity(this.value);
+				});
 			});
-			
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
 				var xqnm = $(obj).find(".H-flex-item").html();
@@ -71,8 +89,8 @@
 								//读取模版
 								//方式一：异步渲染（推荐）
 								laytpl(tpl).render(ret.data, function(render) {
-									api.hideProgress();
 									document.getElementById('diqu').innerHTML = render;
+									api.hideProgress();
 								});
 							}
 						} else {
@@ -89,6 +107,13 @@
 						}
 					});
 				});
+			}
+
+			function searchInCity(keywords) {
+				var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">加载中</div></div></div>';
+				//$('#progress_data_body').html(html);
+				document.getElementById('diqu').innerHTML = html;
+				alert(keywords);
 			}
 		</script>
 	</body>

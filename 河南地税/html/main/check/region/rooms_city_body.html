@@ -33,16 +33,15 @@
 				api.parseTapmode();
 				get_data();
 			});
-			
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
 				var szqynm = $(obj).find(".H-flex-item").html();
 				var szqycd = $(obj).find(".H-flex-item").attr("szqycd");
 				var szqy_id = $(obj).find(".H-flex-item").attr("szqy_id");
-//				api.setPrefs({
-//					key : 'szqyType',
-//					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
-//				});
+				//				api.setPrefs({
+				//					key : 'szqyType',
+				//					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
+				//				});
 				api.openWin({
 					name : 'rooms_szqy_head',
 					url : 'rooms_szqy_head.html',
@@ -59,18 +58,19 @@
 					H.ajax(function(ret, err) {
 						if (ret) {
 							if (0 == ret.data.length) {
-								api.hideProgress();
+								
 								//							console.log("无数据");
 								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">取得所在区域为空 </div></div></div>';
 								//$('#progress_data_body').html(html);
 								document.getElementById('diqu').innerHTML = html;
+								api.hideProgress();
 							} else {
 								var tpl = document.getElementById('fenqu_data').innerHTML;
 								//读取模版
 								//方式一：异步渲染（推荐）
 								laytpl(tpl).render(ret.data, function(render) {
-									api.hideProgress();
 									document.getElementById('diqu').innerHTML = render;
+									api.hideProgress();
 								});
 							}
 						} else {
