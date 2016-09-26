@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div class="H-border-vertical-both-after">
-					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号*：</span>
 						<input type="text" value="" id="g_htbh" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" />
 					</div>
@@ -95,7 +95,7 @@
 					<!--时间类型 end-->
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-						<input type="text" value="" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="money" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
+						<input type="text" value="" onchange="jiage();" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
 					</div>
 				</div>
 				<div class="H-padding-vertical-bottom-10"></div>
@@ -109,7 +109,7 @@
 					<!--交易类型 start-->
 					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" tapmode onclick="payType('c_jylx');">
 						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-							交易类型：<span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="c_jylx" id="c_jylx"></span>
+							交易类型：<span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="c_jylx" dm="c_jysj" id="c_jylx"></span>
 						</div>
 						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 					</div>
@@ -117,7 +117,7 @@
 					<!--交易日期 start-->
 					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="timePicker();">
 						<div class="H-flex-item H-padding-horizontal-left-10 H-padding-horizontal-right-15 H-font-size-16 H-padding-vertical-both-12">
-							交易日期：<span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="c_jysj" id="c_jysj"></span>
+							交易日期：<span class="H-padding-horizontal-both-12 H-float-right H-theme-font-color-666" data-id="c_jysj" dm="c_jysj" id="c_jysj"></span>
 						</div>
 						<span class="H-icon H-padding-horizontal-right-5 H-display-block"> <i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i> </span>
 					</div>
@@ -129,12 +129,13 @@
 					<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
 						申报价格
 					</div>
+					<span id="jyjg_sbjg" name="jyjg_sbjg" dm="jyjg_sbjg" class="H-icon H-padding-horizontal-right-10 H-display-block H-font-size-16"></span>
 				</div>
-				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
-					<input type="text" id="jyjg_sbjg" name="jyjg_sbjg" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
-					placeholder="填写申报价格" />
-				</div>
+				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
+				<input type="text" id="jyjg_sbjg" name="jyjg_sbjg" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
+				placeholder="填写申报价格" />
+				</div>-->
 			</div>
 			</div>
 			</div>
@@ -229,7 +230,7 @@
 			<!--时间类型 end-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-			<input type="text" value="{{ d.g_htje }}" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="money" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
+			<input type="text" value="{{ d.g_htje }}" onchange="jiage();" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
 			</div>
 			</div>
 			<div class="H-padding-vertical-bottom-10"></div>
@@ -263,11 +264,7 @@
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
 			申报价格
 			</div>
-			</div>
-			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
-			<input type="text" value="{{ d.jyjg_sbjg }}" id="jyjg_sbjg" name="jyjg_sbjg" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
-			placeholder="填写申报价格" />
+			<span id="jyjg_sbjg" dm="{{ d.jyjg_sbjg }}" name="jyjg_sbjg" class="H-icon H-padding-horizontal-right-10 H-display-block H-font-size-16">{{ d.jyjg_sbjg }}</span>
 			</div>
 		</script>
 		<script src="../../../script/H.js" type="text/javascript"></script>
@@ -302,6 +299,7 @@
 							}
 						});
 						var selectData = {
+							"jyjg_sbjg" : $("#jyjg_sbjg").html(),
 							"g_htbh" : $("#g_htbh").val(),
 							"g_htje" : $("#g_htje").val(),
 							"g_htqdrq" : $("#g_htqdrq").html(),
@@ -361,6 +359,11 @@
 					name : 'house_head',
 					script : 'image(' + "'" + assessinfo_id + "'" + ');'
 				});
+			}
+
+			//申报价格
+			function jiage() {
+				$("#jyjg_sbjg").html($("#g_htje").val());
 			}
 
 			//综合修正选择器
