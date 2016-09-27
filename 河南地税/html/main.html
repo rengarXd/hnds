@@ -15,6 +15,7 @@
 			.active {
 				/*background: #ffffff;*/
 				color: #09a4de !important;
+				border-width: 0 !important;
 			}
 			.H_header_bg {
 				background: #09a4de
@@ -24,7 +25,7 @@
 			}
 		</style>
 	</head>
-	<body class="H-flexbox-vertical">
+	<body>
 		<header class="H-header H_header_bg" id="index_header">
 			<!--<span tapmode="H-theme-font-color-444" onclick="openWin('msg_head','message/msg_head.html');" class="H-font-size-18 H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-right-15 H-z-index-100"><i class="iconfont icon-36 H-font-size-20" ></i><em class="brige"></em></span>-->
 			<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
@@ -37,8 +38,8 @@
 				设置
 			</div>
 		</header>
-		<div class="H-flex-item"></div>
-		<footer id="index_footer" class="H-footer H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after" id="footer">
+		<!--<div class="H-flex-item"></div>-->
+		<footer id="index_footer" style="position:fixed;bottom:0px;left:0px;" class="H-footer H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after">
 			<div tapmode onclick="switchindex(this);" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999  active">
 				<div>
 					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shouye H-font-size-26"></i></span>
@@ -146,6 +147,7 @@
 			});
 			Zepto(function($) {
 			});
+			//切换函数
 			function switchindex(obj) {
 				var index = $(obj).index();
 				selectIndex(index);
