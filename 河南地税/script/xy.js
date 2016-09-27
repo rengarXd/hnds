@@ -43,7 +43,9 @@
 				softInputMode : 'auto'
 			},
 			openFrameGroup_CONFIG : {
-				scrollEnabled : true,
+				scrollEnabled : false,
+				vScrollBarEnabled : false, //（可选项）是否显示垂直滚动条，布尔型，默认值：true
+				hScrollBarEnabled : false,
 				rect : {
 					x : 0,
 					y : 0,
