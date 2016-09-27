@@ -12,7 +12,7 @@
 			/*.H_footer_bg {
 			 color: #e5e5e5;
 			 }*/
-			.H_footer_active {
+			.active {
 				/*background: #ffffff;*/
 				color: #09a4de !important;
 			}
@@ -24,8 +24,8 @@
 			}
 		</style>
 	</head>
-	<body class="H-flexbox-vertical" id="main">
-		<header class="H-header b_header_bg" id="index_header">
+	<body class="H-flexbox-vertical">
+		<header class="H-header H_header_bg" id="index_header">
 			<!--<span tapmode="H-theme-font-color-444" onclick="openWin('msg_head','message/msg_head.html');" class="H-font-size-18 H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-right-15 H-z-index-100"><i class="iconfont icon-36 H-font-size-20" ></i><em class="brige"></em></span>-->
 			<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
 				首页
@@ -37,26 +37,47 @@
 				设置
 			</div>
 		</header>
-		<footer id="index_footer" style="bottom: 0;padding-bottom: 8px;" class="H-footer H-position-fixed H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after">
-			<div class="H-flex-item  H-center-all H-padding-vertical-both-10 H-theme-border-color-white switch-item H_footer_active" style="border-width: 0 0 2px  0">
-				<div class="">
-					<span class="H-icon H-display-block H-line-height-normal" style="margin-left: 1px;"><i class="iconfont icon-shouye H-font-size-24"></i></span>
-					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">首页</strong>
+		<div class="H-flex-item"></div>
+		<footer id="index_footer" class="H-footer H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after" id="footer">
+			<div tapmode onclick="switchindex(this);" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999  active">
+				<div>
+					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shouye H-font-size-26"></i></span>
+					<strong class="H-font-size-11 H-display-block H-font-weight-normal H-margin-vertical-bottom-2">首页</strong>
 				</div>
 			</div>
-			<div class="H-flex-item H-center-all H-padding-vertical-both-10 H-theme-border-color-white  switch-item" style="border-width: 0 0 2px  0">
-				<div class="">
-					<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-xiaoxi H-font-size-24"></i></span>
-					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">消息</strong>
+			<div tapmode onclick="switchindex(this);" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999">
+				<div>
+					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-xiaoxi H-font-size-26"></i></span>
+					<strong class="H-font-size-11 H-display-block H-font-weight-normal H-margin-vertical-bottom-2">消息</strong>
 				</div>
 			</div>
-			<div class="H-flex-item H-center-all H-padding-vertical-both-10 H-theme-border-color-white  switch-item" style="border-width: 0 0 2px  0">
-				<div class="">
-					<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-shezhi H-font-size-24"></i></span>
-					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">设置</strong>
+			<div tapmode onclick="switchindex(this);" class="H-flex-item H-center-all H-text-align-center  H-theme-font-color-999">
+				<div>
+					<span class="H-icon H-display-block H-line-height-normal"><i class="iconfont icon-shezhi H-font-size-26"></i></span>
+					<strong class="H-font-size-11 H-display-block H-font-weight-normal H-margin-vertical-bottom-2">设置</strong>
 				</div>
 			</div>
 		</footer>
+		<!--	<footer id="index_footer" style="bottom: 0;padding-bottom: 8px;" class="H-footer H-position-fixed H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after">
+		<div class="H-flex-item  H-center-all H-padding-vertical-both-10 H-theme-border-color-white switch-item H_footer_active" style="border-width: 0 0 2px  0">
+		<div class="">
+		<span class="H-icon H-display-block H-line-height-normal" style="margin-left: 1px;"><i class="iconfont icon-shouye H-font-size-24"></i></span>
+		<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">首页</strong>
+		</div>
+		</div>
+		<div class="H-flex-item H-center-all H-padding-vertical-both-10 H-theme-border-color-white  switch-item" style="border-width: 0 0 2px  0">
+		<div class="">
+		<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-xiaoxi H-font-size-24"></i></span>
+		<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">消息</strong>
+		</div>
+		</div>
+		<div class="H-flex-item H-center-all H-padding-vertical-both-10 H-theme-border-color-white  switch-item" style="border-width: 0 0 2px  0">
+		<div class="">
+		<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-shezhi H-font-size-24"></i></span>
+		<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">设置</strong>
+		</div>
+		</div>
+		</footer>-->
 		<!--<header class="H-header H_header_bg" id="index_header">
 		<div class="H-header-title H-text-align-center H-theme-font-color-white H-center-all H-font-size-18" id="update">
 		首页
@@ -74,161 +95,169 @@
 		</header>
 		<div class="H-flex-item"></div>
 		-->
-	</body>
-	<!--<script type="text/javascript" src="../script/H.js"></script>-->
-	<script type="text/javascript" src="../script/xy.js"></script>
-	<script src="../script/zepto.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		var test = null;
-		//1.1设备准备完毕
-		apiready = function() {
-			//1.2檢測軟件是否更新
-			checkUpdate();
-			//1.3页面初始化函数
-			pageInit();
-			//监听云修复
-			api.addEventListener({
-				name : 'smartupdatefinish'
-			}, function(ret, err) {
-				api.confirm({
-					title : '温馨提示',
-					msg : '有增量更新包',
-					buttons : ['确定', '取消']
+		<script type="text/javascript" src="../script/H.js"></script>
+		<script src="../script/zepto.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var test = null;
+			//1.1设备准备完毕
+			//			apiready = function() {
+			//				//1.2檢測軟件是否更新
+			//				checkUpdate();
+			//				//1.3页面初始化函数
+			//				pageInit();
+			//				//监听云修复
+			//				api.addEventListener({
+			//					name : 'smartupdatefinish'
+			//				}, function(ret, err) {
+			//					api.confirm({
+			//						title : '温馨提示',
+			//						msg : '有增量更新包',
+			//						buttons : ['确定', '取消']
+			//					}, function(ret, err) {
+			//						if (ret.buttonIndex == 1) {
+			//							api.rebootApp();
+			//						}
+			//					});
+			//				});
+			//				//退出app
+			//				$xy.dblclickToCloseApp();
+			//			}
+			H.ready(function() {
+				//1.2檢測軟件是否更新
+				checkUpdate();
+				//1.3页面初始化函数
+				pageInit();
+				//1.4连按两次退出APP
+				H.dblclickToCloseApp();
+				//监听云修复
+				api.addEventListener({
+					name : 'smartupdatefinish'
 				}, function(ret, err) {
-					if (ret.buttonIndex == 1) {
-						api.rebootApp();
-					}
+					api.confirm({
+						title : '温馨提示',
+						msg : '有增量更新包',
+						buttons : ['确定', '取消']
+					}, function(ret, err) {
+						if (ret.buttonIndex == 1) {
+							api.rebootApp();
+						}
+					});
 				});
 			});
-			//退出app
-			$xy.dblclickToCloseApp();
-		}
-//		H.ready(function() {
-//			//1.2檢測軟件是否更新
-//			checkUpdate();
-//			//1.3页面初始化函数
-//			pageInit();
-//			//1.4连按两次退出APP
-//			H.dblclickToCloseApp();
-//			//监听云修复
-//			api.addEventListener({
-//				name : 'smartupdatefinish'
-//			}, function(ret, err) {
-//				api.confirm({
-//					title : '温馨提示',
-//					msg : '有增量更新包',
-//					buttons : ['确定', '取消']
-//				}, function(ret, err) {
-//					if (ret.buttonIndex == 1) {
-//						api.rebootApp();
-//					}
-//				});
-//			});
-//		});
-		function selectIndex(index) {
-			$("#index_footer .switch-item").eq(index).addClass('H_footer_active').siblings().removeClass('H_footer_active');
-			$("header div").hide().eq(index).show();
-		}
-
-		//页面初始化函数
-		function pageInit() {
-			//1.2打开沉浸式页面
-			$xy.openFrameGroupNavOrFoot(function(ret, err) {
-				selectIndex(ret.index);
-			}, 'groupName', [{
-				name : 'index_body',
-				url : './main/index_body.html',
-				bounces : false
-			}, {
-				name : 'message_index_body',
-				url : './massages/message_index_body.html',
-				bounces : true
-			}, {
-				name : 'set_index_body',
-				url : './setting/set_index_body.html',
-				bounces : false
-			}], 0, '#index_header', 'footer');
-			//			H.openFrameIndexByClick([{
-			//				name : 'index_body',
-			//				url : './main/index_body.html',
-			//				header : '#index_header',
-			//				bounces : false
-			//			}, {
-			//				name : 'message_index_body',
-			//				url : './massages/message_index_body.html',
-			//				header : '#massages_header',
-			//				bounces : true
-			//			}, {
-			//				name : 'set_index_body',
-			//				url : './setting/set_index_body.html',
-			//				header : '#setting_header',
-			//				bounces : false
-			//			}], 'H-display-none', '#index_footer', '.switch-item', 'H_footer_active', 0);
-		}
-
-		//检查版本更新
-		function checkUpdate() {
-			var systemType = api.systemType;
-			if (systemType == "android") {
-				var mam = api.require('mam');
-				mam.checkUpdate(function(ret, err) {
-					if (ret) {
-						var result = ret.result;
-						api.setPrefs({
-							key : 'systemVer',
-							value : JSON.stringify(result)
-						});
-						if (result.update == true & result.closed == false) {
-							var str = '最新版本号:' + result.version + '\n' + result.updateTip + '\n发布时间:' + result.time;
-							api.confirm({
-								title : '有新版本',
-								msg : str,
-								buttons : ['立即更新', '取消']
-							}, function(ret, err) {
-								if (ret.buttonIndex == 1) {
-									if (api.systemType == "android") {
-										api.download({
-											url : result.source,
-											//											savePath : 'fs://hnds/二手房办税.apk',
-											report : true,
-											allowResume : true
-										}, function(ret, err) {
-											if (ret && 0 == ret.state) {/* 下载进度 */
-												api.openFrame({
-													name : 'progress',
-													url : 'progress.html',
-												});
-												api.sendEvent({
-													name : 'downloadProgress',
-													extra : {
-														percent : ret.percent
-													}
-												});
-											}
-											if (ret && 1 == ret.state) {/* 下载完成 */
-												var savePath = ret.savePath;
-												api.installApp({
-													appUri : savePath
-												});
-											}
-										});
-									}
-									if (api.systemType == "ios") {
-										api.installApp({
-											appUri : result.source
-										});
-									}
-								}
-							});
-						} else {
-						}
-					} else {
-						api.toast({
-							msg : err.msg
-						});
-					}
-				});
+			Zepto(function($) {
+			});
+			function switchindex(obj) {
+				var index = $(obj).index();
+				selectIndex(index);
+				// 设置索引
+				H.setFrameGroupIndex('groups', index);
 			}
-		}
-	</script>
+
+			function selectIndex(index) {
+				$(".H-theme-font-color-999").eq(index).addClass('active').siblings().removeClass('active');
+				$(".H-header-title").hide().eq(index).show();
+			}
+
+			//页面初始化函数
+			function pageInit() {
+				//1.2打开沉浸式页面
+				H.openFrameGroupNavOrFoot(function(ret, err) {
+					selectIndex(ret.index);
+				}, 'groups', [{
+					name : 'index_body',
+					url : './main/index_body.html',
+					bounces : false
+				}, {
+					name : 'message_index_body',
+					url : './massages/message_index_body.html',
+					bounces : true
+				}, {
+					name : 'set_index_body',
+					url : './setting/set_index_body.html',
+					bounces : false
+				}], 0, '#index_header', '#index_footer');
+				//			H.openFrameIndexByClick([{
+				//				name : 'index_body',
+				//				url : './main/index_body.html',
+				//				header : '#index_header',
+				//				bounces : false
+				//			}, {
+				//				name : 'message_index_body',
+				//				url : './massages/message_index_body.html',
+				//				header : '#massages_header',
+				//				bounces : true
+				//			}, {
+				//				name : 'set_index_body',
+				//				url : './setting/set_index_body.html',
+				//				header : '#setting_header',
+				//				bounces : false
+				//			}], 'H-display-none', '#index_footer', '.switch-item', 'H_footer_active', 0);
+			}
+
+			//检查版本更新
+			function checkUpdate() {
+				var systemType = api.systemType;
+				if (systemType == "android") {
+					var mam = api.require('mam');
+					mam.checkUpdate(function(ret, err) {
+						if (ret) {
+							var result = ret.result;
+							api.setPrefs({
+								key : 'systemVer',
+								value : JSON.stringify(result)
+							});
+							if (result.update == true & result.closed == false) {
+								var str = '最新版本号:' + result.version + '\n' + result.updateTip + '\n发布时间:' + result.time;
+								api.confirm({
+									title : '有新版本',
+									msg : str,
+									buttons : ['立即更新', '取消']
+								}, function(ret, err) {
+									if (ret.buttonIndex == 1) {
+										if (api.systemType == "android") {
+											api.download({
+												url : result.source,
+												//											savePath : 'fs://hnds/二手房办税.apk',
+												report : true,
+												allowResume : true
+											}, function(ret, err) {
+												if (ret && 0 == ret.state) {/* 下载进度 */
+													api.openFrame({
+														name : 'progress',
+														url : 'progress.html',
+													});
+													api.sendEvent({
+														name : 'downloadProgress',
+														extra : {
+															percent : ret.percent
+														}
+													});
+												}
+												if (ret && 1 == ret.state) {/* 下载完成 */
+													var savePath = ret.savePath;
+													api.installApp({
+														appUri : savePath
+													});
+												}
+											});
+										}
+										if (api.systemType == "ios") {
+											api.installApp({
+												appUri : result.source
+											});
+										}
+									}
+								});
+							} else {
+							}
+						} else {
+							api.toast({
+								msg : err.msg
+							});
+						}
+					});
+				}
+			}
+		</script>
+	</body>
 </html>
