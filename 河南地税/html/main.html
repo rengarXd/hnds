@@ -9,18 +9,18 @@
 		<link rel="stylesheet" type="text/css" href="../css/Hui.css" />
 		<link rel="stylesheet" type="text/css" href="../css/fonts/iconfont.css" />
 		<style>
-			.H_footer_bg {
+			/*.H_footer_bg {
 				color: #e5e5e5;
-			}
+			}*/
 			.H_footer_active {
 				/*background: #ffffff;*/
-				color: #09a4de;
+				color: #09a4de !important;
 			}
 			.H_header_bg {
 				background: #09a4de
 			}
 			.switch-item {
-				color: #555555;
+				color: #999999;
 			}
 		</style>
 	</head>
@@ -40,23 +40,23 @@
 				设置
 			</div>
 		</header>
-		<!--<div class="main H-flex-item"></div>-->
-		<footer id="index_footer" style="bottom: 0" class="H-footer H-position-fixed H-flexbox-horizontal H-theme-background-color-white">
+		<div class="H-flex-item"></div>
+		<footer id="index_footer" style="bottom: 0;padding-bottom: 8px;" class="H-footer H-position-fixed H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after">
 			<div class="H-flex-item  H-center-all H-padding-vertical-both-10 H-theme-border-color-white switch-item H_footer_active" style="border-width: 0 0 2px  0">
 				<div class="">
-					<span class="H-icon H-display-block H-line-height-normal" style="margin-left: 1px;"><i class="iconfont icon-shouye-copy H-font-size-20"></i></span>
+					<span class="H-icon H-display-block H-line-height-normal" style="margin-left: 1px;"><i class="iconfont icon-shouye H-font-size-24"></i></span>
 					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">首页</strong>
 				</div>
 			</div>
 			<div class="H-flex-item H-center-all H-padding-vertical-both-10 H-theme-border-color-white  switch-item" style="border-width: 0 0 2px  0">
 				<div class="">
-					<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-xiaoxi H-font-size-26"></i></span>
+					<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-xiaoxi H-font-size-24"></i></span>
 					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">消息</strong>
 				</div>
 			</div>
 			<div class="H-flex-item H-center-all H-padding-vertical-both-10 H-theme-border-color-white  switch-item" style="border-width: 0 0 2px  0">
 				<div class="">
-					<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-shezhi H-font-size-26"></i></span>
+					<span class="H-icon H-display-block H-line-height-normal"  style="margin-left: 1px;"><i class="iconfont icon-shezhi H-font-size-24"></i></span>
 					<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">设置</strong>
 				</div>
 			</div>
@@ -130,7 +130,7 @@
 				url : './setting/set_index_body.html',
 				header : '#setting_header',
 				bounces : false
-			}], 'H-display-none', '#index_footer', '.swipe-item', 'H_footer_active', 0);
+			}], 'H-display-none', '#index_footer', '.switch-item', 'H_footer_active', 0);
 		}
 
 		//检查版本更新
