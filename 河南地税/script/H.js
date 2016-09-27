@@ -2978,7 +2978,7 @@
 				var strDM = that.systemType;
 				if (strDM == 'ios') {
 					var strSV = that.systemVersion;
-					var numSV = parseInt(strSV, 10);
+					var numSV = parseInt(strSV, 11);
 					var fullScreen = that.fullScreen;
 					var iOS7StatusBarAppearance = that.iOS7StatusBarAppearance;
 					if (numSV >= 7 && !fullScreen && iOS7StatusBarAppearance) {
