@@ -366,35 +366,77 @@
 		openFrameNavOrFoot : function(frameName, frameUrl, headerSelector, framePageParam, footerSelector, options) {
 			var that = this;
 			var footerOffset = that.offset(footerSelector);
-			that.fixStatusBar(function(offset) {
-				var _options = {
-					rect : {
-						x : 0,
-						y : offset.h,
-						h : api.winHeight - offset.h - footerOffset.h,
-						w : api.winWidth
-					}
-				};
-				options = options || {};
-				var opt = that.extendObj(_options, options);
-				that.openFrame(frameName, frameUrl, framePageParam, opt);
+			var syst = api.systemType;
+			if (syst == 'ios') {
+				var strSV = api.systemVersion;
+				var numSV = parseInt(strSV, 10);
+				if (numSV >= 7) {
+					that.fixIos7Bar(function(offset) {
+						var _options = {
+							rect : {
+								x : 0,
+								y : offset.h,
+								h : api.winHeight - offset.h - footerOffset.h,
+								w : api.winWidth
+							}
+						};
+						options = options || {};
+						var opt = that.extendObj(_options, options);
+						that.openFrame(frameName, frameUrl, framePageParam, opt);
+					}, headerSelector);
+				}
+			} else {
+				that.fixStatusBar(function(offset) {
+					var _options = {
+						rect : {
+							x : 0,
+							y : offset.h,
+							h : api.winHeight - offset.h - footerOffset.h,
+							w : api.winWidth
+						}
+					};
+					options = options || {};
+					var opt = that.extendObj(_options, options);
+					that.openFrame(frameName, frameUrl, framePageParam, opt);
 
-			}, headerSelector);
+				}, headerSelector);
+			}
+
 		},
 		openFrameGroupNavOrFoot : function(callback, groupName, frames, index, headerSelector, footerSelector, options) {
 			var that = this;
 			var footerOffset = that.offset(footerSelector);
-			that.fixStatusBar(function(offset) {
-				options = options || {};
-				options.rect = {
-					x : 0,
-					y : offset.h,
-					h : api.winHeight - offset.h - footerOffset.h,
-					w : api.winWidth
-				};
+			var syst = api.systemType;
+			if (syst == 'ios') {
+				var strSV = api.systemVersion;
+				var numSV = parseInt(strSV, 10);
+				if (numSV >= 7) {
+					that.fixIos7Bar(function(offset) {
+						options = options || {};
+						options.rect = {
+							x : 0,
+							y : offset.h,
+							h : api.winHeight - offset.h - footerOffset.h,
+							w : api.winWidth
+						};
 
-				that.openFrameGroup(callback, groupName, frames, index, options);
-			}, headerSelector);
+						that.openFrameGroup(callback, groupName, frames, index, options);
+					}, headerSelector);
+				}
+			} else {
+				that.fixStatusBar(function(offset) {
+					options = options || {};
+					options.rect = {
+						x : 0,
+						y : offset.h,
+						h : api.winHeight - offset.h - footerOffset.h,
+						w : api.winWidth
+					};
+
+					that.openFrameGroup(callback, groupName, frames, index, options);
+				}, headerSelector);
+			}
+
 		},
 		openFrameGroup : function(callback, groupName, frames, index, options) {
 			var that = this;
