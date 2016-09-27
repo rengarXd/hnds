@@ -19,12 +19,43 @@
 					//1.4、已经登录
 					if (ret && ret.value) {
 						//1.5、关闭当前页面跳转主页面
-						H.openWin('main', './html/main.html');
+						api.openWin({
+							name : 'main',
+							url : './html/main.html',
+							bounces : false,
+							delay : 0,
+							scaleEnabled:false,
+							slidBackEnabled : false,
+							vScrollBarEnabled : false,
+							hScrollBarEnabled : false
+						});
+						//H.openWin('main', './html/main.html');
 					} else {
 						//1.6、关闭当前页面跳转登陆页面
-						H.openWin('login_body', './html/login/login_body.html');
+						api.openWin({
+							name : 'login_body',
+							url : './html/login/login_body.html',
+							bounces : false,
+							delay : 0,
+							scaleEnabled:false,
+							slidBackEnabled : false,
+							vScrollBarEnabled : false,
+							hScrollBarEnabled : false
+						});
+						//H.openWin('login_body', './html/login/login_body.html');
 					}
 				}, 'islogin');
+				//				api.getPrefs({
+				//					key : 'launch'
+				//				}, function(ret, err) {
+				//					//1.2、如果有了（launch）偏好设置
+				//					if (ret && ret.value) {
+				//
+				//					} else {
+				//						//如果没有了（launch）偏好设置
+				//						H.openWin('launch', './html/launch.html');
+				//					}
+				//				});
 				//判断沉浸式
 				if ("ios" == systemtype) {
 					api.setStatusBarStyle({
