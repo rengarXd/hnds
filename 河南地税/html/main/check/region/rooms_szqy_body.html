@@ -42,12 +42,9 @@
 					key : 'szqyType',
 					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
 				});
-				var syst = api.systemType;
-				if (syst != "ios") {
-					delay = 200;
-				} else {
-					delay = 0;
-				}
+				var sys = api.systemType;
+				//安卓加载延迟设置
+				sys != "ios" ? delay = 200 : delay = 0;
 				api.openWin({
 					name : 'rooms_region_header',
 					url : 'rooms_region_header.html',
