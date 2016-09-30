@@ -11,6 +11,16 @@
 	</head>
 	<body>
 		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-margin-horizontal-both-8 H-border-both-after">
+			<div class="H-flexbox-horizontal">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16"><img src="../../../../image/common_map.png" width="20" style="margin-top:4px" /></span>
+				<input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="输入想要搜索的地址" id="serach_value">
+				<span tapmode="" onclick="$('#serach_value').val('');" class="H-icon H-vertical-middle H-padding-horizontal-right-10 H-theme-background-color-white"><img src="../../../../image/common_del.png" width="20" style="margin-top: 4px"></img></span>
+			</div>
+		</div>
+		<div class="H-padding-vertical-both-8 H-padding-horizontal-both-15 H-font-size-12 H-theme-font-color-999">
+			您可以直接从以下列表中选或者在上面搜索框中搜索
+		</div>
 		<div id="diqu"></div>
 		<script type="text/html" id="fenqu_data">
 			{{# for(var i=0,l=d.length;i<l;i++){ }}
@@ -26,7 +36,7 @@
 		<script type="text/javascript" src="../../../../script/tools/laytpl.js" ></script>
 		<script type="text/javascript" src="../../../../script/zepto.min.js"></script>
 		<script type="text/javascript">
-			var userinfoobj = null, nums = null;
+			var userinfoobj = null, nums = null,keywords=null;
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
 				var xqnm = $(obj).find(".H-flex-item").html();
@@ -47,6 +57,11 @@
 				//				console.log(JSON.stringify(nums));
 				api.parseTapmode();
 				get_data(nums);
+				//搜索框
+				document.getElementById("serach_value").addEventListener('input', function() {
+					//alert(this.value);
+					searchInCity(this.value);
+				});
 			});
 			//ajax请求数据模板渲染
 			function get_data(nums) {
@@ -80,6 +95,49 @@
 							user_id : userinfo[0].user_id,
 							uuid : userinfo[0].uuid,
 							szqy : nums
+						}
+					});
+				});
+			}
+			
+			//搜索方法
+			function searchInCity(keyword) {
+				//搜索词判断
+				keyword ? keywords = keyword : keywords = "";
+				//				var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">加载中</div></div></div>';
+				//				//$('#progress_data_body').html(html);
+				//				document.getElementById('diqu').innerHTML = html;
+				//api.showProgress();
+				H.getUserPref(function() {
+					H.ajax(function(ret, err) {
+						if (ret) {
+							if (0 == ret.data.length) {
+								//api.hideProgress();
+								//							console.log("无数据");
+								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">查询结果为空 </div></div></div>';
+								//$('#progress_data_body').html(html);
+								document.getElementById('diqu').innerHTML = html;
+							} else {
+								var tpl = document.getElementById('fenqu_data').innerHTML;
+								//读取模版
+								//方式一：异步渲染（推荐）
+								laytpl(tpl).render(ret.data, function(render) {
+									document.getElementById('diqu').innerHTML = render;
+									api.hideProgress();
+								});
+							}
+						} else {
+							//api.hideProgress();
+							api.alert({
+								msg : err.msg
+							});
+						}
+					}, 'getView011' + window.selectUrl, 'post', {
+						values : {
+							user_id : userinfo[0].user_id,
+							uuid : userinfo[0].uuid,
+							szqy : nums,
+							xqnm : keywords
 						}
 					});
 				});
