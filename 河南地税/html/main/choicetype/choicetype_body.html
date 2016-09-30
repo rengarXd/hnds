@@ -1,45 +1,53 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-        <title>Hui</title>
-        <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
-        <style type="text/css">
-            .H_header_bg {
-                background: #09a4de
-            }
-            .d_active:active {
-                background: #f5f5f5;
-            }
-        </style>
-    </head>
-    <body >
-        <div class="H-padding-vertical-bottom-10"></div>
-        <div onclick="choise_type(1);" class="H-text-align-center H-theme-background-color-white H-border-vertical-bottom-after H-padding-25 d_active" >
-            <span class="iconfont icon-xiaoguimonashuirenqiyedailijizhang H-font-size-36 H-theme-font-color6"></span>
-            <p class="H-theme-font-color6">
-                我是房产经纪人
-            </p>
-        </div>
-        <div onclick="choise_type(2);" class="H-text-align-center H-theme-background-color-white H-padding-25 d_active">
-            <span class="iconfont icon-putong H-font-size-36 H-theme-font-color8"></span>
-            <p class="H-theme-font-color8">
-                我是普通纳税人
-            </p>
-        </div>
-        <script src="../../../script/H.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            H.ready(function() {
-            });
-            //处理经纪人类型
-            function choise_type(id) {
-                H.setPrefs(function(ret, err) {
-                    H.openWin('main', '../../main.html');
-                }, 'ischoicetype', id);
-            }
-        </script>
-    </body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hui</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
+		<style type="text/css">
+			html, body {
+				background-color: rgba(0,0,0,0.2)
+			}
+			.H_header_bg {
+				background: #09a4de
+			}
+			.d_active:active {
+				background: #f5f5f5;
+			}
+		</style>
+	</head>
+	<body >
+		<div style="bottom: 0;left: 0;right:0;position: fixed">
+			<div onclick="choise_type('07');" class="H-text-align-center H-theme-background-color-white H-border-vertical-bottom-after H-padding-20 d_active">
+				<span class="iconfont icon-putong H-font-size-36 H-theme-font-color8"></span>
+				<p class="H-theme-font-color8 H-font-size-18">
+					我是一般纳税人
+				</p>
+			</div>
+			<div onclick="choise_type('08');" class="H-text-align-center H-theme-background-color-white  H-padding-20 d_active" >
+				<span class="iconfont icon-xiaoguimonashuirenqiyedailijizhang H-font-size-36 H-theme-font-color6"></span>
+				<p class="H-theme-font-color6 H-font-size-18">
+					我是房产经纪人
+				</p>
+			</div>
+		</div>
+		<script src="../../../script/H.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			H.ready(function() {
+			});
+			//处理经纪人类型
+			function choise_type(id) {
+				api.sendEvent({
+					name : 'choise_type',
+					extra : {
+						id : id
+					}
+				});
+				api.closeFrame();
+			}
+		</script>
+	</body>
 </html>
