@@ -99,12 +99,9 @@
 
 		//打卡页面方法
 		function userWin(name, url) {
-			var syst = api.systemType;
-			if (syst != "ios") {
-				delay = 200;
-			} else {
-				delay = 0;
-			}
+			var sys = api.systemType;
+			//安卓加载延迟设置
+			sys != "ios" ? delay = 200 : delay = 0;
 			api.openWin({
 				name : name,
 				url : url,
