@@ -263,12 +263,9 @@
 			}
 
 			function show(assessinfo_id) {
-				var syst = api.systemType;
-				if (syst != "ios") {
-					delay = 200;
-				} else {
-					delay = 0;
-				}
+				var sys = api.systemType;
+				//安卓加载延迟设置
+				sys != "ios" ? delay = 200 : delay = 0;
 				api.openWin({
 					name : 'progress_show_head',
 					url : '../progress/progress_show_head.html',
