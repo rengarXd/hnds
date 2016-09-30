@@ -53,7 +53,19 @@
 					//alert(this.value);
 					searchInCity(this.value);
 				});
+				//设置下拉刷新
+				initRefreshHeaderInfo();
 			});
+			//初始化下拉
+			function initRefreshHeaderInfo() {
+				api.setRefreshHeaderInfo({
+					bgColor : "#ffffff"
+				}, function(ret, err) {
+					location.reload();
+					api.refreshHeaderLoadDone();
+				});
+			}
+
 			function selectd(obj) {
 				$(obj).find('input').attr('checked', 'checked');
 				var xqnm = $(obj).find(".H-flex-item").html();
