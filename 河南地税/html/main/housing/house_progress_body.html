@@ -237,6 +237,12 @@
 
 			//编辑更新
 			function showFunction(assessinfo_id, transferor_certnumber) {
+				var syst = api.systemType;
+				if (syst != "ios") {
+					delay = 200;
+				} else {
+					delay = 0;
+				}
 				api.openWin({
 					name : 'house_head',
 					url : 'house_head.html',
@@ -244,6 +250,7 @@
 						assessinfo_id : assessinfo_id,
 						type : 2
 					},
+					delay : delay,
 					animation : {
 						type : 'reveal',
 						subType : 'from_right',
@@ -256,12 +263,19 @@
 			}
 
 			function show(assessinfo_id) {
+				var syst = api.systemType;
+				if (syst != "ios") {
+					delay = 200;
+				} else {
+					delay = 0;
+				}
 				api.openWin({
 					name : 'progress_show_head',
 					url : '../progress/progress_show_head.html',
 					pageParam : {
 						assessinfo_id : assessinfo_id
 					},
+					delay : delay,
 					animation : {
 						type : 'reveal',
 						subType : 'from_right',
