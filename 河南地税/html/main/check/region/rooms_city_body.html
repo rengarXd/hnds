@@ -42,9 +42,16 @@
 				//					key : 'szqyType',
 				//					value : '{szqynm:' + "'" + szqynm + "'" + ',szqycd:' + "'" + szqycd + "'" + '}'
 				//				});
+				var syst = api.systemType;
+				if (syst != "ios") {
+					delay = 200;
+				} else {
+					delay = 0;
+				}
 				api.openWin({
 					name : 'rooms_szqy_head',
 					url : 'rooms_szqy_head.html',
+					delay : delay,
 					pageParam : {
 						szqy_id : szqy_id
 					}
@@ -58,7 +65,6 @@
 					H.ajax(function(ret, err) {
 						if (ret) {
 							if (0 == ret.data.length) {
-								
 								//							console.log("无数据");
 								var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">取得所在区域为空 </div></div></div>';
 								//$('#progress_data_body').html(html);

@@ -95,9 +95,16 @@
 			};
 			function PingShuiFenQu() {
 				//				console.log($("#local_area").attr("infoid010"));
+				var syst = api.systemType;
+				if (syst != "ios") {
+					delay = 200;
+				} else {
+					delay = 0;
+				}
 				api.openWin({
 					name : 'rooms_city_head',
 					url : 'region/rooms_city_head.html',
+					delay : delay,
 					animation : {
 						type : "none",
 						duration : 0
@@ -159,13 +166,20 @@
 									key : 'psfqfwlx',
 									value : '{c_fwlx : ' + "'" + fwlx + "'" + ',c_fwlx_nm :' + "'" + fwlx_nm + "'" + ',xqdm : ' + "'" + pingshui + "'" + ',xqnm : ' + "'" + pingshui_nm + "'" + ',}'
 								});
+								var syst = api.systemType;
+								if (syst != "ios") {
+									delay = 300;
+								} else {
+									delay = 0;
+								}
 								api.openWin({
 									name : 'house_progress_head',
-									url : '../housing/house_progress_head.html'
+									url : '../housing/house_progress_head.html',
+									delay : delay
 								});
 								setTimeout(function() {
 									api.closeWin();
-								}, 2000);
+								}, 1000);
 							}
 						});
 					} else {
