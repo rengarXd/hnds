@@ -40,7 +40,7 @@
 		imgCompress : function(imgsrc, quality, scale, ext, callback) {
 			var that = this;
 			// 压缩文件的保存目录
-			var savePath = api.cacheDir + '/' + that.getNowFormatDate() + '/';
+			var savePath = api.cacheDir + '/picture/' + that.getNowFormatDate() + '/';
 			// 压缩文件生成的随机文件名称
 			var savename = that.NewGuid() + "." + ext;
 			imageFilter.compress({
