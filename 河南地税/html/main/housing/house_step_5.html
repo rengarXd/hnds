@@ -98,7 +98,7 @@
 					<!--时间类型 end-->
 					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-						<input type="text" value="" onchange="jiage();" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
+						<input placeholder="单位：元" type="text" value="" onchange="jiage();" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
 					</div>
 				</div>
 				<div class="H-padding-vertical-bottom-10"></div>
@@ -233,7 +233,7 @@
 			<!--时间类型 end-->
 			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同金额：</span>
-			<input type="text" value="{{ d.g_htje }}" onchange="jiage();" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
+			<input type="text" placeholder="单位：元" value="{{ d.g_htje }}" onchange="jiage();" id="g_htje" name="g_htje" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="合同金额不能为空" data-errmsg="合同金额填写有误" />
 			</div>
 			</div>
 			<div class="H-padding-vertical-bottom-10"></div>
@@ -366,7 +366,7 @@
 
 			//申报价格
 			function jiage() {
-				$("#jyjg_sbjg").html($("#g_htje").val());
+				$("#jyjg_sbjg").html($("#g_htje").val() + '元');
 			}
 
 			//综合修正选择器
