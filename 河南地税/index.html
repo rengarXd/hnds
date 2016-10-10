@@ -5,7 +5,6 @@
 		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
 		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
 		<title>河南地税分发index</title>
-		<link rel="stylesheet" href="./css/Hui.css" />
 		<script src="./script/H.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -24,10 +23,15 @@
 							url : './html/main.html',
 							bounces : false,
 							delay : 0,
-							scaleEnabled:false,
+							scaleEnabled : false,
 							slidBackEnabled : false,
 							vScrollBarEnabled : false,
-							hScrollBarEnabled : false
+							hScrollBarEnabled : false,
+							animation : {
+								type : "none", //动画类型（详见动画类型常量）
+								//subType : "from_right", //动画子类型（详见动画子类型常量）
+								duration : 0 //动画过渡时间，默认300毫秒
+							}
 						});
 						//H.openWin('main', './html/main.html');
 					} else {
@@ -37,10 +41,15 @@
 							url : './html/login/login_body.html',
 							bounces : false,
 							delay : 0,
-							scaleEnabled:false,
+							scaleEnabled : false,
 							slidBackEnabled : false,
 							vScrollBarEnabled : false,
-							hScrollBarEnabled : false
+							hScrollBarEnabled : false,
+							animation : {
+								type : "none", //动画类型（详见动画类型常量）
+								//subType : "from_right", //动画子类型（详见动画子类型常量）
+								duration : 0 //动画过渡时间，默认300毫秒
+							}
 						});
 						//H.openWin('login_body', './html/login/login_body.html');
 					}
