@@ -119,33 +119,53 @@
 					key : 'jiaoyan',
 					value : ''
 				});
+				//安卓加载延迟设置
+				var delay = 0;
+				if (api.systemType != "ios")
+					delay = 200;
 				api.openWin({
 					name : 'login_body',
-					url : '../../login/login_body.html'
+					url : '../../login/login_body.html',
+					delay : delay
 				});
 				setTimeout(function() {
 					api.closeWin();
-				}, 1200);
+				}, 1000);
 			}
 
 			function changePhoneNum() {
+				//安卓加载延迟设置
+				var delay = 0;
+				if (api.systemType != "ios")
+					delay = 200;
 				api.openWin({
 					name : 'change_phonenum_head',
-					url : './userinfo_change/change_phonenum_head.html'
+					url : './userinfo_change/change_phonenum_head.html',
+					delay : delay
 				});
 			}
 
 			function changePersonNum() {
+				//安卓加载延迟设置
+				var delay = 0;
+				if (api.systemType != "ios")
+					delay = 200;
 				api.openWin({
 					name : 'change_personnum_head',
-					url : './userinfo_change/change_personnum_head.html'
+					url : './userinfo_change/change_personnum_head.html',
+					delay : delay
 				});
 			}
 
 			function change_pwd() {
+				//安卓加载延迟设置
+				var delay = 0;
+				if (api.systemType != "ios")
+					delay = 200;
 				api.openWin({
 					name : 'change_password_head',
-					url : './userinfo_change/change_password_head.html'
+					url : './userinfo_change/change_password_head.html',
+					delay : delay
 				});
 			}
 		</script>
