@@ -10,43 +10,46 @@
 			html, body {
 				background-color: white;
 			}
+			.img_padding {
+				padding: 0px 40px 0px 40px;
+			}
 		</style>
 	</head>
 	<body>
-		<div class="H-text-align-center H-padding-15">
-			<img src="../../image/icon.png" style="width:30%;height:30%;" />
-		</div>
-		<div class="H-text-list H-text-align-center">
-			<p class="H-font-size-18 H-theme-font-color-ccc">
-				二手房办税app二维码扫描
-			</p>
-		</div>
-		<div class="H-border-vertical-bottom-after"></div>
-		<!--<div style="padding: 0px 35px 10px 35px;" id="imgTwo">
-			<img src="" style="width: 100%" id="ewm"/>
+		<!--<div class="H-text-align-center H-padding-15">
+		<img src="../../image/icon.png" style="width:30%;height:30%;" />
 		</div>-->
+		<div class="H-padding-vertical-both-15"></div>
+		<div class="H-text-align-center">
+			<span class="H-font-size-20 H-theme-font-color-ccc"> 二手房办税分享app扫码 </span>
+		</div>
+		<div class="img_padding" id="imgTwo">
+			<img src="../../image/albumesfbs.png" style="width: 100%" id="ewm"/>
+		</div>
+		<div class="img_padding H-theme-font-color-999 H-font-size-13 H-padding-horizontal-both-25 H-text-align-center">
+			分享给你的小伙伴，扫描上方的二维码下载这个APP，一起来感受飞一般的办税效率吧！
+		</div>
 		<script src="../../script/H.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			H.ready(function() {
-				var FNScanner = api.require('FNScanner');
-//				FNScanner.encodeImg({
-//					content : 'http://downloadpkg.apicloud.com/app/download?path=http://7xunpo.com1.z0.glb.clouddn.com/8d85be18eb3ce56ee520010f55eca049_d',
-//					//不保存到相册，每次进入都生成
-//					saveToAlbum : false,
-//					saveImg : {
-//						path : 'fs://album.png',
-//						w : 240,
-//						h : 240
-//					}
-//				}, function(ret, err) {
-//					if (ret.status) {
-//						//document.getElementById("imgTwo").display = "block";
-//						document.getElementById("ewm").src = ret.imgPath
-//						//alert( JSON.stringify( ret ) );
-//					} else {
-//						//alert(JSON.stringify(err));
-//					}
-//				});
+				//				var FNScanner = api.require('FNScanner');
+				//				FNScanner.encodeImg({
+				//					content : 'http://218.28.41.134:8081/etax/report/html/share_app.html',
+				//					saveToAlbum : false,
+				//					saveImg : {
+				//						path : 'fs://albumesfbs.png',
+				//						w : 240,
+				//						h : 240
+				//					}
+				//				}, function(ret, err) {
+				//					if (ret.status) {
+				//						//document.getElementById("imgTwo").display = "block";
+				//						document.getElementById("ewm").src = ret.imgPath
+				//						//alert( JSON.stringify( ret ) );
+				//					} else {
+				//						//alert(JSON.stringify(err));
+				//					}
+				//				});
 			});
 		</script>
 	</body>
