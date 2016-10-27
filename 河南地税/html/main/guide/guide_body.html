@@ -24,14 +24,21 @@
 			<div id="loading" class="H-center-all H-padding-20">
 				<img src="../../../image/loading_more.gif" width="30" />
 			</div>
+			<!--<div class="H-padding-10 H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after" onclick="showFunction('{{ d.data[i].guide_id }}')">
+			<div class="H-flex-item H-text-show-row-1 H-font-size-16">
+			第一步，下载app
+			</div>
+			<span class="H-float-right H-padding-horizontal-right-15 H-theme-font-color-999"><i class="iconfont icon-you H-font-size-16 H-vertical-middle"></i> </span>
+			</div>-->
 		</div>
 		<script id="notice_data" type="text/html">
-			{{# for(var i = 0, len = d.data.length; i < len; i++){ }}
-			<div class="H-padding-10 H-margin-vertical-both-10 H-theme-background-color-white H-border-vertical-both-after" onclick="showFunction('{{ d.data[i].guide_id }}')">
-			<div class="H-text-show-row-1 H-font-size-16">
-			{{ d.data[i].news_title }}
+			<div class="H-padding-vertical-bottom-10"></div>
+			{{# for(var i = 0, len = d.length; i < len; i++){ }}
+			<div class="H-padding-10 H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after" onclick="showFunction('{{ d[i].id }}')">
+			<div class="H-flex-item H-text-show-row-1 H-font-size-16">
+			{{ d[i].title }}
 			</div>
-			<div class="H-font-size-10 d_font_time_color">{{ d.data[i].edit_date }}</div>
+			<span class="H-float-right H-padding-horizontal-right-15 H-theme-font-color-999"><i class="iconfont icon-you H-font-size-16 H-vertical-middle"></i> </span>
 			</div>
 			{{# } }}
 		</script>
@@ -40,55 +47,93 @@
 		<script src="../../../script/tools/laytpl.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			var retobj = null;
+			var datas = [{
+				title : '第一步，下载app',
+				id : 1
+			}, {
+				title : '第二步，登录与注册',
+				id : 2,
+			}, {
+				title : '第三步，房屋校验',
+				id : 3,
+			}, {
+				title : '第四步，存量房信息录入',
+				id : 4
+			}, {
+				title : '第五步，上传附件',
+				id : 5
+			}, {
+				title : '第六步，完成申请',
+				id : 6
+			}, {
+				title : '受理进度查询',
+				id : 7
+			}];
 			H.ready(function() {
-				api.getPrefs({
-					key : 'userinfo'
-				}, function(ret, err) {
-					//                  console.log(JSON.stringify(ret));
-					retobj = eval('(' + ret.value + ')');
-					get_data();
-				});
+				get_data();
+				//				api.getPrefs({
+				//					key : 'userinfo'
+				//				}, function(ret, err) {
+				//					//                  console.log(JSON.stringify(ret));
+				//					retobj = eval('(' + ret.value + ')');
+				//					get_data();
+				//				});
 				//下拉刷新
-				api.setRefreshHeaderInfo({
-					bgColor : '#fff'
-				}, function(ret, err) {
-					get_data();
-				});
+				//				api.setRefreshHeaderInfo({
+				//					bgColor : '#fff'
+				//				}, function(ret, err) {
+				//					get_data();
+				//				});
 			});
 			//获取办税指南数据
 			function get_data() {
-				H.ajax(function(ret, err) {
-					api.refreshHeaderLoadDone();
-					//如果返回数据正常并且成功返回
-					if (ret && ret.success) {
-						if (ret.data.length == 0) {
-							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">暂无数据</div></div></div>';
-							//$('#progress_data_body').html(html);
-							document.getElementById('notice_data_body').innerHTML = html;
-						} else {
-							var tpl = document.getElementById("notice_data").innerHTML;
-							laytpl(tpl).render(ret, function(render) {
-								document.getElementById("notice_data_body").innerHTML = render;
-							});
-						}
-					} else if (ret && !ret.success) {
-						//提示登录失效
-						return $common.loginInvalid("../../");
-					}
-				}, 'getTaxGuide&funid=tax_guide', 'post', {
-					values : {
-						user_id : retobj[0].user_id,
-						uuid : retobj[0].uuid
-					}
+				var tpl = document.getElementById("notice_data").innerHTML;
+				laytpl(tpl).render(datas, function(render) {
+					//alert(JSON.stringify(render));
+					document.getElementById("notice_data_body").innerHTML = render;
 				});
+				//				H.ajax(function(ret, err) {
+				//					api.refreshHeaderLoadDone();
+				//					//如果返回数据正常并且成功返回
+				//					if (ret && ret.success) {
+				//						if (ret.data.length == 0) {
+				//							var html = '<div class="H-position-absolute H-position-center-all" id="statuss"><div class="H-font-size-14 H-text-align-center"><i class="iconfont icon-jindu H-font-size-32 H-theme-font-color-999"></i><div class="H-theme-font-color-999">暂无数据</div></div></div>';
+				//							//$('#progress_data_body').html(html);
+				//							document.getElementById('notice_data_body').innerHTML = html;
+				//						} else {
+				//							var tpl = document.getElementById("notice_data").innerHTML;
+				//							laytpl(tpl).render(ret, function(render) {
+				//								document.getElementById("notice_data_body").innerHTML = render;
+				//							});
+				//						}
+				//					} else if (ret && !ret.success) {
+				//						//提示登录失效
+				//						return $common.loginInvalid("../../");
+				//					}
+				//				}, 'getTaxGuide&funid=tax_guide', 'post', {
+				//					values : {
+				//						user_id : retobj[0].user_id,
+				//						uuid : retobj[0].uuid
+				//					}
+				//				});
 			}
 
 			//办税指南
-			//          function showFunction(id) {
-			//              H.openWin('guide_show_head', './guide_show_head.html', {
-			//                  id : id
-			//              });
-			//          }
+			function showFunction(id) {
+				var delay = 0;
+				if (api.systemType != 'ios')
+					delay = 100;
+				api.openWin({
+					name : 'guide_show_head',
+					url : './guide_show_head.html',
+					delay : delay,
+					pageParam : {
+						id : id
+					},
+					vScrollBarEnabled : false,
+					hScrollBarEnabled : false
+				});
+			}
 		</script>
 	</body>
 </html>
