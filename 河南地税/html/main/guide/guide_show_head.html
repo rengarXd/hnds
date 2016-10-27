@@ -1,30 +1,102 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
-        <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-        <title>办税指南详情页面header</title>
-        <link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
-         <link href="../../../css/fonts/iconfont.css" rel="stylesheet" type="text/css" />
-        <style type="text/css">
-            .H_header_bg {
-                background: #09a4de
-            }
-        </style>
-    </head>
-    <body>
-        <header class="H-header H_header_bg" id="header">
-            <span tapmode="" onclick="H.closeWin();" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-left-5 H-z-index-100"><i class="iconfont icon-fanhui H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15">返回</label></span>
-            <div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
-                办税指南
-            </div>
-        </header>
-        <script src="../../../script/H.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            H.ready(function() {
-                H.openFrameNavOrFoot("guide_show_body", "./guide_show_body.html", "#header", api.pageParam);
-            });
-        </script>
-    </body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>办税指南header</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/Hui.css" />
+		<link rel="stylesheet" href="../../../css/fonts/iconfont.css" />
+		<style type="text/css">
+			.H_header_bg {
+				background: #09a4de
+			}
+		</style>
+	</head>
+	<body class="H-flexbox-vertical">
+		<header class="H-header H_header_bg" id="header">
+			<span tapmode="H-theme-font-color-444" tapmode="" onclick="api.closeWin();" class="H-font-size-18 H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-left-5 H-z-index-100"><i class="iconfont icon-fanhui"></i> 返回</span>
+			<span tapmode="H-theme-font-color-444" tapmode="" onclick="nextPart();" class="H-font-size-18 H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-right-15 H-z-index-100">下一步</span>
+			<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+				办税指南详情
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript">
+		var names = null, ids = null;
+		apiready = function() {
+			if (api.pageParam.id)
+				ids = api.pageParam.id;
+			initInfo(ids);
+			api.parseTapmode();
+		};
+		function initInfo(ids) {
+			var idnum = parseInt(ids);
+			switch (idnum) {
+				case 1:
+					names = 'guide_show_1';
+					initPage();
+					break;
+				case 2:
+					names = 'guide_show_2';
+					initPage();
+					break;
+				case 3:
+					names = 'guide_show_3';
+					initPage();
+					break;
+				case 4:
+					names = 'guide_show_4';
+					initPage();
+					break;
+				case 5:
+					names = 'guide_show_5';
+					initPage();
+					break;
+				case 6:
+					names = 'guide_show_6';
+					initPage();
+					break;
+				case 7:
+					names = 'guide_show_7';
+					initPage();
+					break;
+			}
+		}
+
+		function initPage() {
+			var header = $api.byId('header');
+			$api.fixStatusBar(header);
+			var headerPos = $api.offset(header);
+			var body_h = $api.offset($api.dom('body')).h;
+			api.openFrame({
+				name : names,
+				url : names + '.html',
+				bounces : false,
+				rect : {
+					x : 0,
+					y : headerPos.h,
+					w : 'auto',
+					h : 'auto'
+				},
+				vScrollBarEnabled : false,
+				hScrollBarEnabled : false
+			});
+		}
+
+		function nextPart() {
+			if (ids < 7) {
+				api.closeFrame({
+					name : names
+				});
+				ids++;
+				initInfo(ids);
+			} else {
+				api.toast({
+					msg : '已经是最后一项了'
+				});
+			}
+		}
+	</script>
 </html>
