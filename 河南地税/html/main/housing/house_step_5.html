@@ -84,10 +84,10 @@
 					</div>
 				</div>
 				<div class="H-border-vertical-both-after">
-					<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-						<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号*：</span>
-						<input type="text" value="" id="g_htbh" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" />
-					</div>
+					<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号*：</span>
+					<input type="text" value="" id="g_htbh" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" />
+					</div>-->
 					<!--时间类型 start-->
 					<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
 						<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
@@ -126,21 +126,19 @@
 					</div>
 					<!--交易日期 end-->
 				</div>
-				<div class="H-padding-vertical-bottom-10"></div>
+				<!--<div class="H-padding-vertical-bottom-10"></div>
 				<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
-					<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
-					<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
-						申报价格
-					</div>
-					<span id="jyjg_sbjg" name="jyjg_sbjg" dm="jyjg_sbjg" class="H-icon H-padding-horizontal-right-10 H-display-block H-font-size-16"></span>
+				<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
+				<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+				申报价格
 				</div>
+				<span id="jyjg_sbjg" name="jyjg_sbjg" dm="jyjg_sbjg" class="H-icon H-padding-horizontal-right-10 H-display-block H-font-size-16"></span>
+				</div>-->
 				<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
 				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">申报价格：</span>
 				<input type="text" id="jyjg_sbjg" name="jyjg_sbjg" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="sbjg" data-nullmsg="申报价格不能为空" data-errmsg="申报价格填写有误"
 				placeholder="填写申报价格" />
 				</div>-->
-			</div>
-			</div>
 			</div>
 		</form>
 		<footer class="H-footer H-padding-10 ">
@@ -219,10 +217,10 @@
 			</div>
 			</div>
 			<div class="H-border-vertical-both-after">
-			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<!--<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
 			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">合同编号*：</span>
 			<input type="text" value="{{ d.g_htbh }}" id="g_htbh" name="g_htbh" class="H-theme-font-color-666 H-text-align-right H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" />
-			</div>
+			</div>-->
 			<!--时间类型 start-->
 			<div class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active" onclick="htqdrqPick();">
 			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
@@ -261,14 +259,14 @@
 			</div>
 			<!--交易日期 end-->
 			</div>
-			<div class="H-padding-vertical-bottom-10"></div>
+			<!--<div class="H-padding-vertical-bottom-10"></div>
 			<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
 			<div class="H-channel-line H-theme-background-color-black H-padding-vertical-top-15 H-padding-horizontal-left-3  H-margin-horizontal-left-10"></div>
 			<div class="H-channel-text H-theme-font-color-black H-flex-item H-font-size-18 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
 			申报价格
 			</div>
 			<span id="jyjg_sbjg" dm="{{ d.jyjg_sbjg }}" name="jyjg_sbjg" class="H-icon H-padding-horizontal-right-10 H-display-block H-font-size-16">{{ d.jyjg_sbjg }}元</span>
-			</div>
+			</div>-->
 		</script>
 		<script src="../../../script/H.js" type="text/javascript"></script>
 		<script src="../../../script/zepto.min.js" type="text/javascript"></script>

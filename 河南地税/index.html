@@ -51,20 +51,8 @@
 								duration : 0 //动画过渡时间，默认300毫秒
 							}
 						});
-						//H.openWin('login_body', './html/login/login_body.html');
 					}
 				}, 'islogin');
-				//				api.getPrefs({
-				//					key : 'launch'
-				//				}, function(ret, err) {
-				//					//1.2、如果有了（launch）偏好设置
-				//					if (ret && ret.value) {
-				//
-				//					} else {
-				//						//如果没有了（launch）偏好设置
-				//						H.openWin('launch', './html/launch.html');
-				//					}
-				//				});
 				//判断沉浸式
 				if ("ios" == systemtype) {
 					api.setStatusBarStyle({
