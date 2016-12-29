@@ -67,19 +67,19 @@
 					placeholder="填写房屋坐落" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">幢（楼）号：</span>
-					<input type="text" name="fwzh_zh" id="fwzh_zh" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="幢（楼）号不能为空" data-errmsg="幢（楼）号不能为空"
-					placeholder="填写幢（楼）号" />
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房屋幢号*：</span>
+					<input type="text" name="fwzh_zh" id="fwzh_zh" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
+					placeholder="填写房屋幢号" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">单元号：</span>
-					<input type="text" name="dy_dy" id="dy_dy" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="单元号不能为空" data-errmsg="单元号不能为空"
-					placeholder="填写单元号" />
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">单元*：</span>
+					<input type="text" name="dy_dy" id="dy_dy" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
+					placeholder="填写单元" />
 				</div>
 				<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-left-10-after">
-					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房号：</span>
-					<input type="text" name="fh_bwjfh" id="fh_bwjfh" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" data-rule="*" data-nullmsg="房号不能为空" data-errmsg="房号不能为空"
-					placeholder="填写户号" />
+					<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">房间号*：</span>
+					<input type="text" name="fh_bwjfh" id="fh_bwjfh" value="" class="H-textbox H-text-align-right H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12"
+					placeholder="填写房间号" />
 				</div>
 			</div>
 		</form>
@@ -134,6 +134,9 @@
 						});
 						var value = {
 							"c_qdh" : $("#c_qdh").val(),
+							"fwzh_zh" : $("#fwzh_zh").val(),
+							"dy_dy" : $("#dy_dy").val(),
+							"fh_bwjfh" : $("#fh_bwjfh").val(),
 							"c_fzrq" : $("#times").attr('dm'),
 							"xzqhsz_szqy" : $("#xzqhsz_szqy").attr('dm'),
 							"c_xqnm" : $("#pingshui_type").attr('xqdm')
